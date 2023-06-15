@@ -25,7 +25,7 @@
             <img src="Pictures/royal logo.jpg" alt="No Image">
             
             <ul style="margin-left:700px;">
-                <li> <a href="Homepage.html"> Home </a> </li>
+                <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
                 <li> <a href=""> Rooms </a> </li>
                 <li> <a href="     "> Sign up </a> </li>
@@ -238,11 +238,12 @@
 
             <span>C</span>
             <span>O</span>
+            <span>M</span>
+            <span>M</span>
+            <span>E</span>
             <span>N</span>
             <span>T</span>
-            <span>A</span>
-            <span>C</span>
-            <span>T</span>
+            <span>S</span>
 
         </h1>
 
@@ -309,9 +310,8 @@
             <div class="box">
 
                 <h3> Quick Links </h3>
-                <a href="Homepage.html"> Home </a>
+                <a href="Homepage.php"> Home </a>
                 <a href="  "> Rooms </a>
-                <a href="  "> Cart </a>
 
             </div>
 
@@ -329,10 +329,6 @@
     </footer>
 
     <!-- Footer of Homepage End-->
-
-
-    <!-- Customer JS FILE -->
-    <script src=""> </script>
         
 </body>
 
