@@ -265,7 +265,7 @@
                     </p>
 
                     <p>
-                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:5px;"></textarea>
+                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:8px;padding-top:5px;"></textarea>
                     </p>
 
                 </div>

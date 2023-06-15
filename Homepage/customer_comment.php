@@ -16,7 +16,7 @@ if(isset($_POST["btn"]))
     {
         ?>
         <script>
-            alert("Record Saved!"); //BASIC WAYS FOR CHECKING
+            alert("RESPONSES SUBMITTED !"); //BASIC WAYS FOR CHECKING
         </script>
         <?php
     }
