@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang ="en">
 <head>
   <meta charset="UTF-8">
@@ -185,7 +186,10 @@
       position: relative;
       overflow: hidden;
     }
-
+    .image-size{
+      width: 40em;
+      height: 40em;
+    }
 
     .image-section img {
       width: 100%;
@@ -212,6 +216,23 @@
       bottom: 0; /* Slide the overlay up */
       opacity: 1; /* Show the overlay */
     }
+
+    .image-section::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* 这里的最后一个参数 0.5 控制透明度 */
+      opacity: 0; /* 初始时设置为透明 */
+      transition: opacity 0.5s; /* 添加过渡效果 */
+    }
+
+    .image-section:hover::after {
+      opacity: 1; /* 鼠标悬停时显示黑色版 */
+    }
+
 
     .content{
       float: right;
@@ -301,7 +322,6 @@
           <li> <a href="#home">HOME</a> </li>
           <li> <a href="#about us">ABOUT</a> </li>
           <li> <a href="#room">ROOM</a> </li>
-          <li> <a href="#cart">CART</a> </li>
           <li> <a href="#shop">SHOP</a> </li>
           <li> <a href="#sign in">SIGN IN</a> </li>
         </ul>
@@ -362,7 +382,7 @@
           </div>
         </div>
         <div class="content">
-          <a href="booking.html" class="book-now-button" >Book Now</a>  
+          <a href="payment.php" class="book-now-button" >Book Now</a>  
         </div>
       </div>
       <style>
@@ -443,6 +463,6 @@
     localStorage.setItem("roomType", roomType);
 
 
-    window.location.href = "cart.html";
+
   }
  </script>
