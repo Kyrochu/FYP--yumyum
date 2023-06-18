@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
-    
+
 <head> 
     <title> Royal Hotel </title>   
     
-    <link rel="stylesheet" href="HPstyle.css">
+    <link rel="stylesheet" href="HP_UserLogin.css">
         
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
  
@@ -13,7 +13,7 @@
 <body>
 
     <?php include("customer_comment.php"); ?>
-
+    
     <!-- Header of Homepage -->
     <header> 
     
@@ -27,9 +27,8 @@
             <ul style="margin-left:700px;">
                 <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
-                <li> <a href=""> Rooms </a> </li>
-                <li> <a href="     "> Sign up </a> </li>
-                <li> <a href="     "> Log in </a></li>
+                <li> <a href="     "> Rooms </a> </li>
+                <i class="fa-solid fa-user" id="user-head"></i>
             </ul>
             
         </div>
@@ -169,12 +168,12 @@
                     </p>
 
                     <p>
-                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:8px;padding-top:5px;"></textarea>
+                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:8px;padding-top:5px"></textarea>
                     </p>
 
                 </div>
 
-                <input type="submit" class="Subbtn" name ="btn" value="SUBMIT">
+                <input type="submit" class="Subbtn" name="btn" value="SUBMIT">
 
             </form>
         
@@ -214,8 +213,9 @@
             <div class="box">
 
                 <h3> Quick Links </h3>
-                <a href="Homepage.php"> Home </a>
+                <a href="Homepage.html"> Home </a>
                 <a href="  "> Rooms </a>
+                <a href="  "> Cart </a>
 
             </div>
 
@@ -233,6 +233,10 @@
     </footer>
 
     <!-- Footer of Homepage End-->
+
+
+    <!-- Customer JS FILE -->
+    <script src=""> </script>
         
 </body>
 
