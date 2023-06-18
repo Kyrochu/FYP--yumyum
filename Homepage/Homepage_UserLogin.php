@@ -25,7 +25,7 @@
             <img src="Pictures/royal logo.jpg" alt="No Image">
             
             <ul style="margin-left:700px;">
-                <li> <a href="Homepage.html"> Home </a> </li>
+                <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
                 <li> <a href="     "> Rooms </a> </li>
                 <i class="fa-solid fa-user" id="user-head"></i>
@@ -168,7 +168,7 @@
                     </p>
 
                     <p>
-                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:5px;"></textarea>
+                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:8px;padding-top:5px"></textarea>
                     </p>
 
                 </div>
