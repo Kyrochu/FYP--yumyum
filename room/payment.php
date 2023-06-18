@@ -11,17 +11,18 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Credit Card | Payment</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-        *{
-            font-family: 'Roboto', sans-serif;
-            margin:0; padding:0;
-            box-sizing: border-box;
-            outline: none; border: none;
-            text-decoration: none;
-            text-transform: uppercase;
+    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+    *{
+        font-family: 'Roboto', sans-serif;
+        margin:0; padding:0;
+        box-sizing: border-box;
+        outline: none; border: none;
+        text-decoration: none;
+        text-transform: uppercase;
         
-        }
+    }
        
     .header {
       background: goldenrod;
@@ -31,16 +32,16 @@
       
     }
 
-    body {
+   .header body {
       background: goldenrod;
       overflow-x: hidden;
     }
 
-    li {
+   .header li {
       list-style: none;
     }
 
-    a {
+   .header a {
       text-decoration: none;
       transition: 0.5s;
     }
@@ -51,12 +52,12 @@
       top: 0;
     }
 
-    .navbar {
+   .header .navbar {
       display: flex;
       align-items: center;
     }
 
-    .nav-menu {
+   .header .nav-menu {
       display: flex;
       justify-content: space-between;
     }

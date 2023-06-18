@@ -1,3 +1,7 @@
+<?php
+   include('Data_Connection.php');
+?>
+
 <!DOCTYPE html>
 
 <html lang ="en">
@@ -8,7 +12,7 @@
   <title>BOOKING HOTEL</title>
   <style>
     *{
-      
+      margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -32,7 +36,7 @@
     }
 
     body {
-      background: goldenrod;
+      background:goldenrod;
       overflow-x: hidden;
     }
 
@@ -360,84 +364,58 @@
         </div>
       </div>  
     </div>
-    <div class="wrapper">
-      <div class="row">
-        <div class="image-section">
-          <img src="luxury room.jpg"  class="image-size" alt="luxury">
-          <div class="overlay">
-            <p class="caption">Lavish bathrooms with upscale features such as heated floors and soaking tubs. High-end, lush linens and towels. Deluxe pillows and mattresses so your sleeping hours are as blissful as your waking ones. Beautiful views in every direction – inside and out</p>
-          </div>
-        </div>
-        <div class="content">
-          <a href="booking.html" class="book-now-button" >Book Now</a>  
-        </div>
-      </div>
-    </div>
-    <div class="wrapper">
-      <div class="row">
-        <div class="image-section">
-          <img src="double room.png"  class="image-size" alt="luxury">
-          <div class="overlay">
-            <p class="caption">A double room is a type of hotel or accommodation option that is designed to accommodate two people. It typically features a larger bed compared to a single room, providing more space and comfort for two occupants.</p>
-          </div>
-        </div>
-        <div class="content">
-          <a href="payment.php" class="book-now-button" >Book Now</a>  
-        </div>
-      </div>
-      <style>
-        .row{
-          margin: 90px;
-        }
-      </style>
-    </div>
+          <?php
+            $room_sql = "SELECT * FROM room";
+            $room_result = mysqli_query($connect, $room_sql);
+            $room_row = mysqli_num_rows($room_result);
+            if($room_row == 0){
+              mysqli_close($connect);
+            }
+            else{
+              while($room_row = mysqli_fetch_array($room_result)){
+                $room_name = $room_row['room_name'];
+                $room_price = $room_row['room_price'];
+                $room_image = $room_row['room_image'];
+                $room_description = $room_row['room_description'];
+
+                ?>
+                  <div id="wishlist-container">
+                    <div class="wishlist-item">
+                        <img src="<?php echo $room_image; ?>"  class="image-size" alt="luxury">
+                        <p><?php echo $room_name; ?></p>
+                        <p class="caption"><?php echo $room_description; ?></p>
+                        <span><?php echo $room_price; ?></span>
+                        <a href="booking.html" class="book-now-button" >Book Now</a>  
+                    </div>
+                  </div>
+                  <style>
+                    #wishlist-container {
+                    
+                        padding-left: 25%;
+                    }
+
+                    .wishlist-item {
+                        width: 25%;
+                        padding-top: 50px;
+                        margin: 10px;
+                    }
+                    .wishlist-item img {
+                        width: 150px;
+                        height: 200px;
+                    }
+                  </style>
+                <?php
+                
+              }
+            }
+          ?>
+        
+
+    
+    
        
   </section> 
 
-  <footer style="margin-top: 40px;">
-    <div class="contact-info">
-      <div class="first-info">
-          <img src="FT.png" alt="heart" style="height: 66px; width: 80px;">
-          <p class="companyname">company name</p>
-          <p class="companyaddress">Aeon Bandaraya Melaka Shopping Centre</p>
-          <p class="companyaddress">F59/60/61,First Floor,AEON Bandaraya Melaka Shopping Centre </p>
-          <p class="companyaddress">,No.2, Jalan Legenda, Taman 1-Legenda,MELAKA,75400,Melaka</p>
-          <br>
-          <p><a href="tel:0127978456">0127978456</a></p>
-          <p><a href="mailto:ali@student.mmu.edu.my">ali@student.mmu.edu.my</a></p>
-
-          
-      </div>
-
-      <div class="second-info">
-          <h4 style="font-weight: bold; font-size: 20px; color: white;">Branch locations</h4>
-          <br>
-          <p><a href="https://www.google.com/">Shah Alam, Kuala Lumpur</a></p>
-          <p><a href="https://www.google.com/">Melaka</a></p>
-          <p><a href="maps.html">Penang</a></p>
-          <p><a href="maps.html">Johor</a></p>
-      </div>
-
-      <div class="third-info">
-          <h4 style="font-weight: bold; font-size: 20px; color: white;">Quick Links</h4>
-          <br>
-          <p><a href="Homepage.html"> Home </a></p>
-          <p><a href="  "> Rooms </a></p>
-          <p><a href="  "> Cart </a></p>
-          <br>
-      </div>
-
-      <div class="fourth-info social-icon">
-        <h4 style="font-weight: bold; font-size: 20px;">Follow us</h4>
-        <a href="#"><img src="user-solid-24.png" title="User Login"></a>
-        <a href="#"><img src="help-circle-solid-24.png" title="Help"></a>
-        <a href="#"><img src="cart-solid-24.png" title="Cart"></a>
-        <a href="mailto:121128894@student.mmu.edu.my"><img src="gmail-logo-24.png" title="Mail Us"></a>
-        <a href="tel:0167979789"><img src="phone-regular-24.png" title="Phone Us"></a>  
-      </div>
-     
-  </div>
-  </footer>
 </body>
 </html>
 
