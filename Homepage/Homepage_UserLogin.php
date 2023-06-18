@@ -173,7 +173,7 @@
 
                 </div>
 
-                <input type="submit" class="Subbtn" value="SUBMIT">
+                <input type="submit" class="Subbtn" name="btn" value="SUBMIT">
 
             </form>
         
