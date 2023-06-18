@@ -156,7 +156,7 @@
                 <img src="Pictures/BoyNGirl.jpg" alt="No Image">
             </div>
 
-            <form name="Comment">
+            <form name="Comment" method="POST">
 
                 <div class="inputBox">
                     <p>
