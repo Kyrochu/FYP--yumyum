@@ -30,7 +30,6 @@
                 <li> <a href=""> Rooms </a> </li>
                 <li> <a href="     "> Sign up </a> </li>
                 <li> <a href="     "> Log in </a></li>
-                <li> <button class="bookbtn"> BOOK NOW</button></li>
             </ul>
             
         </div>
@@ -72,15 +71,13 @@
 
         <h1 class="Heading">
 
-            <span>M</span>
-            <span>O</span>
-            <span>S</span>
+            <span>F</span>
+            <span>E</span>
+            <span>A</span>
             <span>T</span>
-            <span style="background-color: white;"></span>
-            <span>P</span>
-            <span>I</span>
-            <span>C</span>
-            <span>K</span>
+            <span>U</span>
+            <span>R</span>
+            <span>E</span>
             <span>S</span>
 
         </h1>
@@ -300,10 +297,10 @@
             <div class="box">
 
                 <h3> Branch Locations </h3>
-                <a href="  "> Shah Alam,Kuala Lumpur</a>
-                <a href="  "> Melaka </a>
-                <a href="  "> Penang </a>
-                <a href="  "> Johor </a>
+                <p> Shah Alam,Kuala Lumpur </p>
+                <p> Melaka </p>
+                <p> Penang </p>
+                <p> Johor </p>
 
             </div>
 
