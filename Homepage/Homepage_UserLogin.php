@@ -160,15 +160,15 @@
 
                 <div class="inputBox">
                     <p>
-                        <h3>Name:</h3><input type="text" placeholder="Your Name" style="font-size:15px;color:black"> 
+                        <h3>Name:</h3><input type="text" placeholder="Your Name" name="username" style="font-size:15px;color:black"> 
                     </p>
 
                     <p>
-                        <h3>Email:</h3><input type="email" placeholder="Your Email" style="font-size:15px;color:black"> 
+                        <h3>Email:</h3><input type="email" placeholder="Your Email" name="useremail" style="font-size:15px;color:black"> 
                     </p>
 
                     <p>
-                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here"name="comment" cols="30" rows="20" style="font-size:15px;padding-left:5px;"></textarea>
+                        <h3>Comment Box:</h3> <textarea placeholder="Leave your comments here" name="comment" cols="30" rows="20" style="font-size:15px;padding-left:5px;"></textarea>
                     </p>
 
                 </div>
