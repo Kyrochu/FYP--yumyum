@@ -281,19 +281,18 @@
     </style>
 </head>
 <body>
-        <header class="header">
-            <div class="container">
-                <nav class="navbar flex1">
-                    <ul class="nav-menu">
-                    <li> <a href="#home">HOME</a> </li>
-                    <li> <a href="#about us">ABOUT</a> </li>
-                    <li> <a href="#room">ROOM</a> </li>
-                    <li> <a href="#shop">SHOP</a> </li>
-                    <li> <a href="#sign in">SIGN IN</a> </li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+<header class="header">
+    <div class="container">
+      <nav class="navbar flex1">
+        <ul class="nav-menu">
+          <li> <a href="Homepage.php">HOME</a> </li>
+          <li> <a href="AboutUs_UserLogin.html">ABOUT</a> </li>
+          <li> <a href="roomroom.php">ROOM</a> </li>
+
+        </ul>
+      </nav>
+    </div>
+  </header>
     <div id="creditcard">
         <div class="container">
             <div class="card-container">
