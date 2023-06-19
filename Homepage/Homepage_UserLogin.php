@@ -28,7 +28,7 @@
                 <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
                 <li> <a href="roomroom.php"> Rooms </a> </li>
-                <i class="fa-solid fa-user" id="user-head"></i>
+                <li> <a href=""> Hi customer </a> </li>
             </ul>
             
         </div>
