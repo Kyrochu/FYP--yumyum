@@ -249,16 +249,9 @@
     <div class="container">
       <nav class="navbar flex1">
         <ul class="nav-menu">
-<<<<<<< HEAD
           <li> <a href="Homepage_UserLogin.php">HOME</a> </li>
           <li> <a href="AboutUs_UserLogin.html">ABOUT</a> </li>
           <li> <a href="roomroom.php">ROOM</a> </li>
-=======
-          <li> <a href="Homepage.php">HOME</a> </li>
-          <li> <a href="AboutUs_UserLogin.html">ABOUT</a> </li>
-          <li> <a href="roomroom.php">ROOM</a> </li>
-
->>>>>>> 3ce205593f66a0b245f32c8dd3b337d4d6228d5c
         </ul>
       </nav>
     </div>
