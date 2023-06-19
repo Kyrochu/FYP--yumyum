@@ -276,6 +276,10 @@
             margin-top: 30px;
             height: 30px;
         }
+        hr {
+            border: 1px solid goldenrod; 
+          
+        }
     </style>
 </head>
 <body>
@@ -293,6 +297,7 @@
                 </nav>
             </div>
         </header>
+        <hr>
     <div id="creditcard">
         <div class="container">
             <div class="card-container">
