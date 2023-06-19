@@ -25,7 +25,7 @@
             <img src="Pictures/royal logo.jpg" alt="No Image">
             
             <ul style="margin-left:700px;">
-                <li> <a href="Homepage_UserLogin.php"> Home </a> </li>
+                <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
                 <li> <a href="roomroom.php"> Rooms </a> </li>
                 <li> <a href=""> Hi customer </a> </li>
@@ -98,9 +98,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
 
-                   </div>
-                   <a href="         " class="Subbtn">DETAILS</a>
-                   
+                   </div>            
 
                 </div>
             </div>
@@ -114,6 +112,7 @@
                    <br>
                    <p style="color:goldenrod"> >> ROOMS THAT IS SUITABLE FOR FAMILIES </p>
                    <br>
+                   <br>
 
                    <div class="star">
 
@@ -123,9 +122,7 @@
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
 
-                   </div>
-                   <a href="         " class="Subbtn">DETAILS</a>
-                   
+                   </div>                    
 
                 </div>
             </div>
