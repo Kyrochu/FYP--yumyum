@@ -43,7 +43,6 @@
 
             <h3> Welcome to A global icon of luxury </h3>
             <p> Discover new places with us, luxury awaits </p>
-            <a href="" class="btn"> DISCOVER MORE </a>
 
         </div>
 
