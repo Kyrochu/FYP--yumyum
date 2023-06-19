@@ -11,6 +11,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BOOKING HOTEL</title>
   <style>
+    @font-face {
+      font-family: myFont;
+      src: url(Mysterio.ttf);
+    }
+    @font-face {
+      font-family: Youfont;
+      src: url(Super\ Comic.ttf);
+    }
     *{
       margin: 0;
       padding: 0;
@@ -36,7 +44,7 @@
     }
 
     body {
-      background:goldenrod;
+      background:white;
       overflow-x: hidden;
     }
 
@@ -110,6 +118,8 @@
     .room-name {
         font-weight: bold;
         font-size: 20px;
+        color: goldenrod;
+        font-family: Youfont;
     }
 
     .book-now-button {
@@ -129,10 +139,11 @@
   
 
     .caption {
-      color: #ffffff;
+      color: black;
       font-size: 20px;
-      text-align: left;
+      text-align: justify;
       padding: 10px;
+      font-family: myFont ;
     }
 
     .home {
@@ -264,7 +275,7 @@
         </div>
         
         <div class="box">
-          <span>ADULTS</span> <br>
+          <span>PERSON</span> <br>
           <input type="number" name="adults" id="adults-input" placeholder="01">
         </div>
         
@@ -343,13 +354,6 @@
     var departureDate = document.getElementById("departure-date-input").value;
     var adults = document.getElementById("adults-input").value;
     var roomType = document.getElementById("room-type-select").value;
-
-    // 将值存储在本地存储中，以便在booking.html中访问
-    localStorage.setItem("arrivalDate", arrivalDate);
-    localStorage.setItem("departureDate", departureDate);
-    localStorage.setItem("adults", adults);
-    localStorage.setItem("roomType", roomType);
-
 
 
   }

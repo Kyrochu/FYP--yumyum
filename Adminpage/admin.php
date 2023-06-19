@@ -44,37 +44,37 @@
                     <div class="close" id="closebtn">
                         <img src="pic/close.png" style="height: 20px; width: 20px;" >
                     </div>
-                </div>
+                    </div>
 
-                <div class="sidebar" >
-                        <a href="admin.php" class="active">
-                            <img src="pic/dashboard.png" style="height: 20px; width: 20px;" >
-                                <h3 >Dashboard</h3>
-                        </a>
-                        <a href="package.php" class="activeP">
-                            <img src="pic/package.png" style="height: 20px; width: 20px;" >
-                                <h3>Room</h3>
-                        </a>
-                        <a href="stuff.php" class="activeS">
-                            <img src="pic/users.png" style="height: 20px; width: 20px;" >
-                                <h3>Staff</h3>
-                        </a>
-                        <a href="customer.php" class="activeC">
-                            <img src="pic/users.png" style="height: 20px; width: 20px;" >
-                                <h3>Customer</h3>
-                        </a>
-                        <a href="addPackage.php" class="activeA">
-                            <img src="pic/plus.png" style="height: 20px; width: 20px;" >
-                                <h3>Add Room</h3>
-                        </a>
-                        <a href="income.php" class="activeI" >
-                            <img src="pic/report.png" style="height: 20px; width: 20px;" >
-                                <h3>Income detail</h3>
-                        </a>
-                        <a href="#">
-                            <img src="pic/logout.png" style="height: 20px; width: 20px;" >
-                                <h3>Logout</h3>
-                        </a>
+                    <div class="sidebar">
+                    <a href="admin.php" class="active">
+                        <img src="pic/dashboard.png" style="height: 20px; width: 20px;" >
+                            <h3>Dashborad</h3>
+                    </a>
+                    <a href="room.php" class="activeP">
+                        <img src="pic/package.png" style="height: 20px; width: 20px;" >
+                            <h3>Room</h3>
+                    </a>
+                    <a href="staff.php" class="activeS">
+                        <img src="pic/users.png" style="height: 20px; width: 20px;" >
+                            <h3>Staff</h3>
+                    </a>
+                    <a href="customer.php" class="activeC">
+                        <img src="pic/users.png" style="height: 20px; width: 20px;" >
+                            <h3>Customer</h3>
+                    </a>
+                    <a href="addroom.php" class="activeA">
+                        <img src="pic/plus.png" style="height: 20px; width: 20px;" >
+                            <h3>Add Room</h3>
+                    </a>
+                    <a href="cus_comment.php" class="activeI" >
+                        <img src="pic/report.png" style="height: 20px; width: 20px;" >
+                            <h3>Comment Detail</h3>
+                    </a>
+                    <a href="Homepage.php">
+                        <img src="pic/logout.png" style="height: 20px; width: 20px;" >
+                            <h3>Logout</h3>
+                    </a>
                 </div>
             </div>
        </aside>
@@ -139,15 +139,12 @@
 
             
             <div class="order">
-                <h2>Booking Detail</h2>
+                <h2>Customer Detail</h2>
                 <table>
                     <thead>
                         <tr>
                             <th>Customer No</th>
                             <th>Customer Name</th>
-                            <th>CUstomer Phone Number</th>
-                            <th>Payment</th>
-                            <th>Room</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -175,8 +172,6 @@
                                     <tr class="scrool">
                                         <td><?php echo $row["cus_name"]; ?></td>
                                         <td><?php echo $row["user_email"]; ?></td>
-                                        <td><?php echo $row["cus_phone"]; ?></td>
-                                        <td>Booking</td>
                                     </tr>
 
                             <?php

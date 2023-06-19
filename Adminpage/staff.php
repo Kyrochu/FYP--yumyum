@@ -6,8 +6,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stuff Page</title>
-    <link rel="stylesheet" href="stuff.css">
+    <title>Staff Page</title>
+    <link rel="stylesheet" href="staff.css">
 
     <script>
         function comform()
@@ -62,11 +62,11 @@
                     <img src="pic/dashboard.png" style="height: 20px; width: 20px;" >
                         <h3>Dashborad</h3>
                 </a>
-                <a href="package.php" class="activeP">
+                <a href="room.php" class="activeP">
                     <img src="pic/package.png" style="height: 20px; width: 20px;" >
                         <h3>Room</h3>
                 </a>
-                <a href="stuff.php" class="activeS">
+                <a href="staff.php" class="activeS">
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
                         <h3>Staff</h3>
                 </a>
@@ -74,15 +74,15 @@
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
                         <h3>Customer</h3>
                 </a>
-                <a href="addPackage.php" class="activeA">
+                <a href="addroom.php" class="activeA">
                     <img src="pic/plus.png" style="height: 20px; width: 20px;" >
                         <h3>Add Room</h3>
                 </a>
-                <a href="income.php" class="activeI" >
+                <a href="cus_comment.php" class="activeI" >
                     <img src="pic/report.png" style="height: 20px; width: 20px;" >
-                        <h3>Income detail</h3>
+                        <h3>Comment Detail</h3>
                 </a>
-                <a href="#">
+                <a href="Homepage.php">
                     <img src="pic/logout.png" style="height: 20px; width: 20px;" >
                         <h3>Logout</h3>
                 </a>
@@ -99,11 +99,11 @@
         <div class="package">
 
             <div class="booking">
-                <h2>Staff Detail</h2>
+                <h2>Admin Detail</h2>
                 <div >
                     <form action="" method="get" class="st">
                         <tr>
-                            <td><input type="text" name="stuff_name" placeholder="Stuff Name"></td>
+                            <td><input type="text" name="stuff_name" placeholder="Admin Name"></td>
                             <td><input type="submit" name="search" value="Search"></td>
                         </tr>
                     </form>
@@ -135,8 +135,17 @@
 
                                     <?php
                                 }
-                                echo "<table>";
+                               
                             }
+                        }
+                        if(isset($_GET["delete"]))
+                        {
+                            $code = $_GET["code"];
+                    
+                            $result = "UPDATE `login` SET `user_delete` = '1' WHERE `user_id` = '$code' ";
+                            mysqli_query($connect , $result);
+                            header("Refresh:0.5 url=staff.php");
+                    
                         }
                     ?>
 
@@ -144,7 +153,7 @@
                 <table>
                     <thead>
                         <tr>
-                            <th>User No</th>
+                            <th>Admin No</th>
                             <th>Admin Name</th>
                             <th>Admin Email</th>
                             <th>Delete Account</th>
@@ -169,7 +178,7 @@
                                         <td><?php echo $row["user_id"]; ?></td>
                                         <td><?php echo $row["user_name"]; ?></td>
                                         <td><?php echo $row["user_email"]; ?></td>
-                                        <td><a class="deletebtn" href="stuff.php?delete&code=<?php echo $row['user_id']; ?>" onclick="return comform();">Delete</a></td>
+                                        <td><a class="deletebtn" href="staff.php?delete&code=<?php echo $row['user_id']; ?>" onclick="return comform();">Delete</a></td>
                                     </tr>
                                 </form>
                                 <?php
@@ -239,14 +248,6 @@
 </html>
 
 <?php
-    if(isset($_GET["delete"]))
-    {
-        $code = $_GET["code"];
-
-        $result = "UPDATE `login` SET `user_delete` = '1' WHERE `user_id` = '$code' ";
-        mysqli_query($connect , $result);
-        header("Refresh:0.5 url=stuff.php");
-
-    }
+   
 
 ?>

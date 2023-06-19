@@ -5,6 +5,13 @@
 <head>
     <title>Customer Page</title>
     <link rel="stylesheet" href="customer.css">
+
+    <script>
+        function comform()
+        {
+            return confirm("Do you want to delete this account?");
+        }
+    </script>
     <style>
         .deletebtn
         {
@@ -32,6 +39,12 @@
         {
             margin-left: 80rem;
         }
+        .update
+        {
+            border: 0;
+            color: blue;
+
+        }
     </style>
 
 </head>
@@ -53,11 +66,11 @@
                     <img src="pic/dashboard.png" style="height: 20px; width: 20px;" >
                         <h3>Dashborad</h3>
                 </a>
-                <a href="package.php" class="activeP">
+                <a href="room.php" class="activeP">
                     <img src="pic/package.png" style="height: 20px; width: 20px;" >
                         <h3>Room</h3>
                 </a>
-                <a href="stuff.php" class="activeS">
+                <a href="staff.php" class="activeS">
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
                         <h3>Staff</h3>
                 </a>
@@ -65,15 +78,15 @@
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
                         <h3>Customer</h3>
                 </a>
-                <a href="addPackage.php" class="activeA">
+                <a href="addroom.php" class="activeA">
                     <img src="pic/plus.png" style="height: 20px; width: 20px;" >
                         <h3>Add Room</h3>
                 </a>
-                <a href="income.php" class="activeI" >
+                <a href="cus_comment.php" class="activeI" >
                     <img src="pic/report.png" style="height: 20px; width: 20px;" >
-                        <h3>Income detail</h3>
+                        <h3>Comment Detail</h3>
                 </a>
-                <a href="#">
+                <a href="Homepage.php">
                     <img src="pic/logout.png" style="height: 20px; width: 20px;" >
                         <h3>Logout</h3>
                 </a>
@@ -95,8 +108,8 @@
                         <tr>
                             <th>Customer Name</th>
                             <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Booking</th>
+                            <th>Delete Customer</th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -124,11 +137,7 @@
                                     <tr>
                                         <td><?php echo $row["cus_name"]; ?></td>
                                         <td><?php echo $row["user_email"]; ?></td>
-                                        <td><?php echo $row["cus_phone"]; ?></td>
-                                        <td>Booking</td>
-                                        <td>
-                                            <input class="deletebtn" type="submit" name="delete" value="Delete">
-                                        </td>
+                                        <td><a class="deletebtn" href="customer.php?delete&code=<?php echo $row['cus_id']; ?>" onclick="return comform();">Delete</a></td>
                                     </tr>
                             
                     <?php
@@ -142,38 +151,21 @@
                 </table>
             </div>
 
-            <div class="add">
-                <table>
-                    <thead>
-                        <h2 style="margin-bottom :2rem; ">Update Customer Details</h2>
-                        <tr>
-                            <th>Customer No</th>
-                            <th>Customer Name</th>
-                            <th>Phone</th>
-                            <th>Package</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>number id</td>
-                            <td>
-                                <input type="text" name="package_name" class="name" placeholder="Customer Name">
-                            </td>
-                            <td>
-                                <input type="text" name="package_price" class="name" placeholder="Customer Phone">
-                            </td>
-                            <td>
-                                <input type="text" name="package_type" class="name" placeholder="Package Type">
-                            </td>
-                            <td>
-                                <a href="" class="delete">Save</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
     </div>
 
     </body>
 </body>
 </html>
+<?php
+    if(isset($_GET["delete"]))
+    {
+        $code = $_GET["code"];
+
+        $result = "UPDATE `customer` SET `user_delete` = '1' WHERE `user_id` = '$code' ";
+        mysqli_query($connect , $result);
+        header("Refresh:0.5 url=stuff.php");
+
+    }
+
+
+?>

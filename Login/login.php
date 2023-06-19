@@ -7,7 +7,12 @@
     <head>
         <title>LogIn</title>
         <link rel="stylesheet" href="LoginCSS.css">
-        
+        <style>
+            #place
+            {
+                margin-left: 8px;
+            }
+        </style>
         
     </head>
     <body>
@@ -18,7 +23,7 @@
         
                 <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
         
-                    <img src="Pic/royal logo.jpg" alt="No Image">
+                    <img src="pic/royal logo.jpg" alt="No Image">
                     
                     <ul style="margin-left:700px;">
                         <li> <a href="Homepage.html"> Home </a> </li>
@@ -34,8 +39,8 @@
         <div class="form_page">
             <div class="btn_anime">
                 <div id="btn" ></div>
-                <button type="button" class="LG_RE_btn" onclick="login()" style="color: rgb(255, 252, 255);">Log In</button>
-                <button type="button" class="LG_RE_btn" onclick="register()" style="color: rgb(255, 252, 255);">Register</button>
+                <button type="button" class="LG_RE_btn"  onclick="login()" style="color: rgb(255, 252, 255);">Log In</button>
+                <button type="button" class="LG_RE_btn" id="place" onclick="register()" style="color: rgb(255, 252, 255);">Register</button>
             </div>
             
             <!-- log side -->
@@ -84,11 +89,11 @@
 
                 if($row["user_type"] == "admin" )
                 {
-                    header("location:http://localhost/IWP%20project/Adminpage/admin.php");
+                    header("location:admin.php");
                 }
                 elseif($row["user_type"] == "user" )
                 {
-                    header("location:http://localhost/IWP%20project/Homepage/Homepage.html");
+                    header("location:Homepage_UserLogin.php");
                 }
                 else
                 {

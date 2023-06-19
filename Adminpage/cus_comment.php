@@ -1,11 +1,13 @@
+<?php include("connect.php") ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Income Page</title>
-    <link rel="stylesheet" href="income.css">
+    <title>Comment Page</title>
+    <link rel="stylesheet" href="cus_comment.css">
 
     <style>
         body
@@ -43,27 +45,27 @@
                     <img src="pic/dashboard.png" style="height: 20px; width: 20px;" >
                         <h3>Dashborad</h3>
                 </a>
-                <a href="package.php" class="activeP">
+                <a href="room.php" class="activeP">
                     <img src="pic/package.png" style="height: 20px; width: 20px;" >
-                        <h3>Package</h3>
+                        <h3>Room</h3>
                 </a>
-                <a href="stuff.php" class="activeS">
+                <a href="staff.php" class="activeS">
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
-                        <h3>Stuff</h3>
+                        <h3>Staff</h3>
                 </a>
                 <a href="customer.php" class="activeC">
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
                         <h3>Customer</h3>
                 </a>
-                <a href="addPackage.php" class="activeA">
+                <a href="addroom.php" class="activeA">
                     <img src="pic/plus.png" style="height: 20px; width: 20px;" >
-                        <h3>Add Package</h3>
+                        <h3>Add Room</h3>
                 </a>
-                <a href="income.php" class="activeI" >
+                <a href="cus_comment.php" class="activeI" >
                     <img src="pic/report.png" style="height: 20px; width: 20px;" >
-                        <h3>Income detail</h3>
+                        <h3>Comment Detail</h3>
                 </a>
-                <a href="#">
+                <a href="Homepage.php">
                     <img src="pic/logout.png" style="height: 20px; width: 20px;" >
                         <h3>Logout</h3>
                 </a>
@@ -78,25 +80,47 @@
             </div>
             <div class="package">
                 <div class="booking">
-                    <h2>The income details</h2>
+                    <h2>The Comment Customer</h2>
                     <table>
                         <thead>
                             <tr>
-                                <th>Booking No</th>
-                                <th>Date</th>
-                                <th>Total Sales</th>
-                                <th>Total Expenses</th>
-                                <th>Total Income</th>
+                                <th>Customer Name</th>
+                                <th>Customer Email</th>
+                                <th>Comment Details</th>
+
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+
+                            $result = mysqli_query($connect , "SELECT * from comment");
+                            $count = mysqli_num_rows($result);
+
+			
+                            if ($count < 1)
+                            {
+                        ?>
                             <tr>
-                                <td>No</td>
-                                <td>Date</td>
-                                <td>Total Sales</td>
-                                <td>total expenses</td>
-                                <td>income</td>
+                                <td colspan="6">No Records Found</td>
                             </tr>
+                        
+                        <?php
+                            }
+                            else
+                            {
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+                        ?>			
+                            <tr>
+                                <td><?php echo $row["name_com"] ?></td>
+                                <td><?php echo $row["email_com"] ?></td>
+                                <td><?php echo $row["text_com"] ?></td>
+
+                            </tr>
+                        <?php
+                                }
+                            }
+                        ?>
                         </tbody>
 
                     </table>
