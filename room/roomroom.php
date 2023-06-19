@@ -29,7 +29,7 @@
 
     .header {
       background: goldenrod;
-      padding: 15px 0;
+      padding: 30px 0;
       color: black;
       width: 100%;
       
@@ -107,6 +107,10 @@
       grid-gap: 55px;
       margin-left: 250px;
     }
+    .room-name {
+        font-weight: bold;
+        font-size: 20px;
+    }
 
     .book-now-button {
       display: inline-block;
@@ -122,6 +126,7 @@
       margin-top: 100px;
       margin-right: 100px;
     }
+  
 
     .caption {
       color: #ffffff;
@@ -174,10 +179,6 @@
       background-color: #5c4701;
     }
 
-    footer {
-      background-color: black;
-      width: 100%;
-    }
 
     .wrapper {
         width: 100%;
@@ -196,7 +197,10 @@
       height: 300px;
     }
 
-
+    #wishlist-container .row .image-size{
+          width: 400px;
+          height: 250px;
+      }
 
     .content{
       float: right;
@@ -296,7 +300,7 @@
 
       echo '<div class="wishlist-item">';
       echo '<img src="' . $room_image . '" class="image-size" alt="luxury">';
-      echo '<p>' . $room_name . '</p>';
+      echo '<p class="room-name">' . $room_name . '</p>';
       echo '<p class="caption">' . $room_description . '</p>';
       echo '<span>'. "RM ". $room_price . '</span>';
       echo '<a href="payment.php" class="book-now-button">Book Now</a>';
