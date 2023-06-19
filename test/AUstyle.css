@@ -1,0 +1,155 @@
+*
+{
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+}
+
+
+html
+{
+    font-size: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+section
+{
+    padding:2rem 9%;
+}
+   
+body
+{
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.Welcome
+{
+
+    padding-left:30px;
+    /* padding-bottom:40px; */
+    padding-top:20px;
+    font-family:fantasy;
+    color:khaki;
+
+}
+
+.navbar
+{
+    width: 100%;
+    margin: auto;
+    padding:auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar img
+{
+    width:200px;  
+    padding-left:50px;  
+}
+
+.navbar ul li
+{
+    list-style:none;
+    display: inline-block;
+    margin: 0 20px;
+    position: relative;
+}
+
+
+.navbar ul li a
+{
+    text-decoration:none;
+    text-transform: uppercase;
+    color: aliceblue;
+}
+
+.navbar ul li::after     /* Underline of "Home","About Us","Rooms".... */
+{
+    content:"";
+    height:3px;
+    width:0%;
+    background-color:gold;
+    position: absolute;
+    left: 0;
+    bottom: 0;  /* Position of the line */
+    transition: 0.5s;
+}
+
+button
+{
+    border:none;
+    background: none;
+    outline:none;
+    transition:0.5s;
+    cursor:pointer;
+}
+
+.bookbtn
+{
+    border-radius: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background:goldenrod;
+    color:White;
+
+}
+
+.navbar ul li:hover::after
+{
+    width:100%;
+}
+
+/* About Us Section */
+
+.Heading
+{
+    text-align: center;
+    padding:2.5rem 0;
+}
+
+.Heading span
+{
+    font-size:2.5rem;
+    background-color:goldenrod;
+    color:white;
+    border-radius:5px 5px;
+    padding: 0.2rem 1rem;
+}
+
+.AboutUs
+{
+    display:flex;
+    flex-wrap:wrap;
+    gap:2rem;
+}
+
+.AboutUs .box
+{
+    flex:1 1rem;
+    border-radius:0.5rem;
+    overflow:hidden;
+    box-shadow:0 1rem 2rem rgba(0,0,0,0.1);
+    /* background-color: black; */
+}
+
+.AboutUs img
+{
+    height:450px;
+    width:350px;
+    object-fit:cover;
+    padding-left: 30px;
+}
+
+.AboutUs .box .content
+{
+    color:goldenrod;
+    text-align: center;
+    font-weight: bold;
+}
