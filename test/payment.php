@@ -281,7 +281,6 @@
     </style>
 </head>
 <body>
-<<<<<<< HEAD
         <header class="header">
             <div class="container">
                 <nav class="navbar flex1">
@@ -293,20 +292,6 @@
                 </nav>
             </div>
         </header>
-=======
-<header class="header">
-    <div class="container">
-      <nav class="navbar flex1">
-        <ul class="nav-menu">
-          <li> <a href="Homepage.php">HOME</a> </li>
-          <li> <a href="AboutUs_UserLogin.html">ABOUT</a> </li>
-          <li> <a href="roomroom.php">ROOM</a> </li>
-
-        </ul>
-      </nav>
-    </div>
-  </header>
->>>>>>> 3ce205593f66a0b245f32c8dd3b337d4d6228d5c
     <div id="creditcard">
         <div class="container">
             <div class="card-container">
