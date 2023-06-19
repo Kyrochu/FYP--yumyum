@@ -1,0 +1,450 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    appearance: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+html
+{
+    font-size: 14px;
+}
+
+body
+{
+    height: 100vh;
+    font-family: sans-serif;
+    font-size: 0.88rem;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.863) ;
+    overflow-x: hidden;
+}
+
+.container
+{
+    display: grid;
+    width: 94%;
+    margin: 0 auto;
+    gap: 1.8rem;
+    grid-template-columns: 14rem auto 23rem;
+}
+
+a
+{
+    color: black;
+}
+
+img
+{
+    display: block;
+    width: 100%;
+}
+
+h1
+{
+    font-size: 2rem;
+}
+
+h2
+{
+    font-size: 1.47rem;
+}
+
+h3
+{
+    font-size: 0.87rem;
+}
+
+h4
+{
+    font-size: 0.8rem;
+}
+
+h5
+{
+    font-size: 0.77rem;
+}
+
+small
+{
+    font-size: 0.75;
+}
+
+.profile_photo
+{
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.text-muted
+{
+    color: gray;
+}
+
+p
+{
+    color: rgb(149, 152, 155);
+}
+
+b
+{
+    color: black;
+}
+
+h2.logo-name
+{
+    
+    
+    color: #daa520;
+}
+
+.primary
+{
+    color:rgb(155, 65, 240) ;
+}
+
+.danger
+{
+    color:rgb(238, 52, 52) ;
+}
+
+.success
+{
+    color:rgb(99, 235, 151) ;
+}
+
+.warning
+{
+    color:rgb(255, 196, 1) ;
+}
+
+aside
+{
+    height: 100vh;
+    background-color: #997417 ;
+    box-shadow: 0 0 5px 5px rgb(218, 195, 68) ;
+    
+    
+}
+
+aside .top
+{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+}
+
+aside .logo img
+{
+    width: 194px;
+    height: 140px;
+    align-items: center;
+    box-shadow: 5px 5px 1rem  rgba(241, 241, 241, 0.336) ;
+    
+}
+
+aside .logo-name
+{
+    text-shadow: 3px 4px 3px  black;
+    text-align: center;
+    margin: 1rem 0 0;
+}
+
+aside .close
+{
+    display: none;
+}
+
+aside .sidebar
+{
+    background: white;
+    display: flex;
+    flex-direction: column;
+    height: 55rem;
+    position: relative;
+    top: 3rem;
+
+}
+
+aside h3
+{
+    font-weight: 500;
+
+}
+
+aside .sidebar a
+{
+    display: flex;
+    color: rgb(151, 138, 138);
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7em;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a h3
+{
+    font-size: 15px;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a:last-child
+{
+    position: absolute;
+    bottom: 2rem;
+    width: 100%;
+}
+
+
+aside .sidebar a.activeS
+{
+    background: rgba(214, 168, 240, 0.548);
+    color: #8202fa;
+    margin-left: 0;
+}
+
+aside .sidebar a.activeS::before
+{
+    content: "";
+    width: 6px;
+    height: 100%;
+    background: #8202fa;
+}
+
+aside .sidebar a.activeS h3
+{
+    color: #8202fa;
+    margin-left: calc(1rem - 3px);
+}
+
+aside .sidebar a:hover
+{
+    color: #8202fa;
+}
+
+aside .sidebar a:hover h3
+{
+    margin-left: 1rem;
+}
+
+/* booking */
+
+main h1
+{
+    color: white;
+    text-shadow: 3px 4px rgb(139, 124, 124);
+}
+
+main .package > div
+{
+    background-color: rgb(175, 171, 171);
+    padding: 3rem ;
+    border-radius: 2rem ;
+    margin-top: 4rem;
+    margin-left: 20rem;
+    box-shadow: 0 2rem 3rem rgb(230, 226, 226) ;
+    transition: all 300ms ease;
+}
+
+main .package > div:hover
+{
+    box-shadow: none;
+}
+
+main .package > div img
+{
+    background: rgba(214, 168, 240, 0.548);
+    padding: 0.3rem;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+}
+
+main .package
+{
+    margin-top: 2rem;
+}
+
+main .package h2
+{
+    margin-bottom: 0.8rem;
+}
+
+main .package table
+{
+    background-color: rgba(253, 252, 252, 0.884);
+    width: 100%;
+    border-radius:2rem ;
+    padding: 10em;
+    text-align: center;
+    box-shadow: 0 2rem 3rem rgb(230, 226, 226);
+    transition: all 300ms ease;
+    
+}
+
+main .package table:hover
+{
+    box-shadow: none;
+}
+
+main form tr.scroll
+{
+    overflow-y: scroll;
+    height: 200px;
+}
+
+main .package tbody td
+{
+    height: 2.8rem;
+    border-bottom: 1px solid rgb(230, 226, 226) ;
+    color: rgba(118, 115, 119, 0.849);
+    
+}
+
+main .package tbody tr:last-child td
+{
+    border: none;
+}
+
+
+
+main .package
+{
+    margin-top: 2rem;
+}
+
+main .package a
+{
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color:rgb(155, 65, 240)  ;
+}
+
+main .package
+{
+    margin-top: 2rem;
+}
+
+main .package h2
+{
+    margin-bottom: 0.8rem;
+}
+
+main .package table
+{
+    background-color: white;
+    width: 100%;
+    border-radius:2rem ;
+    padding: 1.8rem;
+    text-align: center;
+    box-shadow: 0 2rem 3rem rgb(230, 226, 226);
+    transition: all 300ms ease;
+    
+}
+
+main .package table:hover
+{
+    box-shadow: none;
+}
+
+
+main .package tbody td
+{
+    height: 2.8rem;
+    border-bottom: 1px solid rgb(230, 226, 226) ;
+    color: rgba(118, 115, 119, 0.849);
+}
+
+main .package tbody tr:last-child td
+{
+    border: none;
+}
+
+main .package a.delete
+{
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+    color:rgb(252, 3, 3)  ;
+}
+
+input.save
+{
+    border: 0;
+    background: transparent;
+    color: green;
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+}
+
+input.save:hover
+{
+    cursor: pointer;
+}
+
+td a.deletebtn
+{
+    border: 0;
+    background: transparent;
+    color: rgba(255, 0, 0, 0.836);
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+}
+
+td a.deletebtn:hover
+{
+    cursor: pointer;
+}
+
+/* =======================search bar==========================  */
+
+main .booking input[type="text"]
+{
+    margin-left: 77%;
+    margin-bottom: 15px;
+    border: 0;
+    border-radius: 5px;
+    height: 1.5em;
+    width: 14em;
+}
+
+main h1
+{
+    margin-top: 4rem;
+}
+
+/* =================== admin ===================== */
+
+main .admin-photo
+{
+    margin-left: 92%;
+}
+
+main .admin-photo h3
+{
+    color: white;
+    text-shadow: 3px 4px rgb(139, 124, 124);
+}
+
+main .admin-photo img
+{
+    margin-left: 8px;
+    margin-bottom: 8px;
+    background: rgba(214, 168, 240, 0.548);
+    border-radius: 50%;
+    
+}
+

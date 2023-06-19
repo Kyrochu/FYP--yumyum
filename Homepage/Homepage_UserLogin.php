@@ -83,13 +83,14 @@
         <div class="box-container">
 
             <div class="box">
-                <img src="Pictures/gallery-img-2.webp" alt="No Image">
+                <img src="Pictures/double.jpg" alt="No Image">
 
                 <div class="content">
 
-                   <h3> <i class="fas fa-map-marker-alt"> </i> DELUXE ROOM </h3> 
-                   <p> THIS IS DELUXE ROOM BLABLABLA </p>
-
+                   <h3> <i class="fas fa-map-marker-alt"> </i> DOUBLE ROOM </h3> 
+                   <br>
+                   <p style="color:goldenrod"> >> ROOMS THAT IS SUITABLE FOR COUPLE,GROUPS OF FRIENDS OR BUSINESS TRAVELERS </p>
+                   <br>
                    <div class="star">
 
                         <i class="fas fa-star"></i>
@@ -105,12 +106,14 @@
             </div>
 
             <div class="box">
-                <img src="Pictures/home-img-1.jpg" alt="No Image">
+                <img src="Pictures/family room.jpg" alt="No Image">
 
                 <div class="content">
 
-                   <h3> <i class="fas fa-map-marker-alt"> </i> FANTASTOS ROOM </h3> 
-                   <p> THIS IS FANTASTOS WOW ROOM BLABLABLA </p>
+                   <h3> <i class="fas fa-map-marker-alt"> </i> FAMILY ROOM </h3> 
+                   <br>
+                   <p style="color:goldenrod"> >> ROOMS THAT IS SUITABLE FOR FAMILIES </p>
+                   <br>
 
                    <div class="star">
 
@@ -214,7 +217,6 @@
                 <h3> Quick Links </h3>
                 <a href="Homepage.html"> Home </a>
                 <a href="  "> Rooms </a>
-                <a href="  "> Cart </a>
 
             </div>
 
