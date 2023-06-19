@@ -27,84 +27,89 @@
         }
         .logo {
             max-width: 150px;
-            margin-bottom: 20px;
-        }
+            margin-top: 20px;
+            }
+
         .thank-you-img {
             max-width: 200px;
             margin-bottom: 20px;
             width: 300px;
             height: 350px;
         }
-    .header {
-      background: goldenrod;
-      padding: 15px 0;
-      color: black;
-      width: 100%;
-      padding-right: 200px;
-      
-    }
-
-   .header body {
-      background: goldenrod;
-      overflow-x: hidden;
-    }
-
-   .header li {
-      list-style: none;
-    }
-
-   .header a {
-      text-decoration: none;
-      transition: 0.5s;
-    }
+        
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 999;
+            background-color: black;
+            color: goldenrod;
+         }
 
 
+        .header body {
+            background: goldenrod;
+            overflow-x: hidden;
+            }
 
-   .header .navbar {
-      display: flex;
-      align-items: center;
-    }
+        .header li {
+            list-style: none;
+            }
 
-   .header .nav-menu {
-      display: flex;
-      justify-content: space-between;
-    }
+        .header a {
+            text-decoration: none;
+            transition: 0.5s;
+            }
 
-    header ul {
-      padding: 0 20px 0 0;
-      margin-left: 1000px;
-    }
 
-    header li {
-      margin-right: 30px;
-    }
 
-    header ul li a {
-      font-size: 15px;
-      color: black;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: 0.5s;
-    }
+        .header .navbar {
+            display: flex;
+            align-items: center;
+            }
 
-    header ul li a:hover {
-      text-decoration: underline;
-    }
+        .header .nav-menu {
+            display: flex;
+            justify-content: space-between;
+            }
 
-    header.sticky {
-      z-index: 9999;
-      position: fixed;
-      width: 100%;
-      background: black;
-      transition: background 0.3s;
-      height: 10vh;
-      top: 0;
-      padding: 30px 0 0 0;
-    }
+            header ul {
+            padding: 0 20px 0 0;
+            margin-left: 1000px;
+            }
 
-    header.sticky ul li a {
-      color: white;
-    }
+            header li {
+            margin-right: 30px;
+            }
+
+            header ul li a {
+            font-size: 15px;
+            color: goldenrod;
+            text-transform: uppercase;
+            font-weight: 500;
+            transition: 0.5s;
+            }
+
+            header ul li a:hover {
+            text-decoration: underline;
+            }
+
+            header.sticky {
+            z-index: 9999;
+            position: fixed;
+            width: 100%;
+            background: black;
+            transition: background 0.3s;
+            height: 10vh;
+            top: 0;
+            padding: 30px 0 0 0;
+            }
+
+            header.sticky ul li a {
+            color: white;
+            }
     </style>
 </head>
 <body>
@@ -112,7 +117,7 @@
             <div class="container">
             <nav class="navbar flex1">
                 <ul class="nav-menu">
-                <li> <a href="Homepage_UserLogin.php">HOME</a> </li>
+                <li> <a href="Homepage_UserLogin.php" >HOME</a> </li>
      
                 </ul>
             </nav>
