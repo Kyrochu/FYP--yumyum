@@ -27,9 +27,8 @@
             <ul style="margin-left:700px;">
                 <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
-                <li> <a href=""> Rooms </a> </li>
-                <li> <a href="     "> Sign up </a> </li>
-                <li> <a href="     "> Log in </a></li>
+                <li> <a href="roomroom.php"> Rooms </a> </li>
+                <li> <a href="login.php"> Register/Log in </a> </li>
             </ul>
             
         </div>
@@ -216,7 +215,7 @@
 
                 <h3> Quick Links </h3>
                 <a href="Homepage.php"> Home </a>
-                <a href="  "> Rooms </a>
+                <a href="roomroom.php"> Rooms </a>
 
             </div>
 
