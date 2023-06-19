@@ -114,8 +114,9 @@
                     </thead>
                     <tbody>
                         <?php
+                        
 
-                            $result = mysqli_query($connect , " SELECT * from customer  " );
+                            $result = mysqli_query($connect , " SELECT * from customer  where cus_delete = '0'" );
                             $count = mysqli_num_rows($result);
 
 			
@@ -128,6 +129,16 @@
                         
                         <?php
                             }
+                            if(isset($_GET["delete"]))
+                            {
+                                $code = $_GET["code"];
+                        
+                                $result = "UPDATE `customer` SET `cus_delete` = '1' WHERE `cus_id` = '$code' ";
+                                mysqli_query($connect , $result);
+                                header("Refresh:0.5 url=customer.php");
+                        
+                            }
+
                             else
                             {
                                 while($row = mysqli_fetch_assoc($result))
@@ -144,7 +155,7 @@
                             
                                 }
                             }
-
+                            
                     ?>
                             
                     </tbody>
@@ -157,15 +168,7 @@
 </body>
 </html>
 <?php
-    if(isset($_GET["delete"]))
-    {
-        $code = $_GET["code"];
-
-        $result = "UPDATE `customer` SET `user_delete` = '1' WHERE `user_id` = '$code' ";
-        mysqli_query($connect , $result);
-        header("Refresh:0.5 url=stuff.php");
-
-    }
+    
 
 
 ?>

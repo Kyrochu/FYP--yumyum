@@ -113,7 +113,7 @@
                         {
                             $sfname=$_GET["stuff_name"];
 
-                            $result=mysqli_query($connect," SELECT * FROM login WHERE user_name LIKE '%$sfname%'");
+                            $result=mysqli_query($connect," SELECT * FROM login WHERE user_name LIKE '%$sfname%' and user_type='admin' ");
 
                             if(mysqli_num_rows($result) == 0 )
                             {
@@ -147,6 +147,24 @@
                             header("Refresh:0.5 url=staff.php");
                     
                         }
+
+                        if(isset($_POST["savebtn"]))
+                            {
+                                $name = $_POST["admin_name"];
+                                $email = $_POST["admin_email"];
+                                $pass = $_POST["admin_pass"];
+
+                                $sql = mysqli_query($connect, "INSERT INTO login (`user_name`, `user_email`, `user_password`, `user_type`)
+                                    VALUES ('$name', '$email', '$pass', 'admin')");
+
+                                if($sql)
+                                {
+                                    ?>
+                                        <script>alert("The account has being saved. ");</script>
+                                    <?php
+                                    header("Refresh:0.5 url=staff.php");
+                                }
+                            }
                     ?>
 
                 </div>
@@ -219,22 +237,7 @@
                         </form>
                         <?php
 
-                            if(isset($_POST["savebtn"]))
-                            {
-                                $name = $_POST["admin_name"];
-                                $email = $_POST["admin_email"];
-                                $pass = $_POST["admin_pass"];
-
-                                $sql = mysqli_query($connect, "INSERT INTO login (`user_name`, `user_email`, `user_password`, `user_type`)
-                                    VALUES ('$name', '$email', '$pass', 'admin')");
-
-                                if($sql)
-                                {
-                                    ?>
-                                        <script>alert("The account has being saved. ");</script>
-                                    <?php
-                                }
-                            }
+                            
 
                         ?>
 

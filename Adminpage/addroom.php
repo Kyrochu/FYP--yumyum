@@ -145,13 +145,10 @@
                                             <script>alert("The record has being saved. ");</script>
                                         <?php
                                     }
-                                    header("Refresh:0.5 url=addroom.php");
+                                    
                                 }
-                                else
-                                ?>
-                                    <script>alert("Please fill the text ");</script>
-                                <?php
                             }
+                               
 
                         ?>
 
