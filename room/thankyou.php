@@ -9,16 +9,12 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 40px;
-            background:goldenrod;  
+            background: linear-gradient(to bottom, goldenrod, #000080);
             overflow-x: hidden;
-          }
-        h1 {
-            color: black;
-            font-size: 50px;
         }
         p {
-            color: black;
-            margin-bottom: 20px;
+            color: white;
+            margin-bottom: 10px;
             font-size: 30px;
         }
         .container {
@@ -28,108 +24,34 @@
         .logo {
             max-width: 150px;
             margin-top: 20px;
-            }
+        }
 
-        .thank-you-img {
-            max-width: 200px;
-            margin-bottom: 20px;
+        .thank-you-img {      
             width: 300px;
             height: 350px;
         }
-        
-        
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 999;
-            background-color: black;
-            color: goldenrod;
-         }
 
-
-        .header body {
-            background: goldenrod;
-            overflow-x: hidden;
-            }
-
-        .header li {
-            list-style: none;
-            }
-
-        .header a {
-            text-decoration: none;
-            transition: 0.5s;
-            }
-
-
-
-        .header .navbar {
-            display: flex;
-            align-items: center;
-            }
-
-        .header .nav-menu {
-            display: flex;
-            justify-content: space-between;
-            }
-
-            header ul {
-            padding: 0 20px 0 0;
-            margin-left: 1000px;
-            }
-
-            header li {
-            margin-right: 30px;
-            }
-
-            header ul li a {
+        .home-button {
+            padding: 10px 20px;
             font-size: 15px;
-            color: goldenrod;
-            text-transform: uppercase;
-            font-weight: 500;
-            transition: 0.5s;
-            }
-
-            header ul li a:hover {
-            text-decoration: underline;
-            }
-
-            header.sticky {
-            z-index: 9999;
-            position: fixed;
-            width: 100%;
-            background: black;
-            transition: background 0.3s;
-            height: 10vh;
-            top: 0;
-            padding: 30px 0 0 0;
-            }
-
-            header.sticky ul li a {
-            color: white;
-            }
+            background-color: goldenrod;
+            color: black;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 60px;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
-        <header class="header">
-            <div class="container">
-            <nav class="navbar flex1">
-                <ul class="nav-menu">
-                <li> <a href="Homepage_UserLogin.php" >HOME</a> </li>
-     
-                </ul>
-            </nav>
-            </div>
-        </header>
     <div class="container">
         <img class="logo" src="royal logo.jpg" alt="Your Logo">
-       
         <p>Your message has been received.</p>
         <img class="thank-you-img" src="thankyou.png" alt="Thank You Image">
-        <p>We appreciate your feedback and will get back to you as soon as possible.</p>
+        <p >We appreciate your feedback and will get back to you as soon as possible.</p>
+        <br>
+        <a href="Homepage_UserLogin.php" class="home-button">HOME</a>
     </div>
-    
 </body>
 </html>

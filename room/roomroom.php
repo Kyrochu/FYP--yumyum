@@ -3,8 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-
-<html lang ="en">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -36,11 +35,26 @@
     }
 
     .header {
-      background: goldenrod;
+      background: black;
       padding: 30px 0;
       color: black;
       width: 100%;
-      
+      position: relative; 
+    }
+
+    .logo {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+
+    .logo img {
+      width: 90px; 
+      height: 50px; 
+    }
+
+    .font{
+      font-weight: bold;
     }
 
     body {
@@ -75,7 +89,7 @@
 
     header ul {
       padding: 0 20px 0 0;
-      margin-left: 1000px;
+      margin-left: 1250px;
     }
 
     header li {
@@ -84,7 +98,7 @@
 
     header ul li a {
       font-size: 15px;
-      color: black;
+      color: goldenrod;
       text-transform: uppercase;
       font-weight: 500;
       transition: 0.5s;
@@ -94,32 +108,18 @@
       text-decoration: underline;
     }
 
-    header.sticky {
-      z-index: 9999;
-      position: fixed;
-      width: 100%;
-      background: black;
-      transition: background 0.3s;
-      height: 10vh;
-      top: 0;
-      padding: 30px 0 0 0;
-    }
-
-    header.sticky ul li a {
-      color: white;
-    }
-
     .grid {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       grid-gap: 55px;
       margin-left: 250px;
     }
+
     .room-name {
-        font-weight: bold;
-        font-size: 20px;
-        color: goldenrod;
-        font-family: Youfont;
+      font-weight: bold;
+      font-size: 20px;
+      color: goldenrod;
+      font-family: Youfont;
     }
 
     .book-now-button {
@@ -136,7 +136,6 @@
       margin-top: 100px;
       margin-right: 100px;
     }
-  
 
     .caption {
       color: black;
@@ -190,12 +189,12 @@
       background-color: #5c4701;
     }
 
-
     .wrapper {
-        width: 100%;
-        overflow: hidden;
-        margin-top: 100px;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 100px;
     }
+
     .image-section {
       width: 30%;
       float: left;
@@ -203,26 +202,26 @@
       overflow: hidden;
     }
 
-    .image-size{
+    .image-size {
       width: 300px;
       height: 300px;
     }
 
-    #wishlist-container .row .image-size{
-          width: 400px;
-          height: 250px;
-      }
+    #wishlist-container .row .image-size {
+      width: 400px;
+      height: 250px;
+    }
 
-    .content{
+    .content {
       float: right;
-    } 
- 
+    }
+
     #wishlist-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-left: 25px;
-    width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding-left: 25px;
+      width: 100%;
     }
 
     .row {
@@ -246,113 +245,62 @@
 </head>
 <body>
   <header class="header">
+    <div class="logo">
+      <img src="royal logo.jpg" alt="Logo">
+    </div>
     <div class="container">
       <nav class="navbar flex1">
         <ul class="nav-menu">
-          <li> <a href="Homepage_UserLogin.php">HOME</a> </li>
-          <li> <a href="AboutUs_UserLogin.html">ABOUT</a> </li>
-          <li> <a href="roomroom.php">ROOM</a> </li>
+          <li><a href="Homepage_UserLogin.php" class="font">HOME</a></li>
+          <li><a href="AboutUs_UserLogin.html" class="font">ABOUT</a></li>
+          <li><a href="roomroom.php" class="font">ROOM</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section>
-    <div class="home" id="home">
-      <h1 class="H1">Our Room</h1>
+  <div id="wishlist-container">
+    <?php
+    $room_sql = "SELECT * FROM room";
+    $room_result = mysqli_query($connect, $room_sql);
+    $room_row = mysqli_num_rows($room_result);
 
-      <div class="content grid">
-        <div class="box">
-          <span>CEHCK IN</span> <br>
-          <input type="date" name="arrival-date" id="arrival-date-input" placeholder="29/20/2021">
-        </div>
-        
-        <div class="box">
-          <span>CHECK OUT </span> <br>
-          <input type="date" name="departure-date" id="departure-date-input" placeholder="29/20/2021">
-        </div>
-        
-        <div class="box">
-          <span>PERSON</span> <br>
-          <input type="number" name="adults" id="adults-input" placeholder="01">
-        </div>
-        
-        <div class="box">
-          <span>ROOM TYPE</span> <br>
-          <select name="room-type" id="room-type-select">
-            <option value="single">Single</option>
-            <option value="double">Double</option>
-            <option value="deluxe">Deluxe</option>
-            <option value="suite">Suite</option>
-          </select>
-        </div>
-      </div>  
-    </div>
-    <div id="wishlist-container">
-  <?php
-  $room_sql = "SELECT * FROM room";
-  $room_result = mysqli_query($connect, $room_sql);
-  $room_row = mysqli_num_rows($room_result);
-  if ($room_row == 0) {
-    mysqli_close($connect);
-  } else {
-    $counter = 0; // Counter to keep track of rooms in each row
-    while ($room_row = mysqli_fetch_array($room_result)) {
-      $room_name = $room_row['room_name'];
-      $room_price = $room_row['room_price'];
-      $room_image = $room_row['room_image'];
-      $room_description = $room_row['room_description'];
+    if ($room_row == 0) {
+      mysqli_close($connect);
+    } else {
+        $counter = 0; // Counter to keep track of rooms in each row
+           while ($room_row = mysqli_fetch_array($room_result)) {
 
-      if ($counter % 3 == 0) {
-        echo '<div class="row">';
+            $room_name = $room_row['room_name'];
+            $room_price = $room_row['room_price'];
+            $room_image = $room_row['room_image'];
+            $room_description = $room_row['room_description'];
+
+        if ($counter % 3 == 0) {
+          echo '<div class="row">';
+        }
+
+        echo '<div class="wishlist-item">';
+        echo '<img src="' . $room_image . '" class="image-size" alt="luxury">';
+        echo '<p class="room-name">' . $room_name . '</p>';
+        echo '<p class="caption">' . $room_description . '</p>';
+        echo '<span>'. "RM ". $room_price . '</span>';
+        echo '<a href="payment.php" class="book-now-button">Book Now</a>';
+        echo '</div>';
+
+        $counter++;
+
+        if ($counter % 3 == 0) {
+          echo '</div>'; // Close the row after displaying three rooms
+        }
       }
 
-      echo '<div class="wishlist-item">';
-      echo '<img src="' . $room_image . '" class="image-size" alt="luxury">';
-      echo '<p class="room-name">' . $room_name . '</p>';
-      echo '<p class="caption">' . $room_description . '</p>';
-      echo '<span>'. "RM ". $room_price . '</span>';
-      echo '<a href="payment.php" class="book-now-button">Book Now</a>';
-      echo '</div>';
-
-      $counter++;
-
-      if ($counter % 3 == 0) {
-        echo '</div>'; // Close the row after displaying three rooms
+      // Close the row if the number of rooms is not divisible by 3
+      if ($counter % 3 != 0) {
+        echo '</div>';
       }
     }
-
-    // Close the row if the number of rooms is not divisible by 3
-    if ($counter % 3 != 0) {
-      echo '</div>';
-    }
-  }
-  ?>
-</div> 
-
-    
-    
-       
-  </section> 
-
+    ?>
+  </div> 
 </body>
 </html>
-
-<script>
-  window.addEventListener("scroll", function() {
-    var header = document.querySelector("header");
-    header.classList.toggle("sticky", window.scrollY > 0)
-  })
-</script>
-
-<script>
-  function book_now_button() {
-    // 获取输入框和下拉菜单的值
-    var arrivalDate = document.getElementById("arrival-date-input").value;
-    var departureDate = document.getElementById("departure-date-input").value;
-    var adults = document.getElementById("adults-input").value;
-    var roomType = document.getElementById("room-type-select").value;
-
-
-  }
- </script>

@@ -23,79 +23,77 @@
         
         }
        
-    .header {
-      background: goldenrod;
-      padding: 15px 0;
-      color: black;
-      width: 100%;
-      
-    }
+        .header {
+        background: black;
+        padding: 30px 0;
+        color: black;
+        width: 100%;
+        position: relative; 
+        }
 
-   .header body {
-      background: goldenrod;
-      overflow-x: hidden;
-    }
+        .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        }
 
-   .header li {
-      list-style: none;
-    }
+        .logo img {
+        width: 90px; 
+        height: 50px; 
+        }
+        
+        .font{
+        font-weight: bold;
+        }
+        
+        li {
+        list-style: none;
+        }
 
-   .header a {
-      text-decoration: none;
-      transition: 0.5s;
-    }
+        a {
+        text-decoration: none;
+        transition: 0.5s;
+        }
 
+        .head {
+        height: 10vh;
+        line-height: 10vh;
+        top: 0;
+        }
 
+        .navbar {
+        display: flex;
+        align-items: center;
+        }
 
-   .header .navbar {
-      display: flex;
-      align-items: center;
-    }
+        .nav-menu {
+        display: flex;
+        justify-content: space-between;
+        }
 
-   .header .nav-menu {
-      display: flex;
-      justify-content: space-between;
-    }
+        header ul {
+        padding: 0 20px 0 0;
+        margin-left: 1250px;
+        }
 
-    header ul {
-      padding: 0 20px 0 0;
-      margin-left: 1000px;
-    }
+        header li {
+        margin-right: 30px;
+        }
 
-    header li {
-      margin-right: 30px;
-    }
+        header ul li a {
+        font-size: 15px;
+        color: goldenrod;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: 0.5s;
+        }
 
-    header ul li a {
-      font-size: 15px;
-      color: black;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: 0.5s;
-    }
-
-    header ul li a:hover {
-      text-decoration: underline;
-    }
-
-    header.sticky {
-      z-index: 9999;
-      position: fixed;
-      width: 100%;
-      background: black;
-      transition: background 0.3s;
-      height: 10vh;
-      top: 0;
-      padding: 30px 0 0 0;
-    }
-
-    header.sticky ul li a {
-      color: white;
-    }
-
+        header ul li a:hover {
+        text-decoration: underline;
+        }
         #creditcard .container{
             min-height: 100vh;
-            background-color: #eee;
+            background-color: black;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -104,7 +102,7 @@
         }
 
         #creditcard form{
-            background: #fff;
+            background: linear-gradient(to bottom, goldenrod, #000080);
             border-radius: 5px;
             box-shadow: 0 10px 15px rgba(0,0,0,.1);
             padding: 20px;
@@ -282,12 +280,15 @@
 </head>
 <body>
         <header class="header">
-            <div class="container">
-                <nav class="navbar flex1">
-                    <ul class="nav-menu">
-                    <li> <a href="Homepage_UserLogin.php">HOME</a> </li>
-                    <li> <a href="AboutUs_UserLogin.html">ABOUT</a> </li>
-                    <li> <a href="roomroom.php">ROOM</a> </li>
+            <div class="logo">
+            <img src="royal logo.jpg" alt="Logo">
+            </div>
+                <div class="container">
+                    <nav class="navbar flex1">
+                        <ul class="nav-menu">
+                        <li><a href="Homepage_UserLogin.php" class="font">HOME</a></li>
+                        <li><a href="AboutUs_UserLogin.html" class="font">ABOUT</a></li>
+                        <li><a href="roomroom.php" class="font">ROOM</a></li>
                     </ul>
                 </nav>
             </div>
