@@ -11,18 +11,17 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Credit Card | Payment</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
-    @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-    *{
-        font-family: 'Roboto', sans-serif;
-        margin:0; padding:0;
-        box-sizing: border-box;
-        outline: none; border: none;
-        text-decoration: none;
-        text-transform: uppercase;
+        *{
+            font-family: 'Roboto', sans-serif;
+            margin:0; padding:0;
+            box-sizing: border-box;
+            outline: none; border: none;
+            text-decoration: none;
+            text-transform: uppercase;
         
-    }
+        }
        
     .header {
       background: goldenrod;
@@ -46,11 +45,7 @@
       transition: 0.5s;
     }
 
-    .head {
-      height: 10vh;
-      line-height: 10vh;
-      top: 0;
-    }
+
 
    .header .navbar {
       display: flex;
@@ -288,15 +283,15 @@
 <body>
         <header class="header">
             <div class="container">
-            <nav class="navbar flex1">
-                <ul class="nav-menu">
-                <li> <a href="#home">HOME</a> </li>
-                <li> <a href="#about us">ABOUT</a> </li>
-                <li> <a href="#room">ROOM</a> </li>
-                <li> <a href="#shop">SHOP</a> </li>
-                <li> <a href="#sign in">SIGN IN</a> </li>
-                </ul>
-            </nav>
+                <nav class="navbar flex1">
+                    <ul class="nav-menu">
+                    <li> <a href="#home">HOME</a> </li>
+                    <li> <a href="#about us">ABOUT</a> </li>
+                    <li> <a href="#room">ROOM</a> </li>
+                    <li> <a href="#shop">SHOP</a> </li>
+                    <li> <a href="#sign in">SIGN IN</a> </li>
+                    </ul>
+                </nav>
             </div>
         </header>
     <div id="creditcard">
@@ -335,7 +330,7 @@
 
             </div>
 
-            <form action="thankyou.php" method="post" name="carddetail">
+            <form action="payment.php" method="post" name="carddetail">
                 <div class="inputBox">
                     <span>card number<span id="cardIcon"></span></span>
                     <style>
@@ -353,10 +348,10 @@
                         var icon = document.getElementById('Icon');
                         icon.innerHTML = "";
                         if (cardNumber.startsWith('4')) {
-                            icon.innerHTML = '<img src="/FYP/product_picture/chip.png" alt="Visa">';
+                            icon.innerHTML = '<img src="visa.png" alt="Visa">';
                         } 
                         else if (cardNumber.startsWith('5')) {
-                            icon.innerHTML = '<img src="/FYP/product_picture/mastercard_icon.png" alt="Mastercard" style="height: 55px; width: 110px;">';
+                            icon.innerHTML = '<img src="master.png" alt="Mastercard" style="height: 55px; width: 110px;">';
                         }
                     });
                 </script>
@@ -408,7 +403,7 @@
                         </select>
 
                         <script>
-                            const months = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
+                            const months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"];
                             const selectMonth = document.getElementById('month');
                             const yearDropdown = document.getElementById('year');
 

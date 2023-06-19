@@ -15,7 +15,7 @@
             font-size: 50px;
         }
         p {
-            color: #777;
+            color: black;
             margin-bottom: 20px;
             font-size: 30px;
         }
@@ -38,7 +38,7 @@
 <body>
     <div class="container">
         <img class="logo" src="royal logo.jpg" alt="Your Logo">
-        <h1>Thank You!</h1>
+       
         <p>Your message has been received.</p>
         <img class="thank-you-img" src="thankyou.png" alt="Thank You Image">
         <p>We appreciate your feedback and will get back to you as soon as possible.</p>
