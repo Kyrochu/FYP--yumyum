@@ -12,7 +12,7 @@
 
 <body>
 
-    <?php include("customer_comment.php"); ?>
+    <?php include("customer_comment.php"); ?>    
 
     <!-- Header of Homepage -->
     <header> 
