@@ -84,7 +84,7 @@
         <div class="box-container">
 
             <div class="box">
-                <img src="Pictures/gallery-img-2.webp" alt="No Image">
+                <img src="Pictures/double.jpg" alt="No Image">
 
                 <div class="content">
 
@@ -106,7 +106,7 @@
             </div>
 
             <div class="box">
-                <img src="Pictures/home-img-1.jpg" alt="No Image">
+                <img src="Pictures/family room.jpg" alt="No Image">
 
                 <div class="content">
 
