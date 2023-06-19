@@ -90,7 +90,7 @@
                    <h3> <i class="fas fa-map-marker-alt"> </i> DOUBLE ROOM </h3> 
                    <br>
                    <p style="color:goldenrod"> >> ROOMS THAT IS SUITABLE FOR COUPLE,GROUPS OF FRIENDS OR BUSINESS TRAVELERS </p>
-
+                   <br>
                    <div class="star">
 
                         <i class="fas fa-star"></i>
