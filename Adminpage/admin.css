@@ -1,3 +1,4 @@
+
 *
 {
     margin: 0;
@@ -32,6 +33,7 @@ body
     gap: 1.8rem;
     grid-template-columns: 14rem auto 23rem;
 }
+
 
 a
 {
@@ -127,8 +129,8 @@ h2.logo-name
 aside
 {
     height: 100vh;
-    background-color: goldenrod;
-    box-shadow: 0 0 5px 5px rgb(218, 195, 68 , 0.8) ;
+    background-color: #997417 ;
+    box-shadow: 0 0 5px 5px rgb(218, 195, 68) ;
     
     
 }
@@ -205,15 +207,14 @@ aside .sidebar a:last-child
     width: 100%;
 }
 
-
-aside .sidebar a.activeI
+aside .sidebar a.active
 {
     background: rgba(214, 168, 240, 0.548);
     color: #8202fa;
     margin-left: 0;
 }
 
-aside .sidebar a.activeI::before
+aside .sidebar a.active::before
 {
     content: "";
     width: 6px;
@@ -221,7 +222,7 @@ aside .sidebar a.activeI::before
     background: #8202fa;
 }
 
-aside .sidebar a.activeI h3
+aside .sidebar a.active h3
 {
     color: #8202fa;
     margin-left: calc(1rem - 3px);
@@ -237,31 +238,63 @@ aside .sidebar a:hover h3
     margin-left: 1rem;
 }
 
-/* booking */
+/*main*/
 
-main h1
+main
+{
+    margin-top: 1.4rem;
+}
+
+main h1.top-name
 {
     color: white;
     text-shadow: 3px 4px rgb(139, 124, 124);
 }
 
-main .package > div
+main .date
 {
-    background-color: rgb(175, 171, 171);
-    padding: 3rem ;
-    border-radius: 2rem ;
-    margin-top: 10rem;
-    margin-left: 20rem;
-    box-shadow: 0 2rem 3rem rgb(230, 226, 226) ;
-    transition: all 300ms ease;
+    display: inline-block;
+    background: rgba(214, 168, 240, 0.548);
+    border-radius:  7px ;
+    margin-top: 1rem;
+    padding: 0.5rem 1.6rem;
 }
 
-main .package > div:hover
+
+main .date input[type="date"]
+{
+    background: transparent;
+    border: none;
+    color: #fdfcff;
+}
+
+main .insights
+{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.6rem;
+    
+}
+
+main .insights > div
+{
+    background-color: white;
+    padding: 1.8rem ;
+    height: 26em;
+    width:35em;
+    border-radius: 2rem ;
+    margin-top: 1rem;
+    box-shadow: 0 2rem 3rem rgb(230, 226, 226) ;
+    transition: all 300ms ease;
+  
+}
+
+main .insights > div:hover
 {
     box-shadow: none;
 }
 
-main .package > div img
+main .insights > div img
 {
     background: rgba(214, 168, 240, 0.548);
     padding: 0.3rem;
@@ -270,71 +303,109 @@ main .package > div img
     font-size: 2rem;
 }
 
-main .package
+main .insights > div.expenses img
 {
-    margin-top: 2rem;
+    background-color: rgb(238, 52, 52);
 }
 
-main .package h2
+main .insights > div.income img
 {
-    margin-bottom: 0.8rem;
+    background-color: rgb(99, 235, 151);
 }
 
-main .package table
+main .insights > div .middle
 {
-    background-color: rgba(253, 252, 252, 0.884);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+main .insights h3
+{
+    margin: 1rem 0 0.6rem;
+    font-size: 1rem;
+}
+
+main .insights .progress
+{
+    position: relative;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+}
+
+main .insights svg
+{
+    margin-left: 18rem;
+    width: 7rem;
+    height: 7rem;
+}
+
+main .insights svg circle
+{
+    fill: none;
+    stroke: #8202fa;
+    stroke-width: 14;
+    stroke-linecap: round;
+    transform: translate(5px , 5px) ;
+    stroke-dasharray: 110;
+    stroke-dashoffset: 92;
+}
+
+main .insights .sales svg circle
+{
+    stroke-dashoffset: -30;
+    stroke-dasharray: 200;
+    
+}
+
+main .insights .expenses svg circle
+{
+    stroke-dashoffset: 20;
+    stroke-dasharray: 80;
+    
+}
+
+main .insights .income svg circle
+{
+    stroke-dashoffset: 35;
+    stroke-dasharray: 110;
+    
+}
+
+main .insights .progress .number
+{
+    margin-left: 18rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
     width: 100%;
-    border-radius:2rem ;
-    padding: 1.8rem;
-    text-align: center;
-    box-shadow: 0 2rem 3rem rgb(230, 226, 226);
-    transition: all 300ms ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
-main .package table:hover
+main .insights small
 {
-    box-shadow: none;
-}
-
-
-main .package tbody td
-{
-    height: 2.8rem;
-    border-bottom: 1px solid rgb(230, 226, 226) ;
-    color: rgba(118, 115, 119, 0.849);
-}
-
-main .package tbody tr:last-child td
-{
-    border: none;
-}
-
-
-
-main .package
-{
-    margin-top: 2rem;
-}
-
-main .package a
-{
-    text-align: center;
+    margin-top: 1.3rem;
     display: block;
-    margin: 1rem auto;
-    color:rgb(155, 65, 240)  ;
 }
 
-main .package
+main .order
 {
-    margin-top: 2rem;
+    margin-top: 5rem;
 }
 
-main .package h2
+main .order h2
 {
     margin-bottom: 0.8rem;
+    color: white;
+    text-shadow: 3px 4px rgb(139, 124, 124);
 }
 
-main .package table
+main .order table
 {
     background-color: white;
     width: 100%;
@@ -345,42 +416,31 @@ main .package table
     transition: all 300ms ease;
 }
 
-main .package table:hover
+main .order table:hover
 {
     box-shadow: none;
 }
 
 
-main .package tbody td
+main .order tbody td
 {
     height: 2.8rem;
     border-bottom: 1px solid rgb(230, 226, 226) ;
     color: rgba(118, 115, 119, 0.849);
 }
 
-main .package tbody tr:last-child td
+main .order tbody tr:last-child td
 {
     border: none;
 }
 
-main .package a.delete
+
+main .order a
 {
     text-align: center;
     display: block;
-    margin: 1rem auto;
-    color:rgb(252, 3, 3)  ;
-}
-
-main input[type="date"]
-{
-    margin-left: 81.8%;
-    margin-bottom: 20px;
-    
-}
-
-main h1
-{
-    margin-top: 4rem;
+    margin: 2rem auto;
+    color:rgb(8, 185, 255)  ;
 }
 
 /* =================== admin ===================== */
@@ -404,3 +464,4 @@ main .admin-photo img
     border-radius: 50%;
     
 }
+

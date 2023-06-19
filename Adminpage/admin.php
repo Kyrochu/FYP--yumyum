@@ -1,11 +1,4 @@
-<?php
-
-session_start();
-
-
-
-?>
-
+<?php include("connect.php") ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,6 +8,29 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Page</title>
     <link rel="stylesheet" href="admin.css">
+
+    <style>
+        tr.scroll
+        {
+            overflow-y: scroll;
+            height: 4rem;
+        }
+        body
+        {
+            height: 100vh;
+            font-family: sans-serif;
+            font-size: 0.88rem;
+            user-select: none;
+            background: linear-gradient(to right , #B9961D , #5404FF ) ;
+            overflow-x: hidden;
+        }
+
+        main .admin-photo
+        {
+            margin-left: 80rem;
+            margin-bottom: 4rem;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -23,6 +39,7 @@ session_start();
                 <div class="top">
                     <div class="logo" >
                         <img src="pic/royal logo.jpg"  >
+                        <h2 class="logo-name">Royal Hotal</h2>
                     </div>
                     <div class="close" id="closebtn">
                         <img src="pic/close.png" style="height: 20px; width: 20px;" >
@@ -36,11 +53,11 @@ session_start();
                         </a>
                         <a href="package.php" class="activeP">
                             <img src="pic/package.png" style="height: 20px; width: 20px;" >
-                                <h3>Package</h3>
+                                <h3>Room</h3>
                         </a>
                         <a href="stuff.php" class="activeS">
                             <img src="pic/users.png" style="height: 20px; width: 20px;" >
-                                <h3>Stuff</h3>
+                                <h3>Staff</h3>
                         </a>
                         <a href="customer.php" class="activeC">
                             <img src="pic/users.png" style="height: 20px; width: 20px;" >
@@ -48,13 +65,13 @@ session_start();
                         </a>
                         <a href="addPackage.php" class="activeA">
                             <img src="pic/plus.png" style="height: 20px; width: 20px;" >
-                                <h3>Add Package</h3>
+                                <h3>Add Room</h3>
                         </a>
                         <a href="income.php" class="activeI" >
                             <img src="pic/report.png" style="height: 20px; width: 20px;" >
                                 <h3>Income detail</h3>
                         </a>
-                        <a href="logout.php">
+                        <a href="#">
                             <img src="pic/logout.png" style="height: 20px; width: 20px;" >
                                 <h3>Logout</h3>
                         </a>
@@ -66,9 +83,6 @@ session_start();
        <main>
             <h1 class="top-name">Dashboard</h1>
 
-            <div class="date">
-                <input type="date" >
-            </div>
             <div class="admin-photo">
                 <img src="pic/admin.png" style="height: 40px; width: 40px;">
                 <h3>Hi, Admin</h3>
@@ -83,15 +97,7 @@ session_start();
                             <h3>Total Sales</h3>
                             <h1>RM25,024</h1>
                         </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx="38" cy="38" r="36"></circle>
-                            </svg>
-                            <div class="number">
-                                <!-- percentage of circle -->
-                                <p>81%</p>
-                            </div>
-                        </div>
+                        
                     </div>
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
@@ -108,15 +114,7 @@ session_start();
                             <h1>RM14,160</h1>
                         </div>
                     </div>
-                    <div class="progress">
-                        <svg>
-                            <circle cx="38" cy="38" r="36"></circle>
-                        </svg>
-                        <div class="number">
-                            <!-- percentage of circle -->
-                            <p>62%</p>
-                        </div>
-                    </div>
+                    
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
             
@@ -132,20 +130,14 @@ session_start();
                             <h1>RM10,840</h1>
                         </div>
                     </div>
-                    <div class="progress">
-                        <svg>
-                            <circle cx="38" cy="38" r="36"></circle>
-                        </svg>
-                        <div class="number">
-                            <!-- percentage of circle -->
-                            <p>81%</p>
-                        </div>
-                    </div>
+                    
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
                 <!-- end of circle -->
             </div>
 
+
+            
             <div class="order">
                 <h2>Booking Detail</h2>
                 <table>
@@ -153,63 +145,49 @@ session_start();
                         <tr>
                             <th>Customer No</th>
                             <th>Customer Name</th>
+                            <th>CUstomer Phone Number</th>
                             <th>Payment</th>
-                            <th>Package</th>
+                            <th>Room</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>pay</td>
-                            <td class="warning">package</td>
-                            <td class="primary">detail</td>
-                        </tr>
+                        <?php
+
+                            $result = mysqli_query($connect , " SELECT * from customer  " );
+                            $count = mysqli_num_rows($result);
+
+
+                            if ($count < 1)
+                            {
+                            ?>
+                            <tr>
+                                <td colspan="6">No Records Found</td>
+                            </tr>
+
+                            <?php
+                            }
+                            else
+                            {
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+                            ?>			
+
+                                    <tr class="scrool">
+                                        <td><?php echo $row["cus_name"]; ?></td>
+                                        <td><?php echo $row["user_email"]; ?></td>
+                                        <td><?php echo $row["cus_phone"]; ?></td>
+                                        <td>Booking</td>
+                                    </tr>
+
+                            <?php
+
+                                }
+                            }
+
+                        ?>
                     </tbody>
                 </table>
-                <a href="customer.html" > Show All</a>
+                <a href="customer.php" > Show All</a>
             </div>
        </main>
 

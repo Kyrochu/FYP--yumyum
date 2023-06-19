@@ -4,8 +4,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Package Page</title>
-    <link rel="stylesheet" href="addPackage.css">
+    <title>Income Page</title>
+    <link rel="stylesheet" href="income.css">
+
+    <style>
+        body
+        {
+            height: 100vh;
+            font-family: sans-serif;
+            font-size: 0.88rem;
+            user-select: none;
+            background: linear-gradient(to right , #B9961D , #5404FF ) ;
+            overflow-x: hidden;
+        }
+
+        main .admin-photo
+        {
+            margin-left: 80rem;
+        }
+    </style>
+
 </head>
 <body>
     <div class="container">
@@ -13,6 +31,7 @@
             <div class="top">
                 <div class="logo" >
                     <img src="pic/royal logo.jpg"  >
+                    <h2 class="logo-name">Royal Hotal</h2>
                 </div>
                 <div class="close" id="closebtn">
                     <img src="pic/close.png" style="height: 20px; width: 20px;" >
@@ -52,46 +71,36 @@
        </aside>
 
        <main>
-        <h1></h1>
-        <div class="admin-photo">
-            <img src="pic/admin.png" style="height: 40px; width: 40px;">
-            <h3>Hi, Admin</h3>
-        </div>
-        <div class="package">
-
-            <div class="booking">
-                <h2>Package Detail</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Package No</th>
-                            <th>Package Name</th>
-                            <th>Price</th>
-                            <th>Package</th>
-                            <th>Add Package</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>number id</td>
-                            <td>
-                                <input type="text" name="package_name" class="name" placeholder="Package Name">
-                            </td>
-                            <td>
-                                <input type="text" name="package_price" class="name" placeholder="Package Price">
-                            </td>
-                            <td>
-                                <input type="text" name="package_type" class="name" placeholder="Package Type">
-                            </td>
-                            <td>
-                                <a href="" class="delete">Save</a>
-                            </td>
-                        </tr>
-                       
-                    </tbody>
-                </table>
+            <h1></h1>
+            <div class="admin-photo">
+                <img src="pic/admin.png" style="height: 40px; width: 40px;">
+                <h3>Hi,Admin</h3>
             </div>
-        </div>
+            <div class="package">
+                <div class="booking">
+                    <h2>The income details</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Booking No</th>
+                                <th>Date</th>
+                                <th>Total Sales</th>
+                                <th>Total Expenses</th>
+                                <th>Total Income</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>No</td>
+                                <td>Date</td>
+                                <td>Total Sales</td>
+                                <td>total expenses</td>
+                                <td>income</td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+       </main>
     </div>
-</body>
-</html>

@@ -127,8 +127,8 @@ h2.logo-name
 aside
 {
     height: 100vh;
-    background-color: goldenrod;
-    box-shadow: 0 0 5px 5px rgb(218, 195, 68 , 0.8) ;
+    background-color: #997417 ;
+    box-shadow: 0 0 5px 5px rgb(218, 195, 68) ;
     
     
 }
@@ -250,7 +250,7 @@ main .package > div
     background-color: rgb(175, 171, 171);
     padding: 3rem ;
     border-radius: 2rem ;
-    margin-top: 10rem;
+    margin-top: 4rem;
     margin-left: 20rem;
     box-shadow: 0 2rem 3rem rgb(230, 226, 226) ;
     transition: all 300ms ease;
@@ -285,10 +285,11 @@ main .package table
     background-color: rgba(253, 252, 252, 0.884);
     width: 100%;
     border-radius:2rem ;
-    padding: 1.8rem;
+    padding: 10em;
     text-align: center;
     box-shadow: 0 2rem 3rem rgb(230, 226, 226);
     transition: all 300ms ease;
+    
 }
 
 main .package table:hover
@@ -296,12 +297,18 @@ main .package table:hover
     box-shadow: none;
 }
 
+main form tr.scroll
+{
+    overflow-y: scroll;
+    height: 200px;
+}
 
 main .package tbody td
 {
     height: 2.8rem;
     border-bottom: 1px solid rgb(230, 226, 226) ;
     color: rgba(118, 115, 119, 0.849);
+    
 }
 
 main .package tbody tr:last-child td
@@ -343,6 +350,7 @@ main .package table
     text-align: center;
     box-shadow: 0 2rem 3rem rgb(230, 226, 226);
     transition: all 300ms ease;
+    
 }
 
 main .package table:hover
@@ -369,6 +377,36 @@ main .package a.delete
     display: block;
     margin: 1rem auto;
     color:rgb(252, 3, 3)  ;
+}
+
+input.save
+{
+    border: 0;
+    background: transparent;
+    color: green;
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+}
+
+input.save:hover
+{
+    cursor: pointer;
+}
+
+td a.deletebtn
+{
+    border: 0;
+    background: transparent;
+    color: rgba(255, 0, 0, 0.836);
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+}
+
+td a.deletebtn:hover
+{
+    cursor: pointer;
 }
 
 /* =======================search bar==========================  */

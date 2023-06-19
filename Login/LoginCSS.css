@@ -62,7 +62,7 @@
 
 body
 {
-    background-image:url(pic/backpic.jpg);
+    background-image:url(Pic/frans-ruiter-UPv0s6izv2Y-unsplash.jpg);
     background-repeat: no-repeat;
     background-size:cover;
 }
@@ -75,8 +75,7 @@ body
     margin: 6% auto;
     margin-top: 12em;
     box-shadow: 0 0 20px 9px rgba(0, 0, 0, 0.411);
-    background:  transparent;
-    background-color: rgba(85, 5, 92, 0.274);
+    background-color: rgba(0, 0, 0, 0.781);
     padding: 5px;
     overflow: hidden;
     border-radius: 3em;

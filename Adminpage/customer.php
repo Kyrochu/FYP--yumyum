@@ -1,11 +1,39 @@
+<?php include("connect.php") ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stuff Page</title>
-    <link rel="stylesheet" href="stuff.css">
+    <title>Customer Page</title>
+    <link rel="stylesheet" href="customer.css">
+    <style>
+        .deletebtn
+        {
+            border: 0;
+            color: red;
+
+        }
+
+        .deletebtn:hover
+        {
+            cursor: pointer;
+        }
+
+        body
+        {
+            height: 100vh;
+            font-family: sans-serif;
+            font-size: 0.88rem;
+            user-select: none;
+            background: linear-gradient(to right , #B9961D , #5404FF ) ;
+            overflow-x: hidden;
+        }
+
+        main .admin-photo
+        {
+            margin-left: 80rem;
+        }
+    </style>
+
 </head>
 <body>
     <div class="container">
@@ -13,6 +41,7 @@
             <div class="top">
                 <div class="logo" >
                     <img src="pic/royal logo.jpg"  >
+                    <h2 class="logo-name">Royal Hotal</h2>
                 </div>
                 <div class="close" id="closebtn">
                     <img src="pic/close.png" style="height: 20px; width: 20px;" >
@@ -26,11 +55,11 @@
                 </a>
                 <a href="package.php" class="activeP">
                     <img src="pic/package.png" style="height: 20px; width: 20px;" >
-                        <h3>Package</h3>
+                        <h3>Room</h3>
                 </a>
                 <a href="stuff.php" class="activeS">
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
-                        <h3>Stuff</h3>
+                        <h3>Staff</h3>
                 </a>
                 <a href="customer.php" class="activeC">
                     <img src="pic/users.png" style="height: 20px; width: 20px;" >
@@ -38,7 +67,7 @@
                 </a>
                 <a href="addPackage.php" class="activeA">
                     <img src="pic/plus.png" style="height: 20px; width: 20px;" >
-                        <h3>Add Package</h3>
+                        <h3>Add Room</h3>
                 </a>
                 <a href="income.php" class="activeI" >
                     <img src="pic/report.png" style="height: 20px; width: 20px;" >
@@ -55,53 +84,60 @@
         <h1></h1>
         <div class="admin-photo">
             <img src="pic/admin.png" style="height: 40px; width: 40px;">
-            <h3>Hi, Admin</h3>
+            <h3>Hi,Admin</h3>
         </div>
         <div class="package">
 
             <div class="booking">
-                <h2>Stuff Detail</h2>
-                <div>
-                    <input type="text" name="stuff_name" placeholder="Stuff Name">
-                </div>
+                <h2>Customer Detail</h2>
                 <table>
                     <thead>
                         <tr>
-                            <th>Package No</th>
-                            <th>Package Name</th>
-                            <th>Price</th>
-                            <th>Package</th>
-                            <th>Delete Package</th>
+                            <th>Customer Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
+                            <th>Booking</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>price</td>
-                            <td>package</td>
-                            <td class="primary">
-                                <a href="" class="delete">Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>price</td>
-                            <td>package</td>
-                            <td class="primary">
-                                <a href="" class="delete">Delete</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>number id</td>
-                            <td>name</td>
-                            <td>price</td>
-                            <td>package</td>
-                            <td class="primary">
-                                <a href="" class="delete">Delete</a>
-                            </td>
-                        </tr>
+                        <?php
+
+                            $result = mysqli_query($connect , " SELECT * from customer  " );
+                            $count = mysqli_num_rows($result);
+
+			
+                            if ($count < 1)
+                            {
+                        ?>
+                            <tr>
+                                <td colspan="6">No Records Found</td>
+                            </tr>
+                        
+                        <?php
+                            }
+                            else
+                            {
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+                        ?>			
+
+                                    <tr>
+                                        <td><?php echo $row["cus_name"]; ?></td>
+                                        <td><?php echo $row["user_email"]; ?></td>
+                                        <td><?php echo $row["cus_phone"]; ?></td>
+                                        <td>Booking</td>
+                                        <td>
+                                            <input class="deletebtn" type="submit" name="delete" value="Delete">
+                                        </td>
+                                    </tr>
+                            
+                    <?php
+                            
+                                }
+                            }
+
+                    ?>
+                            
                     </tbody>
                 </table>
             </div>
@@ -109,22 +145,22 @@
             <div class="add">
                 <table>
                     <thead>
+                        <h2 style="margin-bottom :2rem; ">Update Customer Details</h2>
                         <tr>
-                            <th>Package No</th>
-                            <th>Package Name</th>
-                            <th>Price</th>
+                            <th>Customer No</th>
+                            <th>Customer Name</th>
+                            <th>Phone</th>
                             <th>Package</th>
-                            <th>Delete Package</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>number id</td>
                             <td>
-                                <input type="text" name="package_name" class="name" placeholder="Package Name">
+                                <input type="text" name="package_name" class="name" placeholder="Customer Name">
                             </td>
                             <td>
-                                <input type="text" name="package_price" class="name" placeholder="Package Price">
+                                <input type="text" name="package_price" class="name" placeholder="Customer Phone">
                             </td>
                             <td>
                                 <input type="text" name="package_type" class="name" placeholder="Package Type">

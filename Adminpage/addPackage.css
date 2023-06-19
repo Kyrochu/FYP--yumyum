@@ -127,8 +127,8 @@ h2.logo-name
 aside
 {
     height: 100vh;
-    background-color: goldenrod;
-    box-shadow: 0 0 5px 5px rgb(218, 195, 68 , 0.8) ;
+    background-color: #997417 ;
+    box-shadow: 0 0 5px 5px rgb(218, 195, 68) ;
     
     
 }
@@ -206,14 +206,14 @@ aside .sidebar a:last-child
 }
 
 
-aside .sidebar a.activeP
+aside .sidebar a.activeA
 {
     background: rgba(214, 168, 240, 0.548);
     color: #8202fa;
     margin-left: 0;
 }
 
-aside .sidebar a.activeP::before
+aside .sidebar a.activeA::before
 {
     content: "";
     width: 6px;
@@ -221,7 +221,7 @@ aside .sidebar a.activeP::before
     background: #8202fa;
 }
 
-aside .sidebar a.activeP h3
+aside .sidebar a.activeA h3
 {
     color: #8202fa;
     margin-left: calc(1rem - 3px);
@@ -368,24 +368,34 @@ main .package a.delete
     text-align: center;
     display: block;
     margin: 1rem auto;
-    color:rgb(252, 3, 3)  ;
+    color: rgb(5, 141, 231) ;
 }
 
 main h1
 {
-    margin-top: 1rem;
+    margin-top: 4rem;
 }
 
-/* =======================search bar==========================  */
+/* input */
 
-main .booking input[type="text"]
+main input[type="text" ]:placeholder-shown
 {
-    margin-left: 77%;
-    margin-bottom: 15px;
+    text-align: center;
+}
+
+main input.save
+{
     border: 0;
-    border-radius: 5px;
-    height: 1.5em;
-    width: 14em;
+    background: transparent;
+    color: green;
+    text-align: center;
+    display: block;
+    margin: 1rem auto;
+}
+
+main input.save:hover
+{
+    cursor: pointer;
 }
 
 /* =================== admin ===================== */
@@ -409,4 +419,3 @@ main .admin-photo img
     border-radius: 50%;
     
 }
-
