@@ -70,7 +70,7 @@
                 $email = $_POST["lg_user_email"];
                 $pass = $_POST["lg_user_password"];
 
-                $result = mysqli_query($connect, "SELECT * FROM login WHERE user_email = `$email` AND user_password = `$pass`");
+                $result = mysqli_query($connect, "SELECT * FROM `login` WHERE user_email = `$email` AND user_password = `$pass`");
                 $row = mysqli_fetch_assoc($result);
 
                 if ($row["user_type"] == "admin") 
