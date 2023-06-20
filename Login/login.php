@@ -65,6 +65,30 @@
 
         <?php 
 
+            
+            if (isset($_POST["logbtn"])) {
+                $email = $_POST["lg_user_email"];
+                $pass = $_POST["lg_user_password"];
+
+                $result = mysqli_query($connect, "SELECT * FROM login WHERE user_email = '$email' AND user_password = '$pass'");
+                $row = mysqli_fetch_assoc($result);
+
+                if ($row["user_type"] == "admin") {
+                    header("location:admin.php");
+                } 
+                elseif ($row["user_type"] == "user") 
+                {
+                    header("location:Homepage_UserLogin.php");
+                } 
+                else 
+                {
+                    ?>
+                    <script>alert("Wrong email or password");</script>
+                    <?php
+                }
+            }
+
+
             if(isset($_POST["regbtn"]))
             {
                 $name = $_POST["in_user_name"];
@@ -81,28 +105,6 @@
 
             
 
-            if (isset($_POST["logbtn"])) {
-                $email = $_POST["lg_user_email"];
-                $pass = $_POST["lg_user_password"];
-            
-                $result = mysqli_query($connect, "SELECT * FROM login WHERE user_email = '$email' AND user_password = '$pass'");
-                $row = mysqli_fetch_assoc($result);
-            
-                if ($row["user_type"] == "admin") {
-                    header("location:admin.php");
-                } 
-                elseif ($row["user_type"] == "user") 
-                {
-                    header("location:Homepage_UserLogin.php");
-                } 
-                else 
-                {
-                    ?>
-                    <script>alert("Wrong email or password");</script>
-                    <?php
-                }
-            }
-            
 
         ?>
       
