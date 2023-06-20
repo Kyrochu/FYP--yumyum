@@ -23,77 +23,63 @@
         
         }
        
-        .header {
-        background: black;
-        padding: 30px 0;
-        color: black;
-        width: 100%;
-        position: relative; 
+        .navbar
+        {
+            width: 100%;
+            margin: auto;
+            padding:auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        .logo {
-        position: absolute;
-        top: 10px;
-        left: 10px;
+        .navbar img
+        {
+            width:200px;  
+            padding-left:50px;  
         }
 
-        .logo img {
-        width: 90px; 
-        height: 50px; 
-        }
-        
-        .font{
-        font-weight: bold;
-        }
-        
-        li {
-        list-style: none;
+
+
+        .navbar ul li
+        {
+            list-style:none;
+            display: inline-block;
+            margin: 0 20px;
+            position: relative;
         }
 
-        a {
-        text-decoration: none;
-        transition: 0.5s;
+        .navbar ul i
+        {
+            color: white;
+            margin: 0 2rem 0 2rem;
+            height: 30px;
+            width: 30px;
+
         }
 
-        .head {
-        height: 10vh;
-        line-height: 10vh;
-        top: 0;
+        .navbar ul li a
+        {
+            text-decoration:none;
+            text-transform: uppercase;
+            color: aliceblue;
         }
 
-        .navbar {
-        display: flex;
-        align-items: center;
+        .navbar ul li::after     /* Underline of "Home","About Us","Rooms".... */
+        {
+            content:"";
+            height:3px;
+            width:0%;
+            background-color:gold;
+            position: absolute;
+            left: 0;
+            bottom: 0;  /* Position of the line */
+            transition: 0.5s;
         }
 
-        .nav-menu {
-        display: flex;
-        justify-content: space-between;
-        }
-
-        header ul {
-        padding: 0 20px 0 0;
-        margin-left: 1250px;
-        }
-
-        header li {
-        margin-right: 30px;
-        }
-
-        header ul li a {
-        font-size: 15px;
-        color: goldenrod;
-        text-transform: uppercase;
-        font-weight: 500;
-        transition: 0.5s;
-        }
-
-        header ul li a:hover {
-        text-decoration: underline;
-        }
         #creditcard .container{
             min-height: 100vh;
-            background-color: black;
+            background-color: #17202A;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -283,21 +269,20 @@
     </style>
 </head>
 <body>
-        <header class="header">
-            <div class="logo">
-            <img src="royal logo.jpg" alt="Logo">
-            </div>
-                <div class="container">
-                    <nav class="navbar flex1">
-                        <ul class="nav-menu">
-                        <li><a href="Homepage_UserLogin.php" class="font">HOME</a></li>
-                        <li><a href="AboutUs_UserLogin.html" class="font">ABOUT</a></li>
-                        <li><a href="roomroom.php" class="font">ROOM</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <hr>
+<header> 
+        <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
+
+            <img src="royal logo.jpg" alt="No Image">
+            
+            <ul style="margin-left:700px;">
+                <li> <a href="Homepage.php"> Home </a> </li>
+                <li> <a href="AboutUs.html"> About us </a> </li>
+                <li> <a href="roomroom.php"> Rooms </a> </li>
+            </ul>
+            
+        </div>
+
+    </header>
     <div id="creditcard">
         <div class="container">
             <div class="card-container">

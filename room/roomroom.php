@@ -18,6 +18,7 @@
       font-family: Youfont;
       src: url(Super\ Comic.ttf);
     }
+    
     *{
       margin: 0;
       padding: 0;
@@ -26,100 +27,69 @@
     body{
       margin: 0;
     }
-    .H1 {
-      text-align: center;
-      font-size: 500%;
-      font-weight: bold;
-      color: white;
-      font-style: italic;
+    .navbar
+    {
+        width: 100%;
+        margin: auto;
+        padding:auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
     }
 
-    .header {
-      background: black;
-      padding: 30px 0;
-      color: black;
-      width: 100%;
-      position: relative; 
+    .navbar img
+    {
+        width:200px;  
+        padding-left:50px;  
     }
 
-    .logo {
-      position: absolute;
-      top: 10px;
-      left: 10px;
+
+
+    .navbar ul li
+    {
+        list-style:none;
+        display: inline-block;
+        margin: 0 20px;
+        position: relative;
     }
 
-    .logo img {
-      width: 90px; 
-      height: 50px; 
+    .navbar ul i
+    {
+        color: white;
+        margin: 0 2rem 0 2rem;
+        height: 30px;
+        width: 30px;
+
     }
 
-    .font{
-      font-weight: bold;
+
+    .navbar ul li a
+    {
+        text-decoration:none;
+        text-transform: uppercase;
+        color: aliceblue;
     }
 
-    body {
-      background:white;
-      overflow-x: hidden;
+    .navbar ul li::after     /* Underline of "Home","About Us","Rooms".... */
+    {
+        content:"";
+        height:3px;
+        width:0%;
+        background-color:gold;
+        position: absolute;
+        left: 0;
+        bottom: 0;  /* Position of the line */
+        transition: 0.5s;
     }
 
-    li {
-      list-style: none;
-    }
-
-    a {
-      text-decoration: none;
-      transition: 0.5s;
-    }
-
-    .head {
-      height: 10vh;
-      line-height: 10vh;
-      top: 0;
-    }
-
-    .navbar {
-      display: flex;
-      align-items: center;
-    }
-
-    .nav-menu {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    header ul {
-      padding: 0 20px 0 0;
-      margin-left: 1250px;
-    }
-
-    header li {
-      margin-right: 30px;
-    }
-
-    header ul li a {
-      font-size: 15px;
-      color: goldenrod;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: 0.5s;
-    }
-
-    header ul li a:hover {
-      text-decoration: underline;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-gap: 55px;
-      margin-left: 250px;
-    }
 
     .room-name {
       font-weight: bold;
       font-size: 20px;
-      color: goldenrod;
+      color: #EBAE34;
       font-family: Youfont;
+      margin-left: 130px;
+      margin-bottom: 20px;
     }
 
     .book-now-button {
@@ -133,8 +103,8 @@
       cursor: pointer;
       text-decoration: none;
       margin-left: 5em;
-      margin-top: 100px;
       margin-right: 100px;
+      margin-top: 20px; 
     }
 
     .caption {
@@ -205,15 +175,12 @@
     .image-size {
       width: 300px;
       height: 300px;
+      margin-left: 25px;
     }
 
     #wishlist-container .row .image-size {
       width: 400px;
       height: 250px;
-    }
-
-    .content {
-      float: right;
     }
 
     #wishlist-container {
@@ -222,7 +189,9 @@
       justify-content: space-between;
       padding-left: 25px;
       width: 100%;
-    }
+      margin-top: 630px;
+
+      }
 
     .row {
       display: flex;
@@ -235,72 +204,126 @@
       padding-top: 50px;
       margin: 10px;
     }
-
+ 
     .wishlist-item img {
       width: 100%;
       height: auto;
+      border-radius: 60px;
     }
-    
+
+    .video-container video
+    {
+        position:absolute;
+        top:0;
+        left:0;
+        z-index:-1;
+        height:99%;
+        width:100%;
+        object-fit: cover;
+    }
+    .video-container {
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+    }
+    .title{
+      color: black;
+      margin-top: 10px;
+      margin-left: 550px;
+      font-size: 50px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
+      font-weight: bold;
+      font-style: italic;
+    }
+    .wishlist-item {
+      border-radius: 20px; /* 添加圆角边框属性 */
+    }
+    .price {
+      margin-left: 40px;
+      font-weight: bold;
+      margin-bottom: 20px; /* 添加下边距 */
+    }
+
+  
+   
   </style>
 </head>
 <body>
-  <header class="header">
-    <div class="logo">
-      <img src="royal logo.jpg" alt="Logo">
-    </div>
-    <div class="container">
-      <nav class="navbar flex1">
-        <ul class="nav-menu">
-          <li><a href="Homepage_UserLogin.php" class="font">HOME</a></li>
-          <li><a href="AboutUs_UserLogin.html" class="font">ABOUT</a></li>
-          <li><a href="roomroom.php" class="font">ROOM</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+<header> 
+        <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
 
+            <img src="royal logo.jpg" alt="No Image">
+            
+            <ul style="margin-left:700px;">
+                <li> <a href="Homepage.php"> Home </a> </li>
+                <li> <a href="AboutUs.html"> About us </a> </li>
+                <li> <a href="roomroom.php"> Rooms </a> </li>
+            </ul>
+            
+        </div>
+
+    </header>
+  
+      <div class="video-container">
+              <video src="hotel.mp4" id="video-slider" loop autoplay muted> </video>
+        </div>
+
+     
   <div id="wishlist-container">
-    <?php
-    $room_sql = "SELECT * FROM room";
-    $room_result = mysqli_query($connect, $room_sql);
-    $room_row = mysqli_num_rows($room_result);
+      <div>
+        <p class="title">
+            ROOMS WE HAVE
+        </p>
+      </div>
+  <?php
+  $room_sql = "SELECT * FROM room";
+  $room_result = mysqli_query($connect, $room_sql);
+  $room_row = mysqli_num_rows($room_result);
 
-    if ($room_row == 0) {
-      mysqli_close($connect);
-    } else {
-        $counter = 0; // Counter to keep track of rooms in each row
-           while ($room_row = mysqli_fetch_array($room_result)) {
+  // Define an array of colors
+  $colors = array('#ABEBC6', '#ABEBC6', '#ABEBC6', '#ABEBC6', '#ABEBC6', '#ABEBC6');
 
-            $room_name = $room_row['room_name'];
-            $room_price = $room_row['room_price'];
-            $room_image = $room_row['room_image'];
-            $room_description = $room_row['room_description'];
+  if ($room_row == 0) {
+    mysqli_close($connect);
+  } else {
+    $counter = 0; // Counter to keep track of rooms in each row
+    while ($room_row = mysqli_fetch_array($room_result)) {
 
-        if ($counter % 3 == 0) {
-          echo '<div class="row">';
-        }
+      $room_name = $room_row['room_name'];
+      $room_price = $room_row['room_price'];
+      $room_image = $room_row['room_image'];
+      $room_description = $room_row['room_description'];
 
-        echo '<div class="wishlist-item">';
-        echo '<img src="' . $room_image . '" class="image-size" alt="luxury">';
-        echo '<p class="room-name">' . $room_name . '</p>';
-        echo '<p class="caption">' . $room_description . '</p>';
-        echo '<span>'. "RM ". $room_price . '</span>';
-        echo '<a href="payment.php" class="book-now-button">Book Now</a>';
-        echo '</div>';
-
-        $counter++;
-
-        if ($counter % 3 == 0) {
-          echo '</div>'; // Close the row after displaying three rooms
-        }
+      if ($counter % 3 == 0) {
+        echo '<div class="row">';
       }
 
-      // Close the row if the number of rooms is not divisible by 3
-      if ($counter % 3 != 0) {
-        echo '</div>';
+      // Calculate the index of the color based on the counter
+      $color_index = $counter % count($colors);
+      $background_color = $colors[$color_index];
+
+      echo '<div class="wishlist-item" style="background-color: ' . $background_color . ';">';
+      echo '<img src="' . $room_image . '" class="image-size" alt="luxury">';
+      echo '<p class="room-name">' . $room_name . '</p>';
+      echo '<p class="caption">' . $room_description . '</p>';
+      echo '<span class="price">'. "RM ". $room_price . '</span>';
+      echo '<a href="payment.php" class="book-now-button">Book Now</a>';
+      echo '</div>';
+
+      $counter++;
+
+      if ($counter % 3 == 0) {
+        echo '</div>'; // Close the row after displaying three rooms
       }
     }
-    ?>
-  </div> 
+
+    // Close the row if the number of rooms is not divisible by 3
+    if ($counter % 3 != 0) {
+      echo '</div>';
+    }
+  }
+  ?>
+</div>
+
 </body>
 </html>
