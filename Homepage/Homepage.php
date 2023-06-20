@@ -27,7 +27,7 @@
             <ul style="margin-left:700px;">
                 <li> <a href="Homepage.php"> Home </a> </li>
                 <li> <a href="AboutUs.html"> About us </a> </li>
-                <li> <a href="roomroom.php"> Rooms </a> </li>
+                <li> <a href="login.php"> Rooms </a> </li>
                 <li> <a href="login.php"> Register/Log in </a> </li>
             </ul>
             
