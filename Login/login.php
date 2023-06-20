@@ -27,8 +27,7 @@
                     
                     <ul style="margin-left:700px;">
                         <li> <a href="Homepage.html"> Home </a> </li>
-                        <li> <a href="     "> About us </a> </li>
-                        <li> <a href="     "> Rooms </a> </li>
+
                     </ul>
                     
                 </div>
@@ -45,18 +44,20 @@
             
             <!-- log side -->
             <form id="log" class="input_group" method="POST" >
-                <input type="text" class="input_place" name="user_email" placeholder="User Email" required>
+                <input type="text" class="input_place" name="lg_user_email" placeholder="User Email" required>
                 
-                <input type="password" class="input_place" name="user_password" placeholder="Password" required>
+                <input type="password" class="input_place" name="lg_user_password" placeholder="Password" required>
 
                 <button type="submit" class="submit_btn" name="logbtn" style="color: rgb(255, 252, 255);">Log in</button>
             </form>
 
+            
+
             <!-- register side -->
             <form id="reg" class="input_group" method="POST">
-                <input type="text" class="input_place" name="user_name" placeholder="User Name" required pattern="[a-zA-Z0-9]+" title="Please enter letters or numbers ">
-                <input type="email" class="input_place" name="user_email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address">
-                <input type="password" class="input_place" name="user_password" placeholder="Password" required pattern="^(?=.*[A-Z])[a-zA-Z0-9]+$" title="Please enter a password with at least one capital letter and no any symbol">
+                <input type="text" class="input_place" name="in_user_name" placeholder="User Name" required pattern="[a-zA-Z0-9]+" title="Please enter letters or numbers ">
+                <input type="email" class="input_place" name="in_user_email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" title="Please enter a valid email address">
+                <input type="password" class="input_place" name="in_user_password" placeholder="Password" required pattern="^(?=.*[A-Z])[a-zA-Z0-9]+$"  title="Please enter a password with at least one capital letter and no any symbol">
 
                 <button type="submit" class="submit_btn" name="regbtn" style="color: rgb(255, 252, 255);">Register</button>
             </form>
@@ -66,48 +67,45 @@
 
             if(isset($_POST["regbtn"]))
             {
-                $name = $_POST["user_name"];
-                $email = $_POST["user_email"];
-                $pass = $_POST["user_password"];
+                $name = $_POST["in_user_name"];
+                $email = $_POST["in_user_email"];
+                $pass = $_POST["in_user_password"];
 
-                $result = mysqli_query($connect , "INSERT into login ( user_name , user_email , user_password ) 
+                mysqli_query($connect , "INSERT into login ( user_name , user_email , user_password ) 
                                                     VALUES ( '$name' , '$email' ,' $pass' )");
 
-                $cus_result = mysqli_query($connect , "INSERT into customer ( cus_name , user_email , cus_phone ) 
+                mysqli_query($connect , "INSERT into customer ( cus_name , user_email , cus_phone ) 
                                                 values ( '$name' , '$email' , '0' ) ");
+
             }
 
+            
 
-            if(isset($_POST["logbtn"]))
-            {
-                $name = $_POST["user_name"];
-                $email = $_POST["user_email"];
-                $pass = $_POST["user_password"];
-
-                $result = mysqli_query($connect , "SELECT * from login where user_email = '$email' and user_password = '$pass' ");
+            if (isset($_POST["logbtn"])) {
+                $email = $_POST["lg_user_email"];
+                $pass = $_POST["lg_user_password"];
+            
+                $result = mysqli_query($connect, "SELECT * FROM login WHERE user_email = '$email' AND user_password = '$pass'");
                 $row = mysqli_fetch_assoc($result);
-
-                if($row["user_type"] == "admin" )
-                {
+            
+                if ($row["user_type"] == `admin`) {
                     header("location:admin.php");
-                }
-                elseif($row["user_type"] == "user" )
+                } 
+                elseif ($row["user_type"] == `user`) 
                 {
-                    header("location:Homepage_UserLogin.php");
-                }
-                else
+                    header("location:Homepage.html");
+                } 
+                else 
                 {
-
                     ?>
-                        <script>alert("Wrong email or password");</script>
+                    <script>alert("Wrong email or password");</script>
                     <?php
-
                 }
-                    
             }
             
 
         ?>
+      
 
 
         
