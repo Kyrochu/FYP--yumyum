@@ -93,7 +93,7 @@
                 } 
                 elseif ($row["user_type"] == `user`) 
                 {
-                    header("location:Homepage.html");
+                    header("location:Homepage_UserLogin.php");
                 } 
                 else 
                 {
