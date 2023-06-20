@@ -255,8 +255,8 @@
             <img src="royal logo.jpg" alt="No Image">
             
             <ul style="margin-left:700px;">
-                <li> <a href="Homepage.php"> Home </a> </li>
-                <li> <a href="AboutUs.html"> About us </a> </li>
+                <li> <a href="Homepage_UserLogin.php"> Home </a> </li>
+                <li> <a href="AboutUs_UserLogin.html"> About us </a> </li>
                 <li> <a href="roomroom.php"> Rooms </a> </li>
             </ul>
             

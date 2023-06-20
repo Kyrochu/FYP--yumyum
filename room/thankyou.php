@@ -62,7 +62,7 @@
         <img class="thank-you-img" src="thankyou.png" alt="Thank You Image">
         <p class="p">We appreciate your feedback and will get back to you as soon as possible.</p>
         <br>
-        <a href="Homepage_UserLogin.php" class="home-button">HOME</a>
+        <a href="Homepage_UserLogin.php"> Home </a>
     </div>
 </body>
 </html>
