@@ -26,7 +26,7 @@
                     <img src="pic/royal logo.jpg" alt="No Image">
                     
                     <ul style="margin-left:700px;">
-                        <li> <a href="Homepage.html"> Home </a> </li>
+                        <li> <a href="Homepage.php"> Home </a> </li>
 
                     </ul>
                     
