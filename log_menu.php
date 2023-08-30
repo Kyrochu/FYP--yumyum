@@ -134,7 +134,7 @@
                             <div class="row g-4">
                                 <!-- tab start -->
                                 <?php
-                                    $sql = " SELECT * FROM menu ";
+                                    $sql = " SELECT * FROM menu WHERE food_type = 'meal'; ";
                                     $result = mysqli_query($connect , $sql);
                                     $resultcheck = mysqli_num_rows($result);
 
@@ -169,7 +169,7 @@
                             <div class="row g-4">
                                 <!-- tab start -->
                                 <?php
-                                    $sql = " SELECT * FROM menu ";
+                                    $sql = " SELECT * FROM menu WHERE food_type = 'snack'; ";
                                     $result = mysqli_query($connect , $sql);
                                     $resultcheck = mysqli_num_rows($result);
 
@@ -199,7 +199,6 @@
                                 <!-- tab end -->
                             </div>
                         </div>
-                        <!-- tab end -->
                         <div id="tab-3" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <!-- tab start -->
