@@ -105,7 +105,7 @@
                                 <i class="fa fa-coffee fa-2x text-primary"></i>
                                 <div class="ps-3">
                                     <small class="text-body">Popular</small>
-                                    <h6 class="mt-n1 mb-0">Breakfast</h6>
+                                    <h6 class="mt-n1 mb-0">Meal</h6>
                                 </div>
                             </a>
                         </li>
@@ -114,7 +114,7 @@
                                 <i class="fa fa-hamburger fa-2x text-primary"></i>
                                 <div class="ps-3">
                                     <small class="text-body">Special</small>
-                                    <h6 class="mt-n1 mb-0">Launch</h6>
+                                    <h6 class="mt-n1 mb-0">Snack</h6>
                                 </div>
                             </a>
                         </li>
@@ -123,7 +123,7 @@
                                 <i class="fa fa-utensils fa-2x text-primary"></i>
                                 <div class="ps-3">
                                     <small class="text-body">Lovely</small>
-                                    <h6 class="mt-n1 mb-0">Dinner</h6>
+                                    <h6 class="mt-n1 mb-0">Alaclat</h6>
                                 </div>
                             </a>
                         </li>
@@ -143,20 +143,21 @@
                                         while($row = mysqli_fetch_assoc($result))
                                         {
                                             ?>
-                                            <div class="col-lg-6">
-                                                <div class="d-flex align-items-center">
-                                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                            <span><?php echo $row['food_name']; ?></span>
-                                                            <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
-                                                        </h5>
-                                                        <small class="fst-italic"><?php echo $row['description']; ?></small>
-                                                        <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                            <form action="" method="post">
+                                                                    <span><?php echo $row['food_name']; ?></span>
+                                                                    <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
+                                                                </h5>
+                                                                <small class="fst-italic"><?php echo $row['description']; ?></small>
+                                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
                                             <?php
                                         }
                                     }
@@ -178,20 +179,23 @@
                                         while($row = mysqli_fetch_assoc($result))
                                         {
                                             ?>
-                                            <div class="col-lg-6">
-                                                <div class="d-flex align-items-center">
-                                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                            <span><?php echo $row['food_name']; ?></span>
-                                                            <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
-                                                        </h5>
-                                                        <small class="fst-italic"><?php echo $row['description']; ?></small>
-                                                        <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                            
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                            <form action="" method="post">
+                                                                    <span><?php echo $row['food_name']; ?></span>
+                                                                    <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
+                                                                </h5>
+                                                                <small class="fst-italic"><?php echo $row['description']; ?></small>
+                                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
+                                            
                                             <?php
                                         }
                                     }
@@ -212,20 +216,23 @@
                                         while($row = mysqli_fetch_assoc($result))
                                         {
                                             ?>
-                                            <div class="col-lg-6">
-                                                <div class="d-flex align-items-center">
-                                                    <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                                    <div class="w-100 d-flex flex-column text-start ps-4">
-                                                        <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                            <span><?php echo $row['food_name']; ?></span>
-                                                            <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
-                                                        </h5>
-                                                        <small class="fst-italic"><?php echo $row['description']; ?></small>
-                                                        <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                            
+                                                <div class="col-lg-6">
+                                                    <div class="d-flex align-items-center">
+                                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                                        <div class="w-100 d-flex flex-column text-start ps-4">
+                                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                            <form action="" method="post">
+                                                                    <span><?php echo $row['food_name']; ?></span>
+                                                                    <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
+                                                                </h5>
+                                                                <small class="fst-italic"><?php echo $row['description']; ?></small>
+                                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                            </form>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-
+                                            
                                             <?php
                                         }
                                     }
@@ -324,6 +331,9 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    
+
 </body>
 
 </html>
