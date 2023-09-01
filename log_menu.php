@@ -149,11 +149,14 @@
                                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <form action="" method="post">
+                                                                <input type="hidden" name="id" value="<?php echo $row['food_id']; ?>">
+                                                                <input type="hidden" name="name" value="<?php echo $row['food_name']; ?>">
+                                                                <input type="hidden" name="price" value="<?php echo $row['food_price']; ?>">
                                                                     <span><?php echo $row['food_name']; ?></span>
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
                                                                 <small class="fst-italic"><?php echo $row['description']; ?></small>
-                                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                                <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -186,11 +189,14 @@
                                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <form action="" method="post">
+                                                                <input type="hidden" name="id" value="<?php echo $row['food_id']; ?>">
+                                                                <input type="hidden" name="name" value="<?php echo $row['food_name']; ?>">
+                                                                <input type="hidden" name="price" value="<?php echo $row['food_price']; ?>">
                                                                     <span><?php echo $row['food_name']; ?></span>
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
                                                                 <small class="fst-italic"><?php echo $row['description']; ?></small>
-                                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                                <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -223,11 +229,14 @@
                                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                             <form action="" method="post">
+                                                                <input type="hidden" name="id" value="<?php echo $row['food_id']; ?>">
+                                                                <input type="hidden" name="name" value="<?php echo $row['food_name']; ?>">
+                                                                <input type="hidden" name="price" value="<?php echo $row['food_price']; ?>">
                                                                     <span><?php echo $row['food_name']; ?></span>
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
                                                                 <small class="fst-italic"><?php echo $row['description']; ?></small>
-                                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                                <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -332,7 +341,17 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
 
-    
+    <?php 
+        if(isset($_POST["atc"]))
+        {
+            $prod_id = $_POST["id"];
+            $prod_name = $_POST["name"];
+            $prod_price = $_POST["price"];
+
+            mysqli_query($connect,"INSERT into cart (prod_id , prod_name , prod_price)
+                                                value ( '$prod_id' , '$prod_name' , '$prod_price' )");
+        } 
+    ?>
 
 </body>
 
