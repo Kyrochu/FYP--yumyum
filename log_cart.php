@@ -132,7 +132,7 @@
                         <div class="col">TOTAL PRICE</div>
                         <div class="col text-right">RM 137.00</div>
                     </div>
-                    <button type="button" src="fv.html" class="btn">CHECKOUT</button>
+                    <button type="button" src="fv.html" class="btn ">CHECKOUT</button>
                 </div>
             </div>
             
