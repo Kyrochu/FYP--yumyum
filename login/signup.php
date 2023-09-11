@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body {font-family: Arial, Helvetica, sans-serif;
+background-color: #a8babd;}
+
 * {box-sizing: border-box}
 
 .container {
-	background-color: #fff;
+	background-color: #c1e2e8;
 	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
 	width: 1500px;
@@ -16,13 +18,9 @@ body {font-family: Arial, Helvetica, sans-serif;}
 	margin: 0 auto; /* Center the container horizontally */
 }
 
-.sign-up-container{
-
-    
-}
 
 form {
-	background-color: #FFFFFF;
+	background-color:grey;
 	display: flex;
 	flex-direction: column; /* Change to column layout for input fields */
 	align-items: center; /* Center items horizontally */
@@ -40,13 +38,13 @@ input {
 }
 
 hr {
-  border: 1px solid #f1f1f1;
+  border: 1px solid black;
   margin-bottom: 25px;
 }
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #658576;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -63,6 +61,10 @@ button:hover {
 /* Float cancel and signup buttons and add an equal width */
 .signupbtn {
   float: right;
+  width: 20%;
+}
+.backbtn{
+  float: left;
   width: 20%;
 }
 
@@ -99,7 +101,13 @@ p {
   </div>
   <div class="clearfix">
     <button type="submit" class="signupbtn" onclick="validateForm()">Sign Up</button>
+
+    <button type="button" class="backbtn">
+        <a href="login.php">Back</a>
+      </button>
+
   </div>
+
 </div>
 
 <script>

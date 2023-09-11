@@ -4,14 +4,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="login.css">
     <style>
-        /* 添加这个样式，以实现切换效果 */
+
         .right-panel-active .overlay-left {
             transform: translateX(-50%);
         }
     
         .right-panel-active .overlay-right {
-            transform: translateX(0);
+            transform: translateX(0); 
         }
+        
     </style>
 </head>
 <body>
@@ -19,12 +20,8 @@
         <div class="form-container sign-up-container">
             <form action="#">
                 <h1>Sign Up</h1>
-                <div class="social-container">
-                    <a href="#" class="social-f"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-g"><i class="fab fa-google-plus-g"></i></a>
-
-                </div>
-                <span>or use your email for registration</span>
+            
+           
                 <input type="text" placeholder="Name" />
                 <input type="text" placeholder="Contact Number" />
                 <input type="email" placeholder="Email" />
@@ -36,11 +33,8 @@
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Sign in</h1>
-                <div class="social-container">
-                    <a href="#" class="social-f"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-g"><i class="fab fa-google-plus-g"></i></a>
-                </div>
-                <span>or use your account</span>
+              
+       
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <div class="forgot-line">
