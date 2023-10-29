@@ -60,7 +60,7 @@
                         <a href="log_index.html" class="nav-item nav-link">Home</a>
                         <a href="log_about.html" class="nav-item nav-link">About</a>
                         <a href="log_service.html" class="nav-item nav-link">Service</a>
-                        <a href="log_menu.html" class="nav-item nav-link active">Menu</a>
+                        <a href="log_menu.php" class="nav-item nav-link active">Menu</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -155,7 +155,7 @@
                                                                     <span><?php echo $row['food_name']; ?></span>
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
-                                                                <small class="fst-italic"><?php echo $row['description']; ?></small>
+                                                                <small class="fst-italic"><?php echo $row['food_description']; ?></small>
                                                                 <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
                                                             </form>
                                                         </div>
@@ -195,7 +195,7 @@
                                                                     <span><?php echo $row['food_name']; ?></span>
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
-                                                                <small class="fst-italic"><?php echo $row['description']; ?></small>
+                                                                <small class="fst-italic"><?php echo $row['food_description']; ?></small>
                                                                 <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
                                                             </form>
                                                         </div>
@@ -235,7 +235,7 @@
                                                                     <span><?php echo $row['food_name']; ?></span>
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
-                                                                <small class="fst-italic"><?php echo $row['description']; ?></small>
+                                                                <small class="fst-italic"><?php echo $row['food_description']; ?></small>
                                                                 <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
                                                             </form>
                                                         </div>
