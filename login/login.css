@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
 
-* {
+*{
 	box-sizing: border-box;
-}
+ }
 
-body {
+ body {
 	background: #ffffff;
 	display: flex;
 	justify-content: center;
@@ -17,7 +17,6 @@ body {
 
 h1 {
 	font-weight: bold;
-	margin: 0;
 }
 
 h2 {
@@ -45,8 +44,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid rgb(255, 166, 0);
+	background-color: rgb(255, 166, 0);
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -54,6 +53,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	margin-top: 10px;
 }
 
 button:active {
@@ -83,7 +83,7 @@ form {
 input {
 	background-color: #eee;
 	border: none;
-	padding: 12px 15px;
+	padding: 12px 8px;
 	margin: 8px 0;
 	width: 100%;
 }
@@ -158,9 +158,10 @@ input {
 }
 
 .overlay {
-	background: #FF416C;
-	background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-	background: linear-gradient(to right, #FF4B2B, #FF416C);
+
+	background: #b37820	;
+	background: -webkit-linear-gradient(to right, #ff9900,#ff9501);
+	background: linear-gradient(to right, #fe5900,#ff8832);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
@@ -238,3 +239,23 @@ input {
     font-weight: bold; 
     
 }
+
+.password-container {
+    position: relative;
+    display: inline-block; /* 使容器大小适应内容 */
+}
+
+.password-container {
+   width: 80%;
+}
+
+
+#togglePassword {
+    position: absolute;
+    top: 75%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7a7474;
+}
+
