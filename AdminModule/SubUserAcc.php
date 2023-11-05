@@ -94,7 +94,7 @@ if(!isset($_SESSION['email']))
             <div class="menu">
 
                 <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href=""><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href="AdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -205,7 +205,7 @@ if(!isset($_SESSION['email']))
 
             <?php
 
-            $result = mysqli_query($connect,"SELECT * FROM ???????????????????????????????????????");
+            $result = mysqli_query($connect,"SELECT * FROM final");
 
             ?>
 
@@ -216,6 +216,7 @@ if(!isset($_SESSION['email']))
                         <th> ID </th>
                         <th> Username </th>
                         <th> Email </th>
+                        <th> Contact Number </th>
                         <th> Edit </th>
                         <th> DELETE</th>
 
@@ -233,6 +234,8 @@ if(!isset($_SESSION['email']))
                         <th> <?php echo $row["id"]; ?> </th>  
                         <th> <?php echo $row["name"]; ?> </th>
                         <th> <?php echo $row["email"]; ?> </th>
+                        <th> <?php echo $row["contact_number"]; ?> </th>
+
                         <th>
                             <button type="submit" name="edit-btn" class="edit"> EDIT </button>
                         </th>

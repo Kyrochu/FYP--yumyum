@@ -87,14 +87,14 @@ if(!isset($_SESSION['email']))
 
                 </a>
 
-                <h1 style="color:navajowhite"> Welcome,<?php echo $_SESSION['email'] ?> </h1>
+                <h1> Welcome,<?php echo $_SESSION['email'] ?> </h1>
 
             </header>
 
             <div class="menu">
 
                 <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href=""><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -103,12 +103,12 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAcc.php" class="sub-item"> User </a>
+                        <a href="SubAdminAcc.php" class="sub-item"> Admin </a>
 
 
                     </div>
-                
+            
             
                 </div>
                 
@@ -196,6 +196,14 @@ if(!isset($_SESSION['email']))
                 <span id="minutes"> 00 </span>:
                 <span id="seconds"> 00 </span>
                 <span id="period"> AM </span>
+
+            </div>
+            
+            <div class="EditAdmin">
+
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Edit Admin Profile </h2>
+
+            
 
             </div>
 

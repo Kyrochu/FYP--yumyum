@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <style>
+
 body {font-family: Arial, Helvetica, sans-serif;
 background-color: #a8babd;}
 
@@ -63,10 +64,12 @@ button:hover {
   float: right;
   width: 20%;
 }
+
 .backbtn{
   float: left;
   width: 20%;
 }
+
 
 /* Add padding to container elements */
 .container {
@@ -100,11 +103,9 @@ p {
     </div>
   </div>
   <div class="clearfix">
-    <button type="submit" class="signupbtn" onclick="validateForm()">Sign Up</button>
 
-    <button type="button" class="backbtn">
-        <a href="login.php">Back</a>
-      </button>
+      <button type="submit" class="signupbtn" onclick="validateForm()">Sign Up</button>
+      <button type="button" class="backbtn" onclick="goBack()">Back</button>
 
   </div>
 
@@ -117,16 +118,27 @@ function validateForm() {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
   const confirmPassword = document.getElementById("confirmPassword").value;
+  const confirmPasswordError = document.getElementById("confirmPasswordError");
+
 
   if (name === "" || contact === "" || email === "" || password === "" || confirmPassword === "") {
     alert("Please fill in all fields.");
     return false;
   }
 
-  // Additional validation logic can be added here
+  if (password !== confirmPassword) {
+    confirmPasswordError.textContent = "Passwords do not match";
+    return false;
+  } else {
+    confirmPasswordError.textContent = ""; // 清除错误消息
+  }
 
-  // If all fields are filled, proceed with form submission
-  // Your form submission code goes here
+  window.location.href = "login.php";
+
+
+}
+function goBack() {
+  window.history.back(); 
 }
 </script>
 

@@ -15,7 +15,7 @@ body
     background-position:center;
 }
 
-/* Side Bar */
+/*------------------------------------------------------------------------- Side Bar------------------------------------------------------ */
 
 .side-bar
 {
@@ -141,7 +141,7 @@ header h1
     transform:rotate(90deg);
 }
 
-/* Date & Time Widget */
+/* ------------------------------------------Date & Time Widget--------------------------------------------------- */
 
 .datetime
 {
@@ -197,7 +197,7 @@ header h1
     border-radius:4px;
 }
 
-/* Header Section */
+/* -----------------------------------------------------------Header Section----------------------------------------------------------------*/
 
 .main-content
 {
@@ -246,7 +246,7 @@ header h1
     font-size: 14px;
 }
 
-/* Admin Account Table */
+/* ---------------------------------------Admin Account Table------------------------------------------------- */
 
 .adminAcc 
 {
@@ -282,3 +282,87 @@ header h1
     font-weight:bold;
     cursor: pointer;
 }
+
+/* -----------------------------------------------Add New Admin (SuperAdmin Only)---------------------------------------------- */
+
+.popup
+{
+    position:absolute;
+    top:-150%;
+    left:50%;
+    opacity:1;
+    transform:translate(-50%,-50%) scale(0.85);
+    width:600px;
+    height:620px;
+    padding:10px 15px;
+    font-size:15px;
+    font-weight:bold;
+    margin:8px 0;
+    background: #eee;
+    box-shadow:2px 2px 5px 5px;
+    border-radius:10px;
+    transition:top 0ms ease-in-out 200ms,   
+               opacity 0ms ease-in-out 0ms,
+               transform 20ms ease-in-out 0ms;
+}
+
+.popup.active 
+{
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition:
+        top 200ms ease-in-out 0ms,
+        opacity 200ms ease-in-out 0ms,
+        transform 200ms ease-in-out 0ms;
+}
+
+.form-element
+{
+    margin:15px 0px;
+}
+
+.form-element input,
+.form-element select 
+
+{
+    margin-top:5px;
+    display:block;
+    width:100%;
+    padding:10px 15px;
+    outline:none;
+    border-radius:10px;
+    font-family: 'Poppins', sans-serif;
+    font-size:15px;
+
+}
+
+.form-btn
+{
+    background-color:lightskyblue;
+    color:black;
+    text-transform: capitalize;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight:bold;
+}
+
+.cancel-btn
+{
+    margin-top:10px;
+    cursor: pointer; 
+    font-size:16px; 
+    width:100%; 
+    height:40px;
+    background-color:lightskyblue;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+
+
+
+/* User Account Table */
+
+/* Admin Edit Profile */
+

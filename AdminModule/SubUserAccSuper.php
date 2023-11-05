@@ -108,7 +108,7 @@ if(!isset($_SESSION['email']))
 
 
                     </div>
-                
+            
             
                 </div>
                 
@@ -196,6 +196,59 @@ if(!isset($_SESSION['email']))
                 <span id="minutes"> 00 </span>:
                 <span id="seconds"> 00 </span>
                 <span id="period"> AM </span>
+
+            </div>
+            
+            <div class="userTable">
+
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User's Registered Accounts </h2>
+
+            <?php
+
+            $result = mysqli_query($connect,"SELECT * FROM users");
+
+            ?>
+
+                <table class="adminAcc" border="2" cellspacing="0" >
+
+                    <tr class="headings">
+
+                        <th> ID </th>
+                        <th> Username </th>
+                        <th> Email </th>
+                        <th> Contact Number </th>
+                        <th> Edit </th>
+                        <th> DELETE</th>
+
+                    </tr>
+
+                    <?php
+
+                        while($row=mysqli_fetch_assoc($result))
+                        {
+            
+                    ?>
+
+                    <tr>
+
+                        <th> <?php echo $row["id"]; ?> </th>  
+                        <th> <?php echo $row["name"]; ?> </th>
+                        <th> <?php echo $row["email"]; ?> </th>
+                        <th> <?php echo $row["contact_number"]; ?> </th>
+                        <th>
+                            <button type="submit" name="edit-btn" class="edit"> EDIT </button>
+                        </th>
+                        <th>
+                            <button type="submit" name="dlt-btn" class="dlt"> DELETE </button>
+                        </th>
+                      
+                    </tr>
+        
+                    <?php    
+                        }
+                    ?>
+
+                </table>
 
             </div>
 

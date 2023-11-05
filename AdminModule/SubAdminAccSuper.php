@@ -56,6 +56,7 @@ if(!isset($_SESSION['email']))
         <!-- Javascript for Date&Time Widget  -->
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
+        <script src="AddAdminSuper.js"> </script>
 
 
     </head>
@@ -108,7 +109,7 @@ if(!isset($_SESSION['email']))
 
 
                     </div>
-                
+            
             
                 </div>
                 
@@ -196,6 +197,108 @@ if(!isset($_SESSION['email']))
                 <span id="minutes"> 00 </span>:
                 <span id="seconds"> 00 </span>
                 <span id="period"> AM </span>
+
+            </div>
+            
+            <div class="adminTable">
+
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Admin's Registered Accounts </h2>
+            
+            <div class="addAdminbtn">
+
+                <button style="background:lightblue;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;">
+                    ADD NEW ADMIN 
+                </button>
+
+            </div>
+
+            <div class="popup">
+                
+                <div class="form">
+
+                    <h2 class="AddAdminTitle"> ADD NEW ADMIN </h2>
+                    
+                    <div class="form-element">
+                        Username <input type="text" name="name" required placeholder="Enter New Username">                    
+                    </div>
+
+                    <div class="form-element">  
+                        Email <input type="email" name="email" required placeholder="Enter New Email">    
+                    </div>
+
+                    <div class="form-element">
+                       Password <input type="password" name="password" required placeholder="Enter New Password">
+                    </div>   
+
+                    <div class="form-element">
+                       Confirm Password <input type="password" name="cpassword" required placeholder="Confirm password">
+                    </div>   
+
+                    <div class="form-element">
+                        Role <select name="admin_type">
+                            <option value="SuperAdmin">Super Admin</option>
+                            <option value="Admin">Admin</option>
+                        </select>
+                    </div>
+
+                    <div class="form-element">
+                        <input type="submit" name="addadmin" value="ADD NEW ADMIN" class="form-btn">
+                    </div>
+
+                    <div class="form-element">
+                        <button class="cancel-btn"> CANCEL </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <?php
+
+            $result = mysqli_query($connect,"SELECT * FROM admin_acc");
+
+            ?>
+
+                <table class="adminAcc" border="2" cellspacing="0" >
+
+                    <tr class="headings">
+
+                        <th> ID </th>
+                        <th> Username </th>
+                        <th> Email </th>
+                        <th> Role </th>
+                        <th> Edit </th>
+                        <th> DELETE</th>
+
+                    </tr>
+
+                    <?php
+
+                        while($row=mysqli_fetch_assoc($result))
+                        {
+            
+                    ?>
+
+                    <tr>
+
+                        <th> <?php echo $row["id"]; ?> </th>  
+                        <th> <?php echo $row["name"]; ?> </th>
+                        <th> <?php echo $row["email"]; ?> </th>
+                        <th> <?php echo $row["admin_type"]; ?> </th>
+                        <th>
+                            <button type="submit" name="edit-btn" class="edit"> EDIT </button>
+                        </th>
+                        <th>
+                            <button type="submit" name="dlt-btn" class="dlt"> DELETE </button>
+                        </th>
+                      
+                    </tr>
+        
+                    <?php    
+                        }
+                    ?>
+
+                </table>
 
             </div>
 
