@@ -156,7 +156,7 @@
                                                                     <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                 </h5>
                                                                 <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                                <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="order" value="<?php echo $row['food_id']; ?>"> Add to cart</button>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -354,5 +354,14 @@
     ?>
 
 </body>
+
+<script>
+    var id;
+
+    function odercart()
+    {
+
+    }
+</script>
 
 </html>
