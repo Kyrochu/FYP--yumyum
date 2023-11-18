@@ -60,7 +60,7 @@
                         <a href="log_index.html" class="nav-item nav-link">Home</a>
                         <a href="log_about.html" class="nav-item nav-link">About</a>
                         <a href="log_service.html" class="nav-item nav-link">Service</a>
-                        <a href="log_menu.html" class="nav-item nav-link">Menu</a>
+                        <a href="log_menu.php" class="nav-item nav-link">Menu</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
@@ -77,14 +77,7 @@
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Cart</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
-                        </ol>
-                    </nav>
+                  <img src="img/cart.png" alt="">
                 </div>
             </div>
         </div>
