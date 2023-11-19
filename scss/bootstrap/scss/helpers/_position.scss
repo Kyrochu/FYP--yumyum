@@ -16,6 +16,20 @@
   z-index: $zindex-fixed;
 }
 
+.fixed-num
+{
+  position: fixed;
+  display: flex;
+  width: 30px;
+  height: 30px;
+  background-color: red;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 50%;
+  position: absolute;
+}
+
 // Responsive sticky top
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {

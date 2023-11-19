@@ -61,15 +61,8 @@
                         <a href="log_about.html" class="nav-item nav-link">About</a>
                         <a href="log_service.html" class="nav-item nav-link">Service</a>
                         <a href="log_menu.php" class="nav-item nav-link">Menu</a>
-                        <div class="nav-item dropdown">
-                            <a href="#" class="nav-link dropdown-toggle active" data-bs-toggle="dropdown">Pages</a>
-                            <div class="dropdown-menu m-0">
-                                <a href="log_booking.html" class="dropdown-item active">Booking</a>
-                                <a href="log_team.html" class="dropdown-item">Our Team</a>
-                                <a href="log_testimonial.html" class="dropdown-item">Testimonial</a>
-                            </div>
-                        </div>
                         <a href="log_contact.html" class="nav-item nav-link">Contact</a>
+                       <im g class="btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " >0</span>
                     </div>
                     <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
                 </div>
@@ -77,12 +70,29 @@
 
             <div class="container-xxl py-5 bg-dark hero-header mb-5">
                 <div class="container text-center my-5 pt-5 pb-4">
-                  <img src="img/cart.png" alt="">
+                    <h1 class="display-3 text-white mb-3 animated slideInDown">Cart</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center text-uppercase">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+                        </ol>
+                    </nav>
                 </div>
             </div>
         </div>
         <!-- Navbar & Hero End -->
 
+
+<div style="width: 400px;background-color: gray;color: white;position: auto ;top: 0;right: 0;bottom: 0;inset: 0 0 0 auto;display: grid;grid-template-rows: 70px 1fr 70px;">
+  <h1>Shopping Cart</h1>
+  <dic class="listcart">
+
+  </dic>
+  <div class="btn">
+    <button>Close</button>
+  </div>
+</div>
         
 <section class="bg-light my-5">
     <div class="container">

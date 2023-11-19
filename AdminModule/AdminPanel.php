@@ -1,13 +1,4 @@
-<?php
 
-include('DataConnect.php');
-
-if(!isset($_SESSION['email']))
-{
-    header("location:AdminLogin.php"); //It will redirects to AdminLogin.php if not logged in
-}
-
-?>
 
 
 <!DOCTYPE html>

@@ -480,3 +480,22 @@
     border-right: none;
 }
 
+.cart-icon-num
+{
+    position: relative;
+}
+
+.cart-icon-num
+{
+    display: flex;
+    width: 30px;
+    height: 30px;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50%;
+    position: absolute;
+    
+}
+
