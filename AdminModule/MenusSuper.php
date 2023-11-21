@@ -14,7 +14,7 @@ if(!isset($_SESSION['email']))
 <html>
     
     <head>
-        <title> YumYum SuperAdmin Panel </title>
+        <title> YumYum Admin Accounts List </title>
         
         <link rel="stylesheet" href="Admin_Style.css">  <!-- CSS for Admin Page -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Link for Icon Style  -->
@@ -56,6 +56,7 @@ if(!isset($_SESSION['email']))
         <!-- Javascript for Date&Time Widget  -->
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
+        <script src="AddAdminSuper.js"> </script>
 
 
     </head>
@@ -108,7 +109,7 @@ if(!isset($_SESSION['email']))
 
 
                     </div>
-                
+            
             
                 </div>
                 
@@ -121,7 +122,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
+                        <a href="" class="sub-item"> Menu </a>
                         <a href="" class="sub-item"> Inventory </a>
 
                         
@@ -198,8 +199,12 @@ if(!isset($_SESSION['email']))
                 <span id="period"> AM </span>
 
             </div>
+            
+            <div class="menus">
 
-        </div>
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menus </h2>
+
+            </div>
 
       
 

@@ -56,7 +56,7 @@ if(!isset($_SESSION['email']))
         <!-- Javascript for Date&Time Widget  -->
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
-
+        <script src="AddUserSuper.js"> </script>
 
     </head>
 
@@ -203,9 +203,90 @@ if(!isset($_SESSION['email']))
 
             <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User's Registered Accounts </h2>
 
+            <div class="addUserbtn">
+
+                <button style="background:lightblue;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;">
+                    ADD NEW USER 
+                </button>
+
+            </div>
+
+            <div class="popup">
+                
+                <div class="form">
+
+                    <h2 class="AddAdminTitle"> ADD NEW USER </h2>
+                    
+                    <form method="post"> 
+                        
+                        <div class="form-element">
+                            Username <input type="text" name="name" required placeholder="Enter New Username">                    
+                        </div>
+
+                        <div class="form-element">  
+                            Email <input type="email" name="email" required placeholder="Enter New Email">    
+                        </div>
+
+                        <div class="form-element">  
+                            Contact Number <input type="tel" name="contact" required placeholder="Enter Contact Number (e.g.,016 - 777 8888 or 011- 6666 9999)">    
+                        </div>
+
+                        <div class="form-element">
+                        Password <input type="password" name="password" required placeholder="Enter New Password">
+                        </div>   
+
+                        <div class="form-element">
+                        Confirm Password <input type="password" name="cpassword" required placeholder="Confirm password">
+                        </div>      
+
+                        <div class="form-element">
+                            <input type="submit" name="adduser" value="ADD NEW USER" class="form-btn">
+                        </div>
+
+                        <div class="form-element">
+                            <button class="cancel-btn"> CANCEL </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
              <?php
 
                 $result = mysqli_query($connect,"SELECT * FROM users");
+
+                if (isset($_POST["adduser"]))
+                {
+                    $Name = $_POST["name"];
+                    $Email = $_POST["email"];
+                    $Contact = $_POST["contact"];
+                    $Password = $_POST["password"];
+                    $CPassword = $_POST["cpassword"];
+                   
+                
+                    $duplicate = mysqli_query($connect,"SELECT* FROM users WHERE name = '$Name' OR email = '$Email' "); // If Name of Email duplicate
+                    if(mysqli_num_rows($duplicate) > 0)
+                    {
+                        echo "<script> alert('Username or Email already exists!') </script>";
+                    }
+                    else
+                    {
+                        if($Password == $CPassword) // If password same as confirm password
+                        {
+                            $sql = mysqli_query($connect,"INSERT INTO users (name,email,contact_number,password) VALUES ('$Name','$Email','$Contact','$Password')");
+                            
+                            echo "<script> alert('New User Added!') </script>";
+                            sleep(1);  // Enable webpage loading for 1 seconds
+                            exit();
+                        }
+                        else
+                        {
+                            echo "<script> alert('Password Does Not Matched!') </script>";
+                        }
+                    }
+                
+                }
 
                 if (isset($_POST["dlt-btn"]) && isset($_POST["delete_id"])) 
                 {
@@ -221,6 +302,7 @@ if(!isset($_SESSION['email']))
 
 
             ?>
+
 
                 <table class="adminAcc" border="2" cellspacing="0" >
 

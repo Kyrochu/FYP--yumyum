@@ -228,7 +228,7 @@ if(!isset($_SESSION['email']))
                         </div>
 
                         <div class="form-element">  
-                            Contact Number <input type="email" name="email" required placeholder="Enter Contact Number">    
+                            Contact Number <input type="tel" name="contact" required placeholder="Enter Contact Number (e.g.,016 - 777 8888 or 011- 6666 9999)">    
                         </div>
 
                         <div class="form-element">
@@ -240,7 +240,7 @@ if(!isset($_SESSION['email']))
                         </div>      
 
                         <div class="form-element">
-                            <input type="submit" name="addadmin" value="ADD NEW USER" class="form-btn">
+                            <input type="submit" name="adduser" value="ADD NEW USER" class="form-btn">
                         </div>
 
                         <div class="form-element">
@@ -255,6 +255,38 @@ if(!isset($_SESSION['email']))
             <?php
 
                 $result = mysqli_query($connect,"SELECT * FROM users");
+
+                if (isset($_POST["adduser"]))
+                {
+                    $Name = $_POST["name"];
+                    $Email = $_POST["email"];
+                    $Contact = $_POST["contact"];
+                    $Password = $_POST["password"];
+                    $CPassword = $_POST["cpassword"];
+                   
+                
+                    $duplicate = mysqli_query($connect,"SELECT* FROM users WHERE name = '$Name' OR email = '$Email' "); // If Name of Email duplicate
+                    if(mysqli_num_rows($duplicate) > 0)
+                    {
+                        echo "<script> alert('Username or Email already exists!') </script>";
+                    }
+                    else
+                    {
+                        if($Password == $CPassword) // If password same as confirm password
+                        {
+                            $sql = mysqli_query($connect,"INSERT INTO users (name,email,contact_number,password) VALUES ('$Name','$Email','$Contact','$Password')");
+                            
+                            echo "<script> alert('New User Added!') </script>";
+                            sleep(1);  // Enable webpage loading for 1 seconds
+                            exit();
+                        }
+                        else
+                        {
+                            echo "<script> alert('Password Does Not Matched!') </script>";
+                        }
+                    }
+                
+                }
 
                 if (isset($_POST["dlt-btn"]) && isset($_POST["delete_id"])) 
                 {
