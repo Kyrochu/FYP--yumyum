@@ -23,7 +23,7 @@ close.addEventListener('click' , () =>
 $(document).ready(function () {
     // Show the popup when the "ADD NEW ADMIN" button is clicked
     $("button").click(function () {
-        alert("HELLO WORLD");
+        alert("HELLO WORLD my friend");
     });
 
 });
