@@ -36,7 +36,7 @@
     <link href="css/test.css" rel="stylesheet">
 </head>
 
-<body  >
+<body  class="all">
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -138,7 +138,7 @@
                                             while($row = mysqli_fetch_assoc($result))
                                             {
                                                 ?>
-                                                    <div class="col-lg-6">
+                                                    <div class=" col-lg-6">
                                                         <div class="d-flex align-items-center">
                                                             <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
                                                             <div class="w-100 d-flex flex-column text-start ps-4">
@@ -151,7 +151,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="order" value="<?php echo $row['food_id']; ?>"> Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -231,7 +231,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
+                                                                    <button type="submit" class=" btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -373,12 +373,9 @@
 </body>
 
 <script>
-    var id;
 
-    function odercart()
-    {
 
-    }
+    
 </script>
 
 </html>
