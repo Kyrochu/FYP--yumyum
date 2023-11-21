@@ -84,15 +84,6 @@
         <!-- Navbar & Hero End -->
 
 
-<div style="width: 400px;background-color: gray;color: white;position: auto ;top: 0;right: 0;bottom: 0;inset: 0 0 0 auto;display: grid;grid-template-rows: 70px 1fr 70px;">
-  <h1>Shopping Cart</h1>
-  <dic class="listcart">
-
-  </dic>
-  <div class="btn">
-    <button>Close</button>
-  </div>
-</div>
         
 <section class="bg-light my-5">
     <div class="container">

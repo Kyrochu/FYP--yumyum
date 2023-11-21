@@ -34,6 +34,10 @@
     <link href="css/style.css" rel="stylesheet">
 
     <link href="css/test.css" rel="stylesheet">
+
+    <!-- java script for pass var to php -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </head>
 
 <body  class="all">
@@ -138,24 +142,25 @@
                                             while($row = mysqli_fetch_assoc($result))
                                             {
                                                 ?>
-                                                    <div class=" col-lg-6">
-                                                        <div class="d-flex align-items-center">
-                                                            <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                                <form action="" method="post">
-                                                                    <input type="hidden" name="id" value="<?php echo $row['food_id']; ?>">
-                                                                    <input type="hidden" name="name" value="<?php echo $row['food_name']; ?>">
-                                                                    <input type="hidden" name="price" value="<?php echo $row['food_price']; ?>">
-                                                                        <span><?php echo $row['food_name']; ?></span>
-                                                                        <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
-                                                                    </h5>
-                                                                    <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
-                                                                </form>
+
+                                                        <div id="food1" class=" col-lg-6">
+                                                            <div class="d-flex align-items-center">
+                                                                <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg"  style="width: 80px;">
+                                                                <div class="w-100 d-flex flex-column text-start ps-4">
+                                                                    <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                                    <form action="" method="post">
+                                                                        <input type="hidden" name="id" value="<?php echo $row['food_id']; ?>">
+                                                                        <input type="hidden" name="name" value="<?php echo $row['food_name']; ?>">
+                                                                        <input type="hidden" name="price" value="<?php echo $row['food_price']; ?>">
+                                                                            <span><?php echo $row['food_name']; ?></span>
+                                                                            <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
+                                                                        </h5>
+                                                                        <small class="fst-italic"><?php echo $row['food_description']; ?></small>
+                                                                        <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="addtocart(<?php echo $row['food_id']; ?>)">Add to cart</button>
+                                                                    </form>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
                                                 <?php
                                             }
                                         }
@@ -191,7 +196,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="submit" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -231,7 +236,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="submit" class=" btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -370,12 +375,18 @@
     <script src="js/main.js"></script>
     <script src="js/cart.js" ></script>
 
+    
+    <script>
+        function addtocart(foodid)
+        {
+            alert(foodid);
+            <?php
+                echo" "?> lol <?php " ";
+            ?>
+        }
+    </script>
+
 </body>
 
-<script>
-
-
-    
-</script>
 
 </html>

@@ -18,12 +18,5 @@ close.addEventListener('click' , () =>
 // show cartab end
 
 
-// add to cart 
 
-$(document).ready(function () {
-    // Show the popup when the "ADD NEW ADMIN" button is clicked
-    $("button").click(function () {
-        alert("HELLO WORLD my friend");
-    });
 
-});
