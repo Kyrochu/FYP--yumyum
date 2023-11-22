@@ -64,11 +64,11 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
-                            <a href="log_index.html" class="nav-item nav-link">Home</a>
-                            <a href="log_about.html" class="nav-item nav-link">About</a>
-                            <a href="log_service.html" class="nav-item nav-link">Service</a>
+                            <a href="log_index.php" class="nav-item nav-link">Home</a>
+                            <a href="log_about.php" class="nav-item nav-link">About</a>
+                            <a href="log_service.php" class="nav-item nav-link">Service</a>
                             <a href="log_menu.php" class="nav-item nav-link active">Menu</a>
-                            <a href="log_contact.html" class="nav-item nav-link">Contact</a>
+                            <a href="log_contact.php" class="nav-item nav-link">Contact</a>
                             <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " >0</span>
                         </div>
                         <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
@@ -196,7 +196,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc"  > Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="addtocart(<?php echo $row['food_id']; ?>)">Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -236,7 +236,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" > Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="addtocart(<?php echo $row['food_id']; ?>)">Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -375,15 +375,18 @@
     <script src="js/main.js"></script>
     <script src="js/cart.js" ></script>
 
-    
+    echo json_encode ($foodid);
+
     <script>
-        function addtocart(foodid)
+
+        const addtocart = (foodid)
         {
-            alert(foodid);
-            <?php
-                echo" "?> lol <?php " ";
-            ?>
+            alert(done);
+
+            console.log(foodid);
         }
+
+        
     </script>
 
 </body>
