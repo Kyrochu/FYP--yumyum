@@ -377,7 +377,7 @@
 
     <script>
 
-        const addtocart = (foodid)
+        function addtocart(foodid)
         {
             alert(done);
 
