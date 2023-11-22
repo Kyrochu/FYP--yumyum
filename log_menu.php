@@ -375,8 +375,6 @@
     <script src="js/main.js"></script>
     <script src="js/cart.js" ></script>
 
-    echo json_encode ($foodid);
-
     <script>
 
         const addtocart = (foodid)

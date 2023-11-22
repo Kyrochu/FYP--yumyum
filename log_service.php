@@ -57,8 +57,8 @@
                         <div class="navbar-nav ms-auto py-0 pe-4">
                             <a href="log_index.php" class="nav-item nav-link">Home</a>
                             <a href="log_about.php" class="nav-item nav-link">About</a>
-                            <a href="log_service.php" class="nav-item nav-link">Service</a>
-                            <a href="log_menu.php" class="nav-item nav-link active">Menu</a>
+                            <a href="log_service.php" class="nav-item nav-link active">Service</a>
+                            <a href="log_menu.php" class="nav-item nav-link ">Menu</a>
                             <a href="log_contact.php" class="nav-item nav-link">Contact</a>
                             <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " >0</span>
                         </div>
@@ -252,6 +252,7 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="js/cart.js" ></script>
 </body>
 
 </html>
