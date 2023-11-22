@@ -20,7 +20,7 @@
     </style>
 </head>
 <body>
-    <div class="container" id="container">
+<div class="container" id="container">
         <div class="form-container sign-up-container">
         <form action="register.php" method="post">
                 <h1>Sign Up</h1>       
@@ -31,23 +31,21 @@
                 <input type="password" name="confirm_password" placeholder="Comfirm Password " />
                 <button id="signUpbutton" name="signUpbutton">Sign Up</button>
             </form>
-        </div>
+        </div>          
 
         <div class="form-container sign-in-container">
-            <form action="signup.php" method="post">
+            <form action="logindata.php" method="post">
                 <h1>Sign in</h1>
-
                     <div class="password-container">
-                        <input type="email" placeholder="Email" />
-                        <input type="password" placeholder="Password" id="passwordInput" />
+                        <input type="email" name="signinemail" id="signinemail" placeholder="Email"  />
+                        <input type="password" name="signinpassword" id="signinpassword" placeholder="Password"  />
                         <i class="fas fa-eye" id="togglePassword" ></i></i>
                     </div>
-
-                <div class="forgot-line">
-                    <a href="forgot-password.php">Forgot your password?</a>
-                </div>
-                
-                <button> Sign In</button>
+                    <div class="forgot-line">
+                        <a href="password-reset.php">Forgot your password?</a>
+                    </div>
+                    
+                    <button name="signIn" id="signIn"> Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
@@ -56,7 +54,7 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Welcome Back!</h1>
                     <p>To keep connected with us please login with your personal info</p>
-                    <button class="ghost" id="signIn">Sign In</button>
+                    <button class="ghost" id="sign">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Hello, Friend!</h1>
@@ -75,9 +73,9 @@
     
     document.addEventListener("DOMContentLoaded", function () {
     const signUpButton = document.getElementById('signUp');
-    const signInButton = document.getElementById('signIn');
+    const signInButton = document.getElementById('sign');
     const container = document.getElementById('container');
-    const passwordInput = document.getElementById('passwordInput');
+    const signinpassword = document.getElementById('signinpassword');
     const togglePasswordButton = document.getElementById('togglePassword');
 
     signUpButton.addEventListener('click', () => {
@@ -89,13 +87,33 @@
     });
 
         togglePasswordButton.addEventListener('click', () => {
-            const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-            passwordInput.setAttribute("type", type);
+            const type = signinpassword.getAttribute("type") === "password" ? "text" : "password";
+            signinpassword.setAttribute("type", type);
 
 
             togglePasswordButton.classList.toggle("fa-eye");
             togglePasswordButton.classList.toggle("fa-eye-slash");
         });
+        
+        const signUpForm = document.querySelector('.sign-up-container form');
+        signUpForm.addEventListener('submit', function (event) {
+            const name = document.querySelector('input[name="name"]').value;
+            const contactNumber = document.querySelector('input[name="contact_number"]').value;
+            const email = document.querySelector('input[name="email"]').value;
+            const password = document.querySelector('input[name="password"]').value;
+            const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
+
+            if (name === '' || contactNumber === '' || email === '' || password === '' || confirmPassword === '') {
+                event.preventDefault(); // Prevent form submission
+                alert('Please fill in all fields.');
+            } else if (password !== confirmPassword) {
+                event.preventDefault(); // Prevent form submission
+                alert('Passwords do not match.');
+            }
+            // You can add further validation logic as needed
+        });
+
+        
 
     });
 
