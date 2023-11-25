@@ -95,7 +95,7 @@
                             <h4 class="card-title mb-4">Your shopping cart</h4>
 
                             <?php
-                                    $sql = " SELECT * FROM menu WHERE food_type = 'meal'; ";
+                                    $sql = " SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id  ";
                                     $result = mysqli_query($connect , $sql);
                                     $resultcheck = mysqli_num_rows($result);
 
@@ -104,45 +104,46 @@
                                         while($row = mysqli_fetch_assoc($result))
                                         {
                                             ?>
-                                                
+                                                <div class="row gy-3">
+                                                  <div class="col-lg-5">
+                                                      <div class="me-lg-5">
+                                                          <div class="d-flex">
+                                                              <img src="./img/<?php echo $row['food_img']; ?>" class="border rounded me-3" style="width: 96px; height: 96px;" />
+                                                              <div class="">
+                                                                  <a href="#" class="nav-link"><?php echo $row['food_name']; ?></a>
+                                                                  <p class="text-muted">XL size, Jeans, Blue</p>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
+                                                      <div class="">
+                                                          <select style="width: 100px;" class="form-select me-4">
+                                                              <option>1</option>
+                                                              <option>2</option>
+                                                              <option>3</option>
+                                                              <option>4</option>
+                                                          </select>
+                                                      </div>
+                                                      <div class="">
+                                                          <text class="h6">$1156.00</text> <br />
+                                                          <small class="text-muted text-nowrap"> RM<?php echo $row['food_price']; ?> / per item </small>
+                                                      </div>
+                                                  </div>
+                                                  <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
+                                                      <div class="float-md-end">
+                                                      <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
+                                                      <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
+                                                      </div>
+                                                  </div>
+                                              </div>
+
                                             <?php
                                         }
                                     }
                                 ?>
 
-                            <div class="row gy-3">
-                                <div class="col-lg-5">
-                                    <div class="me-lg-5">
-                                        <div class="d-flex">
-                                            <img src="https://bootstrap-ecommerce.com/bootstrap5-ecommerce/images/items/13.webp" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                            <div class="">
-                                                <a href="#" class="nav-link">Blazer Suit Dress Jacket for Men</a>
-                                                <p class="text-muted">XL size, Jeans, Blue</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                    <div class="">
-                                        <select style="width: 100px;" class="form-select me-4">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                        </select>
-                                    </div>
-                                    <div class="">
-                                        <text class="h6">$1156.00</text> <br />
-                                        <small class="text-muted text-nowrap"> $460.00 / per item </small>
-                                    </div>
-                                </div>
-                                <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                    <div class="float-md-end">
-                                    <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                    <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                    </div>
-                                </div>
-                            </div>
+                            
                             
                         </div>
 
@@ -377,6 +378,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

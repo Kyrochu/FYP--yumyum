@@ -38,6 +38,9 @@
     <!-- java script for pass var to php -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+
+    
+
 </head>
 
 <body  class="all">
@@ -145,7 +148,7 @@
 
                                                         <div id="food1" class=" col-lg-6">
                                                             <div class="d-flex align-items-center">
-                                                                <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg"  style="width: 80px;">
+                                                                <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $row['food_img']; ?>">
                                                                 <div class="w-100 d-flex flex-column text-start ps-4">
                                                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                                     <form action="" method="post">
@@ -185,7 +188,7 @@
                                                 
                                                     <div class="col-lg-6">
                                                         <div class="d-flex align-items-center">
-                                                            <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                                        <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $row['food_img']; ?>">
                                                             <div class="w-100 d-flex flex-column text-start ps-4">
                                                                 <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                                 <form action="" method="post">
@@ -225,7 +228,7 @@
                                                 
                                                     <div class="col-lg-6">
                                                         <div class="d-flex align-items-center">
-                                                            <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
+                                                        <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $row['food_img']; ?>">
                                                             <div class="w-100 d-flex flex-column text-start ps-4">
                                                                 <h5 class="d-flex justify-content-between border-bottom pb-2">
                                                                 <form action="" method="post">
@@ -374,6 +377,7 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/cart.js" ></script>
+
 
     <script>
 

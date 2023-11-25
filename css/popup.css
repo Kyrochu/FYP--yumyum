@@ -1,0 +1,30 @@
+
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.5s ease;
+}
+
+/* Styles for the popup */
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;  /* Start at the middle of the viewport */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0); /* Initially, scale down the popup */
+    padding: 20px;
+    background-color: rgba(255, 168, 5, 0.682);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.visible {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1); /* Bring it back to its original scale and position */
+}
