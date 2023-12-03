@@ -35,6 +35,8 @@
 
     <link href="css/test.css" rel="stylesheet">
 
+    <link href="css/popup.css" rel="stylesheet" >
+
     <!-- java script for pass var to php -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -145,7 +147,6 @@
                                             while($row = mysqli_fetch_assoc($result))
                                             {
                                                 ?>
-
                                                         <div id="food1" class=" col-lg-6">
                                                             <div class="d-flex align-items-center">
                                                                 <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $row['food_img']; ?>">
@@ -159,11 +160,17 @@
                                                                             <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                         </h5>
                                                                         <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                        <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="addtocart(<?php echo $row['food_id']; ?>)">Add to cart</button>
+                                                                        
+                                                                        <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $row['food_id']; ?>)"  >Add to cart</button>
                                                                     </form>
                                                                 </div>
                                                             </div>
                                                         </div>
+
+                                                        
+                                                            
+
+                                                        
                                                 <?php
                                             }
                                         }
@@ -199,7 +206,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="addtocart(<?php echo $row['food_id']; ?>)">Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $row['food_id']; ?>)"  >Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -239,7 +246,7 @@
                                                                         <span class="text-primary">RM <?php echo $row['food_price'] ?></span>
                                                                     </h5>
                                                                     <small class="fst-italic"><?php echo $row['food_description']; ?></small>
-                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="addtocart(<?php echo $row['food_id']; ?>)">Add to cart</button>
+                                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $row['food_id']; ?>)"  >Add to cart</button>
                                                                 </form>
                                                             </div>
                                                         </div>
@@ -258,6 +265,7 @@
             </div>
             <!-- Menu End -->
         
+            
 
         <!-- Footer Start -->
         <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
@@ -324,6 +332,8 @@
         </div>
         <!-- Footer End -->
 
+        
+
 
         <!-- Back to Top -->
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
@@ -362,6 +372,15 @@
         </div>
         <!-- cart end-->
 
+        <!-- popup start -->
+        
+        <div id="overlay" class="overlay"></div>
+        <div id="popup" class="popup ">
+            
+        </div>
+
+        <!-- popup end -->
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -377,19 +396,88 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="js/cart.js" ></script>
-
+    <script src="js/popup.js" ></script>
 
     <script>
-
-        function addtocart(foodid)
+        function pop(id) 
         {
-            alert(done);
+            var fdid = id;
 
-            console.log(foodid);
+            $.ajax({
+                type: "GET",
+                data: { food_id: fdid },
+                url: "script_pass.php",
+                success: function (response) 
+                {
+                    var data = JSON.parse(response);
+
+                    // Display the basic food details
+                    document.getElementById('popup').innerHTML = 
+                    `
+                        <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/${data.food_img}">
+                        <input type="hidden" name="id" value="${data.food_id}">
+                        <input type="hidden" name="name" value="${data.food_name}">
+                        <input type="hidden" name="price" value="${data.food_price}">
+                        <span>${data.food_name}</span>
+                    `;
+
+                    // Display checkboxes for additional options
+                    if (data.options.length > 0) {
+                        document.getElementById('popup').innerHTML += '<div class="checkbox-group">';
+
+                        data.options.forEach(option => {
+                            document.getElementById('popup').innerHTML += `
+                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_id}">
+                                ${option.add_name} (+RM ${option.add_price})<br>
+                            `;
+                        });
+
+                        document.getElementById('popup').innerHTML += '</div>';
+                    }
+
+                    // Add buttons and other HTML as needed
+                    document.getElementById('popup').innerHTML += `
+                        <button type="button" onclick="submitForm()">Submit</button>
+                        <button type="button" onclick="closePopup()">close</button>
+                    `;
+
+                    // Show the popup
+                    document.getElementById('overlay').style.display = 'block';
+                    document.getElementById('popup').style.display = 'block';
+
+                    setTimeout(function () {
+                        document.getElementById('popup').classList.add('visible');
+                    }, 10);
+                }
+            });
         }
 
-        
+        function submitForm() 
+        {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').classList.remove('visible');
+
+            setTimeout(function () 
+            {
+                document.getElementById('popup').style.display = 'none';
+            }, 500);
+
+            // Get the selected checkbox values
+            var checkboxes = document.querySelectorAll('input[name="checkboxGroup"]:checked');
+            var checkboxValues = Array.from(checkboxes).map(checkbox => checkbox.value);
+
+            // Get the values from textareas
+            var nameValue = document.querySelector('textarea[name="text"]').value;
+            var passwordValue = document.querySelector('textarea[name="pass"]').value;
+
+            // Display the values (you can do whatever you want with these values)
+            console.log('Checkbox Values:', checkboxValues);
+            console.log('Name Value:', nameValue);
+            console.log('Password Value:', passwordValue);
+        }
     </script>
+
+    
 
 </body>
 
