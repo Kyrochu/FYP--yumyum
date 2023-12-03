@@ -123,7 +123,7 @@
 
                         data.options.forEach(option => {
                             document.getElementById('popup').innerHTML += `
-                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_id}">
+                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_price}">
                                 ${option.add_name} (+RM ${option.add_price})<br>
                             `;
                         });
@@ -161,8 +161,28 @@
 
         function submitForm() 
         {
-            // Implement your form submission logic here
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('popup').classList.remove('visible');
+
+            setTimeout(function () 
+            {
+                document.getElementById('popup').style.display = 'none';
+            }, 500);
+
+            var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
+
+            // Calculate the total price
+            var addPrice = 0;
+            checkboxes.forEach(function (checkbox) {
+                addPrice += parseFloat(checkbox.value);
+            });
+
+            var total = 0;
+
+            // Display or use the total price as needed
+            console.log("Total Price: RM", addPrice);
         }
+
     </script>
 </body>
 </html>

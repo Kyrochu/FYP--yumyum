@@ -347,26 +347,39 @@
                         <h1 class="" >Shopping Cart</h1> 
                         <button class="closex btn-close " aria-label="Close" ></button>
                     </div>
-                        <diV class="listcart">
-                            <div class="item">
-                                <img src="img/cart-icon h.png" alt="">
-                                <div class="name">
-                                    Name
-                                </div>
-                                <div class="price">
-                                    RM 200
-                                </div>
-                                <div class="qty">
-                                    <span class="minus">-</span>
-                                    <span>1</span>
-                                    <span class="plus">+</span>
-                                </div>
-                            </div>
-                        </diV>
-                        <div class="btn">
-                           
-                            <button class="checkout">check out</button>
-                        </div>
+                       
+                        <?php
+                            $sql = "  SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id ";
+                            $result = mysqli_query($connect , $sql);
+                            $resultcheck = mysqli_num_rows($result);
+
+                            if($resultcheck > 0)
+                            {
+                                while($row = mysqli_fetch_assoc($result))
+                                {
+        
+                                ?>
+                                    <diV class="listcart">
+                                        <div class="item">
+                                            <img src="./img/<?php echo $row['food_img']; ?>" alt="">
+                                            <div class="name"><?php echo $row['food_name'] ?></div>
+                                            <div class="price">RM <?php echo $row['food_total_price'] ?></div>
+                                            <div class="qty">
+                                                <span class="minus">-</span>
+                                                <span><?php echo $row['num_food'] ?></span>
+                                                <span class="plus">+</span>
+                                            </div>
+                                        </div>
+                                    </diV>
+                                <?php
+                                }
+                            }
+                        ?>
+
+                    <div class="btn">
+                        <a class="btn btn-primary" href="log_cart.php"  >check out</a>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -427,7 +440,7 @@
 
                         data.options.forEach(option => {
                             document.getElementById('popup').innerHTML += `
-                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_id}">
+                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_price}">
                                 ${option.add_name} (+RM ${option.add_price})<br>
                             `;
                         });
@@ -437,7 +450,7 @@
 
                     // Add buttons and other HTML as needed
                     document.getElementById('popup').innerHTML += `
-                        <button type="button" onclick="submitForm()">Submit</button>
+                        <button type="button" onclick="submitForm(${fdid})">Submit</button>
                         <button type="button" onclick="closePopup()">close</button>
                     `;
 
@@ -452,8 +465,10 @@
             });
         }
 
-        function submitForm() 
+        function submitForm(id) 
         {
+            var fdid = id;
+
             document.getElementById('overlay').style.display = 'none';
             document.getElementById('popup').classList.remove('visible');
 
@@ -462,19 +477,35 @@
                 document.getElementById('popup').style.display = 'none';
             }, 500);
 
-            // Get the selected checkbox values
-            var checkboxes = document.querySelectorAll('input[name="checkboxGroup"]:checked');
-            var checkboxValues = Array.from(checkboxes).map(checkbox => checkbox.value);
+            var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
 
-            // Get the values from textareas
-            var nameValue = document.querySelector('textarea[name="text"]').value;
-            var passwordValue = document.querySelector('textarea[name="pass"]').value;
+            // Calculate the total price
+            var addPrice = 0;
+            checkboxes.forEach(function (checkbox) 
+            {
+                addPrice += parseFloat(checkbox.value);
+            });
 
-            // Display the values (you can do whatever you want with these values)
-            console.log('Checkbox Values:', checkboxValues);
-            console.log('Name Value:', nameValue);
-            console.log('Password Value:', passwordValue);
+            $.ajax({
+                type: "GET",
+                data: 
+                {
+                    food_id: fdid,
+                    add_on: addPrice
+                },
+                url: "add_to_cart.php",
+                success: function (response) 
+                {
+                    console.log("Data added to cart successfully");
+                }
+            });
+
+            
+            location.reload();
         }
+
+        refreshPage();
+
     </script>
 
     
