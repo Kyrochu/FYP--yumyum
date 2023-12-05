@@ -47,13 +47,22 @@ div.showcart .container
 .carttab .listcart .item
 {
     display: grid;
-    grid-template-columns: 70px 150px 50px 1fr;
+    grid-template-columns: 70px 150px 70px 1fr;
     gap: 10px;
     text-align: center;
     align-items: center;
 }
 
 .carttab button.closex
+{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    top: 30px;
+    left: 430px;
+}
+
+.carttab button.deletex
 {
     width: 15px;
     height: 15px;

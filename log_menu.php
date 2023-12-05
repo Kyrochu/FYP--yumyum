@@ -368,7 +368,9 @@
                                                 <span class="minus">-</span>
                                                 <span><?php echo $row['num_food'] ?></span>
                                                 <span class="plus">+</span>
+                                                
                                             </div>
+                                           
                                         </div>
                                     </diV>
                                 <?php

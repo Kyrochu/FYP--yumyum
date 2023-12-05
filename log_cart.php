@@ -103,42 +103,36 @@
                                     {
                                         while($row = mysqli_fetch_assoc($result))
                                         {
-                                            ?>
-                                                <div class="row gy-3">
-                                                  <div class="col-lg-5">
-                                                      <div class="me-lg-5">
-                                                          <div class="d-flex">
-                                                              <img src="./img/<?php echo $row['food_img']; ?>" class="border rounded me-3" style="width: 96px; height: 96px;" />
-                                                              <div class="">
-                                                                  <a href="#" class="nav-link"><?php echo $row['food_name']; ?></a>
-                                                                  <p class="text-muted">XL size, Jeans, Blue</p>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">
-                                                      <div class="">
-                                                          <select style="width: 100px;" class="form-select me-4">
-                                                              <option>1</option>
-                                                              <option>2</option>
-                                                              <option>3</option>
-                                                              <option>4</option>
-                                                          </select>
-                                                      </div>
-                                                      <div class="">
-                                                          <text class="h6">$1156.00</text> <br />
-                                                          <small class="text-muted text-nowrap"> RM<?php echo $row['food_price']; ?> / per item </small>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">
-                                                      <div class="float-md-end">
-                                                      <a href="#!" class="btn btn-light border px-2 icon-hover-primary"><i class="fas fa-heart fa-lg px-1 text-secondary"></i></a>
-                                                      <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>
-                                                      </div>
-                                                  </div>
-                                              </div>
+                                                echo '<div class="row gy-3">';
+                                                echo '    <div class="col-lg-5">';
+                                                echo '        <div class="me-lg-5">';
+                                                echo '            <div class="d-flex">';
+                                                echo '                <img src="./img/' . $row['food_img'] . '" class="border rounded me-3" style="width: 96px; height: 96px;" />';
+                                                echo '                <div class="">';
+                                                echo '                    <a href="#" class="nav-link">' . $row['food_name'] . '</a>';
+                                                echo '                    <p class="text-muted">XL size, Jeans, Blue</p>';
+                                                echo '                </div>';
+                                                echo '            </div>';
+                                                echo '        </div>';
+                                                echo '    </div>';
+                                                echo '    <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">';
+                                                echo '        <div class="me-4">';
+                                                echo '              <button class="btn btn-sm btn-primary decrement" data-food-id="' . $row['food_id'] . '">-</button>';
+                                                echo '              <span id="numFood_' . $row['food_id'] . '">' . $row['num_food'] . '</span>';
+                                                echo '              <button class="btn btn-sm btn-primary increment" data-food-id="' . $row['food_id'] . '">+</button>';
+                                                echo '        </div>';
+                                                echo '        <div class="">';
+                                                echo '            <text class="h6">RM '. $row['food_total_price'] .' </text> <br />';
+                                                echo '            <small class="text-muted text-nowrap">RM' . $row['food_price'] . ' / per item</small>';
+                                                echo '        </div>';
+                                                echo '    </div>';
+                                                echo '    <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">';
+                                                echo '        <div class="float-md-end">';
+                                                echo '            <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>';
+                                                echo '        </div>';
+                                                echo '    </div>';
+                                                echo '</div>';
 
-                                            <?php
                                         }
                                     }
                                 ?>
@@ -379,6 +373,33 @@
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+      $(document).ready(function() 
+        {
+            $('.increment, .decrement').on('click', function() 
+            {
+                var foodId = $(this).data('food-id');
+                var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
+
+                $.ajax(
+                  {
+                    url: 'update_num_food.php',
+                    type: 'POST',
+                    data: { foodId: foodId, action: action },
+                    success: function(response) 
+                    {
+                        // Update the displayed num_food value
+                        $('#numFood_' + foodId).text(response.numFood);
+                    }
+                });
+            });
+        }
+      );
+
+      
+    </script>
 
 </body>
 
