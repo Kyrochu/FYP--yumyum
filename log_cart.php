@@ -376,12 +376,13 @@
 
 
     <script>
-      $(document).ready(function() 
-        {
+      // $(document).ready(function() 
+      //   {
             $('.increment, .decrement').on('click', function() 
             {
-                var foodId = $(this).data('food-id');
-                var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
+              var foodId = $(this).data('food-id');
+              var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
+              console.log($('#numFood_' + foodId))
 
                 $.ajax(
                   {
@@ -391,13 +392,12 @@
                     success: function(response) 
                     {
                         // Update the displayed num_food value
-                        $('#numFood_' + foodId).text(response.numFood);
+                        $('#numFood_' + foodId).text(JSON.parse(response).numFood);
                     }
                 });
             });
-        }
-      );
-
+      //   }
+      // );
       
     </script>
 

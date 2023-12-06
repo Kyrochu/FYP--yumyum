@@ -347,7 +347,7 @@
                         <h1 class="" >Shopping Cart</h1> 
                         <button class="closex btn-close " aria-label="Close" ></button>
                     </div>
-                       
+                    <div class="cart-list_container">
                         <?php
                             $sql = "  SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id ";
                             $result = mysqli_query($connect , $sql);
@@ -377,7 +377,7 @@
                                 }
                             }
                         ?>
-
+                    </div>
                     <div class="btn">
                         <a class="btn btn-primary" href="log_cart.php"  >check out</a>
                     </div>
@@ -410,8 +410,8 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/cart.js" ></script>
-    <script src="js/popup.js" ></script>
+    <script src="js/cart.js"></script>
+    <script src="js/popup.js"></script>
 
     <script>
         function pop(id) 
@@ -501,12 +501,10 @@
                     console.log("Data added to cart successfully");
                 }
             });
-
-            
-            location.reload();
+            window.location.reload();
         }
 
-        refreshPage();
+        // refreshPage();
 
     </script>
 
