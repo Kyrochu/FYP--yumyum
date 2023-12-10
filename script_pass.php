@@ -12,13 +12,15 @@
             $menu_sql = "SELECT * FROM menu WHERE food_id = '$food_id'";
             $menu_result = mysqli_query($connect, $menu_sql);
 
-            if ($menu_result && $menu_row = mysqli_fetch_assoc($menu_result)) {
-                // Fetch additional options from the add_cart table based on the food_id
-                $options_sql = "SELECT * FROM add_cart WHERE food_id = '$food_id'";
+            if ($menu_result && $menu_row = mysqli_fetch_assoc($menu_result)) 
+            {
+            
+                $options_sql = "SELECT * FROM add_on WHERE food_id = '$food_id'";
                 $options_result = mysqli_query($connect, $options_sql);
 
                 $options = [];
-                while ($option_row = mysqli_fetch_assoc($options_result)) {
+                while ($option_row = mysqli_fetch_assoc($options_result)) 
+                {
                     $options[] = $option_row;
                 }
 

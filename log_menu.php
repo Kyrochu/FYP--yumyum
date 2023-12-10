@@ -45,6 +45,22 @@
 
 </head>
 
+<?php
+    $sql = "SELECT COUNT(*) AS totalRows FROM cart";
+    $result = mysqli_query($connect, $sql);
+
+    // Check if the query was successful
+    if ($result) 
+    {
+        // Fetch the result as an associative array
+        $row = mysqli_fetch_assoc($result);
+
+        // Access the count value
+        $totalRows = $row['totalRows'];
+
+    }
+?>
+
 <body  class="all">
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -74,7 +90,7 @@
                             <a href="log_service.php" class="nav-item nav-link">Service</a>
                             <a href="log_menu.php" class="nav-item nav-link active">Menu</a>
                             <a href="log_contact.php" class="nav-item nav-link">Contact</a>
-                            <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " >0</span>
+                            <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " ><?php echo $totalRows ?></span>
                         </div>
                         <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
                     </div>

@@ -1,3 +1,5 @@
+<?php include ("connection_sql.php") ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,6 +35,27 @@
 </head>
 
 <body>
+
+<?php
+  $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id";
+  $result = mysqli_query($connect, $sql);
+  $resultcheck = mysqli_num_rows($result);
+
+  if ($resultcheck > 0) 
+  {
+      $totalPrice = 0.0; 
+
+      while ($row = mysqli_fetch_assoc($result)) 
+      {
+        $totalPrice += $row['food_total_price'];
+      }
+      
+      $fd_price_total = number_format($totalPrice, 2);
+      $tax = $fd_price_total * 0.1;
+      $total = $fd_price_total + $tax;
+  }
+?>
+
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">

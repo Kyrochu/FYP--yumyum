@@ -1,5 +1,7 @@
 <?php include ("connection_sql.php") ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,6 +36,33 @@
     <link href="css/style.css" rel="stylesheet">
 </head>
 
+<?php
+  $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id";
+  $result = mysqli_query($connect, $sql);
+  $resultcheck = mysqli_num_rows($result);
+
+  if ($resultcheck > 0) 
+  {
+      $totalPrice = 0.0; 
+
+      while ($row = mysqli_fetch_assoc($result)) 
+      {
+        $totalPrice += $row['food_total_price'];
+      }
+      
+      $fd_price_total = number_format($totalPrice, 2);
+      $tax = $fd_price_total * 0.1;
+      $total = $fd_price_total + $tax;
+  }
+?>
+
+<?php
+    session_start();
+    var_dump($total);
+    $_SESSION['dataFromPage1'] = $total;
+    $_SESSION['data'] = "15";
+?>
+
 <body>
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
@@ -62,7 +91,6 @@
                             <a href="log_service.php" class="nav-item nav-link">Service</a>
                             <a href="log_menu.php" class="nav-item nav-link ">Menu</a>
                             <a href="log_contact.php" class="nav-item nav-link">Contact</a>
-                            <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " >0</span>
                         </div>
                         <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
                     </div>
@@ -103,38 +131,44 @@
                                     {
                                         while($row = mysqli_fetch_assoc($result))
                                         {
-                                                echo '<div class="row gy-3">';
-                                                echo '    <div class="col-lg-5">';
-                                                echo '        <div class="me-lg-5">';
-                                                echo '            <div class="d-flex">';
-                                                echo '                <img src="./img/' . $row['food_img'] . '" class="border rounded me-3" style="width: 96px; height: 96px;" />';
-                                                echo '                <div class="">';
-                                                echo '                    <a href="#" class="nav-link">' . $row['food_name'] . '</a>';
-                                                echo '                    <p class="text-muted">XL size, Jeans, Blue</p>';
-                                                echo '                </div>';
-                                                echo '            </div>';
-                                                echo '        </div>';
-                                                echo '    </div>';
-                                                echo '    <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">';
-                                                echo '        <div class="me-4">';
-                                                echo '              <button class="btn btn-sm btn-primary decrement" data-food-id="' . $row['food_id'] . '">-</button>';
-                                                echo '              <span id="numFood_' . $row['food_id'] . '">' . $row['num_food'] . '</span>';
-                                                echo '              <button class="btn btn-sm btn-primary increment" data-food-id="' . $row['food_id'] . '">+</button>';
-                                                echo '        </div>';
-                                                echo '        <div class="">';
-                                                echo '            <text class="h6">RM '. $row['food_total_price'] .' </text> <br />';
-                                                echo '            <small class="text-muted text-nowrap">RM' . $row['food_price'] . ' / per item</small>';
-                                                echo '        </div>';
-                                                echo '    </div>';
-                                                echo '    <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">';
-                                                echo '        <div class="float-md-end">';
-                                                echo '            <a href="#" class="btn btn-light border text-danger icon-hover-danger"> Remove</a>';
-                                                echo '        </div>';
-                                                echo '    </div>';
-                                                echo '</div>';
+                                          echo '<form method="POST" class="delete-item-form" id="cart_item_' . $row['cart_id'] . '">';
+                                          echo '  <input name="cart_id" value="'. $row['cart_id'].'" style="display: none;">  </input>';
+                                          echo '    <div class="row gy-3">';
+                                          echo '        <div class="col-lg-5">';
+                                          echo '            <div class="me-lg-5">';
+                                          echo '                <div class="d-flex">';
+                                          echo '                    <img src="./img/' . $row['food_img'] . '" class="border rounded me-3" style="width: 96px; height: 96px;" />';
+                                          echo '                    <div class="">';
+                                          echo '                        <a href="#" class="nav-link">' . $row['food_name'] . '</a>';
+                                          echo '                        <p class="text-muted">XL size, Jeans, Blue</p>';
+                                          echo '                    </div>';
+                                          echo '                </div>';
+                                          echo '            </div>';
+                                          echo '        </div>';
+                                          echo '        <div class="col-lg-2 col-sm-6 col-6 d-flex flex-row flex-lg-column flex-xl-row text-nowrap">';
+                                          echo '            <div class="me-4">';
+                                          echo '                  <button class="btn btn-sm btn-primary decrement" data-food-id="' . $row['cart_id'] . '">-</button>';
+                                          echo '                  <span id="numFood_' . $row['cart_id'] . '">' . $row['num_food'] . '</span>';
+                                          echo '                  <button class="btn btn-sm btn-primary increment" data-food-id="' . $row['cart_id'] . '">+</button>';
+                                          echo '            </div>';
+                                          echo '            <div class="">';
+                                          echo '                <text class="h6">RM '. $row['food_total_price'] .' </text> <br />';
+                                          echo '                <small class="text-muted text-nowrap">RM' . $row['food_price'] . ' / per item</small>';
+                                          echo '            </div>';
+                                          echo '        </div>';
+                                          echo '        <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">';
+                                          echo '            <div class="float-md-end">';
+                                          echo '                 <input type="submit" value="Remove" name="delete_item" class="btn btn-light border text-danger icon-hover-danger" onclick="remove(' . $row['cart_id'] . ')" ></input>';
+                                          echo '            </div>';
+                                          echo '        </div>';
+                                          echo '    </div>';
+                                          echo '</form> ';
 
                                         }
                                     }
+
+                                    
+
                                 ?>
 
                             
@@ -163,32 +197,36 @@
                         </form>
                     </div>
                 </div>
-                <div class="card shadow-0 border">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">Total price:</p>
-                            <p class="mb-2">$329.00</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">Discount:</p>
-                            <p class="mb-2 text-success">-$60.00</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">TAX:</p>
-                            <p class="mb-2">$14.00</p>
-                        </div>
-                        <hr />
-                        <div class="d-flex justify-content-between">
-                            <p class="mb-2">Total price:</p>
-                            <p class="mb-2 fw-bold">$283.00</p>
-                        </div>
+                
+                
 
-                        <div class="mt-3">
-                            <a href="#" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
-                            <a href="#" class="btn btn-light w-100 border mt-2"> Back to shop </a>
-                        </div>
-                    </div>
-                </div>
+                  <div class="card shadow-0 border">
+                              <div class="card-body">
+                                  <div class="d-flex justify-content-between">
+                                      <p class="mb-2">Total price:</p>
+                                      <p class="mb-2">RM <?php echo $fd_price_total?></p>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                      <p class="mb-2">Discount:</p>
+                                      <p class="mb-2 text-success">- RM 0.00</p>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                      <p class="mb-2">TAX:</p>
+                                      <p class="mb-2">RM <?php echo $tax?></p>
+                                  </div>
+                                  <hr />
+                                  <div class="d-flex justify-content-between">
+                                      <p class="mb-2">Total price:</p>
+                                      <p class="mb-2 fw-bold">RM <?php echo $total?></p>
+                                  </div>
+
+                                  <div class="mt-3">
+                                      <a href="log_payment.php" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                                      <a href="log_menu.php" class="btn btn-light w-100 border mt-2"> Back to shop </a>
+                                  </div>
+                              </div>
+                          </div>
+
             </div>
             <!-- summary -->
         </div>
@@ -376,9 +414,8 @@
 
 
     <script>
-      // $(document).ready(function() 
-      //   {
-            $('.increment, .decrement').on('click', function() 
+    
+          $('.increment, .decrement').on('click', function() 
             {
               var foodId = $(this).data('food-id');
               var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
@@ -395,9 +432,27 @@
                         $('#numFood_' + foodId).text(JSON.parse(response).numFood);
                     }
                 });
-            });
-      //   }
-      // );
+            }
+          );
+
+
+          function remove(ct_id)
+          {
+              var cartId = ct_id;
+
+              $.ajax(
+                  {
+                    type: "POST",
+                    url: "delete_food.php", 
+                    data: { delete_item: true, cart_id: cartId }, 
+                    success: function (response) 
+                    {
+                        $("#cart_item_" + cartId).remove();
+                    },
+                });
+          }
+
+ 
       
     </script>
 
