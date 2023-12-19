@@ -1,142 +1,158 @@
+<?php include("connection_sql.php"); ?>
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .contian
-{
-    transform: 0.5s;
+    <meta charset="utf-8">
+    <title>Restoran - Bootstrap Restaurant Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
 
-}
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
 
-.carttab
-{
-    margin-top: 8%;
-    border-radius: 20px;
-    width: 490px;
-    background-color: gray;
-    color: white;
-    position:fixed;
-    inset: 0 -500px 0 auto;
-    display: grid;
-    grid-template-rows: 70px 1fr 70px;
-    transition: 0.5s;
-}
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap"
+        rel="stylesheet">
 
-div.showcart .carttab
-{
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
 
-    inset: 0 0 0 auto;
-}
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
-div.showcart .container
-{
-    transform: translateX(-250px);
-}
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-.carttab h1
-{
-    color: rgb(40, 44, 43);
-    text-shadow: 5px 5px 5px wheat;
-    margin-top: 15px;
-    text-align: center;
-    align-items: center;
-}
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
 
-.carttab .listcart .item img
-{
-    width: 100%;
-    margin-left: 15px;
-}
+    <link href="css/test.css" rel="stylesheet">
 
-.carttab .listcart .item
-{
-    display: grid;
-    grid-template-columns: 70px 150px 50px 1fr;
-    gap: 10px;
-    text-align: center;
-    align-items: center;
-}
+    <link href="css/popup.css" rel="stylesheet">
 
-.carttab button.closex
-{
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    top: 30px;
-    left: 430px;
-}
+    <!-- java script for pass var to php -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-.listcart .qty span
-{
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    background-color: #eee;
-    color: #555;
-    border-radius: 50%;
-    cursor: pointer;
-}
 
-.listcart .qty span:nth-child(2)
-{
-    background-color: transparent;
-    color: #eee;
-}
 
-.listcart .item:nth-child(even)
-{
-    background-color: #eee2;
-}
 
-.listcart
-{
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    
-}
-
-.listcart::-webkit-scrollbar
-{
-    width: 0;
-}
-  </style>
 </head>
-<body>
 
 
+    <!-- Menu Start -->
+    <div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+            <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
+            <h1 class="mb-5">Most Popular Items</h1>
+        </div>
 
-                    <div>
-                        <h1 class="" >Shopping Cart</h1> 
-                        <button class="closex btn-close " aria-label="Close" ></button>
-                    </div>
-                       
-                        
-                                
-                                    <diV class="listcart">
-                                        <div class="item">
-                                            <img src="./img/menu-1.jpg" alt="">
-                                            <div class="name">ddddd</div>
-                                            <div class="price">RM 12 3</div>
-                                            <div class="qty">
-                                                <span class="minus">-</span>
-                                                <span>2</span>
-                                                <span class="plus">+</span>
+        <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
+            <?php
+                $sql = "SELECT * FROM category";
+                $result = mysqli_query($connect, $sql);
+                $resultcheck = mysqli_num_rows($result);
+
+                if ($resultcheck > 0) {
+            ?>
+                <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5" id="myTabs">
+                    <?php
+                        while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="pill" href="#tab-<?php echo $row['cat_type'] ?>">
+                                <?php echo $row['cat_name'] ?>
+                            </a>
+                        </li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+
+                <div class="tab-content">
+                    <?php
+                        // Reset the result set pointer to the beginning
+                        mysqli_data_seek($result, 0);
+
+                        while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                        <div class="tab-pane fade" id="tab-<?php echo $row['cat_type'] ?>">
+                            <div class="row g-4">
+                                <?php
+                                    // Modify the SQL query based on your database structure
+                                    $menuSql = ($row['cat_type'] == 'all') ? "SELECT * FROM menu" : "SELECT * FROM menu WHERE food_type = '{$row['cat_type']}'";
+                                    $menuResult = mysqli_query($connect, $menuSql);
+
+                                    while ($menuItem = mysqli_fetch_assoc($menuResult)) {
+                                ?>
+                                    <div class="col-lg-6">
+                                        <div class="d-flex align-items-center">
+                                            <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $menuItem['food_img']; ?>">
+                                            <div class="w-100 d-flex flex-column text-start ps-4">
+                                                <h5 class="d-flex justify-content-between border-bottom pb-2">
+                                                    <form action="" method="post">
+                                                        <input type="hidden" name="id" value="<?php echo $menuItem['food_id']; ?>">
+                                                        <input type="hidden" name="name" value="<?php echo $menuItem['food_name']; ?>">
+                                                        <input type="hidden" name="price" value="<?php echo $menuItem['food_price']; ?>">
+                                                        <span><?php echo $menuItem['food_name']; ?></span>
+                                                        <span class="text-primary">RM <?php echo $menuItem['food_price'] ?></span>
+                                                    </h5>
+                                                    <small class="fst-italic"><?php echo $menuItem['food_description']; ?></small>
+                                                    
+                                                    <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $menuItem['food_id']; ?>)"  >Add to cart</button>
+                                                </form>
                                             </div>
                                         </div>
-                                    </diV>
-                
-                        
+                                    </div>
+                                <?php
+                                    }
+                                ?>
+                            </div>
+                        </div>
+                    <?php
+                        }
+                    ?>
+                </div>
+            <?php
+                }
+            ?>
+        </div>
+    </div>
+</div>
+    <!-- Menu End -->
 
-                    <div class="btn">
-                        <a class="btn btn-primary" href="log_cart.php"  >check out</a>
-                    </div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/popup.js"></script>
 
-   
-   
-
+    <script>
+        // Your existing JavaScript code
+        $(document).ready(function() {
+            // Show the content of the first tab by default
+            $('#myTabs li:first-child a').tab('show');
+        });
+    </script>
 </body>
 </html>
