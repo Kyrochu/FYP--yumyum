@@ -1,17 +1,14 @@
-.contian
-{
+.contian {
     transform: 0.5s;
-
 }
 
-.carttab
-{
+.carttab {
     margin-top: 8%;
     border-radius: 20px;
     width: 490px;
-    background-color: gray;
+    background-color: rgb(255, 166, 22);
     color: white;
-    position:fixed;
+    position: fixed;
     inset: 0 -500px 0 auto;
     display: grid;
     transition: 0.5s;
@@ -26,19 +23,15 @@
     gap: 1rem;
 }
 
-div.showcart .carttab
-{
-
+div.showcart .carttab {
     inset: 0 0 0 auto;
 }
 
-div.showcart .container
-{
+div.showcart .container {
     transform: translateX(-250px);
 }
 
-.carttab h1
-{
+.carttab h1 {
     color: rgb(40, 44, 43);
     text-shadow: 5px 5px 5px wheat;
     margin-top: 15px;
@@ -46,14 +39,12 @@ div.showcart .container
     align-items: center;
 }
 
-.carttab .listcart .item img
-{
+.carttab .listcart .item img {
     width: 100%;
     margin-left: 15px;
 }
 
-.carttab .listcart .item
-{
+.carttab .listcart .item {
     display: grid;
     grid-template-columns: 70px 150px 70px 1fr;
     gap: 10px;
@@ -61,8 +52,7 @@ div.showcart .container
     align-items: center;
 }
 
-.carttab button.closex
-{
+.carttab button.closex {
     width: 15px;
     height: 15px;
     position: absolute;
@@ -70,8 +60,7 @@ div.showcart .container
     left: 430px;
 }
 
-.carttab button.deletex
-{
+.carttab button.deletex {
     width: 15px;
     height: 15px;
     position: absolute;
@@ -79,8 +68,7 @@ div.showcart .container
     left: 430px;
 }
 
-.listcart .qty span
-{
+.listcart .qty span {
     display: inline-block;
     width: 25px;
     height: 25px;
@@ -90,26 +78,32 @@ div.showcart .container
     cursor: pointer;
 }
 
-.listcart .qty span:nth-child(2)
-{
+.listcart .qty span:nth-child(2) {
     background-color: transparent;
     color: #eee;
 }
 
-.listcart .item:nth-child(even)
-{
+.listcart .item:nth-child(even) {
     background-color: #eee2;
 }
 
-.listcart
-{
+.listcart {
     display: flex;
     flex-direction: column;
-    align-items: center; 
-    
+    align-items: center;
 }
 
-.listcart::-webkit-scrollbar
-{
+.listcart::-webkit-scrollbar {
     width: 0;
+}
+
+.btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    text-align: center; /* Centered text */
 }

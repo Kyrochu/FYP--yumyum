@@ -440,9 +440,9 @@
     </script>
 
     <script>
-        // Your existing JavaScript code
+
         $(document).ready(function() {
-            // Show the content of the first tab by default
+
             $('#myTabs li:first-child a').tab('show');
         });
     </script>
