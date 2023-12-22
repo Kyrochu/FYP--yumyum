@@ -313,7 +313,7 @@
                             }
                         ?>
                 </div>
-                <div class="btn">
+                <div class="btn_ck">
                     <a class="btn btn-primary" href="log_cart.php">check out</a>
                 </div>
 
