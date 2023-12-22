@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Verification</title>
-    <script src="script.js" defer></script>
+
 </head>
 <body>
     <h1>Email Verification</h1>
     <form id="emailForm">
         <label for="email">Enter your email:</label>
         <input type="email" id="email" name="email" required>
-        <button type="button" onclick="generateToken()">Generate Token</button>
+        <button type="button" onclick="random_code()">Generate Token</button>
+        
     </form>
 
     <form id="verifyForm" style="display: none;">
@@ -21,5 +22,7 @@
     </form>
 
     <p id="message"></p>
+
+    <script src="js/token.js" ></script>
 </body>
 </html>

@@ -1,12 +1,15 @@
-function generateToken() 
+function random_code() 
 {
-    var email = document.getElementById("email").value;
+    var random_string = "";
+    var characters = "QWERTYUIOPASDFGHJKLZXCVBNM1234567890qwertyuiopasdfghjklzxcvbnm";
 
-    // Implement your logic to send the email and generate a token on the server
-    // For simplicity, we assume the server sends a fixed token "123456"
-    
-    document.getElementById("emailForm").style.display = "none";
-    document.getElementById("verifyForm").style.display = "block";
+    for(var i = 0; i < 6; i++) {
+        random_string += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+
+    console.log(random_string);
+    return random_code;
+
 }
 
 function verifyToken() 

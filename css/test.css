@@ -98,11 +98,8 @@ div.showcart .container {
 }
 
 .btn_ck {
-    position: fixed;
-    bottom: 0;
-    width: 50%;
-    padding: 10px;
-    background-color: #fbff00; 
-    color: white; 
-    text-align: center; 
+    display: block;
+    margin: auto;
+    margin-bottom: 0;
+    
 }
