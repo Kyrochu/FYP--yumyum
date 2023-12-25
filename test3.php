@@ -3,26 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Verification</title>
-
+    <title>Email Input Form</title>
 </head>
 <body>
-    <h1>Email Verification</h1>
-    <form id="emailForm">
-        <label for="email">Enter your email:</label>
+
+    <h2>Enter Your Email</h2>
+
+    <form action="#" method="post" id="emailForm">
+        <label for="email">Email:</label>
         <input type="email" id="email" name="email" required>
-        <button type="button" onclick="random_code()">Generate Token</button>
-        
+        <br>
+        <input type="submit" value="Submit">
     </form>
 
-    <form id="verifyForm" style="display: none;">
-        <label for="token">Enter the token:</label>
-        <input type="text" id="token" name="token" required>
-        <button type="button" onclick="verifyToken()">Verify Token</button>
-    </form>
-
-    <p id="message"></p>
-
-    <script src="js/token.js" ></script>
 </body>
 </html>
