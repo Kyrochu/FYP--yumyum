@@ -1,20 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Contact</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Input Form</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
 </head>
 <body>
-
-    <h2>Enter Your Email</h2>
-
-    <form action="#" method="post" id="emailForm">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+    <h1>Contact</h1>
+    
+    <form method="post" action="php/send_email.php">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" required>
+        
+        <label for="email">email</label>
+        <input type="email" name="email" id="email" required>
+        
+        <label for="subject">Subject</label>
+        <input type="text" name="subject" id="subject" required>
+        
+        <label for="message">Message</label>
+        <textarea name="message" id="message" required></textarea>
+        
         <br>
-        <input type="submit" value="Submit">
+        
+        <button type="submit" >Send</button>
     </form>
-
+    
 </body>
 </html>
