@@ -5,28 +5,28 @@
     $subject = $_POST["subject"];
     $message = $_POST["message"];
 
+    require 'vendor/autoload.php';
+
     use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
 
-    require 'localhost/FYP--yumyum/php/PHPMailer/src/Exception.php';
-    require 'path/to/PHPMailer/src/PHPMailer.php';
-    require 'path/to/PHPMailer/src/SMTP.php';
-    
-
-    //Create an instance; passing `true` enables exceptions
     $mail = new PHPMailer(true);
 
+    // Uncomment the next line for debugging information
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
     $mail->isSMTP();
     $mail->SMTPAuth = true;
 
-    $mail->Host = "smtp.example.com";
+    // Replace "smtp.example.com" with the actual hostname of your SMTP server
+    $mail->Host = "smtp.gmail.com";
+
+    // Use ENCRYPTION_STARTTLS for port 587 or ENCRYPTION_SMTPS for port 465
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port = 587;
 
-    $mail->Username = "you@example.com";
-    $mail->Password = "password";
+    // Replace with your SMTP username and password
+    $mail->Username = "kroyk32@gmail.com";
+    $mail->Password = "kyro0308";
 
     $mail->setFrom($email, $name);
     $mail->addAddress("dave@example.com", "Dave");
@@ -34,8 +34,10 @@
     $mail->Subject = $subject;
     $mail->Body = $message;
 
-    $mail->send();
-
-    echo "done";
-
+    try {
+        $mail->send();
+        echo "Email sent successfully";
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+}
 ?>
