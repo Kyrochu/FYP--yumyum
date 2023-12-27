@@ -8,7 +8,7 @@
 <body>
     <h1>Contact</h1>
     
-    <form method="post" action="php/send_email.php">
+    <form method="post" action="send_email.php">
         <label for="name">Name</label>
         <input type="text" name="name" id="name" required>
         

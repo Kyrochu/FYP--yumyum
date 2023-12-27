@@ -433,7 +433,12 @@
                 console.log("Data added to cart successfully");
             }
         });
-        window.location.reload();
+        // window.location.reload();
+        setTimeout(function() {
+            window.location.reload();
+        }, 500);
+
+        
     }
 
     // refreshPage();
