@@ -14,13 +14,16 @@
 
                 // Check if the entered code matches the stored code
                 if ($enteredCode === $storedCode) {
-                    echo "Verification successful!";
+                    echo "success";
                     
                     // Clear session data after successful verification
                     unset($_SESSION['verification_code']);
                     unset($_SESSION['verification_time']);
+
+
                 } else {
-                    echo "Invalid verification code.";
+                    // Redirect back to the verification form with an error message
+                    exit();
                 }
             } else {
                 echo "Please enter the verification code.";

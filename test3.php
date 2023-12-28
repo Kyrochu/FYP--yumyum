@@ -25,7 +25,15 @@
         
         <button type="submit" >Send</button>
     </form>
+<?php
 
+do {
+    $token = bin2hex(random_bytes(3));
+} while (ctype_alpha($token[0]));
+
+echo $token;
+
+?>
     
 </body>
 </html>
