@@ -430,6 +430,11 @@
                     {
                         // Update the displayed num_food value
                         $('#numFood_' + foodId).text(JSON.parse(response).numFood);
+
+                        setTimeout(function() {
+                            window.location.reload();
+                        }, 700);
+
                     }
                 });
             }
@@ -451,9 +456,6 @@
                     },
                 });
           }
-
- 
-      
     </script>
 
 </body>

@@ -42,9 +42,6 @@
     <!-- java script for pass var to php -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-
-
-
 </head>
 
 <?php
@@ -123,6 +120,17 @@
                     <h1 class="mb-5">Most Popular Items</h1>
                 </div>
 
+                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post">
+                    <div class="input-group rounded">
+                        <input type="search" class="form-control rounded" name="search_query" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+
+
+                <br>
                 <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
                     <?php
                         $sql = "SELECT * FROM category";
@@ -147,7 +155,7 @@
 
                         <div class="tab-content">
                             <?php
-                                // Reset the result set pointer to the beginning
+                                // Reset 
                                 mysqli_data_seek($result, 0);
 
                                 while ($row = mysqli_fetch_assoc($result)) {
@@ -155,7 +163,7 @@
                                 <div class="tab-pane fade" id="tab-<?php echo $row['cat_type'] ?>">
                                     <div class="row g-4">
                                         <?php
-                                            // Modify the SQL query based on your database structure
+                                            
                                             $menuSql = ($row['cat_type'] == 'all') ? "SELECT * FROM menu" : "SELECT * FROM menu WHERE food_type = '{$row['cat_type']}'";
                                             $menuResult = mysqli_query($connect, $menuSql);
 
@@ -284,39 +292,33 @@
                 </div>
                 <div class="cart-list_container">
                     <?php
-                            $sql = "  SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id ";
-                            $result = mysqli_query($connect , $sql);
-                            $resultcheck = mysqli_num_rows($result);
+                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id";
+                    $result = mysqli_query($connect, $sql);
+                    $resultcheck = mysqli_num_rows($result);
 
-                            if($resultcheck > 0)
-                            {
-                                while($row = mysqli_fetch_assoc($result))
-                                {
-        
-                                ?>
-                    <diV class="listcart">
-                        <div class="item">
-                            <img src="./img/<?php echo $row['food_img']; ?>" alt="">
-                            <div class="name"><?php echo $row['food_name'] ?></div>
-                            <div class="price">RM <?php echo $row['food_total_price'] ?></div>
-                            <div class="qty">
-                                <span class="minus">-</span>
-                                <span><?php echo $row['num_food'] ?></span>
-                                <span class="plus">+</span>
-
+                    if ($resultcheck > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                            <div class="listcart">
+                                <div class="item">
+                                    <img src="./img/<?php echo $row['food_img']; ?>" alt="">
+                                    <div class="name"><?php echo $row['food_name'] ?></div>
+                                    <div class="price">RM <?php echo $row['food_total_price'] ?></div>
+                                    <div class="qty">
+                                        <span class="minus decrement" data-food-id="<?php echo $row['cart_id'] ?>">-</span>
+                                        <span class="" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
+                                        <span class="plus increment" data-food-id="<?php echo $row['cart_id'] ?>">+</span>
+                                    </div>
+                                </div>
                             </div>
-
-                        </div>
-                    </diV>
                     <?php
-                                }
-                            }
-                        ?>
+                        }
+                    }
+                    ?>
                 </div>
                 <div class="btn_ck">
-                    <a class="btn btn-primary  " href="log_cart.php">check out</a>
+                    <a class="btn btn-primary" href="log_cart.php">check out</a>
                 </div>
-
             </div>
         </div>
     </div>
@@ -433,15 +435,65 @@
                 console.log("Data added to cart successfully");
             }
         });
+
         // window.location.reload();
+        
         setTimeout(function() {
             window.location.reload();
         }, 500);
-
         
     }
+    </script>
 
-    // refreshPage();
+    <!-- for add and delete cart tab -->
+    <script>
+    
+          $('.increment, .decrement').on('click', function() 
+            {
+              var foodId = $(this).data('food-id');
+              var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
+              console.log($('#numFood_' + foodId))
+
+                $.ajax(
+                  {
+                    url: 'update_num_food.php',
+                    type: 'POST',
+                    data: { foodId: foodId, action: action },
+                    success: function(response) 
+                    {
+                            var parsedResponse = JSON.parse(response);
+                            // Process the parsed response
+                            $('#numFood_' + foodId).text(parsedResponse.numFood);
+                            
+                            if (parseInt(parsedResponse.numFood) === 0) {
+
+                                remove(foodId);
+
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 50);
+                            }
+                    }
+                });
+            }
+          );
+
+
+          function remove(ct_id)
+          {
+              var cartId = ct_id;
+
+              $.ajax(
+                  {
+                    type: "POST",
+                    url: "delete_food.php", 
+                    data: { delete_item: true, cart_id: cartId }, 
+                    success: function (response) 
+                    {
+                        $("#cart_item_" + cartId).remove();
+                    },
+                });
+          }
     </script>
 
     <script>
