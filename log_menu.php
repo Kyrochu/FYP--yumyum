@@ -42,6 +42,8 @@
     <!-- java script for pass var to php -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    
+
 </head>
 
 <?php
@@ -120,7 +122,7 @@
                     <h1 class="mb-5">Most Popular Items</h1>
                 </div>
 
-                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post">
+                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post" action="log_search_food.php" >
                     <div class="input-group rounded">
                         <input type="search" class="form-control rounded" name="search_query" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                         <button class="btn btn-primary" type="submit">
@@ -286,11 +288,9 @@
     <div class="cartfile">
         <div class="contian">
             <div class="carttab">
-                <div>
+                <div class="cart-list_container">
                     <h1 class="">Shopping Cart</h1>
                     <button class="closex btn-close " aria-label="Close"></button>
-                </div>
-                <div class="cart-list_container">
                     <?php
                     $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id";
                     $result = mysqli_query($connect, $sql);
@@ -300,13 +300,13 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                             <div class="listcart">
-                                <div class="item">
+                                <div class="item border shadow text-black p-3 " style="border-radius: 10px;" >
                                     <img src="./img/<?php echo $row['food_img']; ?>" alt="">
                                     <div class="name"><?php echo $row['food_name'] ?></div>
                                     <div class="price">RM <?php echo $row['food_total_price'] ?></div>
                                     <div class="qty">
-                                        <span class="minus decrement" data-food-id="<?php echo $row['cart_id'] ?>">-</span>
-                                        <span class="" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
+                                        <span class="minus decrement"  data-food-id="<?php echo $row['cart_id'] ?>">-</span>
+                                        <span class=""style="color: black;" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
                                         <span class="plus increment" data-food-id="<?php echo $row['cart_id'] ?>">+</span>
                                     </div>
                                 </div>
@@ -440,7 +440,7 @@
         
         setTimeout(function() {
             window.location.reload();
-        }, 500);
+        }, 300);
         
     }
     </script>

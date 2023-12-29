@@ -128,8 +128,9 @@
                         </button>
                     </div>
                 </form>
+                <br>
 
-                <div class="tab-content">
+                <div class="row">
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search_query'])) {
 
@@ -138,10 +139,14 @@
                         $searchResult = mysqli_query($connect, $searchSql);
 
                         if (mysqli_num_rows($searchResult) > 0) {
+                            $counter = 0;
                             while ($searchItem = mysqli_fetch_assoc($searchResult)) {
+                                if ($counter % 2 == 0) {
+                                    echo '</div><div class="row">';
+                                }
                     ?>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
+                                <div class="col-lg-6 mb-4">
+                                    <div class="d-flex align-items-center p-4 border rounded shadow">
                                         <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $searchItem['food_img']; ?>">
                                         <div class="w-100 d-flex flex-column text-start ps-4">
                                             <h5 class="d-flex justify-content-between border-bottom pb-2">
@@ -154,12 +159,13 @@
                                                 </h5>
                                                 <small class="fst-italic"><?php echo $searchItem['food_description']; ?></small>
 
-                                                <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $searchItem['food_id']; ?>)">Add to cart</button>
+                                                <button type="button" class="btn btn-outline-primary shadow mt-3" name="atc" onclick="pop(<?php echo $searchItem['food_id']; ?>)">Add to cart</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                     <?php
+                                $counter++;
                             }
                         } else {
                             echo '<p class="text-center">No results found.</p>';
@@ -169,6 +175,7 @@
                 </div>
             </div>
         </div>
+
 
 
 
@@ -245,18 +252,16 @@
 
 
         <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+        <a href="log_menu.php" class="btn btn-lg btn-primary  back-to-top">Back To Menu</a>
     </div>
 
     <!-- cart start -->
     <div class="cartfile">
         <div class="contian">
             <div class="carttab">
-                <div>
+                <div class="cart-list_container">
                     <h1 class="">Shopping Cart</h1>
                     <button class="closex btn-close " aria-label="Close"></button>
-                </div>
-                <div class="cart-list_container">
                     <?php
                     $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id";
                     $result = mysqli_query($connect, $sql);
@@ -266,13 +271,13 @@
                         while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                             <div class="listcart">
-                                <div class="item">
+                                <div class="item border shadow text-black p-3 " style="border-radius: 10px;" >
                                     <img src="./img/<?php echo $row['food_img']; ?>" alt="">
                                     <div class="name"><?php echo $row['food_name'] ?></div>
                                     <div class="price">RM <?php echo $row['food_total_price'] ?></div>
                                     <div class="qty">
-                                        <span class="minus decrement" data-food-id="<?php echo $row['cart_id'] ?>">-</span>
-                                        <span class="" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
+                                        <span class="minus decrement"  data-food-id="<?php echo $row['cart_id'] ?>">-</span>
+                                        <span class=""style="color: black;" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
                                         <span class="plus increment" data-food-id="<?php echo $row['cart_id'] ?>">+</span>
                                     </div>
                                 </div>
@@ -406,7 +411,7 @@
         
         setTimeout(function() {
             window.location.reload();
-        }, 500);
+        }, 300);
         
     }
     </script>
