@@ -317,7 +317,7 @@
                     ?>
                 </div>
                 <div class="btn_ck">
-                    <a class="btn btn-primary" href="log_cart.php">check out</a>
+                    <a class="btn btn-primary shadow" href="log_cart.php">check out</a>
                 </div>
             </div>
         </div>

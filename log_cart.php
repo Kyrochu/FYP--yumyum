@@ -381,7 +381,7 @@
 
                                 setTimeout(function() {
                                     window.location.reload();
-                                }, 50);
+                                }, 200);
                             }
 
                     }
