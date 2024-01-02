@@ -15,7 +15,7 @@ if(isset($_POST['signIn'])) {
     if($rowcount != 0){
         echo"<script>
                 alert('Login successful.');
-                window.location = '/about/menu.html';
+                window.location = 'log_index.php';
             </script>";
             mysqli_close($connect);
     }else{
