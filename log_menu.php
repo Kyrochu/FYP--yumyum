@@ -50,6 +50,7 @@
     $sql = "SELECT COUNT(*) AS totalRows FROM cart";
     $result = mysqli_query($connect, $sql);
 
+
     if ($result) 
     {
         // Fetch the result as an associative array
