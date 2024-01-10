@@ -81,7 +81,7 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="Admin.html">    
+                <a href="">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -93,7 +93,7 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
                 <div class="item"><a href="AdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
@@ -103,8 +103,8 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAcc.php" class="sub-item"> User </a>
-                        <a href="SubAdminAcc.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAcc.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAcc.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -121,7 +121,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                         
                     </div>
         

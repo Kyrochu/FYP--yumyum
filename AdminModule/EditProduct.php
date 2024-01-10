@@ -7,6 +7,9 @@ if (!isset($_SESSION['email']))
     header("location: AdminLogin.php");
     exit(); // Terminate script after redirection
 }
+
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
 ?>
 
 <!DOCTYPE html>
@@ -100,8 +103,8 @@ if (!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -110,8 +113,8 @@ if (!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -128,7 +131,7 @@ if (!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                         
                     </div>
         
@@ -217,7 +220,7 @@ if (!isset($_SESSION['email']))
                 $selected_category_id = $_GET['cat_id'];
                 $productId = $_GET['pro_id'];
 
-                $query = "SELECT * FROM products WHERE pro_id='$productId' ";
+                $query = "SELECT * FROM menu WHERE food_id='$productId' ";
                 $query_run = mysqli_query($connect,$query);
 
                 foreach($query_run as $row)
@@ -226,24 +229,23 @@ if (!isset($_SESSION['email']))
             
             <form method="GET" action="" enctype="multipart/form-data"> 
 
-                <input type="hidden" name="category_id" value="<?php echo $row['cat_id']?>">
-                <input type="hidden" name="product_id" value="<?php echo $row['pro_id']?>">
+                <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
 
 
                 <div class="form-element">
-                    PRODUCT NAME <input type="text" name="name" value="<?php echo $row['pro_name']?>">                    
+                    PRODUCT NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
                 </div>
 
                 <div class="form-element">
-                    PRODUCT PRICE <input type="text" name="price" value="<?php echo $row['pro_price']?>">                    
+                    PRODUCT PRICE <input type="text" name="price" value="<?php echo $row['food_price']?>">                    
                 </div>
 
                 <div class="form-element">
-                    PRODUCT DESCRIPTION <input type="text" name="desc" value="<?php echo $row['pro_desc']?>">                    
+                    PRODUCT DESCRIPTION <input type="text" name="desc" value="<?php echo $row['food_description']?>">                    
                 </div>
 
                 <div class="form-element">  
-                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="<?php echo $row['pro_img']?>">
+                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="<?php echo $row['food_img']?>">
                 </div>
 
                 <div class="form-element">
@@ -270,7 +272,7 @@ if (!isset($_SESSION['email']))
                 $productImage = $_FILES['image']['name'];
                 $productImageTmp = $_FILES['image']['tmp_name'];
 
-                $query = "UPDATE products SET pro_name = '$Pro_name',pro_price = '$Pro_price' , pro_desc = '$Pro_desc' WHERE pro_id =$Pro_id ";
+                $query = "UPDATE menu SET food_name = '$Pro_name',food_price = '$Pro_price' , food_description = '$Pro_desc' WHERE food_id =$Pro_id ";
                 $query_run = mysqli_query($connect,$query);
 
                 if($query_run)

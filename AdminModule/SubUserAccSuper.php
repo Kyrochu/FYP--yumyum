@@ -7,6 +7,8 @@ if(!isset($_SESSION['email']))
     header("location:AdminLogin.php");
 }
 
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
 ?>
 
 
@@ -93,8 +95,8 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -103,8 +105,8 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -121,7 +123,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                         
                     </div>
         

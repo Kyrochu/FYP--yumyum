@@ -7,6 +7,8 @@ if(!isset($_SESSION['email']))
     header("location:AdminLogin.php");
 }
 
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
 ?>
 
 
@@ -82,7 +84,7 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="AdminProfileSuper.php">    
+                <a href="">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -94,7 +96,7 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href="AdminProfileSuper.php"><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
                 <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
@@ -104,8 +106,8 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -122,7 +124,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                                                 
                     </div>
         
@@ -208,14 +210,9 @@ if(!isset($_SESSION['email']))
 
                     <?php
 
-                        if(isset($_GET['id']))
-                        {
-                            $admin_id = $_GET['id'];
-                            
-                            $query = "SELECT * FROM admin_acc WHERE id='$admin_id' ";
+                            $query = "SELECT * FROM admin_acc WHERE id='$id' ";
                             $query_run = mysqli_query($connect,$query);
-                            
-                        }
+                            $row = mysqli_fetch_assoc($query_run);                        
 
                     ?>
 

@@ -7,6 +7,8 @@ if(!isset($_SESSION['email']))
     header("location:AdminLogin.php");
 }
 
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
 ?>
 
 
@@ -84,7 +86,7 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="AdminProfileSuper.php">    
+                <a href="">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -96,8 +98,8 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href="AdminProfileSuper.php"><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -106,8 +108,8 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -124,7 +126,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                         
                     </div>
         
@@ -219,14 +221,14 @@ if(!isset($_SESSION['email']))
             <div class="display-products">
 
             <?php
-if (isset($_GET['category_id'])) 
+if (isset($_GET['cat_type'])) 
 {
-    $selected_category_id = $_GET['category_id'];
+    $selected_category_id = $_GET['cat_type'];
 
-    $connect = mysqli_connect("localhost", "root", "", "admin_fyp");
+    $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
     // Fetch products for the selected category
-    $result = mysqli_query($connect, "SELECT * FROM products WHERE cat_id = $selected_category_id");
+    $result = mysqli_query($connect, "SELECT * FROM menu WHERE food_type = '$selected_category_id' ");
 
     if ($result && mysqli_num_rows($result) > 0) 
     {
@@ -244,11 +246,11 @@ if (isset($_GET['category_id']))
         while ($row = mysqli_fetch_assoc($result)) 
         {
             // Display product details here for the selected category
-            $productName = $row['pro_name'];
-            $productPrice = $row['pro_price'];
-            $productDescription = $row['pro_desc'];
-            $productImage = $row['pro_img'];
-            $productId = $row['pro_id'];
+            $productName = $row['food_name'];
+            $productPrice = $row['food_price'];
+            $productDescription = $row['food_description'];
+            $productImage = $row['food_img'];
+            $productId = $row['food_id'];
 
             echo "<tr>
                     <td>$productId</td>

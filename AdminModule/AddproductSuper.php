@@ -57,6 +57,8 @@ if(isset($_POST['add_product']))
     $productDesc = $_POST['desc'];
     $category = $_POST['category'];
     $productImage = $_FILES['image']['name'];
+    
+    $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
     if(file_exists("product_images/" . $_FILES['image']['name']))
     {
@@ -66,11 +68,11 @@ if(isset($_POST['add_product']))
     }
     else
     {
-        $fetchCategoryQuery = mysqli_query($connect, "SELECT cat_id FROM category WHERE cat_name = '$category'");
+        $fetchCategoryQuery = mysqli_query($connect, "SELECT * FROM category WHERE cat_type = '$category'");
         $categoryData = mysqli_fetch_assoc($fetchCategoryQuery);
-        $categoryId = $categoryData['cat_id'];
+        $categoryId = $categoryData['cat_type'];
 
-        $query ="INSERT INTO products (pro_name, pro_price, pro_desc, cat_id, pro_img) VALUES ('$productName','$productPrice','$productDesc','$category', '$productImage')";
+        $query ="INSERT INTO menu (food_name, food_price, food_description, food_type, food_img) VALUES ('$productName','$productPrice','$productDesc','$categoryId', '$productImage')";
         $query_run = mysqli_query($connect,$query);
 
         if($query_run)

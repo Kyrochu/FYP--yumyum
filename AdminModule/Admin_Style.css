@@ -26,7 +26,6 @@ body
     height:100vh;
     position:fixed;
     top:0;
-    overflow-y:auto;
     transition:0.6s ease;
     transition-property:left;
 }
@@ -83,7 +82,7 @@ header h1
 .menu .item .logout
 {
     background-color:grey;
-    width:300px;
+    width:250px;
     height:75px;
 }
 

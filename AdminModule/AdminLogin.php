@@ -6,14 +6,14 @@ if(isset($_POST["submit"]))
 {
     $Email = $_POST['email'];
     $Password = $_POST['password'];
-    $AdminType = $_POST["admin_type"];
 
-
-    $result = mysqli_query($connect,"SELECT *FROM admin_acc WHERE name= '$Email' OR email='$Email' ");
+    $result = mysqli_query($connect,"SELECT *FROM admin_acc WHERE email='$Email' AND password = '$Password' ");
 
     if(mysqli_num_rows($result) > 0)
     {
         $row = mysqli_fetch_assoc($result);
+
+        $id = $row['id'];
 
         if($row['admin_type'] == 'Admin' )
         {
@@ -23,7 +23,7 @@ if(isset($_POST["submit"]))
         elseif($row['admin_type'] == 'SuperAdmin')
         {
             $_SESSION['email'] = $row['name'];
-            header('location:SuperAdminPanel.php');
+            header("location:SuperAdminPanel.php?id=$id");
         }
     }
     else

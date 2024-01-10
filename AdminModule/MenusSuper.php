@@ -7,6 +7,8 @@ if(!isset($_SESSION['email']))
     header("location:AdminLogin.php");
 }
 
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
 ?>
 
 
@@ -82,7 +84,7 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="AdminProfileSuper.php">    
+                <a href="">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -94,8 +96,8 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href="AdminProfileSuper.php"><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -104,8 +106,8 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -122,7 +124,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                                                 
                     </div>
         
@@ -225,6 +227,10 @@ if(!isset($_SESSION['email']))
                         </div>
 
                         <div class="form-element">
+                            TYPE <input type="text" name="type" required placeholder="Enter New Category Type">                    
+                        </div>
+
+                        <div class="form-element">
                             IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
                         </div>
 
@@ -247,6 +253,7 @@ if(!isset($_SESSION['email']))
             if(isset($_POST['addCAT'])) 
             {
                 $Name = $_POST['name'];
+                $Type = $_POST['type'];
                 $Image = $_FILES['image']['name'];
                 $ImageTmp = $_FILES['image']['tmp_name'];
 
@@ -256,11 +263,12 @@ if(!isset($_SESSION['email']))
                 $filename = time() . '.' . $image_ext;
 
                 // Prepare the SQL statement using a prepared statement to prevent SQL injection
-                $sql = mysqli_prepare($connect, "INSERT INTO category (cat_name, cat_img) VALUES (?, ?)");
+                $sql = mysqli_prepare($connect, "INSERT INTO category (cat_name, cat_img ,cat_type) VALUES (?, ?, ?)");
 
                 if ($sql) 
                 {
-                    mysqli_stmt_bind_param($sql, "ss", $Name, $filename);
+
+                    mysqli_stmt_bind_param($sql, "sss", $Name, $filename, $Type);
                     $result = mysqli_stmt_execute($sql);
 
                     if ($result) 
@@ -295,7 +303,7 @@ if(!isset($_SESSION['email']))
                         <select name="category" class="box" required>
                             <option value="" disabled selected>SELECT CATEGORY --</option>
                             <?php
-                                 $connect = mysqli_connect("localhost", "root", "", "admin_fyp");
+                                 $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
                                 $fetchCategoriesQuery = mysqli_query($connect, "SELECT * FROM category");
 
@@ -303,7 +311,7 @@ if(!isset($_SESSION['email']))
                                 {
                                     while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
                                     {
-                                        echo '<option value="' . $categoryData['cat_name'] . '">' . $categoryData['cat_name'] . '</option>';
+                                        echo '<option value="' . $categoryData['cat_type'] . '">' . $categoryData['cat_type'] . '</option>';
                                     }
                                 }
             ?>
@@ -318,7 +326,7 @@ if(!isset($_SESSION['email']))
 
             <?php
                 
-                $connect = mysqli_connect("localhost", "root", "", "admin_fyp");
+                $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
                 $fetchCategoriesQuery = mysqli_query($connect, "SELECT * FROM category");
 
@@ -327,7 +335,7 @@ if(!isset($_SESSION['email']))
                     while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
                     {
                         echo '<div class="Cat-container">';
-                        echo '<a href="ProductSuper.php?category_id=' . $categoryData['cat_id'] . '" class="cat_link"> ';
+                        echo '<a href="ProductSuper.php?cat_type=' . $categoryData['cat_type'] . '" class="cat_link"> ';
                         echo '<img src="category_images/' . $categoryData['cat_img'] . '" class="cat_img">';
                         echo '</a>';
                         echo '<h3>' . $categoryData['cat_name'] . '</h3>';

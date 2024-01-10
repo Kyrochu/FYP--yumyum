@@ -7,6 +7,9 @@ if(!isset($_SESSION['email']))
     header("location:AdminLogin.php");
 }
 
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
+
 ?>
 
 
@@ -93,7 +96,7 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
                 <div class="item"><a href="AdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
