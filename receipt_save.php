@@ -1,5 +1,5 @@
 <?php
-include("connection_sql.php");
+include("connection_sql.php"); 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") 
 {
