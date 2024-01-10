@@ -1,0 +1,603 @@
+*
+{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins",sans-serif;
+}
+
+body
+{
+    min-height:100vh;
+    background-color:burlywood;
+    color:white;
+    background-size:cover;
+    background-position:center;
+    overflow-x: hidden;
+}
+
+/*------------------------------------------------------------------------- Side Bar------------------------------------------------------ */
+
+.side-bar
+{
+    background:black;
+    width:250px;
+    left:-250px;
+    height:100vh;
+    position:fixed;
+    top:0;
+    overflow-y:auto;
+    transition:0.6s ease;
+    transition-property:left;
+}
+
+header
+{
+    background:#33363a;
+}
+
+header img
+{
+    width:100px;
+    margin:15px;
+    margin-left:70px;
+    border-radius:50%;
+    border:3px solid grey;
+}
+
+.close-btn
+{
+    position:absolute;
+    color:#fff;
+    font-size:23px;
+    right:0px;
+    margin:15px;
+    cursor:pointer; 
+}
+
+header h1
+{
+    text-align:center;
+    font-weight:600;
+    font-size:22px;
+    padding-bottom:13px;
+    letter-spacing:2px;
+}
+
+.menu
+{
+    width:100%;
+    margin-top:30px;
+}
+
+.menu .item a
+{
+    color:white;
+    font-size:16px;
+    text-decoration:none;
+    display:block;
+    padding:3px 30px;
+    line-height:60px;
+}
+
+.menu .item .logout
+{
+    background-color:grey;
+    width:300px;
+    height:75px;
+}
+
+.item i
+{
+    margin-right:15px;
+}
+
+.item a .dropdown
+{
+    position:absolute;
+    right:0;
+    margin:20px;
+    transition:0.3s ease;  
+}
+
+.item .sub-menu
+{
+    background:black;
+    display:none;
+}
+
+.menu-btn
+{
+    position:absolute;
+    color:rgb(0,0,0);
+    font-size:35px;
+    cursor:pointer;
+    margin:25px;
+
+}
+
+.sub-btn
+{
+    cursor:pointer;
+}
+
+.side-bar.active
+{
+    left:0;
+}
+
+.side-bar::-webkit-scrollbar  /* CSS for scroll bar on Side Bar */
+{
+    width:0px;
+}
+
+.item .sub-menu a
+{
+    padding-left:80px;
+}
+
+.rotate
+{
+    transform:rotate(90deg);
+}
+
+/* ------------------------------------------Date & Time Widget--------------------------------------------------- */
+
+.datetime
+{
+    color:black;
+    background-color:#ebe9e9;
+    font-family:"Segoe UI",sans-serif;
+    width:1285px;
+    padding:10px 10px;
+    margin-left:250px;
+    border:3px solid blanchedalmond;
+    border-radius:8px;
+    
+}
+
+.date
+{
+    font-size:15px;
+    font-weight:600;
+    text-align:center;
+    letter-spacing:3px;
+    margin-left:950px;
+    position:absolute;
+    top:60px;
+}
+
+.time
+{
+    font-size:40px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:950px;
+    position:absolute;
+    top:90px;
+}
+
+.time span:not(:last-child)
+{
+    position:relative;
+    margin:0 6px;
+    font-weight:600;
+    text-align:center;
+    letter-spacing:3px;
+}
+
+.time span:last-child
+{
+    font-size:30px;
+    font-weight:600;
+    text-transform:uppercase;
+    margin-top:10px;
+    padding:0 5px;
+    border-radius:4px;
+}
+
+/* -----------------------------------------------------------Header Section----------------------------------------------------------------*/
+
+.main-content
+{
+    position:relative;
+    color:black;
+}
+
+.header-title
+{
+    font-size:20px;
+    padding:5px 5px;
+    position: relative;
+    top:20px;
+}
+
+.header-title span
+{
+    text-transform: uppercase;
+}
+
+.header-title h2
+{
+    text-transform: uppercase;
+
+}
+
+.search-box 
+{
+    display: flex;
+    align-items: center;
+    background-color: #fff; 
+    border: 1px solid #ccc; 
+    border-radius: 30px; 
+    padding: 10px; 
+    width: 300px;
+    margin-left:600px; 
+}
+
+.search-box input[type="text"] 
+{
+    border: none; 
+    outline: none; 
+    width: 100%; 
+    padding: 6px; 
+    font-size: 14px;
+}
+
+/* ---------------------------------------Admin Account Table------------------------------------------------- */
+/* ---------------------------------------User Account Table--------------------------------------------------- */
+
+.adminAcc 
+{
+  width: 100%;
+  table-layout: fixed;
+  margin-top:30px;
+  border-radius:6px; 
+}
+
+.adminAcc .headings
+{
+    background-color:burlywood;
+}
+
+.adminAcc th
+{
+    text-align: center;
+    width:20%;
+    padding:8px;
+}
+
+.edit
+{
+    background-color:lightgreen;
+    padding:3px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.edit:hover
+{
+    background-color:greenyellow;
+}
+
+.dlt
+{
+    background-color:red;
+    padding:3px;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.dlt:hover
+{
+    background-color:crimson;
+}
+
+/* -----------------------------------------------Add New Admin (SuperAdmin Only)---------------------------------------------- */
+
+.popup
+{
+    position:absolute;
+    top:-150%;
+    left:50%;
+    opacity:1;
+    transform:translate(-50%,-50%) scale(0.85);
+    width:600px;
+    height:620px;
+    padding:10px 15px;
+    font-size:15px;
+    font-weight:bold;
+    margin:8px 0;
+    background: #eee;
+    box-shadow:2px 2px 5px 5px;
+    border-radius:10px;
+    transition:top 0ms ease-in-out 200ms,   
+               opacity 0ms ease-in-out 0ms,
+               transform 20ms ease-in-out 0ms;
+}
+
+.popup.active 
+{
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition:
+        top 200ms ease-in-out 0ms,
+        opacity 200ms ease-in-out 0ms,
+        transform 200ms ease-in-out 0ms;
+}
+
+.form-element
+{
+    margin:15px 0px;
+}
+
+.form-element input,
+.form-element select 
+
+{
+    margin-top:5px;
+    display:block;
+    width:100%;
+    padding:10px 15px;
+    outline:none;
+    border-radius:10px;
+    font-family: 'Poppins', sans-serif;
+    font-size:15px;
+
+}
+
+.form-element input[type="file"]  /* ------------------ ADD CATEGORY POPUP -------------- */
+{
+    margin-left: 5px;
+}
+
+
+.form-btn
+{
+    background-color:burlywood;
+    color:black;
+    text-transform:uppercase;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight:bold;
+}
+
+.cancel-btn
+{
+    margin-top:10px;
+    cursor: pointer; 
+    font-size:16px; 
+    width:100%; 
+    height:40px;
+    background-color:burlywood;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+
+/*------------------------------------------ Admin Edit Profile ------------------------------------------- */
+/*------------------------------------------ User Edit Profile ---------------------------------------------*/
+
+.editAdmin
+{
+    width:100%;   
+}
+
+.edit-form
+{
+    margin:15px 0px;
+}
+
+.edit-form input,
+.edit-form select
+{
+    margin-top:5px;
+    display:block;
+    width:50%;
+    padding:10px 15px;
+    outline:none;
+    border-radius:10px;
+    font-family: 'Poppins', sans-serif;
+    font-size:15px;
+}
+
+.edit-cancel-btn,
+.edit-submit-btn
+{
+    margin-top:10px;
+    cursor: pointer; 
+    font-size:16px; 
+    width:50%; 
+    height:40px;
+    background-color:burlywood;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.edit-cancel-btn:hover,
+.edit-submit-btn:hover
+{
+    background-color:sandybrown;
+}
+
+/*------------------------------------------ Menus ------------------------------------------- */
+
+.add-products
+{
+    border:3px solid black;
+    border-radius:10px;
+    margin-top:20px;
+    margin-right:20px;
+}
+
+.add-products h3
+{
+    margin-left:520px;
+    margin-top:10px;
+}
+
+.box
+{
+    
+    margin-top:10px;
+    margin-left:280px;
+    display:block;
+    width:50%;
+    padding:10px 15px;
+    outline:none;
+    border-radius:10px;
+    font-size:15px;
+}
+
+.add-products .btn 
+{
+    margin-top:10px;
+    margin-left:285px;
+    margin-bottom:20px;;
+    cursor: pointer; 
+    font-size:16px; 
+    width:50%; 
+    height:40px;
+    background-color:burlywood;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.add-products .btn:hover
+{
+    background-color:sandybrown;
+}
+
+.DisplayCat
+{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+
+.Cat-container
+{
+    border:2px solid black;
+    border-radius:5px;
+    padding:20px;
+    margin:14px;
+    margin-right:20px;
+    width:20%;
+
+}
+
+.Cat-container h3
+{
+    margin-top:10px;
+    text-align: center;
+    
+}
+
+.cat_img
+{
+    width:130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left:40px;
+    margin-top:10px;
+    border-radius:5px;
+    transition:transform 0.3s ease-in-out;
+}
+
+.cat_link:hover .cat_img
+{
+    transform:scale(1.1);
+}
+
+/*------------------------------------------ Display Product ------------------------------------------- */
+
+.productTable
+{
+    width: 100%;
+    table-layout: fixed;
+    margin-top:30px;
+    border-radius:6px;
+}
+
+.productTable th
+{
+    text-align: center;
+    width:20%;
+    padding:10px;
+}
+
+.productTable td
+{
+    text-align:center;
+    word-wrap: break-word;
+}
+
+.productTable .headings
+{
+    background-color:burlywood;
+}
+
+.productTable .img
+{
+    display: block;
+    margin: auto;
+    max-width: 100px; 
+    height: auto;
+}
+
+.productTable .edit,
+.productTable .dlt 
+{
+    display: block;
+    margin: 0 auto;
+    padding: 3px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.productTable .edit
+{
+    background-color:lightgreen;
+    padding:3px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.productTable .edit:hover
+{
+    background-color:greenyellow;
+}
+
+.productTable .dlt
+{
+    background-color:red;
+    padding:3px;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.productTable .dlt:hover
+{
+    background-color:crimson;
+}
+
+
+
+
+
+
+
+
+
+
+ 
+
+  
+
+
+
+
+

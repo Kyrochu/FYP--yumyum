@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin:0; padding:0;
+   box-sizing: border-box;
+   outline: none; 
+   border:none;
+   text-decoration: none;
+}
+
+/* ADMIN LOGIN */
+/* -------------- */
+
+.form-container /* Whole Page */
+{
+   min-height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding:20px;
+   padding-bottom: 60px;
+   background:burlywood;
+}
+
+.form-container form  /* Form */
+{
+   padding:20px;
+   border-radius: 10px;
+   box-shadow: 0 50px 10px rgba(0,0,0,.1);
+   background: #fff;
+   text-align: center;
+   width: 500px;
+}
+
+.form-container form h3 /* "Login Now" */
+{
+   font-size: 30px;
+   text-transform: uppercase;
+   margin-bottom: 10px;
+   color:#333;
+}
+
+/* ADMIN REGISTER */
+/* -------------- */
+
+.form-container form input,
+.form-container form select
+{
+   width: 100%;
+   padding:10px 15px;
+   font-size: 17px;
+   margin:8px 0;
+   background: #eee;
+   border-radius: 5px;
+}
+
+.form-container form select option
+{
+   background: #fff;
+}
+
+.form-container form .form-btn
+{
+   background:burlywood;
+   color:black;
+   text-transform:uppercase;
+   font-size: 20px;
+   cursor: pointer;
+}
+
+.form-container form .form-btn:hover
+{
+   background:sandybrown;
+   color:blanchedalmond;
+}
+
+.form-container form p
+{
+   margin-top: 10px;
+   font-size: 20px;
+   color:#333;
+}
+
+.form-container form p a
+{
+   color:lightskyblue;
+   font-weight:bold;
+}
+
+.forgot_pswd
+{
+   margin:270px;
+}
+
+.fa-eye
+{
+   position: absolute;
+   top:340px;
+   right:550px;
+   color:lightgray;
+   cursor:pointer;
+}
+
+.fa-eye-slash
+{
+   position: absolute;
+   top:340px;
+   right:550px;
+   color:lightgray;
+   cursor:pointer;  
+}
+
+.form-container span
+{
+   margin-right:700px;
+   font-weight:bold;
+}
