@@ -44,7 +44,8 @@
     
 
 <?php
-    $sql = "SELECT * FROM users WHERE id = '15' ";
+
+    $sql = "SELECT * FROM users WHERE id = '$user' ";
     $result = mysqli_query($connect, $sql);
     $resultcheck = mysqli_num_rows($result);
   
@@ -226,8 +227,10 @@
     {
         var enteredCode = $('#entered_code').val();
         var popupContent = document.getElementById('popup');
+        var uid = document.getElementById('u_id').value;
 
-        // AJAX request to verify the entered code
+   
+        //AJAX request to verify the entered code
         $.ajax(
         {
             type: "POST",
@@ -249,7 +252,7 @@
                             // Redirect to the log_menu page after 1.5 seconds (1500 milliseconds)
                             setTimeout(function () 
                             {
-                                window.location.href = 'log_menu.php';
+                                window.location.href = 'log_menu.php?userID=' + uid;
                             }, 1000);
                         }, 2000); // Display success message for 2 seconds (adjust as needed)
                     } 

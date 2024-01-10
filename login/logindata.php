@@ -21,7 +21,7 @@ if(isset($_POST['signIn'])) {
 
         echo"<script>
                 alert('Login successful.",$uid."');
-                window.location = '/about/log_index.php?userID=$uid';
+                window.location = '/FYP--yumyum/log_index.php?userID=$uid';
             </script>";
             mysqli_close($connect);
     }else{

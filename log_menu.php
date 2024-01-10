@@ -47,20 +47,26 @@
 </head>
 
 <?php
-    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart_food_delete = '1' AND cus_id = '$uid'";
+    $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
+
+    echo "User ID: $uid";
+
+    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
     $result = mysqli_query($connect, $sql);
 
 
     if ($result) 
     {
-        // Fetch the result as an associative array
+  
         $row = mysqli_fetch_assoc($result);
-
-        // Access the count value
         $totalRows = $row['totalRows'];
 
     }
+    $user = "SELECT * FROM users WHERE id = '$uid'";
+    $user_result = mysqli_query($connect, $user);
+    $row_user = mysqli_fetch_assoc($user_result);
 ?>
+
 
 <body class="all">
     <div class="container-xxl bg-white p-0">
@@ -87,11 +93,12 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="log_index.php" class="nav-item nav-link">Home</a>
-                        <a href="log_about.php" class="nav-item nav-link">About</a>
-                        <a href="log_service.php" class="nav-item nav-link">Service</a>
-                        <a href="log_menu.php" class="nav-item nav-link active">Menu</a>
-                        <a href="log_contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
+                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
+                        <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
+                        <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Menu</a>
+                        <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                        <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                         <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
                             style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
                     </div>
@@ -119,7 +126,7 @@
             <div class="container">
                 <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
                     <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                    <h1 class="mb-5">The Foods That We Have</h1>
+                    <h1 class="mb-5">Most Popular Items</h1>
                 </div>
 
                 <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post" action="log_search_food.php" >
@@ -185,7 +192,8 @@
                                                             </h5>
                                                             <small class="fst-italic"><?php echo $menuItem['food_description']; ?></small>
                                                             
-                                                            <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $menuItem['food_id']; ?>)"  >Add to cart</button>
+                                                            <button type="button" class="btn btn-outline-primary shadow py-2 px-4" name="atc" onclick="pop(<?php echo $menuItem['food_id']; ?>)">Add to cart</button>
+
                                                         </form>
                                                     </div>
                                                 </div>
@@ -292,7 +300,11 @@
                     <h1 class="">Shopping Cart</h1>
                     <button class="closex btn-close " aria-label="Close"></button>
                     <?php
-                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' ";
+
+                    //$sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.userID = '$uid'";
+
+
+                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid'";
                     $result = mysqli_query($connect, $sql);
                     $resultcheck = mysqli_num_rows($result);
 
@@ -317,7 +329,7 @@
                     ?>
                 </div>
                 <div class="btn_ck">
-                    <a class="btn btn-primary shadow" href="log_cart.php">check out</a>
+                    <a class="btn btn-primary shadow" href="log_cart.php?userID=<?php echo $uid; ?>">check out</a>
                 </div>
             </div>
         </div>
@@ -390,8 +402,9 @@
                 }
 
                 // Add buttons and other HTML as needed
-                document.getElementById('popup').innerHTML += `
-                        <button type="button" onclick="submitForm(${fdid})">Submit</button>
+                document.getElementById('popup').innerHTML += 
+                    `
+                        <button type="button" onclick="submitForm(<?php echo $uid; ?>, ${fdid})">Submit</button>
                         <button type="button" onclick="closePopup()">close</button>
                     `;
 
@@ -406,7 +419,8 @@
         });
     }
 
-    function submitForm(id) {
+
+    function submitForm(userid , id) {
         var fdid = id;
 
         document.getElementById('overlay').style.display = 'none';
@@ -428,7 +442,8 @@
             type: "GET",
             data: {
                 food_id: fdid,
-                add_on: addPrice
+                add_on: addPrice,
+                uid: userid
             },
             url: "add_to_cart.php",
             success: function(response) {

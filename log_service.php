@@ -32,28 +32,36 @@
 
     <!-- Template Stylesheet -->
     <link href="css/style.css" rel="stylesheet">
+
+    <link href="css/test.css" rel="stylesheet">
+
+    <link href="css/popup.css" rel="stylesheet">
+
+    <!-- java script for pass var to php -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body>
 
 <?php
-  $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id";
-  $result = mysqli_query($connect, $sql);
-  $resultcheck = mysqli_num_rows($result);
+    $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
-  if ($resultcheck > 0) 
-  {
-      $totalPrice = 0.0; 
+    echo "User ID: $uid";
 
-      while ($row = mysqli_fetch_assoc($result)) 
-      {
-        $totalPrice += $row['food_total_price'];
-      }
-      
-      $fd_price_total = number_format($totalPrice, 2);
-      $tax = $fd_price_total * 0.1;
-      $total = $fd_price_total + $tax;
-  }
+    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
+    $result = mysqli_query($connect, $sql);
+
+
+    if ($result) 
+    {
+  
+        $row = mysqli_fetch_assoc($result);
+        $totalRows = $row['totalRows'];
+
+    }
+    $user = "SELECT * FROM users WHERE id = '$uid'";
+    $user_result = mysqli_query($connect, $user);
+    $row_user = mysqli_fetch_assoc($user_result);
 ?>
 
     <div class="container-xxl bg-white p-0">
@@ -78,12 +86,14 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
-                            <a href="log_index.php" class="nav-item nav-link">Home</a>
-                            <a href="log_about.php" class="nav-item nav-link">About</a>
-                            <a href="log_service.php" class="nav-item nav-link active">Service</a>
-                            <a href="log_menu.php" class="nav-item nav-link ">Menu</a>
-                            <a href="log_contact.php" class="nav-item nav-link">Contact</a>
-                            <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; " >0</span>
+                            <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
+                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
+                            <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Service</a>
+                            <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
+                            <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                            <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
+                            <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
+                                style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
                         </div>
                         <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
                     </div>
@@ -261,6 +271,59 @@
         <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
+    <!-- cart start -->
+    <div class="cartfile">
+        <div class="contian">
+            <div class="carttab">
+                <div class="cart-list_container">
+                    <h1 class="">Shopping Cart</h1>
+                    <button class="closex btn-close " aria-label="Close"></button>
+                    <?php
+
+                    //$sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.userID = '$uid'";
+
+
+                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid'";
+                    $result = mysqli_query($connect, $sql);
+                    $resultcheck = mysqli_num_rows($result);
+
+                    if ($resultcheck > 0) {
+                        while ($row = mysqli_fetch_assoc($result)) {
+                    ?>
+                            <div class="listcart">
+                                <div class="item border shadow text-black p-3 " style="border-radius: 10px;" >
+                                    <img src="./img/<?php echo $row['food_img']; ?>" alt="">
+                                    <div class="name"><?php echo $row['food_name'] ?></div>
+                                    <div class="price">RM <?php echo $row['food_total_price'] ?></div>
+                                    <div class="qty">
+                                        <span class="minus decrement"  data-food-id="<?php echo $row['cart_id'] ?>">-</span>
+                                        <span class=""style="color: black;" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
+                                        <span class="plus increment" data-food-id="<?php echo $row['cart_id'] ?>">+</span>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="btn_ck">
+                    <a class="btn btn-primary shadow" href="log_cart.php?userID=<?php echo $uid; ?>">check out</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- cart end-->
+
+    <!-- popup start -->
+
+    <div id="overlay" class="overlay"></div>
+    <div id="popup" class="popup ">
+
+    </div>
+
+    <!-- popup end -->
+
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -275,7 +338,151 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
-    <script src="js/cart.js" ></script>
+    <script src="js/cart.js"></script>
+    <script src="js/popup.js"></script>
+
+    <script>
+    function pop(id) {
+        var fdid = id;
+
+        $.ajax({
+            type: "GET",
+            data: {
+                food_id: fdid
+            },
+            url: "script_pass.php",
+            success: function(response) {
+                var data = JSON.parse(response);
+
+                // Display the basic food details
+                document.getElementById('popup').innerHTML =
+                    `
+                        <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/${data.food_img}">
+                        <input type="hidden" name="id" value="${data.food_id}">
+                        <input type="hidden" name="name" value="${data.food_name}">
+                        <input type="hidden" name="price" value="${data.food_price}">
+                        <span>${data.food_name}</span>
+                    `;
+
+                // Display checkboxes for additional options
+                if (data.options.length > 0) {
+                    document.getElementById('popup').innerHTML += '<div class="checkbox-group">';
+
+                    data.options.forEach(option => {
+                        document.getElementById('popup').innerHTML += `
+                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_price}">
+                                ${option.add_name} (+RM ${option.add_price})<br>
+                            `;
+                    });
+
+                    document.getElementById('popup').innerHTML += '</div>';
+                }
+
+                // Add buttons and other HTML as needed
+                document.getElementById('popup').innerHTML += 
+                    `
+                        <button type="button" onclick="submitForm(<?php echo $uid; ?>, ${fdid})">Submit</button>
+                        <button type="button" onclick="closePopup()">close</button>
+                    `;
+
+                // Show the popup
+                document.getElementById('overlay').style.display = 'block';
+                document.getElementById('popup').style.display = 'block';
+
+                setTimeout(function() {
+                    document.getElementById('popup').classList.add('visible');
+                }, 10);
+            }
+        });
+    }
+
+
+    function submitForm(userid , id) {
+        var fdid = id;
+
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('popup').classList.remove('visible');
+
+        setTimeout(function() {
+            document.getElementById('popup').style.display = 'none';
+        }, 500);
+
+        var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
+
+        // Calculate the total price
+        var addPrice = 0;
+        checkboxes.forEach(function(checkbox) {
+            addPrice += parseFloat(checkbox.value);
+        });
+
+        $.ajax({
+            type: "GET",
+            data: {
+                food_id: fdid,
+                add_on: addPrice,
+                uid: userid
+            },
+            url: "add_to_cart.php",
+            success: function(response) {
+                console.log("Data added to cart successfully");
+            }
+        });
+
+        // window.location.reload();
+        
+        setTimeout(function() {
+            window.location.reload();
+        }, 300);
+        
+    }
+
+    $('.increment, .decrement').on('click', function() 
+            {
+              var foodId = $(this).data('food-id');
+              var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
+              console.log($('#numFood_' + foodId))
+
+                $.ajax(
+                  {
+                    url: 'update_num_food.php',
+                    type: 'POST',
+                    data: { foodId: foodId, action: action },
+                    success: function(response) 
+                    {
+                            var parsedResponse = JSON.parse(response);
+                            // Process the parsed response
+                            $('#numFood_' + foodId).text(parsedResponse.numFood);
+                            
+                            if (parseInt(parsedResponse.numFood) === 0) {
+
+                                remove(foodId);
+
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 50);
+                            }
+                    }
+                });
+            }
+          );
+
+
+          function remove(ct_id)
+          {
+              var cartId = ct_id;
+
+              $.ajax(
+                  {
+                    type: "POST",
+                    url: "delete_food.php", 
+                    data: { delete_item: true, cart_id: cartId }, 
+                    success: function (response) 
+                    {
+                        $("#cart_item_" + cartId).remove();
+                    },
+                });
+          }
+    </script>
 </body>
 
 </html>

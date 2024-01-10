@@ -37,30 +37,36 @@
 </head>
 
 <?php
-  $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND cus_id = '0'";
-  $result = mysqli_query($connect, $sql);
-  $resultcheck = mysqli_num_rows($result);
+    $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
-  if ($resultcheck > 0) 
-  {
-      $totalPrice = 0.0; 
+    echo "User ID: $uid";
 
-      while ($row = mysqli_fetch_assoc($result)) 
-      {
-        $totalPrice += $row['food_total_price'];
-      }
-      
-      $fd_price_total = number_format($totalPrice, 2);
-      $tax = $fd_price_total * 0.1;
-      $total = $fd_price_total + $tax;
-  }
+    $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND user_id = '$uid'";
+    $result = mysqli_query($connect, $sql);
+    $resultcheck = mysqli_num_rows($result);
+
+    if ($resultcheck > 0) 
+    {
+        $totalPrice = 0.0; 
+
+        while ($row = mysqli_fetch_assoc($result)) 
+        {
+            $totalPrice += $row['food_total_price'];
+        }
+        
+        $fd_price_total = number_format($totalPrice, 2);
+        $tax = $fd_price_total * 0.1;
+        $total = $fd_price_total + $tax;
+    }
 ?>
 
 <?php
     session_start();
     var_dump($total);
-    $_SESSION['dataFromPage1'] = $total;
-    $_SESSION['data'] = "15";
+    if ($total !== null) {
+        $_SESSION['dataFromPage1'] = $total;
+    }
+    $_SESSION['data'] = "$uid";
 ?>
 
 <body>
@@ -123,7 +129,7 @@
                             <h4 class="card-title mb-4">Your shopping cart</h4>
 
                             <?php
-                                    $sql = " SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND cus_id = '0' ";
+                                    $sql = " SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND user_id = '$uid' ";
                                     $result = mysqli_query($connect , $sql);
                                     $resultcheck = mysqli_num_rows($result);
 
@@ -221,7 +227,7 @@
                                   </div>
 
                                   <div class="mt-3">
-                                      <a href="log_payment.php" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                                      <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
                                       <a href="log_menu.php" class="btn btn-light w-100 border mt-2"> Back to shop </a>
                                   </div>
                               </div>

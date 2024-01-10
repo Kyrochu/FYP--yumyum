@@ -21,7 +21,7 @@ include("connection_sql.php");
             }
 
             // Update the num_food in the database
-            $updateSql = "UPDATE cart SET num_food = $numFood WHERE cart_id = $foodId";
+            $updateSql = "UPDATE cart SET num_food = $numFood WHERE cart_id = $foodId ";
             $updateResult = mysqli_query($connect, $updateSql);
 
             // Check if num_food is 0, then delete the item from the cart
