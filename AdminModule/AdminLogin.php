@@ -6,6 +6,8 @@ if(isset($_POST["submit"]))
 {
     $Email = $_POST['email'];
     $Password = $_POST['password'];
+    $AdminType = $_POST["admin_type"];
+
 
     $result = mysqli_query($connect,"SELECT *FROM admin_acc WHERE name= '$Email' OR email='$Email' ");
 
@@ -31,6 +33,7 @@ if(isset($_POST["submit"]))
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -59,7 +62,6 @@ if(isset($_POST["submit"]))
                <a href="ResetPswd.php" class="forgot_pswd"> Forgot your password? </a>
                <input type="submit" name="submit" value="login now" class="form-btn">
               
-               <p>Don't have an account? <a href="AdminSignUp.php">Register now</a></p>
             </form>
          
          </div>

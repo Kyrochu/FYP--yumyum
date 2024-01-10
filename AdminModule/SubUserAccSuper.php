@@ -122,8 +122,6 @@ if(!isset($_SESSION['email']))
                     <div class="sub-menu">
 
                         <a href="MenusSuper.php" class="sub-item"> Menu </a>
-                        <a href="" class="sub-item"> Inventory </a>
-
                         
                     </div>
         
@@ -205,7 +203,7 @@ if(!isset($_SESSION['email']))
 
             <div class="addUserbtn">
 
-                <button style="background:lightblue;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;">
+                <button style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
                     ADD NEW USER 
                 </button>
 
@@ -276,7 +274,7 @@ if(!isset($_SESSION['email']))
                         {
                             $sql = mysqli_query($connect,"INSERT INTO users (name,email,contact_number,password) VALUES ('$Name','$Email','$Contact','$Password')");
                             
-                            echo "<script> alert('New User Added!') </script>";
+                            echo "<script> alert('New User Added!'); window.location.href = 'SubUserAccSuper.php'; </script>";
                             sleep(1);  // Enable webpage loading for 1 seconds
                             exit();
                         }
@@ -311,6 +309,7 @@ if(!isset($_SESSION['email']))
                         <th> Username </th>
                         <th> Email </th>
                         <th> Contact Number </th>
+                        <th> Address </th>
                         <th> Edit </th>
                         <th> DELETE</th>
 
@@ -329,6 +328,7 @@ if(!isset($_SESSION['email']))
                         <th> <?php echo $row["name"]; ?> </th>
                         <th> <?php echo $row["email"]; ?> </th>
                         <th> <?php echo $row["contact_number"]; ?> </th>
+                        <th> <?php echo $row["address"]; ?> </th>
                         <th>
                             <form method="post" action="EditUserSuper.php"> 
                                 <input type="hidden" name="edit_id" value="<?php echo $row["id"]; ?>" >

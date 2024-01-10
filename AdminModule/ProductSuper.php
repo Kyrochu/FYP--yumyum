@@ -14,7 +14,7 @@ if(!isset($_SESSION['email']))
 <html>
     
     <head>
-        <title> YumYum Edit Admin  </title>
+        <title> YumYum Admin Accounts List </title>
         
         <link rel="stylesheet" href="Admin_Style.css">  <!-- CSS for Admin Page -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Link for Icon Style  -->
@@ -56,7 +56,9 @@ if(!isset($_SESSION['email']))
         <!-- Javascript for Date&Time Widget  -->
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
-        <script src="AddAdminSuper.js"> </script>
+        <script src="AddCategory.js"> </script>
+        <script src="EditProduct.js"> </script>
+
 
 
     </head>
@@ -82,7 +84,7 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="Admin.html">    
+                <a href="AdminProfileSuper.php">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -94,7 +96,7 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="AdminProfileSuper.php"><i class="fab fa-jenkins"></i> My Profile </a></div>
                 <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
@@ -198,42 +200,84 @@ if(!isset($_SESSION['email']))
 
             </div>
             
-            <div class="editAdmin">
+            <div class="menus">
 
-            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Edit Admin  </h2>
+                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menus </h2>
 
-            <form method="post"> 
-                        
-                        <div class="edit-form">
-                            USERNAME <input type="text" name="name" required placeholder="Username">                    
-                        </div> 
+            </div> 
 
-                        <div class="edit-form">
-                            ROLE <select name="admin_type">
-                                <option value="SuperAdmin">Super Admin</option>
-                                <option value="Admin">Admin</option>
-                            </select>
-                        </div>
-                        
-                        <div class="edit-form">
-                            <button class="edit-submit-btn"> Update Admin </button>
-                        </div>
-
-                        <div class="edit-form">
-                            <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='SubAdminAccSuper.php';">
-                        </div>
-
-                    </form>
-
-
-
-
-
-        </div>
-
-      
-
+            <div class="backbtn">
         
+            <form action="MenusSuper.php">
+                <button type="submit" style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
+                    BACK
+                </button>
+            </form>
+            
+            </div>
+            
+            <div class="display-products">
+
+            <?php
+if (isset($_GET['category_id'])) 
+{
+    $selected_category_id = $_GET['category_id'];
+
+    $connect = mysqli_connect("localhost", "root", "", "admin_fyp");
+
+    // Fetch products for the selected category
+    $result = mysqli_query($connect, "SELECT * FROM products WHERE cat_id = $selected_category_id");
+
+    if ($result && mysqli_num_rows($result) > 0) 
+    {
+        echo "<table class='productTable' border='2' cellspacing='0'>
+                <tr class='headings'>
+                    <th>No.</th>
+                    <th>Product Name</th>
+                    <th>Price (RM)</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>";
+
+        while ($row = mysqli_fetch_assoc($result)) 
+        {
+            // Display product details here for the selected category
+            $productName = $row['pro_name'];
+            $productPrice = $row['pro_price'];
+            $productDescription = $row['pro_desc'];
+            $productImage = $row['pro_img'];
+            $productId = $row['pro_id'];
+
+            echo "<tr>
+                    <td>$productId</td>
+                    <td>$productName</td>
+                    <td>$productPrice</td>
+                    <td>$productDescription</td>
+                    <td><img src='product_images/$productImage' alt='Product Image' class='img'> </td>
+                    <td>
+                        <form action='EditProduct.php' method='GET'>
+                            <input type='hidden' name='cat_id' value='$selected_category_id'>
+                            <input type='hidden' name='pro_id' value='$productId'>
+                            <button type='submit' name='editbtn' class='edit'>EDIT</button>
+                        </form>
+                    </td>
+                    <td>
+                        <button class='dlt' onclick='deleteProduct($productId, $selected_category_id)'>DELETE</button>
+                    </td>
+                </tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo 'No products available for this category.';
+    }
+
+}
+?>
+
+
 
     </body>
 

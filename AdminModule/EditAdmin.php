@@ -123,8 +123,6 @@ if(!isset($_SESSION['email']))
                     <div class="sub-menu">
 
                         <a href="" class="sub-item"> Menu </a>
-                        <a href="" class="sub-item"> Inventory </a>
-
                         
                     </div>
         
@@ -207,19 +205,11 @@ if(!isset($_SESSION['email']))
             <form method="post"> 
                         
                         <div class="edit-form">
-                            Username <input type="text" name="name" required placeholder="Username">                    
-                        </div>
-
-                        <div class="edit-form">  
-                            Email <input type="email" name="email" required placeholder="Email">    
-                        </div>
-
-                        <div class="edit-form">
-                            Password <input type="password" name="password" required placeholder="Password">
+                            USERNAME <input type="text" name="name" required placeholder="Username">                    
                         </div> 
 
                         <div class="edit-form">
-                            Role <select name="admin_type">
+                            ROLE <select name="admin_type">
                                 <option value="SuperAdmin">Super Admin</option>
                                 <option value="Admin">Admin</option>
                             </select>
@@ -233,7 +223,7 @@ if(!isset($_SESSION['email']))
                             <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='SubAdminAcc.php';">
                         </div>
 
-                    </form>
+            </form>
 
 
 

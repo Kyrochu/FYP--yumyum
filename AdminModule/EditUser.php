@@ -207,23 +207,19 @@ if(!isset($_SESSION['email']))
             <form method="post"> 
                         
                         <div class="edit-form">
-                            Username <input type="text" name="name" required placeholder="Username">                    
-                        </div>
-
-                        <div class="edit-form">  
-                            Email <input type="email" name="email" required placeholder="Email">    
+                            USERNAME <input type="text" name="name" required placeholder="Username">                    
                         </div>
 
                         <div class="edit-form">
-                            Contact Number <input type="password" name="contact" required placeholder="Contact Number">
+                            CONTACT NUMBER <input type="password" name="contact" required placeholder="Contact Number">
                         </div> 
 
                         <div class="edit-form">
-                            Password <input type="password" name="password" required placeholder="Password">
+                            ADDRESS <input type="text" name="address" required placeholder="Address">
                         </div> 
-                        
+
                         <div class="edit-form">
-                            <button class="edit-submit-btn"> Update User </button>
+                            <button class="edit-submit-btn"> UPDATE USER </button>
                         </div>
 
                         <div class="edit-form">

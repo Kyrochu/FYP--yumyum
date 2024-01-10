@@ -82,7 +82,7 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="Admin.html">    
+                <a href="AdminProfileSuper.php">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -94,7 +94,7 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="AdminProfileSuper.php"><i class="fab fa-jenkins"></i> My Profile </a></div>
                 <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
@@ -123,8 +123,6 @@ if(!isset($_SESSION['email']))
                     <div class="sub-menu">
 
                         <a href="MenusSuper.php" class="sub-item"> Menu </a>
-                        <a href="" class="sub-item"> Inventory </a>
-
                         
                     </div>
         
@@ -206,7 +204,7 @@ if(!isset($_SESSION['email']))
 
             <div class="addAdminbtn">
 
-                <button style="background:lightblue;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;">
+                <button style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
                     ADD NEW ADMIN 
                 </button>
 
@@ -221,23 +219,23 @@ if(!isset($_SESSION['email']))
                     <form method="post"> 
                         
                         <div class="form-element">
-                            Username <input type="text" name="name" required placeholder="Enter New Username">                    
+                            USERNAME <input type="text" name="name" required placeholder="Enter New Username">                    
                         </div>
 
                         <div class="form-element">  
-                            Email <input type="email" name="email" required placeholder="Enter New Email">    
+                            EMAIL <input type="email" name="email" required placeholder="Enter New Email">    
                         </div>
 
                         <div class="form-element">
-                        Password <input type="password" name="password" required placeholder="Enter New Password">
+                        PASSWORD <input type="password" name="password" required placeholder="Enter New Password">
                         </div>   
 
                         <div class="form-element">
-                        Confirm Password <input type="password" name="cpassword" required placeholder="Confirm password">
+                        CONFIRM PASSWORD <input type="password" name="cpassword" required placeholder="Confirm password">
                         </div>   
 
                         <div class="form-element">
-                            Role <select name="admin_type">
+                            ROLE <select name="admin_type">
                                 <option value="SuperAdmin">Super Admin</option>
                                 <option value="Admin">Admin</option>
                             </select>
@@ -280,7 +278,7 @@ if(!isset($_SESSION['email']))
                         {
                             $sql = mysqli_query($connect,"INSERT INTO admin_acc (name,email,password,admin_type) VALUES ('$Name','$Email','$Password','$AdminType')");
                             
-                            echo "<script> alert('New Admin Added!') </script>";
+                            echo "<script> alert('New Admin Added!'); window.location.href = 'SubAdminAccSuper.php'; </script>";
                             sleep(1);  // Enable webpage loading for 1 seconds
                             exit();
                         }

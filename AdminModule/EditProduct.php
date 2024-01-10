@@ -1,20 +1,19 @@
 <?php
 
-include('DataConnect.php');
+include('DataConnect.php'); // Include the database connection file
 
-if(!isset($_SESSION['email']))
+if (!isset($_SESSION['email'])) 
 {
-    header("location:AdminLogin.php");
+    header("location: AdminLogin.php");
+    exit(); // Terminate script after redirection
 }
-
 ?>
-
 
 <!DOCTYPE html>
 <html>
     
     <head>
-        <title> YumYum Edit Admin  </title>
+        <title> YumYum Admin Accounts List </title>
         
         <link rel="stylesheet" href="Admin_Style.css">  <!-- CSS for Admin Page -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Link for Icon Style  -->
@@ -56,9 +55,16 @@ if(!isset($_SESSION['email']))
         <!-- Javascript for Date&Time Widget  -->
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
-        <script src="AddAdminSuper.js"> </script>
+        <script src="AddCategory.js"> </script>
+        <script src="EditProduct.js"> </script>
+        <script>
+    function goToProductSuper() 
+    {
+        window.location.href = 'ProductSuper.php';
+    }
+    </script>
 
-
+    
     </head>
 
     <body>
@@ -88,7 +94,7 @@ if(!isset($_SESSION['email']))
 
                 </a>
 
-                <h1 style="color:navajowhite"> Welcome,<?php echo $_SESSION['email'] ?> </h1>
+                <h1 style="color:navajowhite"> Welcome, <?php echo $_SESSION['email'] ?> </h1>
 
             </header>
 
@@ -122,7 +128,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
                         
                     </div>
         
@@ -198,43 +204,99 @@ if(!isset($_SESSION['email']))
 
             </div>
             
-            <div class="editAdmin">
+            <div class="EditProduct">
 
-            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Edit Admin  </h2>
+                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Edit Product </h2>
 
-            <form method="post"> 
-                        
-                        <div class="edit-form">
-                            USERNAME <input type="text" name="name" required placeholder="Username">                    
-                        </div> 
+            </div> 
 
-                        <div class="edit-form">
-                            ROLE <select name="admin_type">
-                                <option value="SuperAdmin">Super Admin</option>
-                                <option value="Admin">Admin</option>
-                            </select>
-                        </div>
-                        
-                        <div class="edit-form">
-                            <button class="edit-submit-btn"> Update Admin </button>
-                        </div>
+            <?php
 
-                        <div class="edit-form">
-                            <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='SubAdminAccSuper.php';">
-                        </div>
+            if(isset($_GET['editbtn']))
+            {
+                $selected_category_id = $_GET['cat_id'];
+                $productId = $_GET['pro_id'];
 
-                    </form>
+                $query = "SELECT * FROM products WHERE pro_id='$productId' ";
+                $query_run = mysqli_query($connect,$query);
+
+                foreach($query_run as $row)
+                {
+            ?>    
+            
+            <form method="GET" action="" enctype="multipart/form-data"> 
+
+                <input type="hidden" name="category_id" value="<?php echo $row['cat_id']?>">
+                <input type="hidden" name="product_id" value="<?php echo $row['pro_id']?>">
 
 
+                <div class="form-element">
+                    PRODUCT NAME <input type="text" name="name" value="<?php echo $row['pro_name']?>">                    
+                </div>
+
+                <div class="form-element">
+                    PRODUCT PRICE <input type="text" name="price" value="<?php echo $row['pro_price']?>">                    
+                </div>
+
+                <div class="form-element">
+                    PRODUCT DESCRIPTION <input type="text" name="desc" value="<?php echo $row['pro_desc']?>">                    
+                </div>
+
+                <div class="form-element">  
+                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="<?php echo $row['pro_img']?>">
+                </div>
+
+                <div class="form-element">
+                    <input type="submit" name="updateProduct" value="UPDATE PRODUCT" class="edit-submit-btn">
+                </div>
+
+                <div class="form-element">
+                    <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='MenusSuper.php';">
+                </div>
+            
+            </form>
+
+            <?php
+            
+                }
+            }
+
+            if(isset($_GET['updateProduct']))
+            {
+                $Pro_id = $_GET['product_id'];
+                $Pro_name = $_GET['name'];
+                $Pro_price = $_GET['price'];
+                $Pro_desc = $_GET['desc'];
+                $productImage = $_FILES['image']['name'];
+                $productImageTmp = $_FILES['image']['tmp_name'];
+
+                $query = "UPDATE products SET pro_name = '$Pro_name',pro_price = '$Pro_price' , pro_desc = '$Pro_desc' WHERE pro_id =$Pro_id ";
+                $query_run = mysqli_query($connect,$query);
+
+                if($query_run)
+                {
+                    echo "<script>alert('Product Updated');
+                    window.location.href = 'ProductSuper.php';</script>";// Redirect to ProductSuper.php after successful update
+                    exit(); // Ensure script execution stops after redirection
+                }
+                else
+                {
+                    // Handle the case if the update query fails
+                    echo "<script>alert('Failed to update product!');
+                    window.location.href = 'ProductSuper.php';</script>";
+                }
+
+            }
 
 
+            ?>
 
-        </div>
 
-      
+            
 
+            
         
-
+            
     </body>
 
 </html>

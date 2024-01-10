@@ -81,7 +81,8 @@ if(!isset($_SESSION['email']))
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="Admin.html">    
+                
+                <a href="AdminProfileSuper.php">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -93,7 +94,7 @@ if(!isset($_SESSION['email']))
 
             <div class="menu">
 
-                <div class="item"><a href=""><i class="fab fa-jenkins"></i> My Profile </a></div>
+                <div class="item"><a href="AdminProfileSuper.php"><i class="fab fa-jenkins"></i> My Profile </a></div>
                 <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
@@ -122,8 +123,6 @@ if(!isset($_SESSION['email']))
                     <div class="sub-menu">
 
                         <a href="MenusSuper.php" class="sub-item"> Menu </a>
-                        <a href="" class="sub-item"> Inventory </a>
-
                         
                     </div>
         

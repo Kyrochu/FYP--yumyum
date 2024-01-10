@@ -123,8 +123,6 @@ if(!isset($_SESSION['email']))
                     <div class="sub-menu">
 
                         <a href="" class="sub-item"> Menu </a>
-                        <a href="" class="sub-item"> Inventory </a>
-
                         
                     </div>
         
@@ -207,30 +205,56 @@ if(!isset($_SESSION['email']))
             <form method="post"> 
                         
                         <div class="edit-form">
-                            Username <input type="text" name="name" required placeholder="Username">                    
-                        </div>
-
-                        <div class="edit-form">  
-                            Email <input type="email" name="email" required placeholder="Email">    
+                            USERNAME <input type="text" name="name" required placeholder="Username">                    
                         </div>
 
                         <div class="edit-form">
-                            Contact Number <input type="password" name="contact" required placeholder="Contact Number">
+                            CONTACT NUMBER <input type="password" name="contact" required placeholder="Contact Number">
                         </div> 
 
                         <div class="edit-form">
-                            Password <input type="password" name="password" required placeholder="Password">
+                            ADDRESS <input type="text" name="address" required placeholder="Address">
                         </div> 
-                        
+      
                         <div class="edit-form">
-                            <button class="edit-submit-btn"> Update User </button>
+                            <button class="edit-submit-btn"> UPDATE USER </button>
                         </div>
 
                         <div class="edit-form">
                             <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='SubUserAccSuper.php';">
                         </div>
 
-                    </form>
+            </form>
+
+
+            <?php
+
+            if(isset($_GET['edit-submit-btn']))
+            {
+                $ID = $_GET['id'];
+                $Name = $_GET['name'];
+                $Contact = $_GET['contact'];
+                $Address = $_GET['address'];
+
+                $query = "UPDATE users SET name = '$Name', contact_number = '$Contact' , address = '$Address' WHERE id = '$ID' ";
+                $query_run = mysqli_query($connect,$query);
+
+                if($query_run)
+                {
+                    echo "<script>alert('User details updated');
+                    window.location.href = 'SubUserAccSuper.php';</script>";
+                    exit();
+                }
+                else
+                {
+                    echo "<script>alert('Failed to update user details!');
+                    window.location.href = 'SubUserAccSuper.php'; </script>";
+                }
+            
+            }
+            ?>
+
+
 
 
 
