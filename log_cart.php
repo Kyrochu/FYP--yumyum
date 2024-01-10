@@ -37,7 +37,7 @@
 </head>
 
 <?php
-  $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id";
+  $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND cus_id = '0'";
   $result = mysqli_query($connect, $sql);
   $resultcheck = mysqli_num_rows($result);
 
@@ -123,7 +123,7 @@
                             <h4 class="card-title mb-4">Your shopping cart</h4>
 
                             <?php
-                                    $sql = " SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id  ";
+                                    $sql = " SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND cus_id = '0' ";
                                     $result = mysqli_query($connect , $sql);
                                     $resultcheck = mysqli_num_rows($result);
 

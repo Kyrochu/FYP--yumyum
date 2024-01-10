@@ -35,6 +35,8 @@
     <!-- jQuery library -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <link rel="stylesheet" href="AdmimModule/Admin_Style.css">
+
 
 
 </head>
@@ -60,6 +62,24 @@
         }
     }
 ?>
+
+<div class="date">
+
+    <span id="day"> Day </span>
+    <span id="month"> Month </span>
+    <span id="daynum"> 00 </span>
+    <span id="year"> Year </span>
+
+</div>
+
+<div class="time">
+
+    <span id="hour"> 00 </span>:
+    <span id="minutes"> 00 </span>:
+    <span id="seconds"> 00 </span>
+    <span id="period"> AM </span>
+
+</div>
 
 
 
@@ -155,6 +175,8 @@
 </div>    
 
 
+
+<script src="AdminModule/Date&Time Widget.js" defer> </script> 
 
 
 
