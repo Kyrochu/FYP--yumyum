@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 include("data_connection.php");
 
 if(isset($_POST['signIn'])) {
@@ -11,11 +11,17 @@ if(isset($_POST['signIn'])) {
     $row_user = mysqli_fetch_assoc($result);
     $rowcount = mysqli_num_rows($result);
 
+    $id = "SELECT * from users where email = '$email'";
+    $re = mysqli_query($conn, $id);
+    $row = mysqli_fetch_assoc($re);
+    $uid = $row["id"];
+
 
     if($rowcount != 0){
+
         echo"<script>
-                alert('Login successful.');
-                window.location = 'log_index.php';
+                alert('Login successful.",$uid."');
+                window.location = '/about/log_index.php?userID=$uid';
             </script>";
             mysqli_close($connect);
     }else{

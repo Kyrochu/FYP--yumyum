@@ -10,11 +10,16 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
         $confirm_password = $_POST['confirm_password'];
+        $address = $_POST['address'];
+        $city = $_POST['city'];
+        $state = $_POST['state'];
+        $postcode = $_POST['postcode'];
+
 
         if($password && $confirm_password)
         {
             // Insert user data into the database
-            $query = "INSERT INTO users (name, contact_number, email, password) VALUES ('$name', '$contactNumber', '$email', '$password')";
+            $query = "INSERT INTO users (name, contact_number, email, password, address , city, state , postcode, code ) VALUES ('$name', '$contactNumber', '$email', '$password', '$address', '$city', '$state', '$postcode' , 'null')";
             if (mysqli_query($conn, $query)) {
                 // Registration successful
                 echo "Registration successful!";
