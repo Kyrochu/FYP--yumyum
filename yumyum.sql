@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2023 at 05:15 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jan 10, 2024 at 04:46 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `yumyum`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `add_on`
+--
+
+CREATE TABLE `add_on` (
+  `add_id` int(255) NOT NULL,
+  `add_name` varchar(100) NOT NULL,
+  `add_price` double NOT NULL,
+  `food_id` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `add_on`
+--
+
+INSERT INTO `add_on` (`add_id`, `add_name`, `add_price`, `food_id`) VALUES
+(1, 'no tomato', 0.5, 1),
+(2, 'Extra Sauce', 0.5, 1),
+(3, 'No tomato', 0, 2),
+(4, 'Extra Sauce ', 0.5, 2),
+(5, 'No tomato', 0, 3),
+(6, 'Extra Sauce', 0.5, 3),
+(7, 'No Tomato', 0, 4),
+(8, 'Extra Sauce', 0.5, 4);
 
 -- --------------------------------------------------------
 
@@ -54,18 +81,17 @@ CREATE TABLE `cart` (
   `cart_id` int(100) NOT NULL,
   `food_id` int(100) NOT NULL,
   `num_food` int(30) NOT NULL,
-  `cart_food_delete` int(11) NOT NULL DEFAULT 1
+  `food_total_price` double NOT NULL,
+  `cart_food_delete` int(11) NOT NULL DEFAULT 1,
+  `user_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `cart_food_delete`) VALUES
-(1, 2, 1, 1),
-(5, 1, 1, 1),
-(6, 4, 1, 1),
-(7, 3, 1, 1);
+INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `food_total_price`, `cart_food_delete`, `user_id`) VALUES
+(14, 1, 1, 10, 1, 15);
 
 -- --------------------------------------------------------
 
@@ -75,16 +101,18 @@ INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `cart_food_delete`) VALUES
 
 CREATE TABLE `category` (
   `cat_id` int(200) NOT NULL,
-  `cat_name` int(200) NOT NULL,
-  `cat_img` varchar(60) NOT NULL
+  `cat_name` varchar(200) NOT NULL,
+  `cat_type` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`cat_id`, `cat_name`, `cat_img`) VALUES
-(6, 0, '1701012867.');
+INSERT INTO `category` (`cat_id`, `cat_name`, `cat_type`) VALUES
+(7, 'Meal', 'meal'),
+(8, 'Snack', 'snack'),
+(9, 'Alacat', 'all');
 
 -- --------------------------------------------------------
 
@@ -115,16 +143,14 @@ INSERT INTO `menu` (`food_id`, `food_img`, `food_name`, `food_price`, `food_type
 -- --------------------------------------------------------
 
 --
--- Table structure for table `menus`
+-- Table structure for table `receipt`
 --
 
-CREATE TABLE `menus` (
-  `m_id` int(11) NOT NULL,
-  `m_image` varchar(255) NOT NULL,
-  `m_name` varchar(100) NOT NULL,
-  `m_desc` text NOT NULL,
-  `m_category` varchar(200) NOT NULL,
-  `m_price` decimal(10,2) NOT NULL
+CREATE TABLE `receipt` (
+  `r_id` int(100) NOT NULL,
+  `u_id` int(100) NOT NULL,
+  `card_number` varchar(50) NOT NULL,
+  `total_price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -177,11 +203,18 @@ INSERT INTO `users` (`id`, `name`, `contact_number`, `email`, `password`, `addre
 (10, 'James', '0123456789', 'lewmingren@gmaom', '111', '', '', '', 0, '2023-11-24 07:44:21', ''),
 (11, 'jeremie', '0123456789', 'lewmingren@gmom', '111', '', '', '', 0, '2023-11-24 07:44:21', ''),
 (12, 'James', 'abc', 'lewmin@gmail', '111', '', '', '', 0, '2023-11-24 07:44:21', ''),
-(14, 'James', '0123456788', 'l@gmail.com', '123456', '', '', '', 0, '2023-11-24 07:44:21', '');
+(14, 'James', '0123456788', 'l@gmail.com', '123456', '', '', '', 0, '2023-11-24 07:44:21', ''),
+(15, 'Brian', '01156417215', 'kroyk32@gmail.com', '1234', 'no 31 puki', 'melaka', 'melaka', 73500, '2024-01-08 13:34:43', '');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `add_on`
+--
+ALTER TABLE `add_on`
+  ADD PRIMARY KEY (`add_id`);
 
 --
 -- Indexes for table `admin_acc`
@@ -208,10 +241,10 @@ ALTER TABLE `menu`
   ADD PRIMARY KEY (`food_id`);
 
 --
--- Indexes for table `menus`
+-- Indexes for table `receipt`
 --
-ALTER TABLE `menus`
-  ADD PRIMARY KEY (`m_id`);
+ALTER TABLE `receipt`
+  ADD PRIMARY KEY (`r_id`);
 
 --
 -- Indexes for table `test`
@@ -231,6 +264,12 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `add_on`
+--
+ALTER TABLE `add_on`
+  MODIFY `add_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `admin_acc`
 --
 ALTER TABLE `admin_acc`
@@ -240,13 +279,13 @@ ALTER TABLE `admin_acc`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `cat_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `cat_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `menu`
@@ -255,10 +294,10 @@ ALTER TABLE `menu`
   MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `menus`
+-- AUTO_INCREMENT for table `receipt`
 --
-ALTER TABLE `menus`
-  MODIFY `m_id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `receipt`
+  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -270,7 +309,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
