@@ -1,72 +1,40 @@
+<?php
+include("data_connection.php");
+
+?>
 <!DOCTYPE html>
-<?php
-     include("data_connection.php");
-if (isset($_SESSION["login_sess"])) {
-    header("location:account.php");
-}
-?>
-<?php
-
-if (isset($_POST['sub_set'])) {
-    extract($_POST);
-
-    $token = isset($_GET['token']) ? $_GET['token'] : '';
-
-    if ($password !== $passwordConfirm) {
-        $error[] = "Passwords don't match. Please re-enter.";
-    } else {
-        $query = "SELECT email FROM password_reset_tokens WHERE token = '$token'";
-        $result = mysqli_query($dbc, $query);
-
-        if ($result && mysqli_num_rows($result) > 0) {
-            $row = mysqli_fetch_assoc($result);
-            $userEmail = $row['email'];
-        }
-    }
-}
-?>
-
 <html>
 
 <head>
-    <title>Password Reset - Techno Smarter</title>
+    <title>Password Reset</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-</head>
+    <style>
 
-</style>
+        input {
+            background-color: #eee;
+            border: none;
+            padding: 12px 8px;
+            margin: 8px 0;
+            width: 100%;
+        }
+        .error-message{
+
+            color: red;
+
+        }
+    </style>
+</head>
 
 <body>
     <div class="container mt-5 ">
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
-                <?php
-                $token = '';
-
-                if (isset($_GET['token'])) {
-                    $token = $_GET['token'];
-                }
-
-                if (isset($_POST['sub_set'])) {
-                    extract($_POST);
-
-
-                    if (!isset($error) && !isset($hide)) {
-
-                        $success = "<div class='successmsg'><span style='font-size:100px;'>&#9989;</span> <br> Your password has been updated successfully.. <br> <a href='login.php' style='color:#fff;'>Login here... </a> </div>";
-
-                        $deleteQuery = "DELETE FROM password_reset_tokens WHERE token = '$token'";
-                        $resultdel = mysqli_query($dbc, $deleteQuery);
-                        $hide = 1;
-                    }
-                }
-                ?>
                 <div class="login_form ">
                     <form action="" method="POST">
                         <div class="form-group">
-                            <img src="Image/KXL_Store-black.png" class="logo img-fluid">
                             <?php
                             if (isset($error)) {
                                 foreach ($error as $err) {
@@ -83,10 +51,14 @@ if (isset($_POST['sub_set'])) {
                             <!-- Form fields for password reset -->
                             <?php if (!isset($hide)) { ?>
                                 <label class="label_txt">New Password</label>
-                                <input type="password" name="password" class="form-control" required>
-                                <!-- Add Confirm Password field -->
+                                <input type="password" name="password" placeholder=" " />
+                                <span id="passwordError" class="error-message"></span>
+                                <br>
+                                <br>
+
                                 <label class="label_txt">Confirm Password</label>
-                                <input type="password" name="passwordConfirm" class="form-control" required>
+                                <input type="password" name="confirm_password" placeholder="" />
+                                <br>
                                 <button type="submit" name="sub_set" class="btn btn-primary btn-group-lg form_btn">Reset Password</button>
                             <?php } ?>
                         </div>
@@ -97,8 +69,61 @@ if (isset($_POST['sub_set'])) {
         </div>
     </div>
 
+     <?php
+        if (isset($_POST['sub_set'])) {
+            $email = $_GET['email'] ?? null;
+            $newPassword = $_POST['password'];
+            $confirmPassword = $_POST['passwordConfirm'];
+        
+            // Validate the new password and confirm password
+            if ($newPassword != $confirmPassword) {
+                $error[] = "Passwords do not match.";
+            } else {
+        
+                // Update the password in the database
+                $updateQuery = "UPDATE users SET password='$confirmPassword ' WHERE email='$email'";
+                mysqli_query($conn, $updateQuery);
+        
+                // Display success message
+                $success = "Password reset successful. You can now <a href='login.php'>login</a> with your new password.";
+                
+            }
+        }
+     ?>
+
 </body>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+        const passwordInput = document.querySelector('input[name="password"]');
+        const passwordError = document.getElementById('passwordError');
+        const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9]).{0,8}$/;
+        const maxLength = 8;
+
+        passwordInput.addEventListener('input', function () {
+            const password = this.value;
+
+            if (password.length > maxLength) {
+                this.value = this.value.slice(0, maxLength);
+            }
+
+            if (password === '') {
+                passwordError.textContent = '';
+            } else if ((password.length <= maxLength) && passwordRegex.test(password)) {
+                passwordError.textContent = '';
+            } else {
+                passwordError.textContent = 'Password should include at most 8 characters and contain at least 1 symbol and 1 number.';
+            }
+        });
+
+        passwordInput.addEventListener('blur', function () {
+            const password = this.value;
+            if ((password === '') || (passwordRegex.test(password))) {
+                passwordError.textContent = '';
+            }
+        });
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
 </html>

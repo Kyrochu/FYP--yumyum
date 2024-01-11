@@ -20,7 +20,7 @@ if(isset($_POST['signIn'])) {
     if($rowcount != 0){
 
         echo"<script>
-                alert('Login successful.",$uid."');
+                alert('Login successful.');
                 window.location = '/FYP--yumyum/log_index.php?userID=$uid';
             </script>";
             mysqli_close($connect);
