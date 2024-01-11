@@ -217,15 +217,23 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     ?>
 
 
-                    <form method="POST"> 
+                    <form method="GET" action="EditAdminProfileSuper.php?id=<?php echo $id ?>"> 
 
                         <input type="hidden" name="admin_id" value="<?php echo $row ["id"];?>"> 
+
+                        <div class="edit-form">
+                            EMAIL <input type="text" name="email" value="<?php echo $row['email'];?> " readonly>                    
+                        </div> 
                         
                         <div class="edit-form">
                             USERNAME <input type="text" name="name" value="<?php echo $row['name'];?> ">                    
                         </div> 
 
                         <div class="edit-form">
+                            ENTER OLD PASSWORD <input type="text" name="oldPassword">
+                        </div>
+
+                        <div class="edit-form"> 
                             ENTER NEW PASSWORD <input type="text" name="password">
                         </div>
 
@@ -234,14 +242,14 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
                         
                         <div class="edit-form">
-                            <button class="edit-submit-btn"> Update Profile </button>
+                            <button  class="edit-submit-btn"> Update Profile </button>
                         </div>
 
-                    </form>
+                    </form> 
 
             </div>
 
-
+            
 
         
 
