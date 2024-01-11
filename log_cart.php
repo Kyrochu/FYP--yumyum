@@ -41,6 +41,11 @@
 
     echo "User ID: $uid";
 
+    $user = "SELECT * FROM users WHERE id = '$uid'";
+    $user_result = mysqli_query($connect, $user);
+    $row_user = mysqli_fetch_assoc($user_result);
+
+    //calculate for total
     $sql = "SELECT *, (food_total_price * num_food) AS food_total_price FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart_food_delete = '1' AND user_id = '$uid'";
     $result = mysqli_query($connect, $sql);
     $resultcheck = mysqli_num_rows($result);
@@ -57,6 +62,13 @@
         $fd_price_total = number_format($totalPrice, 2);
         $tax = $fd_price_total * 0.1;
         $total = $fd_price_total + $tax;
+    }
+    else{
+        $totalPrice = 0.0; 
+
+        $fd_price_total = number_format($totalPrice, 2);
+        $tax = $fd_price_total * 0.1;
+        $total = 0.00;
     }
 ?>
 
@@ -92,13 +104,14 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
-                            <a href="log_index.php" class="nav-item nav-link">Home</a>
-                            <a href="log_about.php" class="nav-item nav-link">About</a>
-                            <a href="log_service.php" class="nav-item nav-link">Service</a>
-                            <a href="log_menu.php" class="nav-item nav-link ">Menu</a>
-                            <a href="log_contact.php" class="nav-item nav-link">Contact</a>
+                            <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
+                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
+                            <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
+                            <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Menu</a>
+                            <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                            <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                         </div>
-                        <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
+                        <a href="index.html" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">LogOut</a>
                     </div>
                 </nav>
 
@@ -228,6 +241,16 @@
 
                                   <div class="mt-3">
                                       <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                                        <?php
+                                            if ($total > 0) {
+                                                ?>
+                                                <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                                                <?php
+                                            } else {
+                                                
+                                                echo "Total is not greater than 0, cannot proceed with the purchase.";
+                                            }
+                                        ?>
                                       <a href="log_menu.php" class="btn btn-light w-100 border mt-2"> Back to shop </a>
                                   </div>
                               </div>
