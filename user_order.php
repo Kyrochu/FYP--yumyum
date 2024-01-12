@@ -16,13 +16,13 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&family=Pacifico&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+
 
     <!-- Libraries Stylesheet -->
     <link href="lib/animate/animate.min.css" rel="stylesheet">
@@ -42,7 +42,10 @@
     <!-- java script for pass var to php -->
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    
 </head>
+
+<body>
 
 <?php
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
@@ -64,11 +67,9 @@
     $row_user = mysqli_fetch_assoc($user_result);
 ?>
 
-<body class="all">
     <div class="container-xxl bg-white p-0">
         <!-- Spinner Start -->
-        <div id="spinner"
-            class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
@@ -76,113 +77,71 @@
         <!-- Spinner End -->
 
 
-
         <!-- Navbar & Hero Start -->
         <div class="container-xxl position-relative p-0">
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
-                <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                    <span class="fa fa-bars"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
-                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
-                        <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
-                        <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Menu</a>
-                        <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
-                        <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
-                        <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
-                            style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
-                    </div>
-                    <a href="index.html" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">LogOut</a>
-                </div>
-            </nav>
+                <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
+                    <a href="" class="navbar-brand p-0">
+                        <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Restoran</h1>
+                        <!-- <img src="img/logo.png" alt="Logo"> -->
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                        <span class="fa fa-bars"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <div class="navbar-nav ms-auto py-0 pe-4">
+                            <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
+                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
+                            <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
+                            <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
+                            <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Contact</a>
+                            <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
+                            <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
+                                style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
+                        </div>
+                        <a href="index.html" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">LogOut</a>                    </div>
+                </nav>
 
-            <div class="container-xxl py-5 bg-dark hero-header mb-5">
-                <div class="container text-center my-5 pt-5 pb-4">
-                    <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
-                    <nav aria-label="breadcrumb">
-                        <ol class="breadcrumb justify-content-center text-uppercase">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                            <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
-                        </ol>
-                    </nav>
+                <div class="container-xxl py-5 bg-dark hero-header mb-5">
+                    <div class="container text-center my-5 pt-5 pb-4">
+                        <h1 class="display-3 text-white mb-3 animated slideInDown">Food Menu</h1>
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb justify-content-center text-uppercase">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item"><a href="#">Pages</a></li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Menu</li>
+                            </ol>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
         <!-- Navbar & Hero End -->
 
-        <!-- Menu Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                    <h1 class="mb-5">The Search Result </h1>
-                </div>
 
-                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post">
-                    <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" name="search_query" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-                        <button class="btn btn-primary" type="submit">
-                            <i class="fas fa-search"></i>
-                        </button>
+        <!-- table start -->
+
+
+            <!-- Big Card for Orders -->
+            <div class="container-xxl position-relative p-0">
+                
+                <div class="container px-4 text-center">
+
+                    <div class="row gx-5">
+                        <div class="col shadow border rounded" >
+                            <div class="p-3">user id</div>
+                            <div class="p-3">  price</div>
+                            <div class="p-3">  food</div>
+                        </div>
+                        <div class="col shadow border rounded">
+                            <div class="p-3">user id</div>
+                            <div class="p-3">  price</div>
+                            <div class="p-3">  food</div>
+                        </div>
                     </div>
-                </form>
-                <br>
-
-                <div class="row">
-                    <?php
-                    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['search_query'])) {
-
-                        $search_query = mysqli_real_escape_string($connect, $_POST['search_query']);
-                        $searchSql = "SELECT * FROM menu WHERE food_name LIKE '%$search_query%' OR food_type LIKE '%$search_query%'";
-                        $searchResult = mysqli_query($connect, $searchSql);
-
-                        if (mysqli_num_rows($searchResult) > 0) {
-                            $counter = 0;
-                            while ($searchItem = mysqli_fetch_assoc($searchResult)) {
-                                if ($counter % 2 == 0) {
-                                    echo '</div><div class="row">';
-                                }
-                    ?>
-                                <div class="col-lg-6 mb-4">
-                                    <div class="d-flex align-items-center p-4 border rounded shadow">
-                                        <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $searchItem['food_img']; ?>">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <form action="" method="post">
-                                                    <input type="hidden" name="id" value="<?php echo $searchItem['food_id']; ?>">
-                                                    <input type="hidden" name="name" value="<?php echo $searchItem['food_name']; ?>">
-                                                    <input type="hidden" name="price" value="<?php echo $searchItem['food_price']; ?>">
-                                                    <span><?php echo $searchItem['food_name']; ?></span>
-                                                    <span class="text-primary">RM <?php echo $searchItem['food_price'] ?></span>
-                                                </h5>
-                                                <small class="fst-italic"><?php echo $searchItem['food_description']; ?></small>
-
-                                                <button type="button" class="btn btn-outline-primary shadow mt-3" name="atc" onclick="pop(<?php echo $searchItem['food_id']; ?>)">Add to cart</button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                    <?php
-                                $counter++;
-                            }
-                        } else {
-                            echo '<p class="text-center">No results found.</p>';
-                        }
-                    }
-                    ?>
                 </div>
+                
             </div>
-        </div>
-
-
-
+      
+        <!-- table end -->
 
 
         <!-- Footer Start -->
@@ -220,10 +179,8 @@
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
                         <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
                         <div class="position-relative mx-auto" style="max-width: 400px;">
-                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text"
-                                placeholder="Your email">
-                            <button type="button"
-                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                            <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                            <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
                         </div>
                     </div>
                 </div>
@@ -232,12 +189,11 @@
                 <div class="copyright">
                     <div class="row">
                         <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
-
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                            Distributed By <a class="border-bottom" href="https://themewagon.com"
-                                target="_blank">ThemeWagon</a>
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
+                            Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                         <div class="col-md-6 text-center text-md-end">
                             <div class="footer-menu">
@@ -252,12 +208,12 @@
             </div>
         </div>
         <!-- Footer End -->
-
-
+        
+        
 
 
         <!-- Back to Top -->
-        <a href="log_menu.php" class="btn btn-lg btn-primary  back-to-top">Back To Menu</a>
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
     </div>
 
     <!-- cart start -->
@@ -268,7 +224,11 @@
                     <h1 class="">Shopping Cart</h1>
                     <button class="closex btn-close " aria-label="Close"></button>
                     <?php
-                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id";
+
+                    //$sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.userID = '$uid'";
+
+
+                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid'";
                     $result = mysqli_query($connect, $sql);
                     $resultcheck = mysqli_num_rows($result);
 
@@ -293,7 +253,7 @@
                     ?>
                 </div>
                 <div class="btn_ck">
-                    <a class="btn btn-primary" href="log_cart.php">check out</a>
+                    <a class="btn btn-primary shadow" href="log_cart.php?userID=<?php echo $uid; ?>">check out</a>
                 </div>
             </div>
         </div>
@@ -320,11 +280,9 @@
     <script src="lib/tempusdominus/js/moment.min.js"></script>
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+   <!-- Template Javascript -->
+   <script src="js/main.js"></script>
     <script src="js/cart.js"></script>
     <script src="js/popup.js"></script>
 
@@ -366,8 +324,9 @@
                 }
 
                 // Add buttons and other HTML as needed
-                document.getElementById('popup').innerHTML += `
-                        <button type="button" onclick="submitForm(${fdid})">Submit</button>
+                document.getElementById('popup').innerHTML += 
+                    `
+                        <button type="button" onclick="submitForm(<?php echo $uid; ?>, ${fdid})">Submit</button>
                         <button type="button" onclick="closePopup()">close</button>
                     `;
 
@@ -382,7 +341,8 @@
         });
     }
 
-    function submitForm(id) {
+
+    function submitForm(userid , id) {
         var fdid = id;
 
         document.getElementById('overlay').style.display = 'none';
@@ -404,7 +364,8 @@
             type: "GET",
             data: {
                 food_id: fdid,
-                add_on: addPrice
+                add_on: addPrice,
+                uid: userid
             },
             url: "add_to_cart.php",
             success: function(response) {
@@ -419,12 +380,8 @@
         }, 300);
         
     }
-    </script>
 
-    <!-- for add and delete cart tab -->
-    <script>
-    
-          $('.increment, .decrement').on('click', function() 
+    $('.increment, .decrement').on('click', function() 
             {
               var foodId = $(this).data('food-id');
               var action = $(this).hasClass('increment') ? 'increment' : 'decrement';
@@ -471,18 +428,6 @@
                 });
           }
     </script>
-
-    <script>
-
-        $(document).ready(function() {
-
-            $('#myTabs li:first-child a').tab('show');
-        });
-    </script>
-
-
-
 </body>
-
 
 </html>

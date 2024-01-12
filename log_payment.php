@@ -166,9 +166,7 @@
     
     <div id="overlay" class="overlay"></div>
     <div id="popup" class="popup" style="text-align: center; " >
-        <label for="entered_code">Verification Code</label><br><br>
-        <input type="text" id="entered_code" required autocapitalize="none"><br>
-        <br><button class="btn " onclick="verifyCode()">Verify</button>
+        <span>Payment done , Thank you</span>
     </div>
 
             
@@ -200,18 +198,6 @@
             data: { u_id: user_id, card_num: c_num, total_price: total },
             success: function (response) {
                 console.log("done");
-
-                $.ajax({
-                    type: "POST",
-                    url: "send_email.php",
-                    data: { name: $('#f_name').val(), email: $('#email').val() },
-                    success: function (emailResponse) {
-                        console.log("Email sent");
-                    },
-                });
-
-                
-
                 // Show the popup
                 document.getElementById('overlay').style.display = 'block';
                 document.getElementById('popup').style.display = 'block';
@@ -219,6 +205,31 @@
                 setTimeout(function() {
                     document.getElementById('popup').classList.add('visible');
                 }, 10);
+
+
+                setTimeout(function () 
+                {
+                    document.getElementById('popup').classList.remove('visible');
+
+                    setTimeout(function () 
+                    {
+                        window.location.href = 'log_menu.php?userID=' + user_id;
+                    }, 1000);
+                }, 2000);
+
+                // $.ajax({
+                //     type: "POST",
+                //     url: "send_email.php",
+                //     data: { name: $('#f_name').val(), email: $('#email').val() },
+                //     success: function (emailResponse) {
+
+                //         console.log("Email sent");
+                //     },
+                // });
+
+                
+
+                
             },
         });
     }
@@ -243,18 +254,28 @@
                     // Update the content of the popup based on verification response
                     if (verificationResponse === 'success')
                     {
+                        $.ajax(
+                        {
+                            type: "POST",
+                            url: "paydone.php",
+                            data: { user_id:uid },
+                            success: function(response) 
+                            {
+                                console.log("Data added to cart successfully");
+                            }
+                        });
+
                         popupContent.innerHTML = '<p>Verification successful!</p>';
                         document.getElementById('overlay').style.display = 'none';
                         setTimeout(function () 
                         {
                             document.getElementById('popup').classList.remove('visible');
 
-                            // Redirect to the log_menu page after 1.5 seconds (1500 milliseconds)
                             setTimeout(function () 
                             {
                                 window.location.href = 'log_menu.php?userID=' + uid;
                             }, 1000);
-                        }, 2000); // Display success message for 2 seconds (adjust as needed)
+                        }, 2000);
                     } 
                     else 
                     {
