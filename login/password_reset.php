@@ -74,30 +74,33 @@ include("data_connection.php");
 
     <?php 
 
-        $email = isset($_GET['email']);
-
+        $email = isset($_GET['email']) ? $_GET['email'] : null;;
+         echo $email;                       
 
             
     ?>
      <?php
-        if (isset($_POST['sub_set'])) 
+        if (isset($_POST['sub_set'])) {
             $newPassword = $_POST['password'];
             $confirmPassword = $_POST['confirm_password'];
-
         
             // Validate the new password and confirm password
             if ($newPassword != $confirmPassword) {
                 $error[] = "Passwords do not match.";
             } else {
-        
-                // Update the password in the database
-                $updateQuery = "UPDATE users SET password='$confirmPassword ' WHERE email='$email'";
-                mysqli_query($conn, $updateQuery);
-        
+                // Update the password in the database using prepared statement
+                $updateQuery = "UPDATE users SET password=? WHERE email=?";
+                $stmt = mysqli_prepare($conn, $updateQuery);
+                mysqli_stmt_bind_param($stmt, "ss", $confirmPassword, $email);
+                mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+            
                 // Display success message
                 $success = "Password reset successful. You can now <a href='login.php'>login</a> with your new password.";
-                
             }
+        }
+
+        
         
      ?>
 
