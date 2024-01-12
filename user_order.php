@@ -121,23 +121,7 @@
 
 
         <!-- Big Card for Orders -->
-        <div class="container-xxl position-relative p-0">
-            
-            <div class="container px-4 text-center">
-
-                <div class="row gx-5">
-                    <div class="col shadow border rounded" >
-                        <div class="p-3">user id</div>
-                        <div class="p-3">  price</div>
-                        <div class="p-3">  food</div>
-                    </div>
-                    <div class="col shadow border rounded">
-                        <div class="p-3">user id</div>
-                        <div class="p-3">  price</div>
-                        <div class="p-3">  food</div>
-                    </div>
-                </div>
-            </div>
+        <div>
             
         </div>
       
