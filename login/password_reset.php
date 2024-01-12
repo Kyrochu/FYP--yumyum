@@ -53,13 +53,16 @@ include("data_connection.php");
                                 <label class="label_txt">New Password</label>
                                 <input type="password" name="password" placeholder=" " />
                                 <span id="passwordError" class="error-message"></span>
-                                <br>
-                                <br>
+
+                                 <br>
+                                 <br>
 
                                 <label class="label_txt">Confirm Password</label>
                                 <input type="password" name="confirm_password" placeholder="" />
                                 <br>
-                                <button type="submit" name="sub_set" class="btn btn-primary btn-group-lg form_btn">Reset Password</button>
+                                 <button type="submit" name="sub_set" class="btn btn-primary btn-group-lg form_btn">Reset Password</button>
+
+                               
                             <?php } ?>
                         </div>
                     </form>
@@ -69,11 +72,18 @@ include("data_connection.php");
         </div>
     </div>
 
+    <?php 
+
+        $email = isset($_GET['email']);
+
+
+            
+    ?>
      <?php
-        if (isset($_POST['sub_set'])) {
-            $email = $_GET['email'] ?? null;
+        if (isset($_POST['sub_set'])) 
             $newPassword = $_POST['password'];
-            $confirmPassword = $_POST['passwordConfirm'];
+            $confirmPassword = $_POST['confirm_password'];
+
         
             // Validate the new password and confirm password
             if ($newPassword != $confirmPassword) {
@@ -88,7 +98,7 @@ include("data_connection.php");
                 $success = "Password reset successful. You can now <a href='login.php'>login</a> with your new password.";
                 
             }
-        }
+        
      ?>
 
 </body>

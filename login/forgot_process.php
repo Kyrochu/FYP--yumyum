@@ -34,7 +34,7 @@ require 'vendor/autoload.php';
 
         $mail->Subject = 'You have received a password reset email';
         $mail->Body = "Your verify code is $token
-                        Your password reset link: <a href='localhost/FYP--yumyum/login/password_reset.php'>Reset Link</a>";
+                        Your password reset link: <a href='localhost/FYP--yumyum/login/password_reset.php?email=$email'>Reset Link</a>";
 
         $mail->send();
 
