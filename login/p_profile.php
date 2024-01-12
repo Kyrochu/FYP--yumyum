@@ -78,6 +78,14 @@
                      <a href="edit_profile.php?userID=<?php echo $uid?>">Edit Profile</a>
                 </div>
 
+                <div class="EP">
+                     <a href="user_order.php?userID=<?php echo $uid?>">Order Detail</a>
+                </div>
+
+                <div class="EP">
+                     <a href="user_receipt.php?userID=<?php echo $uid?>">Order History</a>
+                </div>
+
                 <div class="B">
                 <a href="/fyp--yumyum/log_index.php?userID=<?php echo $uid?>">Back</a>
                 </div>

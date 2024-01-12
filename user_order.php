@@ -121,8 +121,8 @@
 
 
         <!-- Big Card for Orders -->
-        <div>
-            
+        <div class="container-fluid bg-">
+
         </div>
       
         <!-- table end -->
