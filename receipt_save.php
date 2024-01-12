@@ -3,6 +3,7 @@
 include("connection_sql.php");
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
     if (isset($_POST["u_id"]) && isset($_POST["card_num"]) && isset($_POST["total_price"])) {
         $user_id = $_POST["u_id"];
         $card_num = $_POST["card_num"];
@@ -15,17 +16,18 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $result = mysqli_stmt_execute($stmt);
 
-        // Check for success
+
         if ($result) {
             echo "Order placed successfully.";
         } else {
             echo "Error placing order: " . mysqli_error($connect);
         }
 
+
         $food_query = "SELECT * FROM cart WHERE user_id = '$user_id'";
         $food_result = mysqli_query($connect, $food_query);
 
-        // Loop through the result to access individual rows
+        // Loop 
         while ($row = mysqli_fetch_assoc($food_result)) {
             $food_id = $row['food_id'];
             $quantity = $row['num_food'];
@@ -37,11 +39,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             $order_result = mysqli_stmt_execute($order_stmt);
 
-            // Check for success
             if (!$order_result) {
                 echo "Error inserting data into 'order' table: " . mysqli_error($connect);
             }
         }
+
+        // Delete items from the "cart" table
+        $cart_query = "DELETE FROM cart WHERE user_id = '$user_id'";
+        $cart_result = mysqli_query($connect, $cart_query);
+
+        if (!$cart_result) {
+            echo "Error deleting items from 'cart' table: " . mysqli_error($connect);
+        }
+
+        
+
     } else {
         echo "Invalid data received.";
     }

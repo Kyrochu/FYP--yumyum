@@ -49,7 +49,6 @@
 <?php
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
-    echo "User ID: $uid";
 
     $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
     $result = mysqli_query($connect, $sql);
@@ -129,7 +128,7 @@
                     <h1 class="mb-5">Most Popular Items</h1>
                 </div>
 
-                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post" action="log_search_food.php" >
+                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post" action="log_search_food.php?userID=<?php echo $uid; ?>" >
                     <div class="input-group rounded">
                         <input type="search" class="form-control rounded" name="search_query" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                         <button class="btn btn-primary" type="submit">
@@ -178,8 +177,8 @@
 
                                             while ($menuItem = mysqli_fetch_assoc($menuResult)) {
                                         ?>
-                                            <div class="col-lg-6">
-                                                <div class="d-flex align-items-center">
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="d-flex align-items-center p-4 border rounded shadow">
                                                     <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $menuItem['food_img']; ?>">
                                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">

@@ -39,7 +39,6 @@
 <?php
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
-    echo "User ID: $uid";
 
     $user = "SELECT * FROM users WHERE id = '$uid'";
     $user_result = mysqli_query($connect, $user);

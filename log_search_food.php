@@ -45,19 +45,23 @@
 </head>
 
 <?php
-    $sql = "SELECT COUNT(*) AS totalRows FROM cart";
+    $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
+
+
+    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
     $result = mysqli_query($connect, $sql);
 
-    // Check if the query was successful
+
     if ($result) 
     {
-        // Fetch the result as an associative array
+  
         $row = mysqli_fetch_assoc($result);
-
-        // Access the count value
         $totalRows = $row['totalRows'];
 
     }
+    $user = "SELECT * FROM users WHERE id = '$uid'";
+    $user_result = mysqli_query($connect, $user);
+    $row_user = mysqli_fetch_assoc($user_result);
 ?>
 
 <body class="all">
@@ -85,15 +89,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="log_index.php" class="nav-item nav-link">Home</a>
-                        <a href="log_about.php" class="nav-item nav-link">About</a>
-                        <a href="log_service.php" class="nav-item nav-link">Service</a>
-                        <a href="log_menu.php" class="nav-item nav-link active">Menu</a>
-                        <a href="log_contact.php" class="nav-item nav-link">Contact</a>
+                        <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
+                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
+                        <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
+                        <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Menu</a>
+                        <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                        <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                         <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
                             style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
                     </div>
-                    <a href="" class="btn btn-primary py-2 px-4">Check Out</a>
+                    <a href="index.html" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">LogOut</a>
                 </div>
             </nav>
 
