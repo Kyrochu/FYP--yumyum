@@ -75,7 +75,6 @@ include("data_connection.php");
     <?php 
 
         $email = isset($_GET['email']) ? $_GET['email'] : null;;
-         echo $email;                       
 
             
     ?>
