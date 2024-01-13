@@ -121,38 +121,91 @@
 
         <div class="container-fluid bg-secondary">
             <br>
-            <h2 class="text-primary" style="text-align: center;" >Your Order List</h2>
-            
-            <div class="row  justify-content-center "  >
+            <h2 class="text-primary" style="text-align: center;">Your Order List</h2>
+
+            <div class="row justify-content-start">
                 <!-- card start -->
-                
-                    
-                    <div class="col-md-4  " style="padding-left: 3rem;" >
-                        <div class="card  mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;   ">
-                            <div class="card-header shadow  bg-warning  " style="border-radius: 8px;" >Header</div>
-                            <div class="card-body" style="overflow-y: auto;" >
-                                <p class="card-text">Name: chu</p>
-                                <p class="card-text">Time: 12.00am</p>
-                                <div class="card-text">Food Orded: 
-                                    <div class="card-body"  >
-                                        <p class="card-text">Food Orded: </p>
-                                        <p class="card-text">Food Orded: </p>
+                <?php
+                $order = "SELECT * FROM `order` WHERE user_id = ?";
+                $order_stmt = $connect->prepare($order);
+                $order_stmt->bind_param("s", $uid);
+                $order_stmt->execute();
+                $order_result = $order_stmt->get_result();
+
+                $grouped_orders = [];
+
+                while ($row_order = mysqli_fetch_assoc($order_result)) {
+                    $time = $row_order["or_time"];
+                    $fid = $row_order["food_id"];
+                    $n_food = $row_order["num_food"];
+
+                    $menu = "SELECT * FROM menu WHERE food_id = ?";
+                    $menu_stmt = $connect->prepare($menu);
+                    $menu_stmt->bind_param("i", $fid);
+                    $menu_stmt->execute();
+                    $menu_result = $menu_stmt->get_result();
+
+                    if ($menu_result->num_rows > 0) {
+                        $row_menu = mysqli_fetch_assoc($menu_result);
+
+                        $order_group_key = $row_order["or_time"];
+
+                        if (!isset($grouped_orders[$order_group_key])) {
+                            $grouped_orders[$order_group_key] = [
+                                'name' => $row_user["name"],
+                                'time' => $row_order["or_time"],
+                                'foods' => []
+                            ];
+                        }
+
+                        $grouped_orders[$order_group_key]['foods'][] = [
+                            'food_name' => $row_menu["food_name"],
+                            'food_price' => $row_menu["food_price"],
+                            'food_num' => $row_order["num_food"],
+                            // Add other fields you want to display
+                        ];
+                    } else {
+                        echo "No menu items found for food_id: $fid";
+                    }
+                }
+
+                $order_stmt->close();
+                $menu_stmt->close();
+
+                // Display the grouped orders
+                foreach ($grouped_orders as $group) {
+                ?>
+                    <div class="col-md-4" style="padding-left: 3rem;">
+                        <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
+                            <div class="card-header shadow bg-warning" style="border-radius: 8px;">Header</div>
+                            <div class="card-body" style="overflow-y: auto;">
+                                <p class="card-text">Name: <?php echo $group['name']; ?></p>
+                                <p class="card-text">Time: <?php echo $group['time']; ?></p>
+                                <div class="card-text">Food Ordered:
+                                    <div class="card-body">
+                                        <?php
+                                        // Loop to display all ordered foods
+                                        foreach ($group['foods'] as $food) {
+                                        ?>
+                                            <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
+                                            <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo $food["food_price"]; ?></p>
+                                        <?php
+                                        }
+                                        ?>
                                     </div>
                                 </div>
-                                <p class="card-text">Price: RM32.00</p>
+                                <!-- You can add more information here -->
                             </div>
                         </div>
                     </div>
-
-                    
-                
+                <?php
+                }
+                ?>
                 <!-- card start -->
-
             </div>
             <br>
         </div>
 
-      
         <!-- table end -->
 
 

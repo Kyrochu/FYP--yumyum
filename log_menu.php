@@ -392,12 +392,14 @@
 
                     data.options.forEach(option => {
                         document.getElementById('popup').innerHTML += `
-                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_price}">
-                                ${option.add_name} (+RM ${option.add_price})<br>
-                            `;
+                            <input type="checkbox" name="checkboxGroup[]" 
+                                value="${option.add_price}" data-option-name="${option.add_name}">
+                            ${option.add_name} (+RM ${option.add_price})<br>
+                        `;
                     });
 
                     document.getElementById('popup').innerHTML += '</div>';
+
                 }
 
                 // Add buttons and other HTML as needed
@@ -419,44 +421,42 @@
     }
 
 
-    function submitForm(userid , id) {
+    function submitForm(userid, id) {
         var fdid = id;
 
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').classList.remove('visible');
 
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('popup').style.display = 'none';
         }, 500);
 
         var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
 
-        // Calculate the total price
-        var addPrice = 0;
-        checkboxes.forEach(function(checkbox) {
-            addPrice += parseFloat(checkbox.value);
+        checkboxes.forEach(function (checkbox) {
+            var addPrice = parseFloat(checkbox.value);
+            var addName = checkbox.getAttribute('data-option-name');
+
+            $.ajax({
+                type: "GET",
+                data: {
+                    food_id: fdid,
+                    add_on_price: addPrice,
+                    add_on_name: addName,
+                    uid: userid
+                },
+                url: "add_to_cart.php",
+                success: function (response) {
+                    console.log("Data added to cart successfully");
+                }
+            });
         });
 
-        $.ajax({
-            type: "GET",
-            data: {
-                food_id: fdid,
-                add_on: addPrice,
-                uid: userid
-            },
-            url: "add_to_cart.php",
-            success: function(response) {
-                console.log("Data added to cart successfully");
-            }
-        });
-
-        // window.location.reload();
-        
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.reload();
         }, 300);
-        
     }
+
     </script>
 
     <!-- for add and delete cart tab -->
