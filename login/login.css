@@ -75,7 +75,7 @@ form {
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	padding: 0 50px;
+	padding: 0 30px;
 	height: 100%;
 	text-align: center;
 }
@@ -104,6 +104,7 @@ input {
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
+	
 }
 
 .sign-in-container {
@@ -242,7 +243,7 @@ input {
 
 .password-container {
     position: relative;
-    display: inline-block; /* 使容器大小适应内容 */
+    display: inline-block; 
 }
 
 .password-container {
@@ -259,3 +260,22 @@ input {
     color: #7a7474;
 }
 
+
+.password-container1 {
+    position: relative;
+    display: inline-block; 
+}
+
+.password-container1 {
+   width: 100%;
+}
+
+
+#togglePasswordSignUp {
+    position: absolute;
+    top: 55%;
+    right: 15px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7a7474;
+}

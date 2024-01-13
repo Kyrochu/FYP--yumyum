@@ -24,17 +24,18 @@
         <div class="form-container sign-up-container">
         <form action="register.php" method="post">
                 <h1>Sign Up</h1>       
-                <input type="text" name="name" placeholder="Name" />
-                <input type="text" name="contact_number" placeholder="Contact Number" />
+                <input type="text" name="name" required placeholder="Name" />
+                <input type="text" name="contact_number" required placeholder="Contact Number" />
+                <span id="contactNumberFormat"></span>
                 <span id="contactNumberError" class="error-message"></span>
-                <input type="email" name="email" placeholder="Email" />
-                <input type="password" name="password" placeholder="Create Password " />
+                <input type="email" name="email" required placeholder="Email" />
+                <div class="password-container1">
+                    <input type="password" name="password" required placeholder="Create Password" id="signupPassword" />
+                    <i class="fas fa-eye" id="togglePasswordSignUp"></i>
+                </div>
                 <span id="passwordError" class="error-message"></span>
-                <input type="password" name="confirm_password" placeholder="Comfirm Password " />
-                <input type="text" name="address" placeholder="Address" />
-                <input type="text" name="city" placeholder="City" />
-                <input type="text" name="state" placeholder="State" />
-                <input type="text" name="postcode" placeholder="Postcode" />
+                <input type="password" name="confirm_password" required placeholder="Comfirm Password " />
+        
 
                 <button id="signUpbutton" name="signUpbutton">Sign Up</button>
             </form>
@@ -86,21 +87,51 @@
     const togglePasswordButton = document.getElementById('togglePassword');
 
 
-    const passwordRegex = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[A-Z])(?=.*[0-9]).{8,}$/;
     const contactNumberInput = document.querySelector('input[name="contact_number"]');
     const contactNumberError = document.getElementById('contactNumberError');
-    const contactNumberRegex = /^[0-9]+$/;
+    const contactNumberFormat = document.getElementById('contactNumberFormat');
+    const contactNumberRegex = /^[0-9\-]+$/; 
 
-    contactNumberInput.addEventListener('input', function () {
-        const contactNumber = this.value;
-        if (contactNumber === '') {
-            contactNumberError.textContent = '';
+        contactNumberInput.addEventListener('input', function () {
+        let contactNumber = this.value;
+
+        
+        contactNumberInput.addEventListener('input', function () {
+        let contactNumber = this.value;
+
+        
+        contactNumber = contactNumber.replace(/[^\d\-]/g, '');
+        contactNumber = contactNumber.replace(/[^\d\-]|-(?=[^-]*-)/g, '');
+
+        if (contactNumber === '' || contactNumber === '-') {
+            contactNumberError.textContent = 'Please enter a valid contact number.';
+            contactNumberError.style.color = 'red';
+            contactNumberFormat.textContent = '';
         } else if (!contactNumberRegex.test(contactNumber)) {
-            contactNumberError.textContent = 'Contact number should contain numbers only.';
+            contactNumberError.textContent = 'Contact number should contain numbers and at most one hyphen.';
+            contactNumberError.style.color = 'red';
+            contactNumberFormat.textContent = '';
         } else {
-            contactNumberError.textContent = '';
+            const formattedContactNumber = contactNumber.replace(/(\d{3})-?(\d+)/, '$1-$2');
+
+            if (formattedContactNumber !== this.value) {
+                // 如果格式不匹配，显示提示信息
+                contactNumberError.textContent = 'Contact number should be in the format: xxx-xxxxxxx';
+                contactNumberError.style.color = 'red';
+                contactNumberFormat.textContent = '';
+            } else {
+                // 格式匹配时清空错误信息
+                contactNumberError.textContent = '';
+                contactNumberError.style.color = '';
+            }
         }
-    });
+
+        // 更新输入框的值
+        this.value = contactNumber;
+        });
+
+});
+
     
 
     const passwordInput = document.querySelector('input[name="password"]');
@@ -128,7 +159,7 @@
     }
     });
 
-passwordInput.addEventListener('blur', function () {
+    passwordInput.addEventListener('blur', function () {
     const password = this.value;
     const passwordError = document.getElementById('passwordError');
 
@@ -152,6 +183,17 @@ passwordInput.addEventListener('blur', function () {
             togglePasswordButton.classList.toggle("fa-eye");
             togglePasswordButton.classList.toggle("fa-eye-slash");
         });
+
+        const togglePasswordButtonSignUp = document.getElementById('togglePasswordSignUp');
+        const signUpPassword = document.querySelector('input[name="password"]');
+
+        togglePasswordButtonSignUp.addEventListener('click', () => {
+            const type = signUpPassword.getAttribute("type") === "password" ? "text" : "password";
+            signUpPassword.setAttribute("type", type);
+
+            togglePasswordButtonSignUp.classList.toggle("fa-eye");
+            togglePasswordButtonSignUp.classList.toggle("fa-eye-slash");
+        });
         
         const signUpForm = document.querySelector('.sign-up-container form');
         signUpForm.addEventListener('submit', function (event) {
@@ -161,20 +203,14 @@ passwordInput.addEventListener('blur', function () {
             const email = document.querySelector('input[name="email"]').value;
             const password = document.querySelector('input[name="password"]').value;
             const confirmPassword = document.querySelector('input[name="confirm_password"]').value;
-            const address = document.querySelector('input[name="address"]').value;
-            const city = document.querySelector('input[name="city"]').value;
-            const state = document.querySelector('input[name="state"]').value;
-            const postcode = document.querySelector('input[name="postcode"]').value;
+           
 
-            const fields = [name, contactNumber, email, password, confirmPassword, address, city, state, postcode];
+            const fields = [name, contactNumber, email, password, confirmPassword];
 
             // Check if any field is empty
             const isEmpty = fields.some(field => field.trim() === '');
 
-            if (isEmpty) {
-                event.preventDefault(); // Prevent form submission
-                alert('Please fill in all fields.');
-            } else if (password !== confirmPassword) {
+            if (password !== confirmPassword) {
                 event.preventDefault(); // Prevent form submission
                 alert('Passwords do not match.');
             }

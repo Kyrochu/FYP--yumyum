@@ -49,7 +49,6 @@
 <?php
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
-    echo "User ID: $uid";
 
     $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
     $result = mysqli_query($connect, $sql);
@@ -129,7 +128,7 @@
                     <h1 class="mb-5">Most Popular Items</h1>
                 </div>
 
-                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post" action="log_search_food.php" >
+                <form class="d-flex justify-content-center" style="max-width: 400px; margin: 0 auto;" method="post" action="log_search_food.php?userID=<?php echo $uid; ?>" >
                     <div class="input-group rounded">
                         <input type="search" class="form-control rounded" name="search_query" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                         <button class="btn btn-primary" type="submit">
@@ -178,8 +177,8 @@
 
                                             while ($menuItem = mysqli_fetch_assoc($menuResult)) {
                                         ?>
-                                            <div class="col-lg-6">
-                                                <div class="d-flex align-items-center">
+                                            <div class="col-lg-6 mb-4">
+                                                <div class="d-flex align-items-center p-4 border rounded shadow">
                                                     <img class="flex-shrink-0 img-fluid rounded" style="width: 80px;" src="./img/<?php echo $menuItem['food_img']; ?>">
                                                     <div class="w-100 d-flex flex-column text-start ps-4">
                                                         <h5 class="d-flex justify-content-between border-bottom pb-2">
@@ -393,12 +392,14 @@
 
                     data.options.forEach(option => {
                         document.getElementById('popup').innerHTML += `
-                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_price}">
-                                ${option.add_name} (+RM ${option.add_price})<br>
-                            `;
+                            <input type="checkbox" name="checkboxGroup[]" 
+                                value="${option.add_price}" data-option-name="${option.add_name}">
+                            ${option.add_name} (+RM ${option.add_price})<br>
+                        `;
                     });
 
                     document.getElementById('popup').innerHTML += '</div>';
+
                 }
 
                 // Add buttons and other HTML as needed
@@ -420,44 +421,42 @@
     }
 
 
-    function submitForm(userid , id) {
+    function submitForm(userid, id) {
         var fdid = id;
 
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').classList.remove('visible');
 
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('popup').style.display = 'none';
         }, 500);
 
         var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
 
-        // Calculate the total price
-        var addPrice = 0;
-        checkboxes.forEach(function(checkbox) {
-            addPrice += parseFloat(checkbox.value);
+        checkboxes.forEach(function (checkbox) {
+            var addPrice = parseFloat(checkbox.value);
+            var addName = checkbox.getAttribute('data-option-name');
+
+            $.ajax({
+                type: "GET",
+                data: {
+                    food_id: fdid,
+                    add_on_price: addPrice,
+                    add_on_name: addName,
+                    uid: userid
+                },
+                url: "add_to_cart.php",
+                success: function (response) {
+                    console.log("Data added to cart successfully");
+                }
+            });
         });
 
-        $.ajax({
-            type: "GET",
-            data: {
-                food_id: fdid,
-                add_on: addPrice,
-                uid: userid
-            },
-            url: "add_to_cart.php",
-            success: function(response) {
-                console.log("Data added to cart successfully");
-            }
-        });
-
-        // window.location.reload();
-        
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.reload();
         }, 300);
-        
     }
+
     </script>
 
     <!-- for add and delete cart tab -->

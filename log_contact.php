@@ -46,7 +46,6 @@
 <?php
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
-    echo "User ID: $uid";
 
     $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
     $result = mysqli_query($connect, $sql);
