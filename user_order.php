@@ -119,11 +119,39 @@
 
         <!-- table start -->
 
+        <div class="container-fluid bg-secondary">
+            <br>
+            <h2 class="text-primary" style="text-align: center;" >Your Order List</h2>
+            
+            <div class="row  justify-content-center "  >
+                <!-- card start -->
+                
+                    
+                    <div class="col-md-4  " style="padding-left: 3rem;" >
+                        <div class="card  mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;   ">
+                            <div class="card-header shadow  bg-warning  " style="border-radius: 8px;" >Header</div>
+                            <div class="card-body" style="overflow-y: auto;" >
+                                <p class="card-text">Name: chu</p>
+                                <p class="card-text">Time: 12.00am</p>
+                                <div class="card-text">Food Orded: 
+                                    <div class="card-body"  >
+                                        <p class="card-text">Food Orded: </p>
+                                        <p class="card-text">Food Orded: </p>
+                                    </div>
+                                </div>
+                                <p class="card-text">Price: RM32.00</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Big Card for Orders -->
-        <div class="container-fluid bg-">
+                    
+                
+                <!-- card start -->
 
+            </div>
+            <br>
         </div>
+
       
         <!-- table end -->
 

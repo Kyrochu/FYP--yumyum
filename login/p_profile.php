@@ -79,11 +79,11 @@
                 </div>
 
                 <div class="EP">
-                     <a href="user_order.php?userID=<?php echo $uid?>">Order Detail</a>
+                     <a href="../user_order.php?userID=<?php echo $uid?>">Order Detail</a>
                 </div>
 
                 <div class="EP">
-                     <a href="user_receipt.php?userID=<?php echo $uid?>">Order History</a>
+                     <a href="../user_receipt.php?userID=<?php echo $uid?>">Order History</a>
                 </div>
 
                 <div class="B">
