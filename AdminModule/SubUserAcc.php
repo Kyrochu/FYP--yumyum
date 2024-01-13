@@ -199,7 +199,7 @@ if(!isset($_SESSION['email']))
             
             <div class="userTable">
 
-            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User's Registered Accounts </h2>
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User's Accounts </h2>
 
             <div class="addUserbtn">
 
@@ -311,8 +311,7 @@ if(!isset($_SESSION['email']))
                         <th> Email </th>
                         <th> Contact Number </th>
                         <th> Address </th>
-                        <th> Edit </th>
-                        <th> DELETE</th>
+                        <th> Disable</th>
 
                     </tr>
 
@@ -331,15 +330,9 @@ if(!isset($_SESSION['email']))
                         <th> <?php echo $row["contact_number"]; ?> </th>
                         <th> <?php echo $row["address"]; ?> </th>
                         <th>
-                            <form method="post" action="EditUser.php"> 
-                                <input type="hidden" name="edit_id" value="<?php echo $row["id"]; ?>" >
-                                <button type="submit" name="edit-btn" class="edit"> EDIT </button>
-                            </form>
-                        </th>
-                        <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
-                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to delete this record?')"> DELETE </button>
+                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to delete this record?')"> DISABLE </button>
                             </form>
                         </th>
                       

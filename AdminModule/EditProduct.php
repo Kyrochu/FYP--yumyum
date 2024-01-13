@@ -227,10 +227,9 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 {
             ?>    
             
-            <form method="GET" action="" enctype="multipart/form-data"> 
+            <form method="POST" action="" enctype="multipart/form-data"> 
 
                 <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
-
 
                 <div class="form-element">
                     PRODUCT NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
@@ -263,34 +262,47 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 }
             }
 
-            if(isset($_GET['updateProduct']))
+            if(isset($_POST['updateProduct']))
             {
-                $Pro_id = $_GET['product_id'];
-                $Pro_name = $_GET['name'];
-                $Pro_price = $_GET['price'];
-                $Pro_desc = $_GET['desc'];
+                $Pro_id = $_POST['product_id'];
+                $Pro_name = $_POST['name'];
+                $Pro_price = $_POST['price'];
+                $Pro_desc = $_POST['desc'];
                 $productImage = $_FILES['image']['name'];
                 $productImageTmp = $_FILES['image']['tmp_name'];
 
-                $query = "UPDATE menu SET food_name = '$Pro_name',food_price = '$Pro_price' , food_description = '$Pro_desc' WHERE food_id =$Pro_id ";
-                $query_run = mysqli_query($connect,$query);
-
-                if($query_run)
+                if (!empty($productImage)) 
                 {
-                    echo "<script>alert('Product Updated');
-                    window.location.href = 'ProductSuper.php';</script>";// Redirect to ProductSuper.php after successful update
-                    exit(); // Ensure script execution stops after redirection
-                }
-                else
+                    $uploadPath = 'product_images/'; 
+        
+                    // Move the uploaded image to your desired directory
+                    move_uploaded_file($productImageTmp, $uploadPath . $productImage);
+                } 
+                    else 
                 {
-                    // Handle the case if the update query fails
-                    echo "<script>alert('Failed to update product!');
-                    window.location.href = 'ProductSuper.php';</script>";
+                    // If no new image is uploaded, use the existing image filename
+                    $productImage = $currentImage;
                 }
+        
+                $query = "UPDATE menu SET food_name = '$Pro_name', food_price = '$Pro_price', food_description = '$Pro_desc', food_img = '$productImage' WHERE food_id = $Pro_id";
+                $query_run = mysqli_query($connect, $query);
+        
+                if ($query_run) 
+                {
+                    if (!empty($productImage)) 
+                    {
+                        move_uploaded_file($_FILES['image']['tmp_name'], "product_images/".$_FILES['image']['name']);
+                    }
 
+                    echo "<script>alert('Product Updated'); window.location.href = 'ProductSuper.php';</script>";
+                    sleep(1);
+                } 
+                else 
+                {
+                    echo "<script>alert('Failed to update product!'); window.location.href = 'ProductSuper.php';</script>";
+                }
+            
             }
-
-
             ?>
 
 

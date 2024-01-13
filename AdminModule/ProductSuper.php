@@ -204,7 +204,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             
             <div class="menus">
 
-                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menus </h2>
+                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Products </h2>
 
             </div> 
 
@@ -221,60 +221,63 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <div class="display-products">
 
             <?php
-if (isset($_GET['cat_type'])) 
-{
-    $selected_category_id = $_GET['cat_type'];
+            
+            if (isset($_GET['cat_type'])) 
+            {
+                $selected_category_id = $_GET['cat_type'];
 
-    $connect = mysqli_connect("localhost", "root", "", "yumyum");
+                $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
-    // Fetch products for the selected category
-    $result = mysqli_query($connect, "SELECT * FROM menu WHERE food_type = '$selected_category_id' ");
+                // Fetch products for the selected category
+                $result = mysqli_query($connect, "SELECT * FROM menu WHERE food_type = '$selected_category_id' ");
 
-    if ($result && mysqli_num_rows($result) > 0) 
-    {
-        echo "<table class='productTable' border='2' cellspacing='0'>
-                <tr class='headings'>
-                    <th>No.</th>
-                    <th>Product Name</th>
-                    <th>Price (RM)</th>
-                    <th>Description</th>
-                    <th>Image</th>
-                    <th>Edit</th>
-                    <th>Delete</th>
-                </tr>";
+                if ($result && mysqli_num_rows($result) > 0) 
+                {
+                    echo "<table class='productTable' border='2' cellspacing='0'>
+                            <tr class='headings'>
+                                <th>No.</th>
+                                <th>Product Name</th>
+                                <th>Price (RM)</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>";
 
-        while ($row = mysqli_fetch_assoc($result)) 
-        {
-            // Display product details here for the selected category
-            $productName = $row['food_name'];
-            $productPrice = $row['food_price'];
-            $productDescription = $row['food_description'];
-            $productImage = $row['food_img'];
-            $productId = $row['food_id'];
+                    while ($row = mysqli_fetch_assoc($result)) 
+                    {
+                        // Display product details here for the selected category
+                        $productName = $row['food_name'];
+                        $productPrice = $row['food_price'];
+                        $productDescription = $row['food_description'];
+                        $productImage = $row['food_img'];
+                        $productId = $row['food_id'];
 
-            echo "<tr>
-                    <td>$productId</td>
-                    <td>$productName</td>
-                    <td>$productPrice</td>
-                    <td>$productDescription</td>
-                    <td><img src='product_images/$productImage' alt='Product Image' class='img'> </td>
-                    <td>
-                        <form action='EditProduct.php' method='GET'>
-                            <input type='hidden' name='cat_id' value='$selected_category_id'>
-                            <input type='hidden' name='pro_id' value='$productId'>
-                            <button type='submit' name='editbtn' class='edit'>EDIT</button>
-                        </form>
-                    </td>
-                    <td>
-                        <button class='dlt' onclick='deleteProduct($productId, $selected_category_id)'>DELETE</button>
-                    </td>
-                </tr>";
-        }
+                        echo "<tr>
+                                <td>$productId</td>
+                                <td>$productName</td>
+                                <td>$productPrice</td>
+                                <td>$productDescription</td>
+                                <td><img src='product_images/$productImage' alt='Product Image' class='img'> </td>
+                                <td>
+                                    <form action='EditProduct.php' method='GET'>
+                                        <input type='hidden' name='cat_id' value='$selected_category_id'>
+                                        <input type='hidden' name='pro_id' value='$productId'>
+                                        <button type='submit' name='editbtn' class='edit'>EDIT</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <button class='dlt' onclick='deleteProduct($productId, $selected_category_id)'>DELETE</button>
+                                </td>
+                            </tr>";
+                    }
 
-        echo "</table>";
-    } else {
-        echo 'No products available for this category.';
-    }
+                        echo "</table>";
+                } 
+                else 
+                {
+                    echo 'No products available for this category.';
+                }
 
 }
 ?>

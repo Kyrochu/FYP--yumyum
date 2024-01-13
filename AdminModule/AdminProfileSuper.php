@@ -209,10 +209,14 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <div class="editAdminProfile">
 
                     <?php
+                            
+                            $name = isset($_GET['name']) ? $_GET['name'] : '';
 
-                            $query = "SELECT * FROM admin_acc WHERE id='$id' ";
+                            $query = "SELECT * FROM admin_acc WHERE name='$name' ";
                             $query_run = mysqli_query($connect,$query);
-                            $row = mysqli_fetch_assoc($query_run);                        
+                            $row = mysqli_fetch_assoc($query_run); 
+                            
+                            
 
                     ?>
 

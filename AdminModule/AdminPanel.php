@@ -121,9 +121,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Menu </a>
-                        <a href="" class="sub-item"> Inventory </a>
-
+                        <a href="MenusSuper.php" class="sub-item"> Menu </a>
                         
                     </div>
         
