@@ -267,7 +267,10 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     </form>
                                 </td>
                                 <td>
-                                    <button class='dlt' onclick='deleteProduct($productId, $selected_category_id)'>DELETE</button>
+                                    <form action='' method='POST'onsubmit=\"return confirm('Are you sure you want to delete this product?')\">
+                                        <input type='hidden' name='delete_id' value='$productId'>
+                                        <button type='submit' name='deletebtn' class='dlt'>DELETE</button>
+                                    </form>
                                 </td>
                             </tr>";
                     }
@@ -277,6 +280,21 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 else 
                 {
                     echo 'No products available for this category.';
+                }
+
+                if (isset($_POST['deletebtn'])) 
+                {
+                    $deleteProductId = $_POST['delete_id'];
+                
+                    // Perform the delete operation
+                    $deleteQuery = "DELETE FROM menu WHERE food_id = '$deleteProductId'";
+                    $deleteResult = mysqli_query($connect, $deleteQuery);
+                
+                    if ($deleteResult) {
+                        echo "<script>alert('Product deleted successfully.'); window.location.href = 'ProductSuper.php?cat_type=$selected_category_id';</script>";
+                    } else {
+                        echo "<script>alert('Failed to delete product.'); window.location.href = 'ProductSuper.php?cat_type=$selected_category_id';</script>";
+                    }
                 }
 
 }

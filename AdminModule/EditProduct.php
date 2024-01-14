@@ -294,12 +294,12 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         move_uploaded_file($_FILES['image']['tmp_name'], "../img/".$_FILES['image']['name']);
                     }
 
-                    echo "<script>alert('Product Updated'); window.location.href = 'ProductSuper.php';</script>";
+                    echo "<script>alert('Product Updated'); window.location.href = 'ProductSuper.php?cat_type=$selected_category_id';</script>";
                     sleep(1);
                 } 
                 else 
                 {
-                    echo "<script>alert('Failed to update product!'); window.location.href = 'ProductSuper.php';</script>";
+                    echo "<script>alert('Failed to update product!'); window.location.href = 'ProductSuper.php?cat_type=$selected_category_id';</script>";
                 }
             
             }
