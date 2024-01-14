@@ -439,6 +439,7 @@
         checkboxes.forEach(function (checkbox) {
             var addPrice = parseFloat(checkbox.value);
             var addName = checkbox.getAttribute('data-option-name');
+            
 
             $.ajax({
                 type: "GET",
