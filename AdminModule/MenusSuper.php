@@ -335,11 +335,39 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
                     {
                         echo '<div class="Cat-container">';
+                        
                         echo '<a href="ProductSuper.php?cat_type=' . $categoryData['cat_type'] . '" class="cat_link"> ';
                         echo '<img src="category_images/' . $categoryData['cat_img'] . '" class="cat_img">';
                         echo '</a>';
                         echo '<h3>' . $categoryData['cat_name'] . '</h3>';
+
+                        echo '<form method="post">';
+                        echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
+                        echo '<button type="submit" name="edit-btn" class="edit">Edit</button>';
+                        echo '</form>';
+
+                        echo '<form method="post" onsubmit="return confirm(\'Are you sure you want to delete this category?\');">';
+                        echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
+                        echo '<button type="submit" name="dlt-btn" class="dlt">Delete</button>';
+                        echo '</form>';
+                        
                         echo '</div>';
+                    }
+                }
+
+                if(isset($_POST['dlt-btn']))
+                {
+                    $deleteCategoryID = $_POST['category_id'];
+
+                    $deleteQuery = "DELETE FROM category WHERE cat_id='$deleteCategoryID' ";
+                    $deleteResult = mysqli_query($connect,$deleteQuery);
+
+                    if ($deleteResult) 
+                    {
+                        echo "<script>alert('Category deleted successfully.'); window.location.href = 'MenusSuper.php';</script>";
+                    } else 
+                    {
+                        echo "<script>alert('Failed to delete category.'); window.location.href = 'MenusSuper.php';</script>";
                     }
                 }
                 

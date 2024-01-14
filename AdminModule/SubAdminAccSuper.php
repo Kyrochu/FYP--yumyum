@@ -305,8 +305,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 // Fetch the admin accounts
                 $result = mysqli_query($connect, "SELECT * FROM admin_acc");
 
-                
-
 
             ?>
 

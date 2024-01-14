@@ -252,7 +252,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
                 <div class="form-element">
-                    <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='MenusSuper.php';">
+                    <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='ProductSuper.php?cat_type=<?php echo $selected_category_id ?>';">
                 </div>
             
             </form>

@@ -147,9 +147,9 @@ header h1
     color:black;
     background-color:#ebe9e9;
     font-family:"Segoe UI",sans-serif;
-    width:1285px;
+    width:1280px;
     padding:10px 10px;
-    margin-left:250px;
+    margin-left:245px;
     border:3px solid blanchedalmond;
     border-radius:8px;
     
@@ -265,6 +265,15 @@ header h1
     text-align: center;
     width:20%;
     padding:8px;
+}
+
+.adminAcc th:first-child 
+{
+    width: 5%; /* Set the width for the first (ID) column */
+}
+
+.adminAcc th:last-child {
+    width: 20%; /* Set the width for the first (ID) column */
 }
 
 .edit

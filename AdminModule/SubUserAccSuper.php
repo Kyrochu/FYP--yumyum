@@ -329,11 +329,11 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> <?php echo $row["name"]; ?> </th>
                         <th> <?php echo $row["email"]; ?> </th>
                         <th> <?php echo $row["contact_number"]; ?> </th>
-                        <th> <?php echo $row["address"]; ?> </th>
+                        <th> <?php echo $row["address"] . ', ' . $row["city"] . ', ' . $row["state"] . ' ' . $row["postcode"]; ?> </th>
                         <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
-                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to delete this record?')"> DISABLE </button>
+                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to disable this account?')"> DISABLE </button>
                             </form>
                         </th>
                       

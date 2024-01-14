@@ -279,7 +279,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 } 
                 else 
                 {
-                    echo 'No products available for this category.';
+                    echo '<div style="text-align: center; font-size: 20px; font-weight: bold; color: #555; margin-top: 20px;">No products available for this category.</div>';
                 }
 
                 if (isset($_POST['deletebtn'])) 
