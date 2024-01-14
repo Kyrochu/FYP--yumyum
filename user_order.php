@@ -93,7 +93,7 @@
                             <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
                             <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
                             <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
-                            <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Contact</a>
+                            <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Contact</a>
                             <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                             <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
                                 style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
@@ -177,12 +177,12 @@
                 ?>
                     <div class="col-md-4" style="padding-left: 3rem;">
                         <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
-                            <div class="card-header shadow bg-warning" style="border-radius: 8px;">Header</div>
+                            <div class="card-header shadow bg-warning" style="border-radius: 8px;">Panding Order</div>
                             <div class="card-body" style="overflow-y: auto;">
                                 <p class="card-text">Name: <?php echo $group['name']; ?></p>
                                 <p class="card-text">Time: <?php echo $group['time']; ?></p>
                                 <div class="card-text">Food Ordered:
-                                    <div class="card-body">
+                                    <div class="card-body ">
                                         <?php
                                         // Loop to display all ordered foods
                                         foreach ($group['foods'] as $food) {
