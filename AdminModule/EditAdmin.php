@@ -84,7 +84,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="Admin.html">    
+                <a href="">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -97,7 +97,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <div class="menu">
 
                 <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
+                <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> Dashboard </a></div>
                 <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
                 <!-- Dropdown List (Accounts)-->
@@ -106,8 +106,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <div class="sub-menu">
 
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
+                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
+                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
 
 
                     </div>
@@ -124,7 +124,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Menu </a>
+                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
                         
                     </div>
         
@@ -139,7 +139,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Status </a>
+                        <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Status </a>
                         <a href="" class="sub-item"> History </a>
 
 

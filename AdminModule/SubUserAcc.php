@@ -136,7 +136,7 @@ if(!isset($_SESSION['email']))
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Status </a>
+                        <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Status </a>
                         <a href="" class="sub-item"> History </a>
 
 
