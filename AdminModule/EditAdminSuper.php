@@ -85,7 +85,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <i class="fas fa-times"> </i>
                 
                 </div>
-                <a href="Admin.html">    
+                <a href="">    
                    
                     <img src="admin.png" alt="No Image!">
 
@@ -140,7 +140,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <div class="sub-menu">
 
-                        <a href="" class="sub-item"> Status </a>
+                        <a href="StatusSuper.phpid=<?php echo $id; ?>" class="sub-item"> Status </a>
                         <a href="" class="sub-item"> History </a>
 
 

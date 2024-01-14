@@ -583,6 +583,79 @@ header h1
     background-color:crimson;
 }
 
+/*------------------------------------------ Display Status ------------------------------------------- */
+
+.PendingstatusBox
+{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+
+.Status-container 
+{
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 14px;
+    margin-right: 20px;
+    width: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.Status-container .cus-info 
+{
+    flex-basis: 100%; /* Set the width of each customer info container to 100% */
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 15rem;
+
+}
+
+.Status-container .btn
+{
+    margin-top:25px;
+    margin-left:48px;
+    margin-bottom:20px;;
+    cursor: pointer; 
+    font-size:12px; 
+    width:50%; 
+    height:40px;
+    border-radius:10px;
+    font-weight:bold;
+    background-color: lightgreen;
+}
+
+.Status-container .btn:hover
+{
+    background-color:greenyellow;
+}
+
+/*------------------------------------------ Display History ------------------------------------------- */
+
+.Historybox
+{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap: wrap;
+}
+
+.History-container
+{
+    border:2px solid black;
+    border-radius:5px;
+    padding:20px;
+    margin:14px;
+    margin-right:20px;
+    width:20%;
+}
+
+
 
 
 
