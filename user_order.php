@@ -174,6 +174,7 @@
 
                 // Display the grouped orders
                 foreach ($grouped_orders as $group) {
+                    $total = 0;
                 ?>
                     <div class="col-md-4" style="padding-left: 3rem;">
                         <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
@@ -192,8 +193,6 @@
                                         <?php
 
                                         $total += $food["food_price"];
-
-
                                         }          
                                     ?>
                                 </div>
