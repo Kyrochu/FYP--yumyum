@@ -202,7 +202,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             
             <div class="menus">
 
-                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menus </h2>
+                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menu </h2>
 
             </div>
 
