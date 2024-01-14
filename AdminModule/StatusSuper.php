@@ -214,7 +214,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
     $uid = $row_order['user_id'];
 
-    $user = "SELECT * FROM users ";
+    $user = "SELECT * FROM users WHERE id='$uid' ";
     $user_result = mysqli_query($connect,$user);
     $row_user = mysqli_fetch_assoc($user_result);
 
