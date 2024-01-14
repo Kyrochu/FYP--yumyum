@@ -313,7 +313,10 @@
                             <div class="listcart">
                                 <div class="item border shadow text-black p-3 " style="border-radius: 10px;" >
                                     <img src="./img/<?php echo $row['food_img']; ?>" alt="">
-                                    <div class="name"><?php echo $row['food_name'] ?></div>
+                                    <div class="name">
+                                        <?php echo $row['food_name'] ?><br>
+                                        <span class="badge "><?php echo $row['add_on_name'] ?></span>
+                                    </div>
                                     <div class="price">RM <?php echo $row['food_total_price'] ?></div>
                                     <div class="qty">
                                         <span class="minus decrement"  data-food-id="<?php echo $row['cart_id'] ?>">-</span>
@@ -421,44 +424,59 @@
     }
 
 
-    function submitForm(userid , id) {
+    function submitForm(userid, id) {
         var fdid = id;
 
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').classList.remove('visible');
 
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('popup').style.display = 'none';
         }, 500);
 
         var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
 
-        // Calculate the total price
-        var addPrice = 0;
-        checkboxes.forEach(function(checkbox) {
-            addPrice += parseFloat(checkbox.value);
+        checkboxes.forEach(function (checkbox) {
+            var addPrice = parseFloat(checkbox.value);
+            var addName = checkbox.getAttribute('data-option-name');
+
+            $.ajax({
+                type: "GET",
+                data: {
+                    food_id: fdid,
+                    add_on_price: addPrice,
+                    add_on_name: addName,
+                    uid: userid
+                },
+                url: "add_to_cart.php",
+                success: function (response) {
+                    console.log("Data added to cart successfully");
+                }
+            });
         });
 
-        $.ajax({
-            type: "GET",
-            data: {
-                food_id: fdid,
-                add_on: addPrice,
-                uid: userid
-            },
-            url: "add_to_cart.php",
-            success: function(response) {
-                console.log("Data added to cart successfully");
-            }
-        });
+         // If no checkboxes are selected, send default or null values
+        if (checkboxes.length === 0) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    food_id: fdid,
+                    add_on_price: null, // or any default value you prefer
+                    add_on_name: null,  // or any default value you prefer
+                    uid: userid
+                },
+                url: "add_to_cart.php",
+                success: function (response) {
+                    console.log("Data added to cart successfully (no checkboxes selected)");
+                }
+            });
+        }
 
-        // window.location.reload();
-        
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.reload();
         }, 300);
-        
     }
+
     </script>
 
     <!-- for add and delete cart tab -->
