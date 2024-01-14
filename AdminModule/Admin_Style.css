@@ -611,7 +611,7 @@ header h1
     flex-basis: 100%; /* Set the width of each customer info container to 100% */
     margin-bottom: 10px;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid black;
     overflow-y: auto; /* Enable vertical scrolling */
     max-height: 15rem;
 
@@ -620,7 +620,7 @@ header h1
 .Status-container .btn
 {
     margin-top:25px;
-    margin-left:48px;
+    margin-left:85px;
     margin-bottom:20px;;
     cursor: pointer; 
     font-size:12px; 

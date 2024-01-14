@@ -206,15 +206,77 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div>
 
+            <?php
+
+    $order = "SELECT * FROM `order` ";
+    $order_result = mysqli_query($connect,$order);
+    $row_order = mysqli_fetch_assoc($order_result);
+
+    $uid = $row_order['user_id'];
+
+    $user = "SELECT * FROM users ";
+    $user_result = mysqli_query($connect,$user);
+    $row_user = mysqli_fetch_assoc($user_result);
+
+    $grouped_orders = [];
+
+    while ($row_order = mysqli_fetch_assoc($order_result)) 
+    {
+        $time = $row_order["or_time"];
+        $fid = $row_order["food_id"];
+        $n_food = $row_order["num_food"];
+
+        $menu = "SELECT * FROM menu WHERE food_id = ?";
+        $menu_stmt = $connect->prepare($menu);
+        $menu_stmt->bind_param("i", $fid);
+        $menu_stmt->execute();
+        $menu_result = $menu_stmt->get_result();
+
+        if ($menu_result->num_rows > 0) 
+        {
+            $row_menu = mysqli_fetch_assoc($menu_result);
+
+            $order_group_key = $row_order["or_time"];
+
+            if (!isset($grouped_orders[$order_group_key])) {
+                $grouped_orders[$order_group_key] = [
+                    'name' => $row_user["name"],
+                    'time' => $row_order["or_time"],
+                    'foods' => []
+                ];
+            }
+
+            $grouped_orders[$order_group_key]['foods'][] = [
+                'food_name' => $row_menu["food_name"],
+                'food_price' => $row_menu["food_price"],
+                'food_num' => $row_order["num_food"],
+                // Add other fields you want to display
+            ];
+        } else 
+        {
+            echo "No menu items found for food_id: $fid";
+        }
+    }
+
+    $menu_stmt->close();
+?>
+
             <div class="PendingstatusBox">
-           
+
+                <?php
+                foreach ($grouped_orders as $group) 
+                {
+
+                ?>
+
                 <div class="Status-container">
 
                     <div class="cus-info">
 
                         <h3> Order Number : </h3>
+                        <h3> Order Time : <?php echo $group['time']; ?> </h3>
                         <h3> ID : </h3>
-                        <h3> Username : </h3>
+                        <h3> Username : <?php echo $group['name']; ?> </h3>
                         <h3> Address : </h3>
                         <h3> Contact Number : </h3>
                         <h3> Orders : </h3>
@@ -227,6 +289,12 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 </div>
 
+                <?php
+
+                }
+
+                ?>
+
             </div>
 
             <div class="menus">
@@ -235,15 +303,21 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div>
 
+            
+
             <div class="DeliveredstatusBox">
-                
+            
+            
+
+
             <div class="Status-container">
 
                 <div class="cus-info">
 
                     <h3> Order Number : </h3>
+                    <h3> Order Time :  </h3>
                     <h3> ID : </h3>
-                    <h3> Username : </h3>
+                    <h3> Username :  </h3>
                     <h3> Address : </h3>
                     <h3> Contact Number : </h3>
                     <h3> Orders : </h3>
@@ -252,6 +326,10 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
+            
+            
+
+           
 
     </body>
 
