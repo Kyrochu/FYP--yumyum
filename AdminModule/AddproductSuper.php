@@ -12,7 +12,7 @@ if(isset($_POST['add_product']))
     
     $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
-    if(file_exists("product_images/" . $_FILES['image']['name']))
+    if(file_exists("../img/" . $_FILES['image']['name']))
     {
         $Store = $_FILES['image']['name'];
         echo "<script> alert('Image already exists!) </script>";
@@ -29,7 +29,7 @@ if(isset($_POST['add_product']))
 
         if($query_run)
         {
-            move_uploaded_file($_FILES['image']['tmp_name'],"product_images/".$_FILES['image']['name']);
+            move_uploaded_file($_FILES['image']['tmp_name'],"../img/".$_FILES['image']['name']);
             echo "<script> alert('New Product Added!'); window.location.href = 'MenusSuper.php'; </script>";
         }
         else

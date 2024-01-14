@@ -258,7 +258,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 <td>$productName</td>
                                 <td>$productPrice</td>
                                 <td>$productDescription</td>
-                                <td><img src='product_images/$productImage' alt='Product Image' class='img'> </td>
+                                <td><img src='../img/$productImage' alt='Product Image' class='img'> </td>
                                 <td>
                                     <form action='EditProduct.php' method='GET'>
                                         <input type='hidden' name='cat_id' value='$selected_category_id'>

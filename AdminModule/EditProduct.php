@@ -273,7 +273,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 if (!empty($productImage)) 
                 {
-                    $uploadPath = 'product_images/'; 
+                    $uploadPath = '../img/'; 
         
                     // Move the uploaded image to your desired directory
                     move_uploaded_file($productImageTmp, $uploadPath . $productImage);
@@ -291,7 +291,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 {
                     if (!empty($productImage)) 
                     {
-                        move_uploaded_file($_FILES['image']['tmp_name'], "product_images/".$_FILES['image']['name']);
+                        move_uploaded_file($_FILES['image']['tmp_name'], "../img/".$_FILES['image']['name']);
                     }
 
                     echo "<script>alert('Product Updated'); window.location.href = 'ProductSuper.php';</script>";
