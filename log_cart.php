@@ -157,8 +157,8 @@
                                           echo '                <div class="d-flex">';
                                           echo '                    <img src="./img/' . $row['food_img'] . '" class="border rounded me-3" style="width: 96px; height: 96px;" />';
                                           echo '                    <div class="">';
-                                          echo '                        <a href="#" class="nav-link">' . $row['food_name'] . '</a>';
-                                          echo '                        <p class="text-muted">XL size, Jeans, Blue</p>';
+                                          echo '                        <a  class="nav-link">' . $row['food_name'] . '</a>';
+                                          echo '                        <p class="text-muted"> ' . $row['add_on_name'] . ' </p>';
                                           echo '                    </div>';
                                           echo '                </div>';
                                           echo '            </div>';
