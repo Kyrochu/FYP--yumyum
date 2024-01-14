@@ -188,12 +188,18 @@
                                         foreach ($group['foods'] as $food) {
                                         ?>
                                             <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
-                                            <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo $food["food_price"]; ?></p>
+                                            <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: RM<?php echo $food["food_price"]; ?></p>
+
                                         <?php
+
+                                            $total += $food["food_price"];
+
+
                                         }
                                         ?>
                                     </div>
                                 </div>
+                                <p class="card-text">Total Price: RM<?php echo $total ?></p>
                                 <!-- You can add more information here -->
                             </div>
                         </div>

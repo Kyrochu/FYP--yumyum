@@ -190,11 +190,15 @@
                                             <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
                                             <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo $food["food_price"]; ?></p>
                                         <?php
-                                        }
-                                        ?>
-                                    </div>
+
+                                        $total += $food["food_price"];
+
+
+                                        }          
+                                    ?>
                                 </div>
-                                <!-- You can add more information here -->
+                            </div>
+                            <p class="card-text">Total Price: RM<?php echo $total ?></p>
                             </div>
                         </div>
                     </div>

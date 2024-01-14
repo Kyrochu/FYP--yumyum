@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 10, 2024 at 04:54 PM
+-- Generation Time: Jan 14, 2024 at 03:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -86,13 +86,6 @@ CREATE TABLE `cart` (
   `user_id` int(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `food_total_price`, `cart_food_delete`, `user_id`) VALUES
-(14, 1, 1, 10, 1, 15);
-
 -- --------------------------------------------------------
 
 --
@@ -143,6 +136,37 @@ INSERT INTO `menu` (`food_id`, `food_img`, `food_name`, `food_price`, `food_type
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order`
+--
+
+CREATE TABLE `order` (
+  `or_id` int(255) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `food_id` int(255) NOT NULL,
+  `num_food` int(255) NOT NULL,
+  `or_delete` int(11) NOT NULL DEFAULT 1,
+  `or_time` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`or_id`, `user_id`, `food_id`, `num_food`, `or_delete`, `or_time`) VALUES
+(17, 7, 1, 2, 1, '2024-01-12 11:27:11'),
+(18, 15, 2, 1, 1, '2024-01-13 18:48:53'),
+(19, 15, 1, 1, 1, '2024-01-13 18:48:53'),
+(20, 15, 4, 2, 1, '2024-01-13 18:57:10'),
+(21, 15, 3, 1, 1, '2024-01-13 18:57:10'),
+(22, 15, 1, 2, 1, '2024-01-14 00:22:08'),
+(23, 15, 2, 1, 1, '2024-01-14 00:22:08'),
+(24, 15, 1, 1, 1, '2024-01-14 00:23:15'),
+(25, 15, 1, 1, 1, '2024-01-14 00:23:15'),
+(26, 15, 4, 1, 1, '2024-01-14 00:23:15');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `receipt`
 --
 
@@ -150,8 +174,20 @@ CREATE TABLE `receipt` (
   `r_id` int(100) NOT NULL,
   `u_id` int(100) NOT NULL,
   `card_number` varchar(50) NOT NULL,
-  `total_price` double NOT NULL
+  `total_price` double NOT NULL,
+  `re_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `receipt`
+--
+
+INSERT INTO `receipt` (`r_id`, `u_id`, `card_number`, `total_price`, `re_time`) VALUES
+(28, 7, '', 22, '2024-01-12 11:27:11'),
+(29, 15, '1111222233334444', 19.8, '2024-01-13 18:48:53'),
+(30, 15, '', 33.55, '2024-01-13 18:57:10'),
+(31, 15, '', 30.8, '2024-01-14 00:22:08'),
+(32, 15, '', 35.2, '2024-01-14 00:23:15');
 
 -- --------------------------------------------------------
 
@@ -204,7 +240,9 @@ INSERT INTO `users` (`id`, `name`, `contact_number`, `email`, `password`, `addre
 (11, 'jeremie', '0123456789', 'lewmingren@gmom', '111', '', '', '', 0, '2023-11-24 07:44:21', ''),
 (12, 'James', 'abc', 'lewmin@gmail', '111', '', '', '', 0, '2023-11-24 07:44:21', ''),
 (14, 'James', '0123456788', 'l@gmail.com', '123456', '', '', '', 0, '2023-11-24 07:44:21', ''),
-(15, 'Brian', '01156417215', 'kroyk32@gmail.com', '1234', 'no 31 puki', 'melaka', 'melaka', 73500, '2024-01-08 13:34:43', '');
+(15, 'Brian', '01156417215', 'kroyk32@gmail.com', '1e.', 'no 31 puki', 'melaka', 'melaka', 73500, '2024-01-12 08:05:40', '49213e'),
+(18, 'nicc', '0133772811', 'chu@gmail.com', 'jjjjjj2@', 'no 11, jalan indah ', 'indah villa', 'johor', 81100, '2024-01-11 08:12:20', ''),
+(19, 'lol', '010-2222222', 'test1234@gmail.com', '1e.', '', '', '', 0, '2024-01-12 08:34:47', '');
 
 --
 -- Indexes for dumped tables
@@ -239,6 +277,12 @@ ALTER TABLE `category`
 --
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`food_id`);
+
+--
+-- Indexes for table `order`
+--
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`or_id`);
 
 --
 -- Indexes for table `receipt`
@@ -279,7 +323,7 @@ ALTER TABLE `admin_acc`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -294,10 +338,16 @@ ALTER TABLE `menu`
   MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `order`
+--
+ALTER TABLE `order`
+  MODIFY `or_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
 -- AUTO_INCREMENT for table `receipt`
 --
 ALTER TABLE `receipt`
-  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `test`
@@ -309,7 +359,7 @@ ALTER TABLE `test`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
