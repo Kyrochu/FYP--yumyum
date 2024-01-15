@@ -203,7 +203,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             
             <div class="adminTable">
 
-            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Admin's Accounts </h2>
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Admin Accounts </h2>
 
             <div class="addAdminbtn">
 

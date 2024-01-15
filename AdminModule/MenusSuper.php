@@ -297,9 +297,29 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <form action="AddproductSuper.php" method="POST" enctype="multipart/form-data">
                     <h3>ADD PRODUCT</h3>
+
+
+                        <label for="name" class="label">Product Name</label>
                         <input type="text" required placeholder="ENTER PRODUCT NAME" name="name" maxlength="100" class="box">
+
+
+                        <div class="form-group">
+
+                        <label for="price" class="label">Product Price</label>
                         <input type="text" required placeholder="ENTER PRODUCT PRICE" name="price" class="box">
+
+                        </div>
+
+                        <div class="form-group">
+
+                        <label for="desc" class="label">Product Description</label>
                         <input type="text" required placeholder="ENTER PRODUCT DESCRIPTION" name="desc" class="box">
+
+                        </div>
+
+                        <div class="form-group">
+
+                        <label for="category" class="label">Select Category</label>
                         <select name="category" class="box" required>
                             <option value="" disabled selected>SELECT CATEGORY --</option>
                             <?php
@@ -316,7 +336,16 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 }
             ?>
                         </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                        <label for="image" class="label">Upload Image</label>
                         <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+
+                        </div>
+
                         <input type="submit" value="ADD PRODUCT" name="add_product" class="btn">
                 </form>
 

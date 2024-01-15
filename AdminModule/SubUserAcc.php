@@ -201,7 +201,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             
             <div class="userTable">
 
-            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User's Accounts </h2>
+            <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User Accounts </h2>
 
             <div class="addUserbtn">
 
