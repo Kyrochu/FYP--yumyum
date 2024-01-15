@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 14, 2024 at 03:37 AM
+-- Generation Time: Jan 15, 2024 at 05:47 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -83,8 +83,21 @@ CREATE TABLE `cart` (
   `num_food` int(30) NOT NULL,
   `food_total_price` double NOT NULL,
   `cart_food_delete` int(11) NOT NULL DEFAULT 1,
-  `user_id` int(255) NOT NULL
+  `user_id` int(255) NOT NULL,
+  `add_on_name` varchar(255) NOT NULL,
+  `add_on_price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `food_total_price`, `cart_food_delete`, `user_id`, `add_on_name`, `add_on_price`) VALUES
+(39, 1, 1, 10.5, 0, 15, 'Extra Sauce', 0.5),
+(40, 2, 1, 8, 0, 15, '', 0),
+(41, 1, 1, 10.5, 0, 15, 'Extra Sauce', 0.5),
+(42, 2, 1, 8, 0, 15, '', 0),
+(43, 4, 1, 12, 1, 15, '', 0);
 
 -- --------------------------------------------------------
 
@@ -117,7 +130,7 @@ CREATE TABLE `menu` (
   `food_id` int(11) NOT NULL,
   `food_img` varchar(255) NOT NULL,
   `food_name` varchar(100) NOT NULL,
-  `food_price` varchar(30) NOT NULL,
+  `food_price` double NOT NULL,
   `food_type` varchar(50) NOT NULL,
   `food_description` varchar(200) NOT NULL,
   `food_delete` int(10) NOT NULL DEFAULT 0
@@ -128,10 +141,10 @@ CREATE TABLE `menu` (
 --
 
 INSERT INTO `menu` (`food_id`, `food_img`, `food_name`, `food_price`, `food_type`, `food_description`, `food_delete`) VALUES
-(1, 'menu-1.jpg', 'Pork Burger', '10', 'meal', 'Fresh pork make it', 0),
-(2, 'menu-2.jpg', 'Chicken Burger', '8', 'meal', 'Fresh chicken make it', 0),
-(3, 'menu-3.jpg', 'Fries', '5', 'snack', 'Fresh potatos make it', 0),
-(4, 'menu-4.jpg\r\n', 'Tuna Pizza', '12', 'meal', 'so tuna', 0);
+(1, 'menu-1.jpg', 'Pork Burger', 10, 'meal', 'Fresh pork make it', 0),
+(2, 'menu-2.jpg', 'Chicken Burger', 8, 'meal', 'Fresh chicken make it', 0),
+(3, 'menu-3.jpg', 'Fries', 5, 'snack', 'Fresh potatos make it', 0),
+(4, 'menu-4.jpg\r\n', 'Tuna Pizza', 12, 'meal', 'so tuna', 0);
 
 -- --------------------------------------------------------
 
@@ -153,16 +166,10 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`or_id`, `user_id`, `food_id`, `num_food`, `or_delete`, `or_time`) VALUES
-(17, 7, 1, 2, 1, '2024-01-12 11:27:11'),
-(18, 15, 2, 1, 1, '2024-01-13 18:48:53'),
-(19, 15, 1, 1, 1, '2024-01-13 18:48:53'),
-(20, 15, 4, 2, 1, '2024-01-13 18:57:10'),
-(21, 15, 3, 1, 1, '2024-01-13 18:57:10'),
-(22, 15, 1, 2, 1, '2024-01-14 00:22:08'),
-(23, 15, 2, 1, 1, '2024-01-14 00:22:08'),
-(24, 15, 1, 1, 1, '2024-01-14 00:23:15'),
-(25, 15, 1, 1, 1, '2024-01-14 00:23:15'),
-(26, 15, 4, 1, 1, '2024-01-14 00:23:15');
+(27, 15, 1, 1, 1, '2024-01-15 10:52:38'),
+(28, 15, 2, 1, 1, '2024-01-15 10:52:38'),
+(29, 15, 1, 1, 1, '2024-01-15 21:04:59'),
+(30, 15, 2, 1, 1, '2024-01-15 21:50:16');
 
 -- --------------------------------------------------------
 
@@ -187,7 +194,10 @@ INSERT INTO `receipt` (`r_id`, `u_id`, `card_number`, `total_price`, `re_time`) 
 (29, 15, '1111222233334444', 19.8, '2024-01-13 18:48:53'),
 (30, 15, '', 33.55, '2024-01-13 18:57:10'),
 (31, 15, '', 30.8, '2024-01-14 00:22:08'),
-(32, 15, '', 35.2, '2024-01-14 00:23:15');
+(32, 15, '', 35.2, '2024-01-14 00:23:15'),
+(33, 15, '1111111111111111111111111111', 20.35, '2024-01-15 10:52:38'),
+(34, 15, '1111111111111111', 11.55, '2024-01-15 21:04:59'),
+(35, 15, '1111 1111 1111 1111', 8.8, '2024-01-15 21:50:16');
 
 -- --------------------------------------------------------
 
@@ -323,7 +333,7 @@ ALTER TABLE `admin_acc`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -335,19 +345,19 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `or_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `or_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `receipt`
 --
 ALTER TABLE `receipt`
-  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `test`
