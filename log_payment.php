@@ -113,8 +113,8 @@
                             <input type="text" placeholder="india" value="<?php echo $state ?>" required>
                         </div>
                         <div class="inputBox">
-                            <span>zip code :</span>
-                            <input type="text" placeholder="123 456" value="<?php echo $postcode ?>" required>
+                            <span>Post code :</span>
+                            <input type="text" placeholder="123 456" value="<?php echo $postcode ?>" maxlength="5" pattern=".{5,6}" title="Enter a valid post code" required>
                         </div>
                     </div>
                 </div>
@@ -122,31 +122,33 @@
                     <h3 class="title">Payment</h3>
                     <div class="inputBox">
                         <span>Cards accepted :</span>
-                        <img src="img/card_img.png" alt="">
+                        <img src="img/masterlogo.png" alt=""><img src="img/visalogo.png" alt="">
                     </div>
                     <div class="inputBox">
                         <span>Name on card :</span>
-                        <input type="text" placeholder="John Deo" id="card_name" maxlength="16" required>
+                        <input type="text" placeholder="John Deo" id="card_name"  required>
                     </div>
                     <div class="inputBox">
                         <span>Credit card number :</span>
-                        <input type="text" placeholder="1111-2222-3333-4444" id="card_number" required>
+                        <div id="cardType"></div>
+                        <input type="text" placeholder="1111 2222 3333 4444" id="card_number" maxlength="19" pattern="[0-9\s]{16,19}" title="Enter a valid card number " required>
                     </div>
                     <div id="cardNumberError" class="error"></div>
                     <div class="flex">
                         <div class="inputBox">
                             <span>Exp year :</span>
-                            <input type="number" placeholder="2022" id="exp_year" required>
+                            <input type="text" placeholder="2022" id="exp_year" maxlength="4" pattern="[0-9]{4}" title="Enter a valid year " required>
                         </div>
                         <div class="inputBox">
                             <span>CVV :</span>
-                            <input type="text" placeholder="123" id="cvv" required>
+                            <input type="text" placeholder="123" id="cvv" maxlength="3" pattern="[0-9]{3}" title="Enter a valid CVV number" required>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn">Proceed to Checkout</button>
-                    <div id="paymentError" class="error"></div>
+                    
                 </div>
             </div>
+                <button type="submit" class="submit-btn">Proceed to Checkout</button>
+                <div id="paymentError" class="error"></div>
         </form>
         <div id="overlay" class="overlay"></div>
         <div id="popup" class="popup" style="text-align: center; " >
@@ -170,10 +172,10 @@
             var c_num = document.getElementById("card_number").value;
             var total = document.getElementById("price").value;
 
-            // Validate credit card details
-            var cardValidation = validateCreditCardDetails();
+            // // Validate credit card details
+            // var cardValidation = validateCreditCardDetails();
 
-            if (cardValidation.valid) {
+            // if (cardValidation.valid) {
                 $.ajax({
                     type: "POST",
                     url: "receipt_save.php",
@@ -195,43 +197,90 @@
                         }, 2000);
                     },
                 });
-            } else {
-                // Display card validation error
-                document.getElementById('cardNumberError').innerText = cardValidation.message;
-            }
+            // } else {
+            //     // Display card validation error
+            //     document.getElementById('cardNumberError').innerText = cardValidation.message;
+            // }
 
             return false; // Prevent default form submission
         }
 
-        document.getElementById("card_name").addEventListener("input", function () {
-            document.getElementById('cardNumberError').innerText = '';
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Card Number
+            var cardNumInput = document.getElementById('card_number');
+            var cardTypeDiv = document.getElementById('cardType');
+
+            cardNumInput.addEventListener('input', function() {
+                var trimmedValue = cardNumInput.value.replace(/\s/g, ''); // Remove existing spaces
+                var formattedValue = formatCardNumber(trimmedValue);
+                cardNumInput.value = formattedValue;
+
+                // Display card type based on the first digit
+                displayCardType(formattedValue.charAt(0));
+            });
+
+            // Expiry Year
+            var expYearInput = document.getElementById('exp_year');
+            expYearInput.addEventListener('input', function() {
+                var trimmedValue = expYearInput.value.replace(/\s/g, ''); // Remove existing spaces
+                var formattedValue = formatExpYear(trimmedValue);
+                expYearInput.value = formattedValue;
+            });
+
+            // CVV
+            var cvvInput = document.getElementById('cvv');
+            cvvInput.addEventListener('input', function() {
+                var trimmedValue = cvvInput.value.replace(/\s/g, ''); // Remove existing spaces
+                var formattedValue = formatCVV(trimmedValue);
+                cvvInput.value = formattedValue;
+            });
+
+            // Card Number formatting function
+            function formatCardNumber(value) {
+                var formattedValue = value.replace(/\D/g, ''); // Remove non-numeric characters
+                var spacedValue = '';
+
+                for (var i = 0; i < formattedValue.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        spacedValue += ' '; // Insert space every four characters
+                    }
+                    if (i === 1) {
+                        // After the first digit
+                        if (formattedValue.charAt(0) === '4' || formattedValue.charAt(0) === '5') {
+                            displayCardType(formattedValue.charAt(0) === '4' ? 'VISA' : 'MASTER');
+                        } else {
+                            displayCardType(''); // Clear the card type if the first digit is neither 4 nor 5
+                        }
+                    }
+                    spacedValue += formattedValue.charAt(i);
+                }
+
+                return spacedValue;
+            }
+
+            // Expiry Year formatting function
+            function formatExpYear(value) {
+                return value.replace(/\D/g, '').substring(0, 4); // Remove non-numeric characters and limit to 4 digits
+            }
+
+            // CVV formatting function
+            function formatCVV(value) {
+                return value.replace(/\D/g, '').substring(0, 3); // Remove non-numeric characters and limit to 3 digits
+            }
+
+            // Display card type function
+            function displayCardType(cardType) {
+                console.log('Card Type:', cardType); 
+                cardTypeDiv.innerText = cardType;
+            }
         });
 
-        document.getElementById("card_number").addEventListener("input", function () {
-            document.getElementById('cardNumberError').innerText = '';
-        });
 
-        document.getElementById("exp_year").addEventListener("input", function () {
-            document.getElementById('cardNumberError').innerText = '';
-        });
 
-        document.getElementById("cvv").addEventListener("input", function () {
-            document.getElementById('cardNumberError').innerText = '';
-        });
 
-        function validateCreditCardDetails() {
-            var cardNumber = document.getElementById("card_number").value;
-            var expYear = document.getElementById("exp_year").value;
-            var cvv = document.getElementById("cvv").value;
 
-            // Your existing validation code
-
-            // Return an object with validation result and message
-            return {
-                valid: true, // Change to your validation result
-                message: "Your custom validation message", // Change to your validation message
-            };
-        }
+       
 
     // function verifyCode() 
     // {
