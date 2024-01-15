@@ -234,7 +234,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div> 
 
                         <div class="edit-form">
-                            ENTER OLD PASSWORD <input type="text" name="oldPassword">
+                            ENTER CURRENT PASSWORD <input type="text" name="oldPassword">
                         </div>
 
                         <div class="edit-form"> 
