@@ -47,7 +47,7 @@
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
 
-    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
+    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid' AND cart_food_delete = '1'";
     $result = mysqli_query($connect, $sql);
 
 
@@ -231,7 +231,7 @@
                     //$sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.userID = '$uid'";
 
 
-                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid'";
+                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid' AND cart_food_delete = '1'";
                     $result = mysqli_query($connect, $sql);
                     $resultcheck = mysqli_num_rows($result);
 
