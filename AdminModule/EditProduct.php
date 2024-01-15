@@ -258,7 +258,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             
             </form>
 
-            <?php
+            <?php 
             
                 }
             }
