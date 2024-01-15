@@ -230,6 +230,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <form method="POST" action="" enctype="multipart/form-data"> 
 
                 <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
+                <input type="hidden" name="current_image" value="<?php echo $row['food_img']?>">
 
                 <div class="form-element">
                     PRODUCT NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
@@ -244,7 +245,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
                 <div class="form-element">  
-                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="<?php echo $row['food_img']?>">
+                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="../img/<?php echo $row['food_img']?>">
                 </div>
 
                 <div class="form-element">
@@ -270,6 +271,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 $Pro_desc = $_POST['desc'];
                 $productImage = $_FILES['image']['name'];
                 $productImageTmp = $_FILES['image']['tmp_name'];
+                $currentImage = $_POST['current_image'];
 
                 if (!empty($productImage)) 
                 {
