@@ -205,7 +205,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             <div class="addUserbtn">
 
-                <button style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
+                <button style="background:burlywood; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
                     ADD NEW USER 
                 </button>
 

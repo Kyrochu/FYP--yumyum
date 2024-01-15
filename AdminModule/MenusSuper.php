@@ -55,10 +55,28 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             })
         </script>
 
-        <!-- Javascript for Date&Time Widget  -->
+        <!-- Javascript  -->
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
         <script src="AddCategory.js"> </script>
+
+        <script>
+            function validateDecimalInput(input) 
+            {
+                // Remove any non-digit and non-dot characters
+                input.value = input.value.replace(/[^0-9.]/g, '');
+
+                // Ensure only one dot is allowed
+                input.value = input.value.replace(/(\..*)\./g, '$1');
+
+                // Ensure up to two decimal places without leading zeros
+                var parts = input.value.split('.');
+                if (parts.length > 1) {
+                    parts[1] = parts[1].slice(0, 2); // Take only up to two decimal places
+                    input.value = parts.join('.');
+                }
+            }
+        </script>
 
 
     </head>
@@ -208,7 +226,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             <div class="addCatbtn">
 
-                <button style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
+                <button style="background:burlywood; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
                     ADD NEW CATEGORY
                 </button>
 
@@ -223,15 +241,15 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <form method="post" action="" enctype="multipart/form-data"> 
                         
                         <div class="form-element">
-                            NAME <input type="text" name="name" required placeholder="Enter New Category Name">                    
+                            Name <input type="text" name="name" required placeholder="Enter New Category Name (e.g., Appetizers, Main Courses)">                    
                         </div>
 
                         <div class="form-element">
-                            TYPE <input type="text" name="type" required placeholder="Enter New Category Type">                    
+                            Custom Label <input type="text" name="type" required placeholder="Enter Custom Label (e.g., Food, Beverages, Desserts)">                    
                         </div>
 
                         <div class="form-element">
-                            IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+                            Category Image <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
                         </div>
 
                         <div class="form-element">
@@ -300,20 +318,20 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
 
                         <label for="name" class="label">Product Name</label>
-                        <input type="text" required placeholder="ENTER PRODUCT NAME" name="name" maxlength="100" class="box">
+                        <input type="text" required placeholder="e.g., Delicious Pizza" name="name" maxlength="100" class="box">
 
 
                         <div class="form-group">
 
                         <label for="price" class="label">Product Price</label>
-                        <input type="text" required placeholder="ENTER PRODUCT PRICE" name="price" class="box">
+                        <input type="text" required placeholder="e.g., 15.99" name="price" oninput="validateDecimalInput(this)" class="box">
 
                         </div>
 
                         <div class="form-group">
 
                         <label for="desc" class="label">Product Description</label>
-                        <input type="text" required placeholder="ENTER PRODUCT DESCRIPTION" name="desc" class="box">
+                        <input type="text" required placeholder="e.g., Mouth-watering pizza topped with fresh ingredients" name="desc" class="box">
 
                         </div>
 

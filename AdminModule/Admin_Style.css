@@ -272,7 +272,8 @@ header h1
     width: 5%; /* Set the width for the first (ID) column */
 }
 
-.adminAcc th:last-child {
+.adminAcc th:last-child 
+{
     width: 20%; /* Set the width for the first (ID) column */
 }
 
@@ -343,7 +344,6 @@ header h1
 
 .form-element input,
 .form-element select 
-
 {
     margin-top:5px;
     display:block;
@@ -355,6 +355,7 @@ header h1
     font-size:15px;
 
 }
+
 
 .form-element input[type="file"]  /* ------------------ ADD CATEGORY POPUP -------------- */
 {
@@ -372,6 +373,11 @@ header h1
     font-weight:bold;
 }
 
+.form-btn:hover
+{
+    background-color:sandybrown;
+}
+
 .cancel-btn
 {
     margin-top:10px;
@@ -382,6 +388,11 @@ header h1
     background-color:burlywood;
     border-radius:10px;
     font-weight:bold;
+}
+
+.cancel-btn:hover
+{
+    background-color:sandybrown;
 }
 
 
@@ -480,14 +491,14 @@ header h1
 .add-products .btn 
 {
     margin-top:10px;
-    margin-left:285px;
+    margin-left:450px;
     margin-bottom:20px;;
     cursor: pointer; 
-    font-size:16px; 
-    width:50%; 
-    height:40px;
+    font-size:14px; 
+    width:250px; 
+    height:30px;
     background-color:burlywood;
-    border-radius:10px;
+    border-radius:5px;
     font-weight:bold;
 }
 
