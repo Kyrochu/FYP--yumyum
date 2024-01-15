@@ -9,6 +9,7 @@ if(isset($_POST['add_product']))
     $productDesc = $_POST['desc'];
     $category = $_POST['category'];
     $productImage = $_FILES['image']['name'];
+    $currentImage = $_POST['current_image'];
     
     $connect = mysqli_connect("localhost", "root", "", "yumyum");
 
