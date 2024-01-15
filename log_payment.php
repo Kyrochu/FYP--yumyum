@@ -98,6 +98,7 @@
                     <div class="inputBox">
                         <span>email :</span>
                         <input type="email" placeholder="example@example.com" value="<?php echo $email ?>" id="email" name="email" required>
+                        <div id="emailError" class="danger"></div>
                     </div>
                     <div class="inputBox">
                         <span>address :</span>
@@ -107,14 +108,33 @@
                         <span>city :</span>
                         <input type="text" placeholder="mumbai" value="<?php echo $city ?>" required>
                     </div>
-                    <div class="flex">
+                    <div class="flx">
                         <div class="inputBox">
-                            <span>state :</span>
-                            <input type="text" placeholder="india" value="<?php echo $state ?>" required>
+                            <span>State :</span>
+                            <select id="state" name="state" required>
+                                <option value="" disabled selected>Select your state</option>
+                                <option value="Johor">Johor</option>
+                                <option value="Kedah">Kedah</option>
+                                <option value="Kelantan">Kelantan</option>
+                                <option value="Kuala Lumpur">Kuala Lumpur</option>
+                                <option value="Labuan">Labuan</option>
+                                <option value="Malacca">Melaka</option>
+                                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                                <option value="Pahang">Pahang</option>
+                                <option value="Penang">Penang</option>
+                                <option value="Perak">Perak</option>
+                                <option value="Perlis">Perlis</option>
+                                <option value="Putrajaya">Putrajaya</option>
+                                <option value="Sabah">Sabah</option>
+                                <option value="Sarawak">Sarawak</option>
+                                <option value="Selangor">Selangor</option>
+                                <option value="Terengganu">Terengganu</option>
+                               
+                            </select>
                         </div>
                         <div class="inputBox">
                             <span>Post code :</span>
-                            <input type="text" placeholder="123 456" value="<?php echo $postcode ?>" maxlength="5" pattern=".{5,6}" title="Enter a valid post code" required>
+                            <input type="text" placeholder="12345" value="<?php echo $postcode ?>" maxlength="5" pattern=".{5,6}" title="Enter a valid post code" required>
                         </div>
                     </div>
                 </div>
@@ -131,13 +151,16 @@
                     <div class="inputBox">
                         <span>Credit card number :</span>
                         <div id="cardType"></div>
-                        <input type="text" placeholder="1111 2222 3333 4444" id="card_number" maxlength="19" pattern="[0-9\s]{16,19}" title="Enter a valid card number " required>
+                        <input type="text" placeholder="5555 2222 3333 4444" id="card_number" maxlength="19" pattern="[0-9\s]{16,19}" title="Enter a valid card number " required>
+                        <div id="cardNumberError" class="danger"></div>
                     </div>
-                    <div id="cardNumberError" class="error"></div>
+                    
+                    
                     <div class="flex">
                         <div class="inputBox">
-                            <span>Exp year :</span>
-                            <input type="text" placeholder="2022" id="exp_year" maxlength="4" pattern="[0-9]{4}" title="Enter a valid year " required>
+                            <span>Exp date (MM/YYYY):</span>
+                            <input type="month" id="exp_date" required>
+                            <div id="expDateError" class="danger"></div>
                         </div>
                         <div class="inputBox">
                             <span>CVV :</span>
@@ -221,11 +244,21 @@
             });
 
             // Expiry Year
-            var expYearInput = document.getElementById('exp_year');
-            expYearInput.addEventListener('input', function() {
-                var trimmedValue = expYearInput.value.replace(/\s/g, ''); // Remove existing spaces
-                var formattedValue = formatExpYear(trimmedValue);
-                expYearInput.value = formattedValue;
+            var expDateInput = document.getElementById('exp_date');
+            var expDateErrorDiv = document.getElementById('expDateError');
+
+            expDateInput.addEventListener('input', function() {
+                var expDateValue = expDateInput.value;
+                var currentYear = new Date().getFullYear();
+                var enteredYear = parseInt(expDateValue.split('-')[0]);
+                var enteredMonth = parseInt(expDateValue.split('-')[1]);
+
+                // Validate entered date
+                if (isNaN(enteredYear) || isNaN(enteredMonth) || enteredYear < currentYear || enteredYear > currentYear + 10) {
+                    displayExpDateError('Invalid expiration date. Please enter a valid date.');
+                } else {
+                    displayExpDateError('');
+                }
             });
 
             // CVV
@@ -236,28 +269,67 @@
                 cvvInput.value = formattedValue;
             });
 
+            //Email
+            document.addEventListener('DOMContentLoaded', function () {
+                var emailInput = document.getElementById('email');
+                var emailErrorDiv = document.getElementById('emailError');
+
+                emailInput.addEventListener('blur', function () {
+                    var emailValue = emailInput.value.toLowerCase();
+
+                    // Regular expression for a more comprehensive email pattern
+                    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+                    if (!emailPattern.test(emailValue)) {
+                        emailErrorDiv.innerText = 'Please enter a valid email address.';
+                    } else if (emailValue.endsWith('@gmail.com')) {
+                        // Additional check for Gmail domain
+                        emailErrorDiv.innerText = '';
+                    } else {
+                        emailErrorDiv.innerText = 'Please enter a Gmail email address.';
+                    }
+                });
+            });
+
+
             // Card Number formatting function
             function formatCardNumber(value) {
                 var formattedValue = value.replace(/\D/g, ''); // Remove non-numeric characters
                 var spacedValue = '';
+                var firstDigit = formattedValue.charAt(0);
 
                 for (var i = 0; i < formattedValue.length; i++) {
                     if (i > 0 && i % 4 === 0) {
                         spacedValue += ' '; // Insert space every four characters
                     }
-                    if (i === 1) {
-                        // After the first digit
-                        if (formattedValue.charAt(0) === '4' || formattedValue.charAt(0) === '5') {
-                            displayCardType(formattedValue.charAt(0) === '4' ? 'VISA' : 'MASTER');
+
+                    if (i === 0) {
+                        // For the first digit
+                        if (firstDigit !== '4' && firstDigit !== '5') {
+                            // If the first digit is neither 4 nor 5, display an error message
+                            displayCardError('Card number must start with 4 or 5');
+                            return spacedValue;
                         } else {
-                            displayCardType(''); // Clear the card type if the first digit is neither 4 nor 5
+                            // If the first digit is valid, clear the error message
+                            displayCardError('');
                         }
                     }
+
                     spacedValue += formattedValue.charAt(i);
                 }
 
+                // Display card type based on the first digit
+                displayCardType(firstDigit === '4' ? 'VISA' : 'MASTER');
                 return spacedValue;
             }
+
+            // Display card error message function
+            function displayCardError(message) {
+                var cardErrorDiv = document.getElementById('cardNumberError');
+                cardErrorDiv.innerText = message;
+            }
+
+
 
             // Expiry Year formatting function
             function formatExpYear(value) {
@@ -271,9 +343,22 @@
 
             // Display card type function
             function displayCardType(cardType) {
-                console.log('Card Type:', cardType); 
-                cardTypeDiv.innerText = cardType;
+            var cardTypeText = '';
+
+            if (cardType === '4') {
+                cardTypeText = 'VISA';
+            } else if (cardType === '5') {
+                cardTypeText = 'MASTER';
             }
+
+            console.log('Card Type:', cardTypeText); // Check the value of cardTypeText
+            cardTypeDiv.innerText = cardTypeText;
+            }
+
+            function displayExpDateError(message) {
+                expDateErrorDiv.innerText = message;
+            }
+
         });
 
 
