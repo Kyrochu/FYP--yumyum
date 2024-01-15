@@ -113,8 +113,8 @@
                             <input type="text" placeholder="india" value="<?php echo $state ?>" required>
                         </div>
                         <div class="inputBox">
-                            <span>zip code :</span>
-                            <input type="text" placeholder="123 456" value="<?php echo $postcode ?>" required>
+                            <span>Post code :</span>
+                            <input type="text" placeholder="123 456" value="<?php echo $postcode ?>" maxlength="5" pattern=".{5,6}" title="Enter a valid post code" required>
                         </div>
                     </div>
                 </div>
@@ -122,31 +122,32 @@
                     <h3 class="title">Payment</h3>
                     <div class="inputBox">
                         <span>Cards accepted :</span>
-                        <img src="img/card_img.png" alt="">
+                        <img src="img/masterlogo.png" alt=""><img src="img/visalogo.png" alt="">
                     </div>
                     <div class="inputBox">
                         <span>Name on card :</span>
-                        <input type="text" placeholder="John Deo" id="card_name" maxlength="16" required>
+                        <input type="text" placeholder="John Deo" id="card_name"  required>
                     </div>
                     <div class="inputBox">
                         <span>Credit card number :</span>
-                        <input type="text" placeholder="1111-2222-3333-4444" id="card_number" required>
+                        <input type="text" placeholder="1111 2222 3333 4444 " id="card_num" maxlength="19" pattern="[0-9]{19}" title="Enter 16 card number" required>
                     </div>
                     <div id="cardNumberError" class="error"></div>
                     <div class="flex">
                         <div class="inputBox">
                             <span>Exp year :</span>
-                            <input type="number" placeholder="2022" id="exp_year" required>
+                            <input type="text" placeholder="2022" id="exp_year" maxlength="4" pattern="[0-9]{4}" title="Enter a valid year " required>
                         </div>
                         <div class="inputBox">
                             <span>CVV :</span>
-                            <input type="text" placeholder="123" id="cvv" required>
+                            <input type="text" placeholder="123" id="cvv" maxlength="3" pattern="[0-9]{3}" title="Enter a valid CVV number" required>
                         </div>
                     </div>
-                    <button type="submit" class="submit-btn">Proceed to Checkout</button>
-                    <div id="paymentError" class="error"></div>
+                    
                 </div>
             </div>
+                <button type="submit" class="submit-btn">Proceed to Checkout</button>
+                <div id="paymentError" class="error"></div>
         </form>
         <div id="overlay" class="overlay"></div>
         <div id="popup" class="popup" style="text-align: center; " >
@@ -202,6 +203,57 @@
 
             return false; // Prevent default form submission
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var cardNumInput = document.getElementById('card_num');
+
+            cardNumInput.addEventListener('input', function() {
+                var trimmedValue = cardNumInput.value.replace(/\s/g, ''); // Remove existing spaces
+                var formattedValue = formatCardNumber(trimmedValue);
+                cardNumInput.value = formattedValue;
+            });
+
+            function formatCardNumber(value) {
+                var formattedValue = value.replace(/\D/g, ''); // Remove non-numeric characters
+                var spacedValue = '';
+
+                for (var i = 0; i < formattedValue.length; i++) {
+                    if (i > 0 && i % 4 === 0) {
+                        spacedValue += ' '; // Insert space every four characters
+                    }
+                    spacedValue += formattedValue.charAt(i);
+                }
+
+                return spacedValue;
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var expYearInput = document.getElementById('exp_year');
+            var cvvInput = document.getElementById('cvv');
+
+            expYearInput.addEventListener('input', function() {
+                var trimmedValue = expYearInput.value.replace(/\s/g, ''); // Remove existing spaces
+                var formattedValue = formatExpYear(trimmedValue);
+                expYearInput.value = formattedValue;
+            });
+
+            cvvInput.addEventListener('input', function() {
+                var trimmedValue = cvvInput.value.replace(/\s/g, ''); // Remove existing spaces
+                var formattedValue = formatCVV(trimmedValue);
+                cvvInput.value = formattedValue;
+            });
+
+            function formatExpYear(value) {
+                return value.replace(/\D/g, '').substring(0, 4); // Remove non-numeric characters and limit to 4 digits
+            }
+
+            function formatCVV(value) {
+                return value.replace(/\D/g, '').substring(0, 3); // Remove non-numeric characters and limit to 3 digits
+            }
+        });
+
+
 
         document.getElementById("card_name").addEventListener("input", function () {
             document.getElementById('cardNumberError').innerText = '';
