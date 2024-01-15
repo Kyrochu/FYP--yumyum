@@ -51,7 +51,7 @@
     $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
 
 
-    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid'";
+    $sql = "SELECT COUNT(*) AS totalRows FROM cart WHERE cart.user_id = '$uid' AND  cart.cart_food_delete = '1'";
     $result = mysqli_query($connect, $sql);
 
 
@@ -118,8 +118,7 @@
 
 
         <!-- table start -->
-
-        <div class="container-fluid bg-secondary">
+        <div class="container-fluid ">
             <br>
             <h2 class="text-primary" style="text-align: center;">Your Order List</h2>
 
@@ -132,84 +131,91 @@
                 $order_stmt->execute();
                 $order_result = $order_stmt->get_result();
 
-                $grouped_orders = [];
+                // Check if there are rows in the order result
+                if ($order_result->num_rows > 0) {
+                    $grouped_orders = [];
 
-                while ($row_order = mysqli_fetch_assoc($order_result)) {
-                    $time = $row_order["or_time"];
-                    $fid = $row_order["food_id"];
-                    $n_food = $row_order["num_food"];
+                    while ($row_order = mysqli_fetch_assoc($order_result)) {
+                        $time = $row_order["or_time"];
+                        $fid = $row_order["food_id"];
+                        $n_food = $row_order["num_food"];
 
-                    $menu = "SELECT * FROM menu WHERE food_id = ?";
-                    $menu_stmt = $connect->prepare($menu);
-                    $menu_stmt->bind_param("i", $fid);
-                    $menu_stmt->execute();
-                    $menu_result = $menu_stmt->get_result();
+                        $menu = "SELECT * FROM menu WHERE food_id = ?";
+                        $menu_stmt = $connect->prepare($menu);
+                        $menu_stmt->bind_param("i", $fid);
+                        $menu_stmt->execute();
+                        $menu_result = $menu_stmt->get_result();
 
-                    if ($menu_result->num_rows > 0) {
-                        $row_menu = mysqli_fetch_assoc($menu_result);
+                        if ($menu_result->num_rows > 0) {
+                            $row_menu = mysqli_fetch_assoc($menu_result);
 
-                        $order_group_key = $row_order["or_time"];
+                            $order_group_key = $row_order["or_time"];
 
-                        if (!isset($grouped_orders[$order_group_key])) {
-                            $grouped_orders[$order_group_key] = [
-                                'name' => $row_user["name"],
-                                'time' => $row_order["or_time"],
-                                'foods' => []
+                            if (!isset($grouped_orders[$order_group_key])) {
+                                $grouped_orders[$order_group_key] = [
+                                    'name' => $row_user["name"],
+                                    'time' => $row_order["or_time"],
+                                    'foods' => []
+                                ];
+                            }
+
+                            $grouped_orders[$order_group_key]['foods'][] = [
+                                'food_name' => $row_menu["food_name"],
+                                'food_price' => $row_menu["food_price"],
+                                'food_num' => $row_order["num_food"],
+                                // Add other fields you want to display
                             ];
+                        } else {
+                            echo "No menu items found for food_id: $fid";
                         }
-
-                        $grouped_orders[$order_group_key]['foods'][] = [
-                            'food_name' => $row_menu["food_name"],
-                            'food_price' => $row_menu["food_price"],
-                            'food_num' => $row_order["num_food"],
-                            // Add other fields you want to display
-                        ];
-                    } else {
-                        echo "No menu items found for food_id: $fid";
                     }
-                }
 
-                $order_stmt->close();
-                $menu_stmt->close();
+                    $order_stmt->close();
+                    $menu_stmt->close();
 
-                // Display the grouped orders
-                foreach ($grouped_orders as $group) {
-                    $total = 0;
+                    // Display the grouped orders if any
+                    if (!empty($grouped_orders)) {
+                        foreach ($grouped_orders as $group) {
+                            $total = 0;
                 ?>
-                    <div class="col-md-4" style="padding-left: 3rem;">
-                        <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
-                            <div class="card-header shadow bg-warning" style="border-radius: 8px;">Panding Order</div>
-                            <div class="card-body" style="overflow-y: auto;">
-                                <p class="card-text">Name: <?php echo $group['name']; ?></p>
-                                <p class="card-text">Time: <?php echo $group['time']; ?></p>
-                                <div class="card-text">Food Ordered:
-                                    <div class="card-body ">
-                                        <?php
-                                        // Loop to display all ordered foods
-                                        foreach ($group['foods'] as $food) {
-                                        ?>
-                                            <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
-                                            <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo $food["food_price"]; ?></p>
-                                        <?php
-
-                                        $total += $food["food_price"];
-                                        }          
-                                    ?>
+                            <div class="col-md-4" style="padding-left: 3rem;">
+                                <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
+                                    <div class="card-header shadow bg-warning" style="border-radius: 8px;">Pending Order</div>
+                                    <div class="card-body" style="overflow-y: auto;">
+                                        <p class="card-text">Name: <?php echo $group['name']; ?></p>
+                                        <p class="card-text">Time: <?php echo $group['time']; ?></p>
+                                        <div class="card-text">Food Ordered:
+                                            <div class="card-body ">
+                                                <?php
+                                                // Loop to display all ordered foods
+                                                foreach ($group['foods'] as $food) {
+                                                ?>
+                                                    <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
+                                                    <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo $food["food_price"]; ?></p>
+                                                <?php
+                                                    $total += $food["food_price"];
+                                                }
+                                                ?>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">Total Price: RM<?php echo $total ?></p>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="card-text">Total Price: RM<?php echo $total ?></p>
-                            </div>
-                        </div>
-                    </div>
                 <?php
+                        }
+                    }
+                } else {
+                    // No orders found for the user
+                    echo '<div class=" text-center p-3"><p>You have no orders.</p></div><br><br>';
                 }
                 ?>
-                <!-- card start -->
+                <!-- card end -->
             </div>
             <br>
         </div>
-
         <!-- table end -->
+
 
 
         <!-- Footer Start -->
@@ -296,7 +302,7 @@
                     //$sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.userID = '$uid'";
 
 
-                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid'";
+                    $sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid' AND cart.cart_food_delete = '1'";
                     $result = mysqli_query($connect, $sql);
                     $resultcheck = mysqli_num_rows($result);
 

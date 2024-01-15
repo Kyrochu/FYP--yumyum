@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
 
-        $food_query = "SELECT * FROM cart WHERE user_id = '$user_id'";
+        $food_query = "SELECT * FROM cart WHERE user_id = '$user_id' AND cart_food_delete = '1'";
         $food_result = mysqli_query($connect, $food_query);
 
         // Loop 
@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
 
         // Delete items from the "cart" table
-        $cart_query = "DELETE FROM cart WHERE user_id = '$user_id'";
+        $cart_query = "UPDATE cart SET cart_food_delete = '0' WHERE user_id = $user_id";
         $cart_result = mysqli_query($connect, $cart_query);
 
         if (!$cart_result) {
