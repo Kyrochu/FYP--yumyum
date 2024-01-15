@@ -21,7 +21,7 @@
 .container form{
   padding:20px;
   width:700px;
-  background: #a6a4a4;
+  background: #ffffff;
   box-shadow: 0 5px 10px rgba(0,0,0,.1);
 }
 
@@ -51,7 +51,15 @@
   display: block;
 }
 
-.container form .row .col .inputBox input{
+.container form .row .col .inputBox input {
+  width: 100%;
+  border:1px solid #aaaaaa;
+  padding:10px 15px;
+  font-size: 15px;
+  text-transform: none;
+}
+
+.container form .row .col .inputBox select{
   width: 100%;
   border:1px solid #aaaaaa;
   padding:10px 15px;
@@ -60,12 +68,13 @@
 }
 
 .container form .row .col .inputBox input:focus{
-  border:1px solid #000;
+  border:2px solid #000;
 }
 
 .container form .row .col .flex{
   display: flex;
-  gap:15px;
+  gap:10px;
+  
 }
 
 .container form .row .col .flex .inputBox{
@@ -89,7 +98,7 @@
 }
 
 .container form .submit-btn:hover{
-  background: #ff5900;
+  background: #ff9900;
 }
 
 /* btn design */
@@ -113,4 +122,9 @@
 
   .btn:active {
     transform: scale(0.9);
+  }
+
+  .danger{
+    color: red;
+    font-size: smaller;
   }
