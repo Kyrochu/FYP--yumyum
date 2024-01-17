@@ -185,8 +185,7 @@
                                                             <form action="" method="post">
                                                                 <input type="hidden" name="id" value="<?php echo $menuItem['food_id']; ?>">
                                                                 <input type="hidden" name="name" value="<?php echo $menuItem['food_name']; ?>">
-                                                                <input type="hidden" name="price" value="<?php echo $menuItem['food_price']; ?>">
-                                                                <span><?php echo $menuItem['food_name']; ?></span>
+                                                                <input type="hidden" name="price" value="<?php echo sprintf("%.2f", $menuItem['food_price']); ?>">                                                                <span><?php echo $menuItem['food_name']; ?></span>
                                                                 <span class="text-primary">RM <?php echo $menuItem['food_price'] ?></span>
                                                             </h5>
                                                             <small class="fst-italic"><?php echo $menuItem['food_description']; ?></small>

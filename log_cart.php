@@ -59,8 +59,7 @@
         }
         
         $fd_price_total = number_format($totalPrice, 2);
-        $tax = $fd_price_total * 0.1;
-        $total = $fd_price_total + $tax;
+        $total = $fd_price_total ;
     }
     else{
         $totalPrice = 0.0; 
@@ -228,10 +227,7 @@
                                       <p class="mb-2">Discount:</p>
                                       <p class="mb-2 text-success">- RM 0.00</p>
                                   </div>
-                                  <div class="d-flex justify-content-between">
-                                      <p class="mb-2">TAX:</p>
-                                      <p class="mb-2">RM <?php echo $tax?></p>
-                                  </div>
+                                        
                                   <hr />
                                   <div class="d-flex justify-content-between">
                                       <p class="mb-2">Total price:</p>

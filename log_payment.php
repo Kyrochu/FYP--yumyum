@@ -64,25 +64,6 @@
     }
 ?>
 
-<div class="date">
-
-    <span id="day"> Day </span>
-    <span id="month"> Month </span>
-    <span id="daynum"> 00 </span>
-    <span id="year"> Year </span>
-
-</div>
-
-<div class="time">
-
-    <span id="hour"> 00 </span>:
-    <span id="minutes"> 00 </span>:
-    <span id="seconds"> 00 </span>
-    <span id="period"> AM </span>
-
-</div>
-
-
 
 <div class="container">
         <form action="" method="post" onsubmit="return save(event)">
@@ -181,24 +162,16 @@
 
 
 
-<script src="AdminModule/Date&Time Widget.js" defer> </script> 
-
-
-
 
 
 
 <script>
     function save(event) {
-            event.preventDefault(); // Prevent form submission
+            event.preventDefault(); 
             var user_id = document.getElementById("u_id").value;
             var c_num = document.getElementById("card_number").value;
             var total = document.getElementById("price").value;
 
-            // // Validate credit card details
-            // var cardValidation = validateCreditCardDetails();
-
-            // if (cardValidation.valid) {
                 $.ajax({
                     type: "POST",
                     url: "receipt_save.php",
@@ -220,15 +193,27 @@
                         }, 2000);
                     },
                 });
-            // } else {
-            //     // Display card validation error
-            //     document.getElementById('cardNumberError').innerText = cardValidation.message;
-            // }
+           
 
-            return false; // Prevent default form submission
+            return false; 
         }
 
         document.addEventListener('DOMContentLoaded', function() {
+
+            //Card Name
+            var cardNameInput = document.getElementById('card_name');
+
+            cardNameInput.addEventListener('input', function () {
+                var value = cardNameInput.value;
+
+                // Regular expression to allow only alphabets and spaces
+                var pattern = /^[A-Za-z\s]+$/;
+
+                if (!pattern.test(value)) {
+                    
+                    cardNameInput.value = value.replace(/[^A-Za-z\s]/g, '');
+                }
+            });
 
             // Card Number
             var cardNumInput = document.getElementById('card_number');
@@ -254,7 +239,7 @@
                 var enteredMonth = parseInt(expDateValue.split('-')[1]);
 
                 // Validate entered date
-                if (isNaN(enteredYear) || isNaN(enteredMonth) || enteredYear < currentYear || enteredYear > currentYear + 10) {
+                if (isNaN(enteredYear) || isNaN(enteredMonth) || enteredYear < currentYear || enteredYear > currentYear + 5) {
                     displayExpDateError('Invalid expiration date. Please enter a valid date.');
                 } else {
                     displayExpDateError('');
@@ -270,26 +255,30 @@
             });
 
             //Email
-            document.addEventListener('DOMContentLoaded', function () {
-                var emailInput = document.getElementById('email');
-                var emailErrorDiv = document.getElementById('emailError');
+            var emailInput = document.getElementById('email');
+            var emailErrorDiv = document.getElementById('emailError');
 
-                emailInput.addEventListener('blur', function () {
-                    var emailValue = emailInput.value.toLowerCase();
+            emailInput.addEventListener('blur', function () {
+                var emailValue = emailInput.value.toLowerCase();
 
-                    // Regular expression for a more comprehensive email pattern
-                    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                // Regular expression for a more comprehensive email pattern
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-                    if (!emailPattern.test(emailValue)) {
-                        emailErrorDiv.innerText = 'Please enter a valid email address.';
-                    } else if (emailValue.endsWith('@gmail.com')) {
-                        // Additional check for Gmail domain
+                if (!emailPattern.test(emailValue)) {
+                    emailErrorDiv.innerText = 'Please enter a valid email address.';
+                } else {    
+                    var domain = emailValue.split('@')[1]; // Get the domain part after '@'
+                    if (isValidEmailDomain(domain)) {
                         emailErrorDiv.innerText = '';
                     } else {
-                        emailErrorDiv.innerText = 'Please enter a Gmail email address.';
+                        emailErrorDiv.innerText = 'Please enter a valid email domain.';
                     }
-                });
+                }
             });
+
+            function isValidEmailDomain(domain) {
+                return domain === 'gmail.com' || domain === 'hotmail.com'; 
+            }
 
 
             // Card Number formatting function
@@ -307,7 +296,7 @@
                         // For the first digit
                         if (firstDigit !== '4' && firstDigit !== '5') {
                             // If the first digit is neither 4 nor 5, display an error message
-                            displayCardError('Card number must start with 4 or 5');
+                            displayCardError('We just accept VISA or MASTER');
                             return spacedValue;
                         } else {
                             // If the first digit is valid, clear the error message
@@ -343,22 +332,38 @@
 
             // Display card type function
             function displayCardType(cardType) {
-            var cardTypeText = '';
+                var cardTypeText = '';
 
-            if (cardType === '4') {
-                cardTypeText = 'VISA';
-            } else if (cardType === '5') {
-                cardTypeText = 'MASTER';
+                if (cardType === '4') {
+                    cardTypeText = 'VISA';
+                } else if (cardType === '5') {
+                    cardTypeText = 'MASTER';
+                }
+
+
+                function displayExpDateError(message) {
+                    expDateErrorDiv.innerText = message;
+                }
+
             }
 
-            console.log('Card Type:', cardTypeText); // Check the value of cardTypeText
-            cardTypeDiv.innerText = cardTypeText;
-            }
+            emailInput.addEventListener('blur', function () {
+                var emailValue = emailInput.value.toLowerCase();
 
-            function displayExpDateError(message) {
-                expDateErrorDiv.innerText = message;
-            }
+                // Regular expression for a more comprehensive email pattern
+                var emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+                if (!emailPattern.test(emailValue)) {
+                    emailErrorDiv.innerText = 'Please enter a valid email address.';
+                } else {
+                    var domain = emailValue.split('@')[1]; // Get the domain part after '@'
+                    if (isValidEmailDomain(domain)) {
+                        emailErrorDiv.innerText = ''; // Reset the error message when the email is correct
+                    } else {
+                        emailErrorDiv.innerText = 'Please enter a valid email domain.';
+                    }
+                }
+            });
         });
 
 
