@@ -1,61 +1,93 @@
 <?php include ("../connection_sql.php") ?>
 
+
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PayNow To Enjoy</title>
-
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-
-    <link href="../css/epay.css" rel="stylesheet">
-</head>
-<body>
+<html>
+    <head>
+        <title>LogIn</title>
+        <link rel="stylesheet" href="../css/elog.css">
+        <style>
+            #place
+            {
+                margin-left: 8px;
+            }
+        </style>
+        
+    </head>
+    <body>
+        <header> 
     
-        <div class="container login-container">
-            <div class="row">
-                <div class="col-md-6 login-form-1">
-                    <h3>Login</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Email *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Login" />
-                        </div>
-                        <div class="form-group">
-                            <a href="#" class="ForgetPwd">Forget Password?</a>
-                        </div>
-                    </form>
-                </div>
-                <div class="col-md-6 login-form-2">
-                    <h3>Resgister</h3>
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Email *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" placeholder="Your Password *" value="" />
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" class="btnSubmit" value="Login" />
-                        </div>
-                        <div class="form-group">
+        
+            <!-- <h1 class="Welcome" style="background-color:dimgrey;"> <span class="W">W</span>elcome to <span class="F">F</span>antastos <span class="H">H</span>otel </h1> -->
+        
+                <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
+                    
+                    <img src="../img/daypay logo.png" alt="No Image" >
+                    
+                    <ul style="margin-left:700px;">
+                        <li> <a href="Homepage.php"> Home </a> </li>
 
-                            <a href="#" class="ForgetPwd" value="Login">Forget Password?</a>
-                        </div>
-                    </form>
+                    </ul>
+                    
                 </div>
+        
+        </header>
+
+        
+        <div class="form_page">
+            <div class="btn_anime">
+                <div id="btn" ></div>
+                <button type="button" class="LG_RE_btn"  onclick="login()" style="color: rgb(255, 252, 255);">Log In</button>
+                <button type="button" class="LG_RE_btn" id="place" onclick="register()" style="color: rgb(255, 252, 255);">Register</button>
             </div>
+            
+            <!-- log side -->
+            <form id="log" class="input_group" action="loginphp.php" method="POST" >
+                <br><br><br><br><br>    
+                <input type="text" class="input_place" name="user_email" placeholder="User Email" required>
+                
+                <input type="password" class="input_place" name="user_password" placeholder="Password" required>
+
+                <button type="submit" class="submit_btn" name="logbtn" style="color: rgb(255, 252, 255);">Log in</button>
+            </form>
+
+            
+
+            <!-- register side -->
+            <form id="reg" class="input_group" action="e_register.php" method="POST">
+                <input type="text" class="input_place" name="name" placeholder="Name" required >
+                <input type="text" class="input_place" name="contact" placeholder="Contact Number " required >
+                <input type="email" class="input_place" name="email" placeholder="Email" required >
+                <input type="password" class="input_place" name="new_password" placeholder="Create Password" required>
+                <input type="password" class="input_place" name="com_password" placeholder="Comfirm Password" required>
+                
+                <button type="submit" class="submit_btn" name="regbtn" style="color: rgb(255, 252, 255);">Register</button>
+                
+            </form>
         </div>
 
+        
+        <script>
+            var x = document.getElementById("log");
+            var y = document.getElementById("reg");
+            var z = document.getElementById("btn");
 
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-</body>
+            function login()
+            {
+                x.style.left = "50px";
+                y.style.left = "450px";
+                z.style.left = "0px";
+            }
+
+            function register()
+            {
+                x.style.left = "-400px";
+                y.style.left = "50px";
+                z.style.left = "110px";
+            }
+        </script>
+
+    </body>
 </html>
