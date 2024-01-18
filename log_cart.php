@@ -227,7 +227,7 @@
                                       <p class="mb-2">Discount:</p>
                                       <p class="mb-2 text-success">- RM 0.00</p>
                                   </div>
-                                        
+
                                   <hr />
                                   <div class="d-flex justify-content-between">
                                       <p class="mb-2">Total price:</p>
@@ -236,11 +236,12 @@
 
                                   <div class="mt-3">
                                     <?php if ($total > 0): ?>
-                                        <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase </a>
+                                        <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase By Card</a>
+                                        <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase PayNow</a>
                                     <?php else: ?>
                                         <button class="btn btn-secondary w-100 shadow-0 mb-2" disabled> No Items to Purchase </button>
                                     <?php endif; ?>
-                                    <a href="log_menu.php" class="btn btn-light w-100 border mt-2"> Back to shop </a>
+                                    <a href="log_menu.php?userID=<?php echo $uid; ?>" class="btn btn-light w-100 border mt-2"> Back to shop </a>
                                 </div>
                               </div>
                           </div>
