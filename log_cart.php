@@ -103,10 +103,10 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
                             <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
-                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
                             <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
-                            <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Menu</a>
+                            <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
                             <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">About</a>
                             <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                         </div>
                         <a href="index.html" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">LogOut</a>

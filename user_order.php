@@ -217,16 +217,17 @@
                                         <p class="card-text">Time: <?php echo $time; ?></p>
                                         <div class="card-text">Food Ordered:
                                             <div class="card-body ">
-                                                <?php
-                                                // Loop to display all ordered foods
-                                                foreach ($group['foods'] as $food) {
+                                            <?php
+                                            foreach ($group['foods'] as $food) {
+                                                // Calculate the total price for each food item
+                                                $food_total_price = ($food["food_price"] + $food["add_on_price"]) * $food["food_num"];
                                                 ?>
-                                                    <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
-                                                    <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo number_format($food["food_price"], 2); ?></p>
+                                                <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
+                                                <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo number_format($food_total_price, 2); ?></p>
                                                 <?php
-                                                    $total += $food["food_price"];
-                                                }
-                                                ?>
+                                                $total += $food_total_price; // Accumulate the total price
+                                            }
+                                            ?>
                                             </div>
                                         </div>
                                         <p class="card-text">Total Price: RM<?php echo number_format($total, 2 );?></p>

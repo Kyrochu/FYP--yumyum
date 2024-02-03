@@ -93,10 +93,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
-                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
                         <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
                         <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Menu</a>
                         <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link  ">About</a>
                         <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                         <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
                             style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
@@ -318,7 +318,8 @@
                                         <?php echo $row['food_name'] ?><br>
                                         <span class="badge "><?php echo $row['add_on_name'] ?></span>
                                     </div>
-                                    <div class="price">RM <?php echo $row['food_total_price'] ?></div>
+                                    <div class="price">RM <?php echo number_format($row['food_total_price'], 2); ?></div>
+                                    
                                     <div class="qty">
                                         <span class="minus decrement"  data-food-id="<?php echo $row['cart_id'] ?>">-</span>
                                         <span class=""style="color: black;" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
