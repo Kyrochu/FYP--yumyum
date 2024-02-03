@@ -1,0 +1,172 @@
+*
+{
+    margin:0;
+    padding:0;
+    font-family:sans-serif;
+    color: rgb(255, 255, 255);
+} 
+
+.navbar
+{
+    width: 100%;
+    margin: auto;
+    padding:auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar img
+{
+    height:5rem ; 
+    width:5rem ;
+    padding-left:50px;  
+    margin-top: 10px;
+}
+
+.navbar ul
+{
+    margin-right: 5rem;
+}
+
+.navbar ul li
+{
+    list-style:none;
+    display: inline-block;
+    margin: 0 20px ;
+    position: relative;
+}
+
+.navbar ul li a
+{
+    text-decoration:none;
+    text-transform: uppercase;
+    color: aliceblue;
+}
+
+.navbar ul li::after     /* Underline of "Home","About Us","Rooms".... */
+{
+    content:"";
+    height:3px;
+    width:0%;
+    background-color:gold;
+    position: absolute;
+    left: 0;
+    bottom: 0;  /* Position of the line */
+    transition: 0.5s;
+}
+
+.navbar ul li:hover::after
+{
+    width:100%;
+}
+
+
+body
+{
+    background-image:url(../img/daypaybg.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
+}
+
+.form_page
+{
+    width: 480px;
+    height: 700px;
+    position: relative;
+    margin: 6% auto;
+    margin-top: 12em;
+    box-shadow: 0 0 20px 9px rgba(0, 0, 0, 0.411);
+    background-color: rgba(0, 0, 0, 0.781);
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 3em;
+}
+
+.btn_anime
+{
+    width: 220px;
+    margin: 5em auto;
+    box-shadow: 0 0 20px 9px rgba(0, 82, 233, 0.411);
+    position: relative;
+    border-radius: 300px;
+}
+
+.LG_RE_btn
+{
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+
+}
+
+#btn
+{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right , #0074f8 , #00a2ff  );
+    border-radius: 30px;
+    transition: .5s;
+}
+
+
+.input_group
+{
+    top: 130px;
+    position: absolute;
+    width: 280px;
+    transition: .5s;
+    
+}
+
+.input_place
+{
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(255, 255, 255);
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    margin-left: 3em;
+    margin-top: 3em;
+    background: transparent;
+    outline: none;
+}
+
+
+
+.submit_btn
+{
+    width: 85%;
+    padding: 10px 30px ;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    background: linear-gradient(to right , #0074f8 , #00a2ff  );
+    border: 0;
+    margin-top: 8em;
+    margin-left: 5em;
+    border-radius: 30px;
+}
+
+#log
+{
+    left: 50px;
+    
+}
+
+#reg
+{
+    left: 450px;
+}
+
+::placeholder
+{
+    color: white;
+}
