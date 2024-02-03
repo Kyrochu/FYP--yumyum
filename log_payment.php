@@ -302,7 +302,7 @@
                             // If the first digit is valid, clear the error message
                             displayCardError('');
                         }
-                    }
+                    } 
 
                     spacedValue += formattedValue.charAt(i);
                 }
