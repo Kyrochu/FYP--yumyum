@@ -72,7 +72,6 @@
 
 <?php
     session_start();
-    var_dump($total);
     if ($total !== null) {
         $_SESSION['dataFromPage1'] = $total;
     }
@@ -169,8 +168,8 @@
                                           echo '                  <button class="btn btn-sm btn-primary increment" data-food-id="' . $row['cart_id'] . '">+</button>';
                                           echo '            </div>';
                                           echo '            <div class="">';
-                                          echo '                <text class="h6">RM '. $row['food_total_price'] .' </text> <br />';
-                                          echo '                <small class="text-muted text-nowrap">RM' . $row['food_price'] . ' / per item</small>';
+                                          echo '                <text class="h6">RM '. number_format($row['food_total_price'], 2) .' </text> <br />';
+                                          echo '                <small class="text-muted text-nowrap">RM' . number_format($row['food_price'], 2) . ' / per item</small>';
                                           echo '            </div>';
                                           echo '        </div>';
                                           echo '        <div class="col-lg col-sm-6 d-flex justify-content-sm-center justify-content-md-start justify-content-lg-center justify-content-xl-end mb-2">';

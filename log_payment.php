@@ -9,13 +9,8 @@
         $total_price = $_SESSION['dataFromPage1'];
         $user = $_SESSION['data'];
 
-        echo "Total from Page 1: " . $total_price;
-        echo "Total from Page 1: " . $user;
     } 
-    else 
-    {
-        echo "Session variable not set.";
-    }
+
 
     
 ?>
@@ -152,6 +147,7 @@
                 </div>
             </div>
                 <button type="submit" class="submit-btn">Proceed to Checkout</button>
+                <button type="button" href="log_menu.php?userID=<?php echo $uid; ?>" class="submit-btn">Back to Menu</button>
                 <div id="paymentError" class="error"></div>
         </form>
         <div id="overlay" class="overlay"></div>
@@ -166,6 +162,8 @@
 
 
 <script>
+
+    
     function save(event) {
             event.preventDefault(); 
             var user_id = document.getElementById("u_id").value;
@@ -197,6 +195,8 @@
 
             return false; 
         }
+
+        
 
         document.addEventListener('DOMContentLoaded', function() {
 
