@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2024 at 05:47 PM
+-- Generation Time: Feb 03, 2024 at 05:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `add_on` (
 --
 
 INSERT INTO `add_on` (`add_id`, `add_name`, `add_price`, `food_id`) VALUES
-(1, 'no tomato', 0.5, 1),
+(1, 'no tomato', 0, 1),
 (2, 'Extra Sauce', 0.5, 1),
 (3, 'No tomato', 0, 2),
 (4, 'Extra Sauce ', 0.5, 2),
@@ -84,6 +84,7 @@ CREATE TABLE `cart` (
   `food_total_price` double NOT NULL,
   `cart_food_delete` int(11) NOT NULL DEFAULT 1,
   `user_id` int(255) NOT NULL,
+  `add_on_id` int(255) NOT NULL,
   `add_on_name` varchar(255) NOT NULL,
   `add_on_price` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -92,12 +93,10 @@ CREATE TABLE `cart` (
 -- Dumping data for table `cart`
 --
 
-INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `food_total_price`, `cart_food_delete`, `user_id`, `add_on_name`, `add_on_price`) VALUES
-(39, 1, 1, 10.5, 0, 15, 'Extra Sauce', 0.5),
-(40, 2, 1, 8, 0, 15, '', 0),
-(41, 1, 1, 10.5, 0, 15, 'Extra Sauce', 0.5),
-(42, 2, 1, 8, 0, 15, '', 0),
-(43, 4, 1, 12, 1, 15, '', 0);
+INSERT INTO `cart` (`cart_id`, `food_id`, `num_food`, `food_total_price`, `cart_food_delete`, `user_id`, `add_on_id`, `add_on_name`, `add_on_price`) VALUES
+(49, 1, 1, 10.5, 0, 15, 2, 'Extra Sauce', 0.5),
+(50, 2, 1, 8.5, 0, 15, 4, 'Extra Sauce ', 0.5),
+(51, 2, 1, 8.5, 1, 15, 4, 'Extra Sauce ', 0.5);
 
 -- --------------------------------------------------------
 
@@ -123,6 +122,27 @@ INSERT INTO `category` (`cat_id`, `cat_name`, `cat_type`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `e_user`
+--
+
+CREATE TABLE `e_user` (
+  `user_id` int(255) NOT NULL,
+  `user_name` varchar(255) NOT NULL,
+  `user_email` varchar(255) NOT NULL,
+  `user_contact` varchar(255) NOT NULL,
+  `user_pass` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `e_user`
+--
+
+INSERT INTO `e_user` (`user_id`, `user_name`, `user_email`, `user_contact`, `user_pass`) VALUES
+(1, 'nicc', 'kroyk32@gmail.com', '011', '111');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `menu`
 --
 
@@ -143,7 +163,7 @@ CREATE TABLE `menu` (
 INSERT INTO `menu` (`food_id`, `food_img`, `food_name`, `food_price`, `food_type`, `food_description`, `food_delete`) VALUES
 (1, 'menu-1.jpg', 'Pork Burger', 10, 'meal', 'Fresh pork make it', 0),
 (2, 'menu-2.jpg', 'Chicken Burger', 8, 'meal', 'Fresh chicken make it', 0),
-(3, 'menu-3.jpg', 'Fries', 5, 'snack', 'Fresh potatos make it', 0),
+(3, 'menu-3.jpg', 'Fries', 5.4, 'snack', 'Fresh potatos make it', 0),
 (4, 'menu-4.jpg\r\n', 'Tuna Pizza', 12, 'meal', 'so tuna', 0);
 
 -- --------------------------------------------------------
@@ -157,6 +177,7 @@ CREATE TABLE `order` (
   `user_id` int(255) NOT NULL,
   `food_id` int(255) NOT NULL,
   `num_food` int(255) NOT NULL,
+  `add_on_id` int(255) NOT NULL,
   `or_delete` int(11) NOT NULL DEFAULT 1,
   `or_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -165,11 +186,9 @@ CREATE TABLE `order` (
 -- Dumping data for table `order`
 --
 
-INSERT INTO `order` (`or_id`, `user_id`, `food_id`, `num_food`, `or_delete`, `or_time`) VALUES
-(27, 15, 1, 1, 1, '2024-01-15 10:52:38'),
-(28, 15, 2, 1, 1, '2024-01-15 10:52:38'),
-(29, 15, 1, 1, 1, '2024-01-15 21:04:59'),
-(30, 15, 2, 1, 1, '2024-01-15 21:50:16');
+INSERT INTO `order` (`or_id`, `user_id`, `food_id`, `num_food`, `add_on_id`, `or_delete`, `or_time`) VALUES
+(36, 15, 1, 1, 2, 1, '2024-02-03 20:42:57'),
+(37, 15, 2, 1, 4, 1, '2024-02-03 20:42:57');
 
 -- --------------------------------------------------------
 
@@ -197,7 +216,13 @@ INSERT INTO `receipt` (`r_id`, `u_id`, `card_number`, `total_price`, `re_time`) 
 (32, 15, '', 35.2, '2024-01-14 00:23:15'),
 (33, 15, '1111111111111111111111111111', 20.35, '2024-01-15 10:52:38'),
 (34, 15, '1111111111111111', 11.55, '2024-01-15 21:04:59'),
-(35, 15, '1111 1111 1111 1111', 8.8, '2024-01-15 21:50:16');
+(35, 15, '1111 1111 1111 1111', 8.8, '2024-01-15 21:50:16'),
+(36, 15, '5432 3456 7898 7654', 12, '2024-01-16 11:48:48'),
+(37, 15, '4321 2321 2345 4323', 21, '2024-01-16 11:58:12'),
+(38, 15, '4323 4567 8876 5432', 21, '2024-02-03 18:50:01'),
+(39, 15, '4567 8765 4323 4567', 19, '2024-02-03 20:40:46'),
+(40, 15, '4578 7654 3213 4567', 19, '2024-02-03 20:42:07'),
+(41, 15, '4565 4324 5687 6543', 19, '2024-02-03 20:42:57');
 
 -- --------------------------------------------------------
 
@@ -283,6 +308,12 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`cat_id`);
 
 --
+-- Indexes for table `e_user`
+--
+ALTER TABLE `e_user`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- Indexes for table `menu`
 --
 ALTER TABLE `menu`
@@ -333,7 +364,7 @@ ALTER TABLE `admin_acc`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `cart_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -342,22 +373,28 @@ ALTER TABLE `category`
   MODIFY `cat_id` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT for table `e_user`
+--
+ALTER TABLE `e_user`
+  MODIFY `user_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `food_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `or_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `or_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `receipt`
 --
 ALTER TABLE `receipt`
-  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `r_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `test`
