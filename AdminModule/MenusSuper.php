@@ -271,7 +271,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             if(isset($_POST['addCAT'])) 
             {
                 $Name = $_POST['name'];
-                $Type = $_POST['type'];
+                $Type = $_POST['type']; 
                 $Image = $_FILES['image']['name'];
                 $ImageTmp = $_FILES['image']['tmp_name'];
 
