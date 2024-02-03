@@ -185,8 +185,8 @@
                                                             <form action="" method="post">
                                                                 <input type="hidden" name="id" value="<?php echo $menuItem['food_id']; ?>">
                                                                 <input type="hidden" name="name" value="<?php echo $menuItem['food_name']; ?>">
-                                                                <input type="hidden" name="price" value="<?php echo sprintf("%.2f", $menuItem['food_price']); ?>">                                                                <span><?php echo $menuItem['food_name']; ?></span>
-                                                                <span class="text-primary">RM <?php echo $menuItem['food_price'] ?></span>
+                                                                <input type="hidden" name="price" value="<?php echo number_format($menuItem['food_price'], 2); ?>">                                                                <span><?php echo $menuItem['food_name']; ?></span>
+                                                                <span class="text-primary">RM <?php echo number_format($menuItem['food_price'], 2); ?></span>
                                                             </h5>
                                                             <small class="fst-italic"><?php echo $menuItem['food_description']; ?></small>
                                                             
@@ -395,15 +395,16 @@
                     document.getElementById('popup').innerHTML += '<div class="checkbox-group">';
 
                     data.options.forEach(option => {
+                        let addPrice = parseFloat(option.add_price).toFixed(2); // Calculate addPrice for each option
                         document.getElementById('popup').innerHTML += `
                             <input type="checkbox" name="checkboxGroup[]" 
-                                value="${option.add_price}" data-option-name="${option.add_name}">
-                            ${option.add_name} (+RM ${option.add_price})<br>
+                                value="${option.add_price}" data-option-name="${option.add_name}"
+                                data-option-id="${option.add_id}">
+                            ${option.add_name} (+RM ${addPrice})<br>
                         `;
                     });
 
                     document.getElementById('popup').innerHTML += '</div>';
-
                 }
 
                 // Add buttons and other HTML as needed
@@ -440,6 +441,7 @@
         checkboxes.forEach(function (checkbox) {
             var addPrice = parseFloat(checkbox.value);
             var addName = checkbox.getAttribute('data-option-name');
+            var addid = checkbox.getAttribute('data-option-id');
 
 
             $.ajax({
@@ -448,6 +450,7 @@
                     food_id: fdid,
                     add_on_price: addPrice,
                     add_on_name: addName,
+                    add_on_id: addid,
                     uid: userid
                 },
                 url: "add_to_cart.php",

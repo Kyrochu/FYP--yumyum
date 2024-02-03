@@ -31,11 +31,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         while ($row = mysqli_fetch_assoc($food_result)) {
             $food_id = $row['food_id'];
             $quantity = $row['num_food'];
+            $addid = $row['add_on_id'];
 
             // Insert the data into the "order" table
-            $order_query = "INSERT INTO `order` (user_id, food_id, num_food , or_time) VALUES (?, ?, ?, NOW())";
+            $order_query = "INSERT INTO `order` (user_id, food_id, num_food, add_on_id , or_time) VALUES (?, ?, ?, ?, NOW())";
             $order_stmt = mysqli_prepare($connect, $order_query);
-            mysqli_stmt_bind_param($order_stmt, "iii", $user_id, $food_id, $quantity);
+            mysqli_stmt_bind_param($order_stmt, "iiii", $user_id, $food_id, $quantity, $addid);
 
             $order_result = mysqli_stmt_execute($order_stmt);
 

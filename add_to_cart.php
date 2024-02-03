@@ -12,14 +12,15 @@
             // Get other details from the form or session
             $add_on_price = (float)$_GET['add_on_price'];
             $add_on_name = $_GET['add_on_name'];
+            $add_on_id = $_GET['add_on_id'];
             $uid = (int)$_GET["uid"];
 
             // Calculate total price
             $totalPrice = $menuRow['food_price'] + $add_on_price;
 
             // Insert into cart table
-            $insertQuery = "INSERT INTO cart (food_id, food_total_price, num_food, user_id, add_on_name, add_on_price) 
-                            VALUES ($foodId, $totalPrice, '1', $uid, '$add_on_name', $add_on_price)";
+            $insertQuery = "INSERT INTO cart (food_id, food_total_price, num_food, user_id, add_on_id, add_on_name, add_on_price) 
+                            VALUES ($foodId, $totalPrice, '1', $uid, '$add_on_id', '$add_on_name', $add_on_price)";
             mysqli_query($connect, $insertQuery);
         }
     }

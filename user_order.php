@@ -148,9 +148,26 @@
 
                         if ($menu_result->num_rows > 0) {
                             $row_menu = mysqli_fetch_assoc($menu_result);
-
+                
+                            // Fetch add-on details based on food_id (assuming add_id is from the menu table)
+                            $add_on_query = "SELECT * FROM add_on WHERE add_id = ?";
+                            $add_on_stmt = $connect->prepare($add_on_query);
+                            $add_on_stmt->bind_param("i", $fid);
+                            $add_on_stmt->execute();
+                            $add_on_result = $add_on_stmt->get_result();
+                
+                            if ($add_on_result->num_rows > 0) {
+                                $row_addon = mysqli_fetch_assoc($add_on_result);
+                                $add_on_name = $row_addon['add_name'];
+                                $add_on_price = $row_addon['add_price'];
+                            } else {
+                                // No add-on found
+                                $add_on_name = "No Add-on";
+                                $add_on_price = 0;
+                            }
+                
+                            // Group orders by time
                             $order_group_key = $row_order["or_time"];
-
                             if (!isset($grouped_orders[$order_group_key])) {
                                 $grouped_orders[$order_group_key] = [
                                     'name' => $row_user["name"],
@@ -158,12 +175,14 @@
                                     'foods' => []
                                 ];
                             }
-
+                
+                            // Add menu item with add-on details to the grouped orders
                             $grouped_orders[$order_group_key]['foods'][] = [
                                 'food_name' => $row_menu["food_name"],
-                                'food_price' => $row_menu["food_price"],
+                                'food_price' => $row_menu["food_price"] + $add_on_price,
                                 'food_num' => $row_order["num_food"],
-                                // Add other fields you want to display
+                                'add_on_name' => $add_on_name,
+                                'add_on_price' => $add_on_price
                             ];
                         } else {
                             echo "No menu items found for food_id: $fid";
@@ -172,33 +191,45 @@
 
                     $order_stmt->close();
                     $menu_stmt->close();
+                    $add_on_stmt->close();
 
                     // Display the grouped orders if any
                     if (!empty($grouped_orders)) {
                         foreach ($grouped_orders as $group) {
                             $total = 0;
+                            if (isset($group['time'])) {
+                                $datetime = $group['time'];
+
+                                // Extract date and time parts
+                                $date = date('Y-m-d', strtotime($datetime));
+                                $time = date('H:i:s', strtotime($datetime));
+                            } else {
+                                echo "wrong";
+                            }
+                            
                 ?>
                             <div class="col-md-4" style="padding-left: 3rem;">
                                 <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
                                     <div class="card-header shadow bg-warning" style="border-radius: 8px;">Pending Order</div>
                                     <div class="card-body" style="overflow-y: auto;">
                                         <p class="card-text">Name: <?php echo $group['name']; ?></p>
-                                        <p class="card-text">Time: <?php echo $group['time']; ?></p>
+                                        <p class="card-text">Date: <?php echo $date; ?></p>
+                                        <p class="card-text">Time: <?php echo $time; ?></p>
                                         <div class="card-text">Food Ordered:
                                             <div class="card-body ">
                                                 <?php
                                                 // Loop to display all ordered foods
                                                 foreach ($group['foods'] as $food) {
                                                 ?>
-                                                    <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
-                                                    <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo $food["food_price"]; ?></p>
+                                                    <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
+                                                    <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo number_format($food["food_price"], 2); ?></p>
                                                 <?php
                                                     $total += $food["food_price"];
                                                 }
                                                 ?>
                                             </div>
                                         </div>
-                                        <p class="card-text">Total Price: RM<?php echo $total ?></p>
+                                        <p class="card-text">Total Price: RM<?php echo number_format($total, 2 );?></p>
                                     </div>
                                 </div>
                             </div>
