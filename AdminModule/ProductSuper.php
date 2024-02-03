@@ -265,11 +265,16 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         <input type='hidden' name='pro_id' value='$productId'>
                                         <button type='submit' name='editbtn' class='edit'>EDIT</button>
                                     </form>
-                                </td>
-                                <td>
                                     <form action='' method='POST'onsubmit=\"return confirm('Are you sure you want to delete this product?')\">
                                         <input type='hidden' name='delete_id' value='$productId'>
                                         <button type='submit' name='deletebtn' class='dlt'>DELETE</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <form action='' method='GET'>
+                                        <input type='hidden' name='cat_id' value='$selected_category_id'>
+                                        <input type='hidden' name='pro_id' value='$productId'>
+                                        <button type='submit' name='editbtn' class='edit'>ADD ON</button>
                                     </form>
                                 </td>
                             </tr>";
