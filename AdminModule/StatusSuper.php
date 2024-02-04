@@ -77,7 +77,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
                     <!-- Dropdown List (Accounts)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -95,7 +95,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
                     
                     <!-- Dropdown List (Manage)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -110,7 +110,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
                     
                     <!-- Dropdown List (Orders)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -339,22 +339,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
-                                    <form method="POST">
-                                        <!-- Hidden inputs to pass necessary order information -->
-                                        <input type="hidden" name="order_time" value="<?php echo $group['time']; ?>">
-                                        <input type="hidden" name="username" value="<?php echo $row_user['name']; ?>">
-                                        <input type="hidden" name="contact_number" value="<?php echo $row_user['contact_number']; ?>">
-                                        <input type="hidden" name="food_name" value="<?php echo $food["food_name"]; ?>">
-                                        <input type="hidden" name="add_on_name" value="<?php echo $food["add_on_name"]; ?>">
-                                        <input type="hidden" name="add_on_price" value="<?php echo $food["add_on_price"]; ?>">
-                                        <input type="hidden" name="quantity" value="<?php echo $food["food_num"]; ?>">
-                                        <input type="hidden" name="price" value="<?php echo $food["food_price"]; ?>">
-                                        <input type="hidden" name="total_price" value="<?php echo $total; ?>">
-
-                                        <!-- DELIVERED button -->
-                                        <input type="submit" value="DELIVERED" name="delivered" class="btn">
-                                    </form>
+                                    
                                 </div>
                             </div>
                             <?php
