@@ -340,7 +340,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         </div>
                                     </div>
                                     <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
-<<<<<<< HEAD
                                     <form method="POST">
                                         <!-- Hidden inputs to pass necessary order information -->
                                         <input type="hidden" name="order_time" value="<?php echo $group['time']; ?>">
@@ -355,11 +354,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                         <!-- DELIVERED button -->
                                         <input type="submit" value="DELIVERED" name="delivered" class="btn">
-=======
-                                    <form method="POST" action="History.php">
-                                        <input type="hidden" name="order_details" value="<?php echo htmlspecialchars(json_encode($group['foods'])); ?>">
-                                        <input type="submit" value="DELIVERED" name="delivered" class="delivered-btn">
->>>>>>> 749ed3b1a630209fbf2acd33e6b8db3616139ea4
                                     </form>
                                 </div>
                             </div>
