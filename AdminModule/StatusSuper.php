@@ -365,9 +365,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         </div>
                                     </div>
                                     <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
-                                    <?php
-                                    ?>
-                                    <form method="POST" >
+                                    <form method="POST" action="History.php">
+                                        <input type="hidden" name="order_details" value="<?php echo htmlspecialchars(json_encode($group['foods'])); ?>">
                                         <input type="submit" value="DELIVERED" name="delivered" class="btn">
                                     </form>
                                 </div>
@@ -388,88 +387,59 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <div class="DeliveredstatusBox">
 
             <?php
-                // Fetch data from the order_history table
-                $select_query = "SELECT * FROM order_history ORDER BY order_date, order_time";
-                $result = mysqli_query($connect, $select_query);
+            // Fetch data from the order_history table
+            $select_query = "SELECT * FROM order_history ORDER BY order_date, order_time";
+            $result = mysqli_query($connect, $select_query);
 
-                // Initialize an array to hold the data
-                $orders = [];
+            // Initialize an array to hold the data
+            $orders = [];
 
-                // Loop through the fetched data and organize it into an array
-                while ($row = mysqli_fetch_assoc($result)) {
-                    $order_date = $row['order_date'];
-                    $order_time = $row['order_time'];
+            // Loop through the fetched data and organize it into an array
+            while ($row = mysqli_fetch_assoc($result)) {
+                $order_date = $row['order_date'];
+                $order_time = $row['order_time'];
 
+                // Create a unique key combining date and time
+                $key = $order_date . '_' . $order_time;
 
-                    // Add the data to the array
-                    $orders[$order_date][$order_time][] = $row;
-                }
+                // Add the data to the array
+                $orders[$key][] = $row;
+            }
             ?>
             
             
-            <?php foreach ($orders as $date => $times) : ?>
-                <?php foreach ($times as $time => $order_details) : ?>
-                    <div class="PendingstatusBox">
-                        <div class="Status-container">
-                            <div class="cus-info">
-                                <h3>Order Date: <?php echo $date; ?></h3>
-                                <h3>Order Time: <?php echo $time; ?></h3>
-                                <h3>User Name: <?php echo $order_details[0]['username']; ?></h3>
-                                <h3> Contact Number : <?php echo $order_details[0]['contact_number']; ?> </h3>
-                                <!-- Continue with your HTML layout -->
-                                <div class="popup">
-                                    <div class="food-ordered-box">
-                                        <!-- Iterate over the orders for this date and time -->
-                                        <?php foreach ($order_details as $order) : ?>
-                                            <h3 class="card-text"><?php echo $order['food_name']; ?> - <?php echo $order['add_on_name']; ?></h3>
-                                            <h3 class="card-text">Quantity: <?php echo $order['quantity']; ?></h3>
-                                            <!-- Continue displaying other details -->
-                                        <?php endforeach; ?>
-                                    </div>
-                                    <!-- Add the rest of your HTML structure -->
-                                    <div class="form-element">
-                                        <button class="cancel-btn">CANCEL</button>
-                                    </div>
+            <?php foreach ($orders as $key => $order_details) : ?>
+                <div class="PendingstatusBox">
+                    <div class="Status-container">
+                        <div class="cus-info">
+                            <?php
+                            // Extract date and time from the key
+                            list($order_date, $order_time) = explode('_', $key);
+                            ?>
+                            <h3>Order Date: <?php echo $order_date; ?></h3>
+                            <h3>Order Time: <?php echo $order_time; ?></h3>
+                            <!-- Continue with your HTML layout -->
+                            <div class="popup">
+                                <div class="food-ordered-box">
+                                    <!-- Iterate over the orders for this date and time -->
+                                    <?php foreach ($order_details as $order) : ?>
+                                        <h3 class="card-text"><?php echo $order['food_name']; ?> - <?php echo $order['add_on_name']; ?></h3>
+                                        <h3 class="card-text">Quantity: <?php echo $order['quantity']; ?></h3>
+                                        <!-- Continue displaying other details -->
+                                    <?php endforeach; ?>
+                                </div>
+                                <!-- Add the rest of your HTML structure -->
+                                <div class="form-element">
+                                    <button class="cancel-btn">CANCEL</button>
                                 </div>
                             </div>
-                            <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
                         </div>
+                        <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
                     </div>
-                <?php endforeach; ?>
+                </div>
             <?php endforeach; ?>
             
-            
-
-    
-
-        <?php
-            if (isset($_POST['delivered'])) {
-                $insert_query = "INSERT INTO order_history (order_number, order_date, order_time, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        
-                $insert_stmt = $connect->prepare($insert_query);
-        
-                foreach ($group['foods'] as $food) {
-                    $order_number = ''; // Set your order number here, if available
-                    $order_date = $date;
-                    $order_time = $time;
-                    $username = $row_user['name'];
-                    $contact_number = $row_user['contact_number'];
-                    $food_name = $food["food_name"];
-                    $add_on_name = $food["add_on_name"];
-                    $add_on_price = $food["add_on_price"];
-                    $quantity = $food["food_num"];
-                    $price = $food["food_price"];
-                    
-                    $total_price = $price  * $quantity;
-
-                    $insert_stmt->bind_param("issssssdidd", $order_number, $order_date, $order_time, $username, $contact_number, $food_name, $add_on_name, $add_on_price, $quantity, $price, $total_price);
-                    $insert_stmt->execute();
-                }
-        
-                $insert_stmt->close();
-            }
-        ?>
-
+                           
 
     </body>
 
