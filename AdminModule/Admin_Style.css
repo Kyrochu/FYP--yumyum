@@ -9,7 +9,7 @@
 body
 {
     min-height:100vh;
-    background-color:burlywood;
+    background-color:#ebe9e9;
     color:white;
     background-size:cover;
     background-position:center;
@@ -18,56 +18,27 @@ body
 
 /*------------------------------------------------------------------------- Side Bar------------------------------------------------------ */
 
-.first-layer 
-{
-    position: absolute;
-    top: -2px; /* Adjust the top position as needed */
-    left: -5px; /* Adjust the left position as needed */
-    z-index: 2; 
-}
-
 .side-bar
 {
-    background: #1a1a1a;
-    width: 100px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: -250px;
-    transition: 0.6s ease;
-    overflow-y: auto;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    z-index: 2;
+    background:black;
+    width:120px;
+    height:100vh;
+    position:fixed;
+    top:0;
+    transition:0.6s ease;
+    transition-property:left;
 }
 
 .side-bar:hover
 {
-    width:200px;
+    width:250px;
     transition:0.5s;
 }
 
 header
 {
     background:#33363a;
-}
-
-header img
-{
-    width:100px;
-    margin:15px;
-    margin-left:70px;
-    border-radius:50%;
-    border:3px solid grey;
-}
-
-.close-btn
-{
-    position:absolute;
-    color:#fff;
-    font-size:23px;
-    right:0px;
-    margin:15px;
-    cursor:pointer; 
+    margin-top: 100px;
 }
 
 header h1
@@ -82,7 +53,16 @@ header h1
 .menu
 {
     width:100%;
-    margin-top:30px;
+    margin-top:120px;
+    overflow:hidden
+}
+
+.side-bar .menu .item .menu-text {
+    display: none; /* Hide the span initially */
+}
+
+.side-bar:hover .menu .item .menu-text {
+    display: inline-block; /* Display the span when the sidebar is hovered */
 }
 
 .menu .item a
@@ -93,7 +73,7 @@ header h1
     display:block;
     padding:3px 30px;
     line-height:60px;
-    overflow: hidden;
+    overflow:hidden;
 }
 
 .menu .item .logout
@@ -129,9 +109,7 @@ header h1
     font-size:35px;
     cursor:pointer;
     margin:25px;
-    top: 20px; /* Adjust the top position as needed */
-    left: 20px; /* Adjust the left position as needed */
-    z-index: 2; 
+
 }
 
 .sub-btn
@@ -142,10 +120,6 @@ header h1
 .side-bar.active
 {
     left:0;
-    position: absolute;
-    top: 20px; /* Adjust the top position as needed */
-    left: 20px; /* Adjust the left position as needed */
-    z-index: 2; 
 }
 
 .side-bar::-webkit-scrollbar  /* CSS for scroll bar on Side Bar */
@@ -167,20 +141,15 @@ header h1
 
 .datetime
 {
-    color: black;
-    background-color: #ebe9e9;
-    font-family: "Segoe UI", sans-serif;
-    width: 100%;
-    padding: 10px 10px;
-    border: 3px solid blanchedalmond;
-    border-radius: 8px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    overflow-y: auto; /* Enable vertical scrolling */
+    color:black;
+    background-color:#ebe9e9;
+    font-family:"Segoe UI",sans-serif;
+    width:1280px;
+    padding:10px 10px;
+    margin-left:300px;
+    border:3px solid #ebe9e9;
+    border-radius:8px;
+    transition:0.5s;
     
 }
 
@@ -239,7 +208,6 @@ header h1
     padding:5px 5px;
     position: relative;
     top:20px;
-    margin-left: 200px;
 }
 
 .header-title span

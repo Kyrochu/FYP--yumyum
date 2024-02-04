@@ -66,100 +66,75 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
     <body>
 
-        <!-- Menu Button -->
-
-        <div class="menu-btn">
-
-            <i class="fas fa-bars"></i>
-
-        </div>
-        
         <div class="side-bar">
 
-            <!-- Header Section -->
+                <!-- Header Section -->
 
-            <header>
+                <div class="menu">
 
-                <div class="close-btn">
+                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
+                    <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
+                    <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
-                    <i class="fas fa-times"> </i>
+                    <!-- Dropdown List (Accounts)-->
+                    <i class="fas fa-angle-right dropdown"> </i>
+                    </a>
+
+                        <div class="sub-menu">
+
+                            <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> User </span> </a>
+                            <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Admin </span> </a>
+
+
+                        </div>
                 
-                </div>
-                <a href="AdminProfileSuper.php">    
-                   
-                    <img src="admin.png" alt="No Image!">
-
-                </a>
-
-                <h1 style="color:navajowhite"> Welcome,<?php echo $_SESSION['email'] ?> </h1>
-
-            </header>
-
-            <div class="menu">
-
-                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php"><i class="fas fa-desktop"></i> Dashboard </a></div>
-                <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
-                <!-- Dropdown List (Accounts)-->
-                <i class="fas fa-angle-right dropdown"> </i>
-                </a>
-
-                    <div class="sub-menu">
-
-                        <a href="SubUserAccSuper.php" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php" class="sub-item"> Admin </a>
-
-
                     </div>
+                    
+                    
+                    <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
+                    
+                    <!-- Dropdown List (Manage)-->
+                    <i class="fas fa-angle-right dropdown"> </i>
+                    </a>
+
+                        <div class="sub-menu">
+
+                            <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Menu </span> </a>
+                                                    
+                        </div>
             
             
-                </div>
-                
-                
-                <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> Manage 
-                
-                <!-- Dropdown List (Manage)-->
-                <i class="fas fa-angle-right dropdown"> </i>
-                </a>
-
-                    <div class="sub-menu">
-
-                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
-                        
                     </div>
-        
-        
-                </div>
-                
-                <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> Orders 
-                
-                <!-- Dropdown List (Orders)-->
-                <i class="fas fa-angle-right dropdown"> </i>
-                </a>
+                    
+                    <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
+                    
+                    <!-- Dropdown List (Orders)-->
+                    <i class="fas fa-angle-right dropdown"> </i>
+                    </a>
 
-                    <div class="sub-menu">
+                        <div class="sub-menu">
 
-                        <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Status </a>
-                        <a href="HistorySuper.phpid=<?php echo $id; ?>" class="sub-item"> History </a>
+                            <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
+                            <a href="HistorySuper.phpid=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
+                        </div>
+            
                     </div>
-        
-                </div>
 
-                <div class="item"><a href=""><i class="fa fa-commenting"></i> Reviews </a></div>
-                
-                <div class="item">
+                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
+                    
+                    <div class="item">
 
-                    <div class="logout">
-                        <a href="Logout.php"><i class="fas fa-sign-out-alt"> </i> Logout </a>
+                        <div class="logout">
+                            <a href="Logout.php"><i class="fas fa-sign-out-alt"> </i> <span class="menu-text"> Logout </span> </a>
+                        </div>
+
                     </div>
 
                 </div>
-            </div>
-
-        </div>  
+            </div>   
 
         <!-- Date & Time Widget -->
 
