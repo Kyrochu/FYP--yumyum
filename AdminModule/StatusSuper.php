@@ -339,7 +339,28 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
+<<<<<<< HEAD
+                                    <form method="POST">
+                                        <!-- Hidden inputs to pass necessary order information -->
+                                        <input type="hidden" name="order_time" value="<?php echo $group['time']; ?>">
+                                        <input type="hidden" name="username" value="<?php echo $row_user['name']; ?>">
+                                        <input type="hidden" name="contact_number" value="<?php echo $row_user['contact_number']; ?>">
+                                        <input type="hidden" name="food_name" value="<?php echo $food["food_name"]; ?>">
+                                        <input type="hidden" name="add_on_name" value="<?php echo $food["add_on_name"]; ?>">
+                                        <input type="hidden" name="add_on_price" value="<?php echo $food["add_on_price"]; ?>">
+                                        <input type="hidden" name="quantity" value="<?php echo $food["food_num"]; ?>">
+                                        <input type="hidden" name="price" value="<?php echo $food["food_price"]; ?>">
+                                        <input type="hidden" name="total_price" value="<?php echo $total; ?>">
+
+                                        <!-- DELIVERED button -->
+                                        <input type="submit" value="DELIVERED" name="delivered" class="btn">
+=======
+                                    <form method="POST" action="History.php">
+                                        <input type="hidden" name="order_details" value="<?php echo htmlspecialchars(json_encode($group['foods'])); ?>">
+                                        <input type="submit" value="DELIVERED" name="delivered" class="delivered-btn">
+>>>>>>> 749ed3b1a630209fbf2acd33e6b8db3616139ea4
+                                    </form>
                                 </div>
                             </div>
                             <?php
