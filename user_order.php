@@ -90,10 +90,10 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0 pe-4">
                             <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Home</a>
-                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
                             <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
                             <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
                             <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Contact</a>
+                            <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link  ">About</a>
                             <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                             <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
                                 style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
@@ -217,16 +217,17 @@
                                         <p class="card-text">Time: <?php echo $time; ?></p>
                                         <div class="card-text">Food Ordered:
                                             <div class="card-body ">
-                                                <?php
-                                                // Loop to display all ordered foods
-                                                foreach ($group['foods'] as $food) {
+                                            <?php
+                                            foreach ($group['foods'] as $food) {
+                                                // Calculate the total price for each food item
+                                                $food_total_price = ($food["food_price"] + $food["add_on_price"]) * $food["food_num"];
                                                 ?>
-                                                    <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
-                                                    <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo number_format($food["food_price"], 2); ?></p>
+                                                <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
+                                                <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo number_format($food_total_price, 2); ?></p>
                                                 <?php
-                                                    $total += $food["food_price"];
-                                                }
-                                                ?>
+                                                $total += $food_total_price; // Accumulate the total price
+                                            }
+                                            ?>
                                             </div>
                                         </div>
                                         <p class="card-text">Total Price: RM<?php echo number_format($total, 2 );?></p>

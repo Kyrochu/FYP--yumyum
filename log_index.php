@@ -87,10 +87,10 @@
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Home</a>
-                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">About</a>
                         <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
                         <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
                         <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
+                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link  ">About</a>
                         <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
                         <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
                             style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
@@ -216,353 +216,7 @@
         <!-- About End -->
 
 
-        <!-- Menu Start -->
-        <div class="container-xxl py-5">
-            <div class="container">
-                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <h5 class="section-title ff-secondary text-center text-primary fw-normal">Food Menu</h5>
-                    <h1 class="mb-5">Most Popular Items</h1>
-                </div>
-                <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
-                    <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                                <i class="fa fa-coffee fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Popular</small>
-                                    <h6 class="mt-n1 mb-0">Fastfood</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 pb-3" data-bs-toggle="pill" href="#tab-2">
-                                <i class="fa fa-hamburger fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Special</small>
-                                    <h6 class="mt-n1 mb-0">sneck</h6>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 me-0 pb-3" data-bs-toggle="pill" href="#tab-3">
-                                <i class="fa fa-utensils fa-2x text-primary"></i>
-                                <div class="ps-3">
-                                    <small class="text-body">Lovely</small>
-                                    <h6 class="mt-n1 mb-0">Drink</h6>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Pork Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- tab 2 -->
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- tab 2 End -->
-                        <!-- tab 3 -->
-                        <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-1.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-2.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-3.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-4.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-5.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-6.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-7.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="d-flex align-items-center">
-                                        <img class="flex-shrink-0 img-fluid rounded" src="img/menu-8.jpg" alt="" style="width: 80px;">
-                                        <div class="w-100 d-flex flex-column text-start ps-4">
-                                            <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                                <span>Chicken Burger</span>
-                                                <span class="text-primary">$115</span>
-                                            </h5>
-                                            <small class="fst-italic">Ipsum ipsum clita erat amet dolor justo diam</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- tab 3 end -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Menu End -->
+        
 
 
         <!-- Team Start -->
@@ -758,22 +412,31 @@
                     <button class="closex btn-close " aria-label="Close"></button>
                     <?php
 
-                    $cart_sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.user_id = '$uid' AND cart_food_delete = '1'";
-                    $cart_result = mysqli_query($connect, $cart_sql);
-                    $resultcheck = mysqli_num_rows($cart_result);
+                    //$sql = "SELECT * FROM cart JOIN menu ON cart.food_id = menu.food_id WHERE cart.userID = '$uid'";
+
+                    $sql = "SELECT * FROM cart
+                            JOIN menu ON cart.food_id = menu.food_id
+                            WHERE cart.user_id = '$uid' AND cart.cart_food_delete = '1'";
+
+                    $result = mysqli_query($connect, $sql);
+                    $resultcheck = mysqli_num_rows($result);
 
                     if ($resultcheck > 0) {
-                        while ($cart_row = mysqli_fetch_assoc($cart_result)) {
+                        while ($row = mysqli_fetch_assoc($result)) {
                     ?>
                             <div class="listcart">
                                 <div class="item border shadow text-black p-3 " style="border-radius: 10px;" >
-                                    <img src="./img/<?php echo $cart_row['food_img']; ?>" alt="">
-                                    <div class="name"><?php echo $cart_row['food_name'] ?></div>
-                                    <div class="price">RM <?php echo $cart_row['food_total_price'] ?></div>
+                                    <img src="./img/<?php echo $row['food_img']; ?>" alt="">
+                                    <div class="name">
+                                        <?php echo $row['food_name'] ?><br>
+                                        <span class="badge "><?php echo $row['add_on_name'] ?></span>
+                                    </div>
+                                    <div class="price">RM <?php echo number_format($row['food_total_price'], 2); ?></div>
+                                    
                                     <div class="qty">
-                                        <span class="minus decrement"  data-food-id="<?php echo $cart_row['cart_id'] ?>">-</span>
-                                        <span class=""style="color: black;" id="numFood_<?php echo $cart_row['cart_id'] ?>"><?php echo $cart_row['num_food'] ?></span>
-                                        <span class="plus increment" data-food-id="<?php echo $cart_row['cart_id'] ?>">+</span>
+                                        <span class="minus decrement"  data-food-id="<?php echo $row['cart_id'] ?>">-</span>
+                                        <span class=""style="color: black;" id="numFood_<?php echo $row['cart_id'] ?>"><?php echo $row['num_food'] ?></span>
+                                        <span class="plus increment" data-food-id="<?php echo $row['cart_id'] ?>">+</span>
                                     </div>
                                 </div>
                             </div>
