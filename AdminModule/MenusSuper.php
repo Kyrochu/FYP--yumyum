@@ -94,7 +94,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
                     <!-- Dropdown List (Accounts)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -112,7 +112,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
                     
                     <!-- Dropdown List (Manage)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -127,7 +127,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
                     
                     <!-- Dropdown List (Orders)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -157,245 +157,248 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
         
         <div class="datetime">
 
-            <div class="main-content">
+            <div class="internal">
 
-                <div class="header-title">
+                    <div class="main-content">
 
-                    <span> Admin </span>
-                    <h2> Dashboard </h2>
+                        <div class="header-title">
 
-                </div>
+                            <span> Admin </span>
+                            <h2> Dashboard </h2>
 
-            </div>
+                        </div>
 
-            <div class="search-box">
+                    </div>
 
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
+                    <div class="search-box">
 
-                </div>
+                            <i class="fa-solid fa-search"> </i>
+                            <input type="text" placeholder="Search">
 
-            <div class="date">
+                        </div>
 
-                <span id="day"> Day </span>
-                <span id="month"> Month </span>
-                <span id="daynum"> 00 </span>
-                <span id="year"> Year </span>
+                    <div class="date">
 
-            </div>
+                        <span id="day"> Day </span>
+                        <span id="month"> Month </span>
+                        <span id="daynum"> 00 </span>
+                        <span id="year"> Year </span>
 
-            <div class="time">
+                    </div>
 
-                <span id="hour"> 00 </span>:
-                <span id="minutes"> 00 </span>:
-                <span id="seconds"> 00 </span>
-                <span id="period"> AM </span>
+                    <div class="time">
 
-            </div>
-            
-            <div class="menus">
+                        <span id="hour"> 00 </span>:
+                        <span id="minutes"> 00 </span>:
+                        <span id="seconds"> 00 </span>
+                        <span id="period"> AM </span>
 
-                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menu </h2>
-
-            </div>
-
-            <div class="addCatbtn">
-
-                <button style="background:burlywood; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
-                    ADD NEW CATEGORY
-                </button>
-
-            </div>
-
-            <div class="popup">
-                
-                <div class="form">
-
-                    <h2 class="AddAdminTitle"> ADD NEW CATEGORY </h2>
+                    </div>
                     
-                    <form method="post" action="" enctype="multipart/form-data"> 
+                    <div class="menus">
+
+                        <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Menu </h2>
+
+                    </div>
+
+                    <div class="addCatbtn">
+
+                        <button style="background:burlywood; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
+                            ADD NEW CATEGORY
+                        </button>
+
+                    </div>
+
+                    <div class="popup">
                         
-                        <div class="form-element">
-                            Name <input type="text" name="name" required placeholder="Enter New Category Name (e.g., Appetizers, Main Courses)">                    
+                        <div class="form">
+
+                            <h2 class="AddAdminTitle"> ADD NEW CATEGORY </h2>
+                            
+                            <form method="post" action="" enctype="multipart/form-data"> 
+                                
+                                <div class="form-element">
+                                    Name <input type="text" name="name" required placeholder="Enter New Category Name (e.g., Appetizers, Main Courses)">                    
+                                </div>
+
+                                <div class="form-element">
+                                    Custom Label <input type="text" name="type" required placeholder="Enter Custom Label (e.g., Food, Beverages, Desserts)">                    
+                                </div>
+
+                                <div class="form-element">
+                                    Category Image <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+                                </div>
+
+                                <div class="form-element">
+                                    <input type="submit" name="addCAT" value="ADD NEW CATEGORY" class="form-btn">
+                                </div>
+
+                                <div class="form-element">
+                                    <button class="cancel-btn"> CANCEL </button>
+                                </div>
+
+                            </form>
+
                         </div>
+                    </div>
 
-                        <div class="form-element">
-                            Custom Label <input type="text" name="type" required placeholder="Enter Custom Label (e.g., Food, Beverages, Desserts)">                    
-                        </div>
+                    <?php
 
-                        <div class="form-element">
-                            Category Image <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
-                        </div>
+                        // Check if form is submitted
+                    if(isset($_POST['addCAT'])) 
+                    {
+                        $Name = $_POST['name'];
+                        $Type = $_POST['type']; 
+                        $Image = $_FILES['image']['name'];
+                        $ImageTmp = $_FILES['image']['tmp_name'];
 
-                        <div class="form-element">
-                            <input type="submit" name="addCAT" value="ADD NEW CATEGORY" class="form-btn">
-                        </div>
+                        $path = "category_images/";
 
-                        <div class="form-element">
-                            <button class="cancel-btn"> CANCEL </button>
-                        </div>
+                        $image_ext = pathinfo($Image, PATHINFO_EXTENSION);
+                        $filename = time() . '.' . $image_ext;
 
-                    </form>
+                        // Prepare the SQL statement using a prepared statement to prevent SQL injection
+                        $sql = mysqli_prepare($connect, "INSERT INTO category (cat_name, cat_img ,cat_type) VALUES (?, ?, ?)");
 
-                </div>
+                        if ($sql) 
+                        {
+
+                            mysqli_stmt_bind_param($sql, "sss", $Name, $filename, $Type);
+                            $result = mysqli_stmt_execute($sql);
+
+                            if ($result) 
+                            {
+                                move_uploaded_file($ImageTmp, $path . $filename);
+                                echo "<script>alert('New Category Added!')</script>";
+                            } 
+                            else 
+                            {
+                                echo "Error executing SQL statement: " . mysqli_error($connect);
+                            }
+
+                            mysqli_stmt_close($sql);
+                        }
+                        else 
+                        {
+                            echo "Error preparing SQL statement: " . mysqli_error($connect);
+                        }
+
+                        mysqli_close($connect);
+                    }
+                    ?>
+
+
+                    <div class="add-products">
+
+                        <form action="AddproductSuper.php" method="POST" enctype="multipart/form-data">
+                            <h3>ADD PRODUCT</h3>
+
+
+                                <label for="name" class="label">Product Name</label>
+                                <input type="text" required placeholder="e.g., Delicious Pizza" name="name" maxlength="100" class="box">
+
+
+                                <div class="form-group">
+
+                                <label for="price" class="label">Product Price</label>
+                                <input type="text" required placeholder="e.g., 15.99" name="price" oninput="validateDecimalInput(this)" class="box">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                <label for="desc" class="label">Product Description</label>
+                                <input type="text" required placeholder="e.g., Mouth-watering pizza topped with fresh ingredients" name="desc" class="box">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                <label for="category" class="label">Select Category</label>
+                                <select name="category" class="box" required>
+                                    <option value="" disabled selected>SELECT CATEGORY --</option>
+                                    <?php
+                                        $connect = mysqli_connect("localhost", "root", "", "yumyum");
+
+                                        $fetchCategoriesQuery = mysqli_query($connect, "SELECT * FROM category");
+
+                                        if ($fetchCategoriesQuery && mysqli_num_rows($fetchCategoriesQuery) > 0) 
+                                        {
+                                            while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
+                                            {
+                                                echo '<option value="' . $categoryData['cat_type'] . '">' . $categoryData['cat_type'] . '</option>';
+                                            }
+                                        }
+                    ?>
+                                </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                <label for="image" class="label">Upload Image</label>
+                                <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
+
+                                </div>
+
+                                <input type="submit" value="ADD PRODUCT" name="add_product" class="btn">
+                        </form>
+
+                    </div>
+
+                    <div class="DisplayCat">
+
+                    <?php
+                        
+                        $connect = mysqli_connect("localhost", "root", "", "yumyum");
+
+                        $fetchCategoriesQuery = mysqli_query($connect, "SELECT * FROM category");
+
+                        if ($fetchCategoriesQuery && mysqli_num_rows($fetchCategoriesQuery) > 0) 
+                        {   
+                            while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
+                            {
+                                echo '<div class="Cat-container">';
+                                
+                                echo '<a href="ProductSuper.php?cat_type=' . $categoryData['cat_type'] . '" class="cat_link"> ';
+                                echo '<img src="category_images/' . $categoryData['cat_img'] . '" class="cat_img">';
+                                echo '</a>';
+                                echo '<h3>' . $categoryData['cat_name'] . '</h3>';
+
+                                echo '<form method="post">';
+                                echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
+                                echo '<button type="submit" name="edit-btn" class="edit">Edit</button>';
+                                echo '</form>';
+
+                                echo '<form method="post" onsubmit="return confirm(\'Are you sure you want to delete this category?\');">';
+                                echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
+                                echo '<button type="submit" name="dlt-btn" class="dlt">Delete</button>';
+                                echo '</form>';
+                                
+                                echo '</div>';
+                            }
+                        }
+
+                        if(isset($_POST['dlt-btn']))
+                        {
+                            $deleteCategoryID = $_POST['category_id'];
+
+                            $deleteQuery = "DELETE FROM category WHERE cat_id='$deleteCategoryID' ";
+                            $deleteResult = mysqli_query($connect,$deleteQuery);
+
+                            if ($deleteResult) 
+                            {
+                                echo "<script>alert('Category deleted successfully.'); window.location.href = 'MenusSuper.php';</script>";
+                            } else 
+                            {
+                                echo "<script>alert('Failed to delete category.'); window.location.href = 'MenusSuper.php';</script>";
+                            }
+                        }
+                        
+                    ?>
             </div>
 
-            <?php
-
-                // Check if form is submitted
-            if(isset($_POST['addCAT'])) 
-            {
-                $Name = $_POST['name'];
-                $Type = $_POST['type']; 
-                $Image = $_FILES['image']['name'];
-                $ImageTmp = $_FILES['image']['tmp_name'];
-
-                $path = "category_images/";
-
-                $image_ext = pathinfo($Image, PATHINFO_EXTENSION);
-                $filename = time() . '.' . $image_ext;
-
-                // Prepare the SQL statement using a prepared statement to prevent SQL injection
-                $sql = mysqli_prepare($connect, "INSERT INTO category (cat_name, cat_img ,cat_type) VALUES (?, ?, ?)");
-
-                if ($sql) 
-                {
-
-                    mysqli_stmt_bind_param($sql, "sss", $Name, $filename, $Type);
-                    $result = mysqli_stmt_execute($sql);
-
-                    if ($result) 
-                    {
-                        move_uploaded_file($ImageTmp, $path . $filename);
-                        echo "<script>alert('New Category Added!')</script>";
-                    } 
-                    else 
-                    {
-                        echo "Error executing SQL statement: " . mysqli_error($connect);
-                    }
-
-                    mysqli_stmt_close($sql);
-                }
-                else 
-                {
-                    echo "Error preparing SQL statement: " . mysqli_error($connect);
-                }
-
-                mysqli_close($connect);
-            }
-            ?>
-
-
-            <div class="add-products">
-
-                <form action="AddproductSuper.php" method="POST" enctype="multipart/form-data">
-                    <h3>ADD PRODUCT</h3>
-
-
-                        <label for="name" class="label">Product Name</label>
-                        <input type="text" required placeholder="e.g., Delicious Pizza" name="name" maxlength="100" class="box">
-
-
-                        <div class="form-group">
-
-                        <label for="price" class="label">Product Price</label>
-                        <input type="text" required placeholder="e.g., 15.99" name="price" oninput="validateDecimalInput(this)" class="box">
-
-                        </div>
-
-                        <div class="form-group">
-
-                        <label for="desc" class="label">Product Description</label>
-                        <input type="text" required placeholder="e.g., Mouth-watering pizza topped with fresh ingredients" name="desc" class="box">
-
-                        </div>
-
-                        <div class="form-group">
-
-                        <label for="category" class="label">Select Category</label>
-                        <select name="category" class="box" required>
-                            <option value="" disabled selected>SELECT CATEGORY --</option>
-                            <?php
-                                 $connect = mysqli_connect("localhost", "root", "", "yumyum");
-
-                                $fetchCategoriesQuery = mysqli_query($connect, "SELECT * FROM category");
-
-                                if ($fetchCategoriesQuery && mysqli_num_rows($fetchCategoriesQuery) > 0) 
-                                {
-                                    while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
-                                    {
-                                        echo '<option value="' . $categoryData['cat_type'] . '">' . $categoryData['cat_type'] . '</option>';
-                                    }
-                                }
-            ?>
-                        </select>
-
-                        </div>
-
-                        <div class="form-group">
-
-                        <label for="image" class="label">Upload Image</label>
-                        <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" required>
-
-                        </div>
-
-                        <input type="submit" value="ADD PRODUCT" name="add_product" class="btn">
-                </form>
-
-            </div>
-
-            <div class="DisplayCat">
-
-            <?php
-                
-                $connect = mysqli_connect("localhost", "root", "", "yumyum");
-
-                $fetchCategoriesQuery = mysqli_query($connect, "SELECT * FROM category");
-
-                if ($fetchCategoriesQuery && mysqli_num_rows($fetchCategoriesQuery) > 0) 
-                {   
-                    while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
-                    {
-                        echo '<div class="Cat-container">';
-                        
-                        echo '<a href="ProductSuper.php?cat_type=' . $categoryData['cat_type'] . '" class="cat_link"> ';
-                        echo '<img src="category_images/' . $categoryData['cat_img'] . '" class="cat_img">';
-                        echo '</a>';
-                        echo '<h3>' . $categoryData['cat_name'] . '</h3>';
-
-                        echo '<form method="post">';
-                        echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
-                        echo '<button type="submit" name="edit-btn" class="edit">Edit</button>';
-                        echo '</form>';
-
-                        echo '<form method="post" onsubmit="return confirm(\'Are you sure you want to delete this category?\');">';
-                        echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
-                        echo '<button type="submit" name="dlt-btn" class="dlt">Delete</button>';
-                        echo '</form>';
-                        
-                        echo '</div>';
-                    }
-                }
-
-                if(isset($_POST['dlt-btn']))
-                {
-                    $deleteCategoryID = $_POST['category_id'];
-
-                    $deleteQuery = "DELETE FROM category WHERE cat_id='$deleteCategoryID' ";
-                    $deleteResult = mysqli_query($connect,$deleteQuery);
-
-                    if ($deleteResult) 
-                    {
-                        echo "<script>alert('Category deleted successfully.'); window.location.href = 'MenusSuper.php';</script>";
-                    } else 
-                    {
-                        echo "<script>alert('Failed to delete category.'); window.location.href = 'MenusSuper.php';</script>";
-                    }
-                }
-                
-            ?>
-
-            </div>
+        </div>
 
             
 

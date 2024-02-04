@@ -21,18 +21,45 @@ body
 .side-bar
 {
     background:black;
-    width:120px;
+    width:80px;
     height:100vh;
     position:fixed;
     top:0;
     transition:0.6s ease;
     transition-property:left;
+    overflow-y: auto;
 }
 
 .side-bar:hover
 {
-    width:250px;
+    width:220px;
     transition:0.5s;
+}
+
+.side-bar .menu .item #menu-icon
+{
+    display:none;
+}
+
+.side-bar:hover .menu .item #menu-icon 
+{
+    display: inline-block; 
+}
+
+.side-bar .menu .item .menu-text 
+{
+    display: none; /* Hide the span initially */
+}
+
+.side-bar:hover .menu .item .menu-text 
+{
+    display: inline-block; /* Display the span when the sidebar is hovered */
+}
+
+.side-bar:hover ~ .datetime 
+{
+    transform: translateX(150px); /* Adjust the value based on your sidebar width */
+    transition: 0.5s ease;
 }
 
 header
@@ -53,16 +80,8 @@ header h1
 .menu
 {
     width:100%;
-    margin-top:120px;
-    overflow:hidden
-}
-
-.side-bar .menu .item .menu-text {
-    display: none; /* Hide the span initially */
-}
-
-.side-bar:hover .menu .item .menu-text {
-    display: inline-block; /* Display the span when the sidebar is hovered */
+    margin-top:20px;
+    overflow:hidden;
 }
 
 .menu .item a
@@ -81,6 +100,7 @@ header h1
     background-color:grey;
     width:250px;
     height:75px;
+    margin-top:200px;
 }
 
 .item i
@@ -100,16 +120,6 @@ header h1
 {
     background:black;
     display:none;
-}
-
-.menu-btn
-{
-    position:absolute;
-    color:rgb(0,0,0);
-    font-size:35px;
-    cursor:pointer;
-    margin:25px;
-
 }
 
 .sub-btn
@@ -144,13 +154,14 @@ header h1
     color:black;
     background-color:#ebe9e9;
     font-family:"Segoe UI",sans-serif;
-    width:1280px;
-    padding:10px 10px;
-    margin-left:300px;
+    width:100%;
+    padding:1rem;
+    margin-left:100px;
     border:3px solid #ebe9e9;
     border-radius:8px;
     transition:0.5s;
-    
+    position:relative;
+
 }
 
 .date
@@ -241,6 +252,7 @@ header h1
     padding: 6px; 
     font-size: 14px;
 }
+
 
 /* ---------------------------------------Admin Account Table------------------------------------------------- */
 /* ---------------------------------------User Account Table--------------------------------------------------- */
@@ -446,8 +458,9 @@ header h1
     border:3px solid black;
     border-radius:10px;
     margin-top:20px;
-    margin-right:20px;
-    padding: 20px;
+    margin-right:10px;
+    padding:20px;
+    width:1250px;
 
 }
 
@@ -505,46 +518,43 @@ header h1
     background-color:sandybrown;
 }
 
-.DisplayCat
+.DisplayCat 
 {
-    display:flex;
-    justify-content:space-between;
+    display: flex;
+    justify-content: space-between;
     flex-wrap: wrap;
+    margin-top: 20px;
+    margin-right:240px;
 }
 
-.Cat-container
+.Cat-container 
 {
-    border:2px solid black;
-    border-radius:5px;
-    padding:20px;
-    margin:14px;
-    margin-right:20px;
-    width:20%;
-
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px; /* Adjust the margin */
+    width: calc(25% - 24px); /* Set the width to 25% of the container, subtracting margin */
+    box-sizing: border-box;
 }
 
-.Cat-container h3
-{
-    margin-top:10px;
+.Cat-container h3 {
+    margin-top: 10px;
     text-align: center;
-    
 }
 
-.cat_img
+.cat_img 
 {
-    width:130px;
+    width: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-left:40px;
-    margin-top:10px;
-    border-radius:5px;
-    transition:transform 0.3s ease-in-out;
+    margin:0 auto;
+    border-radius: 5px;
+    transition: transform 0.3s ease-in-out;
 }
 
-.cat_link:hover .cat_img
-{
-    transform:scale(1.1);
+.cat_link:hover .cat_img {
+    transform: scale(1.1);
 }
 
 /*------------------------------------------ Display Product ------------------------------------------- */

@@ -77,7 +77,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
                     <!-- Dropdown List (Accounts)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -95,7 +95,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
                     
                     <!-- Dropdown List (Manage)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -110,7 +110,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
                     
                     <!-- Dropdown List (Orders)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
