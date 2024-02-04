@@ -150,6 +150,7 @@
                 <button type="button" href="log_menu.php?userID=<?php echo $uid; ?>" class="submit-btn">Back to Menu</button>
                 <div id="paymentError" class="error"></div>
         </form>
+        
         <div id="overlay" class="overlay"></div>
         <div id="popup" class="popup" style="text-align: center; " >
             <span>Payment done , Thank you</span>
