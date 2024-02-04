@@ -342,7 +342,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
                                     <form method="POST" action="History.php">
                                         <input type="hidden" name="order_details" value="<?php echo htmlspecialchars(json_encode($group['foods'])); ?>">
-                                        <input type="submit" value="DELIVERED" name="delivered" class="btn">
+                                        <input type="submit" value="DELIVERED" name="delivered" class="delivered-btn">
                                     </form>
                                 </div>
                             </div>

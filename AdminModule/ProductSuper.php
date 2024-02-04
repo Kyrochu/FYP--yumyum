@@ -213,8 +213,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 <th>Price (RM)</th>
                                 <th>Description</th>
                                 <th>Image</th>
-                                <th>Edit</th>
-                                <th>Delete</th>
+                                <th>Action</th>
+                                <th>Add On</th>
                             </tr>";
 
                     while ($row = mysqli_fetch_assoc($result)) 

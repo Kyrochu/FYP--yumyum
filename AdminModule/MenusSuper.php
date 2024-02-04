@@ -367,12 +367,12 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                 echo '<form method="post">';
                                 echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
-                                echo '<button type="submit" name="edit-btn" class="edit">Edit</button>';
+                                echo '<button type="submit" name="edit-btn" class="cat-edit">Edit</button>';
                                 echo '</form>';
 
                                 echo '<form method="post" onsubmit="return confirm(\'Are you sure you want to delete this category?\');">';
                                 echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
-                                echo '<button type="submit" name="dlt-btn" class="dlt">Delete</button>';
+                                echo '<button type="submit" name="dlt-btn" class="cat-dlt">Delete</button>';
                                 echo '</form>';
                                 
                                 echo '</div>';
