@@ -59,6 +59,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
         <script src="AddCategory.js"> </script>
+        <script src="ViewOrderDetails.js"> </script>
 
 
     </head>
@@ -208,94 +209,171 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             <?php
 
-    $order = "SELECT * FROM `order` ";
-    $order_result = mysqli_query($connect,$order);
-    $row_order = mysqli_fetch_assoc($order_result);
+                $user = "SELECT * FROM users";
+                $user_result = mysqli_query($connect, $user);
+                $row_user = mysqli_fetch_assoc($user_result);
 
-    $uid = $row_order['user_id'];
+                $order = "SELECT * FROM `order` ORDER BY or_time desc";
+                $order_stmt = $connect->prepare($order);
+                $order_stmt->execute();
+                $order_result = $order_stmt->get_result();
 
-    $user = "SELECT * FROM users WHERE id='$uid' ";
-    $user_result = mysqli_query($connect,$user);
-    $row_user = mysqli_fetch_assoc($user_result);
+                // Check if there are rows in the order result
+                if ($order_result->num_rows > 0) {
+                    $grouped_orders = [];
 
-    $grouped_orders = [];
+                    while ($row_order = mysqli_fetch_assoc($order_result)) {
+                        $time = $row_order["or_time"];
+                        $fid = $row_order["food_id"];
+                        $n_food = $row_order["num_food"];
 
-    while ($row_order = mysqli_fetch_assoc($order_result)) 
-    {
-        $time = $row_order["or_time"];
-        $fid = $row_order["food_id"];
-        $n_food = $row_order["num_food"];
+                        $menu = "SELECT * FROM menu WHERE food_id = ?";
+                        $menu_stmt = $connect->prepare($menu);
+                        $menu_stmt->bind_param("i", $fid);
+                        $menu_stmt->execute();
+                        $menu_result = $menu_stmt->get_result();
 
-        $menu = "SELECT * FROM menu WHERE food_id = ?";
-        $menu_stmt = $connect->prepare($menu);
-        $menu_stmt->bind_param("i", $fid);
-        $menu_stmt->execute();
-        $menu_result = $menu_stmt->get_result();
+                        if ($menu_result->num_rows > 0) {
+                            $row_menu = mysqli_fetch_assoc($menu_result);
+                
+                            // Fetch add-on details based on food_id (assuming add_id is from the menu table)
+                            $add_on_query = "SELECT * FROM add_on WHERE add_id = ?";
+                            $add_on_stmt = $connect->prepare($add_on_query);
+                            $add_on_stmt->bind_param("i", $fid);
+                            $add_on_stmt->execute();
+                            $add_on_result = $add_on_stmt->get_result();
+                
+                            if ($add_on_result->num_rows > 0) {
+                                $row_addon = mysqli_fetch_assoc($add_on_result);
+                                $add_on_name = $row_addon['add_name'];
+                                $add_on_price = $row_addon['add_price'];
+                            } else {
+                                // No add-on found
+                                $add_on_name = "No Add-on";
+                                $add_on_price = 0;
+                            }
+                
+                            // Group orders by time
+                            $order_group_key = $row_order["or_time"];
+                            if (!isset($grouped_orders[$order_group_key])) {
+                                $grouped_orders[$order_group_key] = [
+                                    'name' => $row_user["name"],
+                                    'uid' => $row_order["user_id"],
+                                    'time' => $row_order["or_time"],
+                                    'foods' => []
+                                ];
+                            }
+                
+                            // Add menu item with add-on details to the grouped orders
+                            $grouped_orders[$order_group_key]['foods'][] = [
+                                'food_name' => $row_menu["food_name"],
+                                'food_price' => $row_menu["food_price"] + $add_on_price,
+                                'food_num' => $row_order["num_food"],
+                                'add_on_name' => $add_on_name,
+                                'add_on_price' => $add_on_price
+                            ];
+                        } else {
+                            echo "No menu items found for food_id: $fid";
+                        }
+                    }
 
-        if ($menu_result->num_rows > 0) 
-        {
-            $row_menu = mysqli_fetch_assoc($menu_result);
+                    $order_stmt->close();
+                    $menu_stmt->close();
+                    $add_on_stmt->close();
 
-            $order_group_key = $row_order["or_time"];
+                    // Display the grouped orders if any
+                    if (!empty($grouped_orders)) 
+                    {
+                        foreach ($grouped_orders as $group) 
+                        {
+                            $total = 0;
+                            if (isset($group['time'])) 
+                            {
+                                $datetime = $group['time'];
+                
+                                // Extract date and time parts
+                                $date = date('Y-m-d', strtotime($datetime));
+                                $time = date('H:i:s', strtotime($datetime));
+                            } 
+                            else 
+                            {
+                                echo "wrong";
+                            }
+                    ?>
+                            <div class="PendingstatusBox">
+                                
+                                <div class="Status-container">
+                                    
+                                    <div class="cus-info">
+                                        
+                                        <h3> Order Number : </h3>
+                                        <?php
 
-            if (!isset($grouped_orders[$order_group_key])) {
-                $grouped_orders[$order_group_key] = [
-                    'name' => $row_user["name"],
-                    'time' => $row_order["or_time"],
-                    'foods' => []
-                ];
-            }
-
-            $grouped_orders[$order_group_key]['foods'][] = [
-                'food_name' => $row_menu["food_name"],
-                'food_price' => $row_menu["food_price"],
-                'food_num' => $row_order["num_food"],
-                // Add other fields you want to display
-            ];
-        } else 
-        {
-            echo "No menu items found for food_id: $fid";
-        }
-    }
-
-    $menu_stmt->close();
-?>
-
-            <div class="PendingstatusBox">
-
-                <?php
-                foreach ($grouped_orders as $group) 
-                {
-
-                ?>
-
-                <div class="Status-container">
-
-                    <div class="cus-info">
-
-                        <h3> Order Number : </h3>
-                        <h3> Order Time : <?php echo $group['time']; ?> </h3>
-                        <h3> ID : </h3>
-                        <h3> Username : <?php echo $group['name']; ?> </h3>
-                        <h3> Address : </h3>
-                        <h3> Contact Number : </h3>
-                        <h3> Orders : </h3>
-                        <h3> Total Price : RM </h3>
-                        
-                    </div>
-                    
-                    <input type="submit" value="DELIVERED" name="delivered" class="btn">
-
-
-                </div>
-
-                <?php
-
+                                        // Fetch user details based on 'uid' from 'user' table
+                                        $user_query = "SELECT * FROM users WHERE id = ?";
+                                        $user_stmt = $connect->prepare($user_query);
+                                        $user_stmt->bind_param("i", $group['uid']);
+                                        $user_stmt->execute();
+                                        $user_result = $user_stmt->get_result();
+                
+                                        if ($user_result->num_rows > 0) 
+                                        {
+                                            $row_user = mysqli_fetch_assoc($user_result);
+                                            ?>
+                                            <h3> Order Date : <?php echo $date; ?></h3>
+                                            <h3> Order Time :<?php echo $time; ?> </h3>
+                                            <h3> Username : <?php echo $row_user['name']; ?> </h3>
+                                            <?php
+                                        } 
+                                        else 
+                                        {
+                                            echo "User not found for user_id: " . $group['uid'];
+                                        }
+                                        
+                                        $user_stmt->close();
+                                        ?>
+                                        
+                                        <h3> Contact Number : <?php echo $row_user['contact_number']; ?> </h3>
+                                        
+                                        <div class="popup">
+                                            
+                                            <div class="food-ordered-box">
+                                                <?php
+                                                foreach ($group['foods'] as $food) 
+                                                {
+                                                
+                                                ?>
+                                                    <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
+                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: <?php echo number_format($food["food_price"], 2); ?> </h3>
+                                                    <br>
+                                                    <br>
+                                                    
+                                                    <?php
+                                                    $total += $food["food_price"];
+                                                }
+                                                    ?>
+                                                
+                                                <h3 class="card-text">Total Price: RM<?php echo number_format($total, 2); ?></h3>
+                                            </div>
+                                            
+                                            <div class="form-element">
+                                                <button class="cancel-btn"> CANCEL </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
+                                    <?php
+                                    ?>
+                                    <form method="POST">
+                                        <input type="submit" value="DELIVERED" name="delivered" class="btn">
+                                    </form>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                    }
                 }
-
                 ?>
-
-            </div>
 
             <div class="menus">
 
@@ -303,13 +381,10 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div>
 
-            
 
             <div class="DeliveredstatusBox">
             
             
-
-
             <div class="Status-container">
 
                 <div class="cus-info">
