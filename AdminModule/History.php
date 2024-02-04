@@ -1,55 +1,48 @@
 <?php
     include('DataConnect.php');
 
-    if (isset($_POST['delivered'])) 
-    {
-        // Retrieve order details from the hidden input field
-        $order_details = json_decode($_POST['order_details'], true);
 
+    // Assuming this code block is within your PHP file
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delivered'])) {
+        // Assuming you have a database connection named $connect
 
-        $order_date = date('Y-m-d');
-        $order_time = date('H:i:s');
+        // Loop through the grouped orders to insert data into the order_history table
+        foreach ($grouped_orders as $group) {
+            $datetime = $group['time'];
+            $date = date('Y-m-d', strtotime($datetime));
+            $time = date('H:i:s', strtotime($datetime));
+            $username = $group['name'];
+            $contact_number = $row_user['contact_number'];
 
-        // Fetch user details based on 'uid' from 'users' table
-        $user_query = "SELECT * FROM users WHERE id = ?";
-        $user_stmt = $connect->prepare($user_query);
-        $user_stmt->bind_param("i", $order_details[0]['uid']); // Assuming the user ID is the same for all foods in the order
-        $user_stmt->execute();
-        $user_result = $user_stmt->get_result();
+            foreach ($group['foods'] as $food) {
+                $food_name = $food["food_name"];
+                $add_on_name = $food["add_on_name"];
+                $add_on_price = $food["add_on_price"];
+                $quantity = $food["food_num"];
+                $price = $food["food_price"];
+                $total_price = $quantity * ($price + $add_on_price);
 
-        if ($user_result->num_rows > 0) 
-        {
-            $row_user = $user_result->fetch_assoc(); // Fetch the user details
-            $username = $row_user['name']; // Retrieve the user's name
-        } 
-        else 
-        {
-            // Handle case where user is not found
-            $username = "Unknown User";
+                // Prepare and bind parameters
+                $insert_query = "INSERT INTO order_history (order_date, order_time, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                $stmt = $connect->prepare($insert_query);
+                $stmt->bind_param("ssssssiiid", $date, $time, $username, $contact_number, $food_name, $add_on_name, $add_on_price, $quantity, $price, $total_price);
+
+                // Execute the statement
+                $stmt->execute();
+
+                // Check for errors or success
+                if ($stmt->affected_rows === -1) {
+                    // Handle insertion failure
+                    echo "Failed to insert order history for: $food_name";
+                } else {
+                    // Handle successful insertion
+                    echo "Order history inserted successfully for: $food_name";
+                }
+
+                // Close statement
+                $stmt->close();
+            }
         }
-
-        $user_stmt->close();
-        $insert_query = "INSERT INTO order_history (order_date, order_time, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    
-        $insert_stmt = $connect->prepare($insert_query);
-    
-        foreach ($order_details as $food) {
-            // Set your order number here, if available
-            $order_number = ''; 
-
-
-            $food_name = $food["food_name"];
-            $add_on_name = $food["add_on_name"];
-            $add_on_price = $food["add_on_price"];
-            $quantity = $food["food_num"];
-            $price = $food["food_price"];
-
-            $total_price = $price * $quantity;
-
-            $insert_stmt->bind_param("ssssssdddd", $order_date, $order_time, $username, $contact_number, $food_name, $add_on_name, $add_on_price, $quantity, $price, $total_price);
-            $insert_stmt->execute();
-        }
-
-        $insert_stmt->close();
     }
 ?>
+
