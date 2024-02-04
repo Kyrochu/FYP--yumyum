@@ -219,7 +219,7 @@
                                             <div class="card-body ">
                                             <?php
                                             foreach ($group['foods'] as $food) {
-                                                // Calculate the total price for each food item
+                                    
                                                 $food_total_price = ($food["food_price"] + $food["add_on_price"]) * $food["food_num"];
                                                 ?>
                                                 <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
