@@ -127,7 +127,7 @@
                 <!-- card start -->
                 <?php
                     // Fetch data from the order_history table
-                    $selectQuery = "SELECT * FROM order_history ORDER BY order_date";
+                    $selectQuery = "SELECT * FROM order_history WHERE user_id = '$uid' ORDER BY order_date";
                     $result = mysqli_query($connect, $selectQuery);
 
                     // Initialize an array to hold the grouped orders
@@ -136,6 +136,11 @@
                     // Loop through the fetched data and organize it into groups based on order date
                     while ($row = mysqli_fetch_assoc($result)) {
                         $orderDate = $row['order_date'];
+
+                        $dateTime = new DateTime($orderDate);
+                        $date = $dateTime->format('Y-m-d'); // Date part
+                        $time = $dateTime->format('H:i:s'); // Time part
+
 
                         // Create a group key based on the order date
                         $groupKey = date('Y-m-d', strtotime($orderDate));
@@ -150,25 +155,32 @@
                         <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
                             <div class="card-header shadow bg-warning" style="border-radius: 8px;">Order History - <?php echo $orderDate; ?></div>
                             <div class="card-body" style="overflow-y: auto;">
-                                <?php foreach ($orders as $order): ?>
-                                    <p class="card-text">Username: <?php echo $order['username']; ?></p>
-                                    <p class="card-text">Contact Number: <?php echo $order['contact_number']; ?></p>
-                                    <p class="card-text">Food Ordered:</p>
-                                    <div class="card-body">
-                                        <?php
-                                        // Loop to display all ordered foods
-                                        $totalPrice = 0;
-                                        foreach ($orders as $order) {
-                                            ?>
-                                            <p class="card-text"><?php echo $order["food_name"]; ?> - <?php echo $order["add_on_name"]; ?></p>
-                                            <p class="card-text">Quantity: <?php echo $order["quantity"]; ?> - Price: RM<?php echo $order["price"]; ?></p>
-                                            <?php
-                                            $totalPrice += $order["total_price"];
-                                        }
+                                <?php
+                                // Display username and contact number for the first order only
+                                $firstOrder = reset($orders);
+                                ?>
+                                <p class="card-text">Username: <?php echo $firstOrder['username']; ?></p>
+                                <p class="card-text">Date: <?php echo $date; ?></p>
+                                <p class="card-text">Time: <?php echo $time; ?></p>
+                                <p class="card-text">Contact Number: <?php echo $firstOrder['contact_number']; ?></p>
+                                <p class="card-text">Food Ordered:</p>
+                                <div class="card-body">
+                                    <?php
+                                    // Loop to display all ordered foods
+                                    $totalPrice = 0;
+                                    foreach ($orders as $order) {
+
+                                        $food_add_price = ($order["price"] + $order["add_on_price"]) * $order["quantity"];
+
                                         ?>
-                                    </div>
-                                <?php endforeach; ?>
-                                <p class="card-text">Total Price: RM<?php echo $totalPrice; ?></p>
+                                        <p class="card-text"><?php echo $order["food_name"]; ?> - <?php echo $order["add_on_name"]; ?></p>
+                                        <p class="card-text">Quantity: <?php echo $order["quantity"]; ?> - Price: RM<?php echo number_format($food_add_price, 2);  ?></p>
+                                        <?php
+                                        $totalPrice += $order["total_price"];
+                                    }
+                                    ?>
+                                </div>
+                                <p class="card-text">Total Price: RM<?php echo number_format($totalPrice, 2); ?></p>
                                 <!-- You can add more information here -->
                             </div>
                         </div>
