@@ -146,8 +146,8 @@
             <div class="internal">
                 <div class="main-content">
                     <div class="header-title">
-                        <span> Admin </span>
-                        <h2> Dashboard </h2>
+                        <span> Welcome </span>
+                        <h2> User </h2>
                     </div>
                 </div>
 
