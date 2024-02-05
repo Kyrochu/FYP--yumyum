@@ -133,7 +133,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="sub-menu">
 
                             <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
-                            <a href="HistorySuper.phpid=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
+                            <a href="HistorySuper.php" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
                         </div>
@@ -360,7 +360,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                             {
                                 echo '<div class="Cat-container">';
                                 
-                                echo '<a href="ProductSuper.php?cat_type=' . $categoryData['cat_type'] . '" class="cat_link"> ';
+                                echo '<a href="ProductSuper.php?cat_type=' . $categoryData['cat_type'] . '&id=' . $id . '" class="cat_link">';
                                 echo '<img src="category_images/' . $categoryData['cat_img'] . '" class="cat_img">';
                                 echo '</a>';
                                 echo '<h3>' . $categoryData['cat_name'] . '</h3>';
