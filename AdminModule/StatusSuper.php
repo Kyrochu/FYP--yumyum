@@ -411,7 +411,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 
                                 
                     <?php foreach ($orders_list as $order_key => $order_details) : ?>
-                        <div class="PendingstatusBox">
                             <div class="Status-container">
                                 <div class="cus-info">
 
@@ -450,7 +449,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     </div>
 
                                 </div>
-                            </div>
                         </div>
                     <?php endforeach; ?>
 

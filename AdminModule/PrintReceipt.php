@@ -1,3 +1,16 @@
+<?php
+
+include('DataConnect.php');
+
+if(!isset($_SESSION['email']))
+{
+    header("location:AdminLogin.php");
+}
+
+$id = isset($_GET['id'])?$_GET['id']:NULL;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

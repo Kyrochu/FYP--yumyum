@@ -689,10 +689,10 @@ header h1
 
 .PendingstatusBox 
 {
-    width: calc(33.33% - 20px); /* 33.33% width for each box with a bit of spacing */
-    margin: 10px;
+    width: calc(33.33% - 180px); /* 33.33% width for each box with a bit of spacing */
     box-sizing: border-box;
-    display: inline-block;
+    margin-top:10px;
+    display: flex;
     vertical-align: top;
     background-color: #fff; /* Background color for the boxes */
     border: 1px solid #ddd; /* Border color */
@@ -706,11 +706,19 @@ header h1
     flex-wrap: wrap;
     justify-content: space-between;
     margin-right:200px;
+    margin-top:10px;
+    vertical-align: top;
+    background-color: #fff; /* Background color for the boxes */
+    border: 1px solid #ddd; /* Border color */
+    padding: 15px;
+    border-radius: 5px;
+
 }
 
 .Status-container
 {
     border-radius:10px;
+    width:300px;
 }
 
 .Status-container .cus-info 
@@ -734,7 +742,7 @@ header h1
 .Status-container .btn 
 {
     margin-top: 25px;
-    margin-left: 85px;
+    margin-left: 45px;
     margin-bottom: 20px;
     cursor: pointer;
     font-size: 12px;
@@ -822,6 +830,13 @@ header h1
     color: #777;
     font-size: 16px;
     margin-bottom: 5px;
+}
+
+.OrderHistory 
+{
+    border: 1px solid #ddd;
+    margin-top: 30px;
+    margin-right:11px;
 }
 
 

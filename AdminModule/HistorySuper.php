@@ -89,30 +89,12 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             </script>
 
             <script>
-
-                function DisplayReceipt(TIME)
-                {
-                    $.ajax({
-                        type: 'POST',
-                        url: 'PrintReceipt.php',
-                        data: {
-                            order_time: orderTime
-                        },
-                        success: function(response) {
-                            console.log(response);
-                            alert('Order Delivered');
-
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 300);
-
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                }
                 
+                function DisplayReceipt(orderTime) 
+                {
+                    // Redirect to PrintReceipt.php with the order time parameter
+                    window.location.href = 'PrintReceipt.php?order_time=' + orderTime;
+                }
             </script>
 
 
@@ -264,7 +246,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 
                                 
                     <?php foreach ($orders_list as $order_key => $order_details) : ?>
-                        <div class="PendingstatusBox">
+                        <div class="OrderHistory">
                             <div class="Status-container">
                                 <div class="cus-info">
 
@@ -305,7 +287,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                 </div>
 
-                                        <input type="submit" value="PRINT RECEIPT" name="delivered" class="btn" onclick="DisplayReceipt(orderDateTime)">
+                                <input type="button" value="PRINT RECEIPT" name="delivered" class="btn" onclick="DisplayReceipt('<?php echo $orderDateTime; ?>')">
                                     
                             </div>
                         </div>
