@@ -1,13 +1,13 @@
 
-
 <!DOCTYPE html>
 <html>
-<head>
-        <title> DayPay </title>
+    
+    <head>
+        <title> YumYum Menu List </title>
         
         <link rel="stylesheet" href="../css/epay.css">  <!-- CSS for Admin Page -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Link for Icon Style  -->
-    
+        
         <!-- JQuery CDN Link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
@@ -42,17 +42,35 @@
             })
         </script>
 
-        <!-- Javascript for Date&Time Widget  -->
+        <!-- Javascript  -->
 
-        <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
+        <script src="../AdminModule/Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
         <script src="AddCategory.js"> </script>
 
+        <script>
+            function validateDecimalInput(input) 
+            {
+                // Remove any non-digit and non-dot characters
+                input.value = input.value.replace(/[^0-9.]/g, '');
 
-</head>
+                // Ensure only one dot is allowed
+                input.value = input.value.replace(/(\..*)\./g, '$1');
 
-<body>
+                // Ensure up to two decimal places without leading zeros
+                var parts = input.value.split('.');
+                if (parts.length > 1) {
+                    parts[1] = parts[1].slice(0, 2); // Take only up to two decimal places
+                    input.value = parts.join('.');
+                }
+            }
+        </script>
 
-       <div class="side-bar">
+
+    </head>
+
+    <body>
+
+            <div class="side-bar">
 
                 <!-- Header Section -->
 
@@ -63,7 +81,7 @@
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
                     <!-- Dropdown List (Accounts)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -81,7 +99,7 @@
                     <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
                     
                     <!-- Dropdown List (Manage)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -96,7 +114,7 @@
                     <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
                     
                     <!-- Dropdown List (Orders)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -120,55 +138,52 @@
                     </div>
 
                 </div>
-            </div> 
-
+            </div>  
+        
         <!-- Date & Time Widget -->
-
+        
         <div class="datetime">
 
-            <div class="main-content">
+            <div class="internal">
 
-                <div class="header-title">
+                    <div class="main-content">
 
-                    <span> Admin </span>
-                    <h2> Dashboard </h2>
+                        <div class="header-title">
 
-                </div>
+                            <span> Admin </span>
+                            <h2> Dashboard </h2>
 
-            </div>
+                        </div>
 
-            <div class="search-box">
+                    </div>
 
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
+                    <div class="search-box">
 
-                </div>
+                            <i class="fa-solid fa-search"> </i>
+                            <input type="text" placeholder="Search">
 
-            <div class="date">
+                        </div>
 
-                <span id="day"> Day </span>
-                <span id="month"> Month </span>
-                <span id="daynum"> 00 </span>
-                <span id="year"> Year </span>
+                    <div class="date">
 
-            </div>
+                        <span id="day"> Day </span>
+                        <span id="month"> Month </span>
+                        <span id="daynum"> 00 </span>
+                        <span id="year"> Year </span>
 
-            <div class="time">
+                    </div>
 
-                <span id="hour"> 00 </span>:
-                <span id="minutes"> 00 </span>:
-                <span id="seconds"> 00 </span>
-                <span id="period"> AM </span>
+                    <div class="time">
 
-            </div>
-            
-            <div class="AdminProfile">
+                        <span id="hour"> 00 </span>:
+                        <span id="minutes"> 00 </span>:
+                        <span id="seconds"> 00 </span>
+                        <span id="period"> AM </span>
 
-                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Admin's Profile </h2>
+                    </div>
+                    
+        
 
-            </div>
-            
-
-</body>
+    </body>
 
 </html>
