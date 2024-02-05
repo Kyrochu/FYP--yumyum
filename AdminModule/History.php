@@ -1,48 +1,101 @@
 <?php
+    // Your database connection code
     include('DataConnect.php');
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $orderTime = $_POST['order_time'];
+        $orderDate = date('Y-m-d', strtotime($orderTime)); // Extracts date in 'YYYY-MM-DD' format
+        $orderTime_r = date('H:i:s', strtotime($orderTime)); 
+    
+        // Prepare and execute the SQL query to select orders based on the order time
+        $selectQuery = "SELECT * FROM `order` WHERE or_time = ?";
+        $selectStmt = $connect->prepare($selectQuery);
+        $selectStmt->bind_param("s", $orderTime);
+        $selectStmt->execute();
+        $result = $selectStmt->get_result();
+    
+        // Insert the selected orders into the order_history table
+        while ($row = $result->fetch_assoc()) {
+            // Fetch user information based on user_id
+            $userQuery = "SELECT * FROM users WHERE id = ?";
+            $userStmt = $connect->prepare($userQuery);
+            $userStmt->bind_param("i", $row['user_id']);
+            $userStmt->execute();
+            $userResult = $userStmt->get_result();
+            $userRow = $userResult->fetch_assoc();
+    
+            // Fetch menu information based on food_id
+            $menuQuery = "SELECT * FROM menu WHERE food_id = ?";
+            $menuStmt = $connect->prepare($menuQuery);
+            $menuStmt->bind_param("i", $row['food_id']);
+            $menuStmt->execute();
+            $menuResult = $menuStmt->get_result();
+            $menuRow = $menuResult->fetch_assoc();
+    
+            // Fetch add-on information based on add_on_id
+            $addOnQuery = "SELECT * FROM add_on WHERE add_id = ?";
+            $addOnStmt = $connect->prepare($addOnQuery);
+            $addOnStmt->bind_param("i", $row['add_on_id']);
+            $addOnStmt->execute();
+            $addOnResult = $addOnStmt->get_result();
+            $addOnRow = $addOnResult->fetch_assoc();
 
-    // Assuming this code block is within your PHP file
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delivered'])) {
-        // Assuming you have a database connection named $connect
-
-        // Loop through the grouped orders to insert data into the order_history table
-        foreach ($grouped_orders as $group) {
-            $datetime = $group['time'];
-            $date = date('Y-m-d', strtotime($datetime));
-            $time = date('H:i:s', strtotime($datetime));
-            $username = $group['name'];
-            $contact_number = $row_user['contact_number'];
-
-            foreach ($group['foods'] as $food) {
-                $food_name = $food["food_name"];
-                $add_on_name = $food["add_on_name"];
-                $add_on_price = $food["add_on_price"];
-                $quantity = $food["food_num"];
-                $price = $food["food_price"];
-                $total_price = $quantity * ($price + $add_on_price);
-
-                // Prepare and bind parameters
-                $insert_query = "INSERT INTO order_history (order_date, order_time, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                $stmt = $connect->prepare($insert_query);
-                $stmt->bind_param("ssssssiiid", $date, $time, $username, $contact_number, $food_name, $add_on_name, $add_on_price, $quantity, $price, $total_price);
-
-                // Execute the statement
-                $stmt->execute();
-
-                // Check for errors or success
-                if ($stmt->affected_rows === -1) {
-                    // Handle insertion failure
-                    echo "Failed to insert order history for: $food_name";
-                } else {
-                    // Handle successful insertion
-                    echo "Order history inserted successfully for: $food_name";
-                }
-
-                // Close statement
-                $stmt->close();
+            if ($addOnRow && isset($addOnRow['add_price'])) {
+                $addOnPrice = $addOnRow['add_price'];
+            } else {
+                $addOnPrice = 0; 
             }
+
+            if ($addOnRow && isset($addOnRow['add_name'])) {
+                $addOnName = $addOnRow['add_name'];
+            } else {
+                // If $addOnRow or 'add_name' is not set, set $addOnName to null
+                $addOnName = "";
+            }
+
+            $totalPrice = ($menuRow['food_price'] + $addOnPrice) * $row['num_food'];
+    
+            // Insert data into order_history table
+            $insertQuery = "INSERT INTO `order_history` (order_date, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertStmt = $connect->prepare($insertQuery);
+            $insertStmt->bind_param("sssssdidd", $orderTime, $userRow['name'], $userRow['contact_number'], $menuRow['food_name'], $addOnName, $addOnPrice, $row['num_food'], $menuRow['food_price'], $totalPrice);
+            $insertStmt->execute();
+
+            $data = array(
+                'orderDate' => $orderDate,
+                'orderTime' => $orderTime,
+                'username' => $userRow['name'],
+                'contactNumber' => $userRow['contact_number'],
+                'foodName' => $menuRow['food_name'],
+                'addOnName' => $addOnName,
+                'addOnPrice' => $addOnPrice,
+                'numFood' => $row['num_food'],
+                'foodPrice' => $menuRow['food_price'],
+                'totalPrice' => ($menuRow['food_price'] + $addOnPrice) * $row['num_food']
+            );
+            
+            echo json_encode($data);
+
+            // Update the 'or_delete' column in the 'order' table
+            $updateQuery = "UPDATE `order` SET or_delete = '0' WHERE or_time = ?";
+            $updateStmt = $connect->prepare($updateQuery);
+            $updateStmt->bind_param("s", $orderTime);
+            $updateStmt->execute();
+
+
         }
+    
+            $selectStmt->close();
+            $userStmt->close();
+            $menuStmt->close();
+            $addOnStmt->close();
+            $insertStmt->close();
+            $updateStmt->close();
+    
+        echo "Orders saved successfully";
+    } else {
+
+        http_response_code(400);
+        echo "Invalid request";
     }
 ?>
-
