@@ -23,6 +23,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
         
         <!-- JQuery CDN Link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
         <script>
 
@@ -60,105 +61,134 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
         <script src="AddCategory.js"> </script>
 
+        <script>
+                $('.btn').click(function(e) {
+                    e.preventDefault();
+                    var orderTime = $(this).closest('.PendingstatusBox').find('input[name="order_time"]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: 'History.php',
+                        data: {
+                            order_time: orderTime
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            alert('Order Delivered');
+
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 300);
+
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
+
+            </script>
+
+            <script>
+
+                function DisplayReceipt(TIME)
+                {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'PrintReceipt.php',
+                        data: {
+                            order_time: orderTime
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            alert('Order Delivered');
+
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 300);
+
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                }
+                
+            </script>
+
 
     </head>
 
     <body>
 
-        <!-- Menu Button -->
-
-        <div class="menu-btn">
-
-            <i class="fas fa-bars"></i>
-
-        </div>
-        
         <div class="side-bar">
 
-            <!-- Header Section -->
+                <!-- Header Section -->
 
-            <header>
+                <div class="menu">
 
-                <div class="close-btn">
+                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
+                    <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
+                    <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
-                    <i class="fas fa-times"> </i>
+                    <!-- Dropdown List (Accounts)-->
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
+                    </a>
+
+                        <div class="sub-menu">
+
+                            <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> User </span> </a>
+                            <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Admin </span> </a>
+
+
+                        </div>
                 
-                </div>
-                <a href="">    
-                   
-                    <img src="admin.png" alt="No Image!">
-
-                </a>
-
-                <h1 style="color:navajowhite"> Welcome,<?php echo $_SESSION['email'] ?> </h1>
-
-            </header>
-
-            <div class="menu">
-
-                <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> My Profile </a></div>
-                <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> Dashboard </a></div>
-                <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> Accounts
                 
-                <!-- Dropdown List (Accounts)-->
-                <i class="fas fa-angle-right dropdown"> </i>
-                </a>
-
-                    <div class="sub-menu">
-
-                        <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> User </a>
-                        <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> Admin </a>
-
-
                     </div>
+                    
+                    
+                    <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
+                    
+                    <!-- Dropdown List (Manage)-->
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
+                    </a>
+
+                        <div class="sub-menu">
+
+                            <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Menu </span> </a>
+                                                    
+                        </div>
             
             
-                </div>
-                
-                
-                <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> Manage 
-                
-                <!-- Dropdown List (Manage)-->
-                <i class="fas fa-angle-right dropdown"> </i>
-                </a>
-
-                    <div class="sub-menu">
-
-                        <a href="MenusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Menu </a>
-                                                
                     </div>
-        
-        
-                </div>
-                
-                <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> Orders 
-                
-                <!-- Dropdown List (Orders)-->
-                <i class="fas fa-angle-right dropdown"> </i>
-                </a>
+                    
+                    <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
+                    
+                    <!-- Dropdown List (Orders)-->
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
+                    </a>
 
-                    <div class="sub-menu">
+                        <div class="sub-menu">
 
-                        <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> Status </a>
-                        <a href="HistorySuper.php?id=<?php echo $id; ?>" class="sub-item"> History </a>
+                            <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
+                            <a href="HistorySuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
+                        </div>
+            
                     </div>
-        
-                </div>
 
-                <div class="item"><a href=""><i class="fa fa-commenting"></i> Reviews </a></div>
-                
-                <div class="item">
+                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
+                    
+                    <div class="item">
 
-                    <div class="logout">
-                        <a href="Logout.php"><i class="fas fa-sign-out-alt"> </i> Logout </a>
+                        <div class="logout">
+                            <a href="Logout.php"><i class="fas fa-sign-out-alt"> </i> <span class="menu-text"> Logout </span> </a>
+                        </div>
+
                     </div>
 
                 </div>
-            </div>
-
-        </div>  
+            </div> 
 
         <!-- Date & Time Widget -->
 
@@ -199,28 +229,92 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 <span id="period"> AM </span>
 
             </div>
-            
+
             <div class="menus">
 
                 <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Order History </h2>
 
             </div>
 
-            <div class="Historybox">
-           
-                <div class="History-container">
 
-                    <h3> ID : </h3>
-                    <h3> Username : </h3>
-                    <h3> Address : </h3>
-                    <h3> Contact Number : </h3>
-                    <h3> Orders : </h3>
-                    <h3> Total Price : RM </h3>
+            <div class="DeliveredstatusBox">
 
-                </div>
+                    <?php
 
+                        $select_orders_query = "SELECT * FROM order_history ORDER BY order_date";
+                        $result_orders_query = mysqli_query($connect, $select_orders_query);
+
+                        // Initialize an array to hold the data
+                        $orders_list = [];
+
+                        // Loop through the fetched data and organize it into an array
+                        while ($row_orders_data = mysqli_fetch_assoc($result_orders_query)) {
+                            $orderDateTime = $row_orders_data['order_date'];
+
+                            $order_date_r = date('Y-m-d', strtotime($orderDateTime)); 
+                            $order_time_r = date('H:i:s', strtotime($orderDateTime));
+
+                            // Create a unique key combining date and time
+                            $order_key = $order_date_r . '_' . $order_time_r;
+
+                            // Add the data to the array
+                            $orders_list[$order_key][] = $row_orders_data;
+                        }
+                    ?>
+                                
+                                
+                    <?php foreach ($orders_list as $order_key => $order_details) : ?>
+                        <div class="PendingstatusBox">
+                            <div class="Status-container">
+                                <div class="cus-info">
+
+                                    <h2> Customer Info </h2>
+
+                                    <?php
+                                    // Extract date and time from the key
+                                    list($order_date_r, $order_time_r) = explode('_', $order_key);
+                                    ?>
+                                    <h3>Order Date: <?php echo $order_date_r; ?></h3>
+                                    <h3>Order Time: <?php echo $order_time_r; ?></h3>
+                                    <!-- dispaly name and num -->
+                                    <?php if (!empty($order_details)) : ?>
+                                        <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
+                                        <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
+                                    <?php endif; ?>
+                                    <hr>
+                                    
+                                    <!-- Iterate over the orders for this date and time -->
+
+                                    <div class="food-ordered">
+                                        <h2> Food ordered </h2>
+
+                                        <?php 
+                                        $total_price = 0;
+                                        foreach ($order_details as $single_order) : 
+                                            $total_price += $single_order['price'];
+                                        ?>
+                                            <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
+                                            <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["price"], 2); ?> </h3>
+                                            <br>
+                                        <?php endforeach; ?>
+
+                                        <!-- Display the total price -->
+                                        <h3 class="card-text">Total Price: RM <?php echo number_format($total_price, 2); ?></h3>
+                                    </div>
+                                    
+
+                                </div>
+
+                                        <input type="submit" value="PRINT RECEIPT" name="delivered" class="btn" onclick="DisplayReceipt(orderDateTime)">
+                                    
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+
+            
             </div>
 
+            
 
     </body>
 
