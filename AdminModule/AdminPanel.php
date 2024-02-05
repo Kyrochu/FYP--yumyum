@@ -8,7 +8,6 @@ if(!isset($_SESSION['email']))
 }
 
 $id = isset($_GET['id'])?$_GET['id']:NULL;
-
 ?>
 
 
