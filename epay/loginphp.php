@@ -16,19 +16,18 @@ if(isset($_POST['logbtn'])) {
     $row = mysqli_fetch_assoc($re);
     $uid = $row["id"];
 
+    if ($rowcount != 0) {
 
-    if($rowcount != 0){
-
+        header("Location: e_index.php?uid=$uid");
         echo"<script>
                 alert('Login successful.');
-                window.location = 'e_index.php';
             </script>";
-            mysqli_close($connect);
-    }else{
-        echo"<script>
-            alert('Wrong email or password, Please reenter again.');
-            window.location = 'e_login.php';
-        </script>";
+        exit(); 
+    } else {
+        echo "<script>
+                alert('Wrong email or password, Please re-enter again.');
+                window.location = 'e_login.php';
+              </script>";
     }
 
 }
