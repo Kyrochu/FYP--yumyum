@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2024 at 01:39 AM
+-- Generation Time: Feb 05, 2024 at 01:51 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `order_history` (
   `his_id` int(11) NOT NULL,
   `order_date` datetime DEFAULT NULL,
+  `user_id` int(255) NOT NULL,
   `username` varchar(255) DEFAULT NULL,
   `contact_number` varchar(20) DEFAULT NULL,
   `food_name` varchar(255) DEFAULT NULL,
@@ -44,9 +45,10 @@ CREATE TABLE `order_history` (
 -- Dumping data for table `order_history`
 --
 
-INSERT INTO `order_history` (`his_id`, `order_date`, `username`, `contact_number`, `food_name`, `add_on_name`, `add_on_price`, `quantity`, `price`, `total_price`) VALUES
-(64, '2024-02-05 08:35:26', 'Brian', '01156417215', 'Pork Burger', 'no tomato', 0, 1, 10, 10),
-(65, '2024-02-05 08:35:26', 'Brian', '01156417215', 'Pork Burger', 'Extra Sauce', 0.5, 1, 10, 10.5);
+INSERT INTO `order_history` (`his_id`, `order_date`, `user_id`, `username`, `contact_number`, `food_name`, `add_on_name`, `add_on_price`, `quantity`, `price`, `total_price`) VALUES
+(66, '2024-02-05 08:50:43', 15, 'Brian', '01156417215', 'Pork Burger', 'no tomato', 0, 1, 10, 10),
+(67, '2024-02-05 08:50:43', 15, 'Brian', '01156417215', 'Pork Burger', 'Extra Sauce', 0.5, 1, 10, 10.5),
+(68, '2024-02-05 08:50:43', 15, 'Brian', '01156417215', 'Chicken Burger', 'No tomato', 0, 1, 8, 8);
 
 --
 -- Indexes for dumped tables
@@ -66,7 +68,7 @@ ALTER TABLE `order_history`
 -- AUTO_INCREMENT for table `order_history`
 --
 ALTER TABLE `order_history`
-  MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `his_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

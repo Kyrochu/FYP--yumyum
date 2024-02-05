@@ -56,9 +56,9 @@
             $totalPrice = ($menuRow['food_price'] + $addOnPrice) * $row['num_food'];
     
             // Insert data into order_history table
-            $insertQuery = "INSERT INTO `order_history` (order_date, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertQuery = "INSERT INTO `order_history` (order_date, user_id, username, contact_number, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $insertStmt = $connect->prepare($insertQuery);
-            $insertStmt->bind_param("sssssdidd", $orderTime, $userRow['name'], $userRow['contact_number'], $menuRow['food_name'], $addOnName, $addOnPrice, $row['num_food'], $menuRow['food_price'], $totalPrice);
+            $insertStmt->bind_param("sissssdidd", $orderTime, $row['user_id'], $userRow['name'], $userRow['contact_number'], $menuRow['food_name'], $addOnName, $addOnPrice, $row['num_food'], $menuRow['food_price'], $totalPrice);
             $insertStmt->execute();
 
             $data = array(

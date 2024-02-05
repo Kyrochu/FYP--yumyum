@@ -125,7 +125,7 @@
             <div class="row justify-content-start">
                 <!-- card start -->
                 <?php
-                $order = "SELECT * FROM `order` WHERE user_id = ?";
+                $order = "SELECT * FROM `order` WHERE user_id = ? && or_delete = '1' ";
                 $order_stmt = $connect->prepare($order);
                 $order_stmt->bind_param("s", $uid);
                 $order_stmt->execute();

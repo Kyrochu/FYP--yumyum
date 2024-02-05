@@ -126,87 +126,54 @@
             <div class="row justify-content-start">
                 <!-- card start -->
                 <?php
-                $order = "SELECT * FROM `order` WHERE user_id = ?";
-                $order_stmt = $connect->prepare($order);
-                $order_stmt->bind_param("s", $uid);
-                $order_stmt->execute();
-                $order_result = $order_stmt->get_result();
+                    // Fetch data from the order_history table
+                    $selectQuery = "SELECT * FROM order_history ORDER BY order_date";
+                    $result = mysqli_query($connect, $selectQuery);
 
-                $grouped_orders = [];
+                    // Initialize an array to hold the grouped orders
+                    $groupedOrders = [];
 
-                while ($row_order = mysqli_fetch_assoc($order_result)) {
-                    $time = $row_order["or_time"];
-                    $fid = $row_order["food_id"];
-                    $n_food = $row_order["num_food"];
+                    // Loop through the fetched data and organize it into groups based on order date
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        $orderDate = $row['order_date'];
 
-                    $menu = "SELECT * FROM menu WHERE food_id = ?";
-                    $menu_stmt = $connect->prepare($menu);
-                    $menu_stmt->bind_param("i", $fid);
-                    $menu_stmt->execute();
-                    $menu_result = $menu_stmt->get_result();
+                        // Create a group key based on the order date
+                        $groupKey = date('Y-m-d', strtotime($orderDate));
 
-                    if ($menu_result->num_rows > 0) {
-                        $row_menu = mysqli_fetch_assoc($menu_result);
-
-                        $order_group_key = $row_order["or_time"];
-
-                        if (!isset($grouped_orders[$order_group_key])) {
-                            $grouped_orders[$order_group_key] = [
-                                'name' => $row_user["name"],
-                                'time' => $row_order["or_time"],
-                                'foods' => []
-                            ];
-                        }
-
-                        $grouped_orders[$order_group_key]['foods'][] = [
-                            'food_name' => $row_menu["food_name"],
-                            'food_price' => $row_menu["food_price"],
-                            'food_num' => $row_order["num_food"],
-                            // Add other fields you want to display
-                        ];
-                    } else {
-                        echo "No menu items found for food_id: $fid";
+                        // Add the row to the corresponding group
+                        $groupedOrders[$groupKey][] = $row;
                     }
-                }
-
-                $order_stmt->close();
-                $menu_stmt->close();
-
-                // Display the grouped orders
-                foreach ($grouped_orders as $group) {
                 ?>
+
+                <?php foreach ($groupedOrders as $orderDate => $orders): ?>
                     <div class="col-md-4" style="padding-left: 3rem;">
                         <div class="card mb-3 m-3 border-warning" style="max-width: 20rem; max-height: 20rem; border-radius: 10px;">
-                            <div class="card-header shadow bg-warning" style="border-radius: 8px;">Order History</div>
+                            <div class="card-header shadow bg-warning" style="border-radius: 8px;">Order History - <?php echo $orderDate; ?></div>
                             <div class="card-body" style="overflow-y: auto;">
-                                <p class="card-text">Name: <?php echo $group['name']; ?></p>
-                                <p class="card-text">Time: <?php echo $group['time']; ?></p>
-                                <div class="card-text">Food Ordered:
-                                    <div class="card-body ">
+                                <?php foreach ($orders as $order): ?>
+                                    <p class="card-text">Username: <?php echo $order['username']; ?></p>
+                                    <p class="card-text">Contact Number: <?php echo $order['contact_number']; ?></p>
+                                    <p class="card-text">Food Ordered:</p>
+                                    <div class="card-body">
                                         <?php
                                         // Loop to display all ordered foods
-                                        foreach ($group['foods'] as $food) {
-                                        ?>
-                                            <p class="card-text"><?php echo $food["food_name"]; ?> - Add on</p>
-                                            <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: RM<?php echo $food["food_price"]; ?></p>
-
-                                        <?php
-
-                                            $total += $food["food_price"];
-
-
+                                        $totalPrice = 0;
+                                        foreach ($orders as $order) {
+                                            ?>
+                                            <p class="card-text"><?php echo $order["food_name"]; ?> - <?php echo $order["add_on_name"]; ?></p>
+                                            <p class="card-text">Quantity: <?php echo $order["quantity"]; ?> - Price: RM<?php echo $order["price"]; ?></p>
+                                            <?php
+                                            $totalPrice += $order["total_price"];
                                         }
                                         ?>
                                     </div>
-                                </div>
-                                <p class="card-text">Total Price: RM<?php echo $total ?></p>
+                                <?php endforeach; ?>
+                                <p class="card-text">Total Price: RM<?php echo $totalPrice; ?></p>
                                 <!-- You can add more information here -->
                             </div>
                         </div>
                     </div>
-                <?php
-                }
-                ?>
+                <?php endforeach; ?>
                 <!-- card start -->
             </div>
             <br>
