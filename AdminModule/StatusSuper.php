@@ -23,6 +23,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
         
         <!-- JQuery CDN Link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
         <script>
 
@@ -59,7 +60,32 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
         <script src="AddCategory.js"> </script>
-        <script src="ViewOrderDetails.js"> </script>
+
+        <script>
+                $('.btn').click(function(e) {
+                    e.preventDefault();
+                    var orderTime = $(this).closest('.PendingstatusBox').find('input[name="order_time"]').val();
+                    $.ajax({
+                        type: 'POST',
+                        url: 'History.php',
+                        data: {
+                            order_time: orderTime
+                        },
+                        success: function(response) {
+                            console.log(response);
+                            alert('Order Delivered');
+
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 300);
+
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(xhr.responseText);
+                        }
+                    });
+                });
+            </script>
 
 
     </head>
@@ -281,6 +307,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 <div class="Status-container">
                                     
                                     <div class="cus-info">
+
+                                        <h2> Customer Info </h2>
                                         
                                         <h3> Order Number : </h3>
                                         <?php
@@ -311,7 +339,11 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         
                                         <h3> Contact Number : <?php echo $row_user['contact_number']; ?> </h3>
                                         <hr>
-                                    
+
+                                        <div class="food-ordered"> 
+
+                                                <h2> Food ordered </h2>
+
                                                 <?php
                                                 foreach ($group['foods'] as $food) 
                                                 {
@@ -320,7 +352,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                                 ?>
                                                     <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
-                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: <?php echo number_format($food["food_price"], 2); ?> </h3>
+                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format($food["food_price"], 2); ?> </h3>
                                                     <br>
                                                     <br>
                                                     
@@ -329,11 +361,11 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                                 }
                                                     ?>
                                                 
-                                                <h3 class="card-text">Total Price: RM<?php echo number_format($total, 2); ?></h3>
+                                                <h3 class="card-text">Total Price: RM <?php echo number_format($total, 2); ?></h3>
+                                        </div>
                                         
                                     </div>
-                                    <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
-                                    <form method="POST">
+                                    <form action="History.php" method="POST">
                                         <input type="hidden" name="order_time" value="<?php echo date('Y-m-d H:i:s', strtotime($group['time'])); ?> ?>">
                                         <input type="submit" value="DELIVERED" name="delivered" class="btn">
                                     </form>
@@ -354,93 +386,78 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             <div class="DeliveredstatusBox">
 
-            <?php
+                    <?php
 
-                $select_orders_query = "SELECT * FROM order_history ORDER BY order_date";
-                $result_orders_query = mysqli_query($connect, $select_orders_query);
+                        $select_orders_query = "SELECT * FROM order_history ORDER BY order_date";
+                        $result_orders_query = mysqli_query($connect, $select_orders_query);
 
-                // Initialize an array to hold the data
-                $orders_list = [];
+                        // Initialize an array to hold the data
+                        $orders_list = [];
 
-                // Loop through the fetched data and organize it into an array
-                while ($row_orders_data = mysqli_fetch_assoc($result_orders_query)) {
-                    $orderDateTime = $row_orders_data['order_date'];
+                        // Loop through the fetched data and organize it into an array
+                        while ($row_orders_data = mysqli_fetch_assoc($result_orders_query)) {
+                            $orderDateTime = $row_orders_data['order_date'];
 
-                    $order_date_r = date('Y-m-d', strtotime($orderDateTime)); 
-                    $order_time_r = date('H:i:s', strtotime($orderDateTime));
+                            $order_date_r = date('Y-m-d', strtotime($orderDateTime)); 
+                            $order_time_r = date('H:i:s', strtotime($orderDateTime));
 
-                    // Create a unique key combining date and time
-                    $order_key = $order_date_r . '_' . $order_time_r;
+                            // Create a unique key combining date and time
+                            $order_key = $order_date_r . '_' . $order_time_r;
 
-                    // Add the data to the array
-                    $orders_list[$order_key][] = $row_orders_data;
-                }
-            ?>
-                        
-                        
-            <?php foreach ($orders_list as $order_key => $order_details) : ?>
-                <div class="PendingstatusBox">
-                    <div class="Status-container">
-                        <div class="cus-info">
-                            <?php
-                            // Extract date and time from the key
-                            list($order_date_r, $order_time_r) = explode('_', $order_key);
-                            ?>
-                            <h3>Order Date: <?php echo $order_date_r; ?></h3>
-                            <h3>Order Time: <?php echo $order_time_r; ?></h3>
-                            <!-- dispaly name and num -->
-                            <?php if (!empty($order_details)) : ?>
-                                <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
-                                <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
-                            <?php endif; ?>
-                            <hr>
-           
-                            <!-- <div class="popup">
-                                <div class="food-ordered-box"> -->
+                            // Add the data to the array
+                            $orders_list[$order_key][] = $row_orders_data;
+                        }
+                    ?>
+                                
+                                
+                    <?php foreach ($orders_list as $order_key => $order_details) : ?>
+                        <div class="PendingstatusBox">
+                            <div class="Status-container">
+                                <div class="cus-info">
+
+                                    <h2> Customer Info </h2>
+
+                                    <?php
+                                    // Extract date and time from the key
+                                    list($order_date_r, $order_time_r) = explode('_', $order_key);
+                                    ?>
+                                    <h3>Order Date: <?php echo $order_date_r; ?></h3>
+                                    <h3>Order Time: <?php echo $order_time_r; ?></h3>
+                                    <!-- dispaly name and num -->
+                                    <?php if (!empty($order_details)) : ?>
+                                        <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
+                                        <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
+                                    <?php endif; ?>
+                                    <hr>
+                                    
                                     <!-- Iterate over the orders for this date and time -->
-                                    <?php foreach ($order_details as $single_order) : ?>
-                                        <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
-                                        <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: <?php echo number_format($single_order["price"], 2); ?> </h3>
-                                        <br>
-                                    <?php endforeach; ?>
-                                <!-- </div> -->
-                                <!-- Add the rest of your HTML structure -->
-                                <!-- <div class="form-element">
-                                    <button class="cancel-btn">CANCEL</button>
-                                </div> -->
-                            <!-- </div> -->
+
+                                    <div class="food-ordered">
+                                        <h2> Food ordered </h2>
+
+                                        <?php 
+                                        $total_price = 0;
+                                        foreach ($order_details as $single_order) : 
+                                            $total_price += $single_order['price'];
+                                        ?>
+                                            <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
+                                            <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["price"], 2); ?> </h3>
+                                            <br>
+                                        <?php endforeach; ?>
+
+                                        <!-- Display the total price -->
+                                        <h3 class="card-text">Total Price: RM <?php echo number_format($total_price, 2); ?></h3>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-                        <input type="submit" value="VIEW ORDER DETAILS" name="delivered" class="vieworder">
-                    </div>
-                </div>
-            <?php endforeach; ?>
+                    <?php endforeach; ?>
 
             
-            <script>
-                $('.btn').click(function(e) {
-                    e.preventDefault();
-                    var orderTime = $(this).closest('.PendingstatusBox').find('input[name="order_time"]').val();
-                    $.ajax({
-                        type: 'POST',
-                        url: 'History.php',
-                        data: {
-                            order_time: orderTime
-                        },
-                        success: function(response) {
-                            console.log(response);
-                            alert('Orders Done');
+            </div>
 
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 300);
-
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                });
-            </script>
+            
 
     </body>
 

@@ -689,20 +689,28 @@ header h1
 
 .PendingstatusBox 
 {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    width: calc(33.33% - 20px); /* 33.33% width for each box with a bit of spacing */
+    margin: 10px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    background-color: #fff; /* Background color for the boxes */
+    border: 1px solid #ddd; /* Border color */
+    padding: 15px;
+    border-radius: 5px;
 }
 
-.Status-container 
+/* Style for the container of the Pending status boxes */
+.DeliveredstatusBox 
 {
-    border: 2px solid black;
-    border-radius: 5px;
-    padding: 20px;
-    margin: 14px;
-    margin-right: 20px;
-    width: calc(30% - 34px); /* Adjusted width to consider margins */
-    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Status-container
+{
+    border-radius:10px;
 }
 
 .Status-container .cus-info 
@@ -779,6 +787,44 @@ header h1
     background-color:greenyellow;
     
 }
+
+.cus-info h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.cus-info h3 {
+    color: #555;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.cus-info hr {
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+/* Add styles for Food Ordered */
+.food-ordered h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.food-ordered h3 {
+    color: #555;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.food-ordered .card-text {
+    color: #777;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+
 
 
 /*------------------------------------------ Display History ------------------------------------------- */
