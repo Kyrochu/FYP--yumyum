@@ -9,7 +9,7 @@
 body
 {
     min-height:100vh;
-    background-color:#ebe9e9;
+    background-color:#0074f8;
     color:white;
     background-size:cover;
     background-position:center;
@@ -149,20 +149,7 @@ header h1
 
 /* ------------------------------------------Date & Time Widget--------------------------------------------------- */
 
-.datetime
-{
-    color:black;
-    background-color:#ebe9e9;
-    font-family:"Segoe UI",sans-serif;
-    width:100%;
-    padding:1rem;
-    margin-left:100px;
-    border:3px solid #ebe9e9;
-    border-radius:8px;
-    transition:0.5s;
-    position:relative;
 
-}
 
 .date
 {
@@ -826,15 +813,6 @@ header h1
     font-family:"Poppins",sans-serif;
 }
 
-body
-{
-    min-height:100vh;
-    background-color:#ebe9e9;
-    color:white;
-    background-size:cover;
-    background-position:center;
-    overflow-x: hidden;
-}
 
 /*------------------------------------------------------------------------- Side Bar------------------------------------------------------ */
 
@@ -972,9 +950,25 @@ header h1
 .datetime
 {
     color:black;
-    background-color:#ebe9e9;
+    background-color:#00a2ff;
     font-family:"Segoe UI",sans-serif;
     width:100%;
+    padding:1rem;
+    margin-left:100px;
+    border:3px solid #ebe9e9;
+    border-radius:8px;
+    transition:0.5s;
+    position:relative;
+
+}
+
+.cardtab
+{
+    color:black;
+    background-color:#00a2ff;
+    font-family:"Segoe UI",sans-serif;
+    width:600px;
+    height: 350px;
     padding:1rem;
     margin-left:100px;
     border:3px solid #ebe9e9;
