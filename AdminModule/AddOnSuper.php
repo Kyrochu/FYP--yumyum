@@ -1,29 +1,28 @@
 <?php
 
-include('DataConnect.php');
+include('DataConnect.php'); // Include the database connection file
 
-if(!isset($_SESSION['email']))
+if (!isset($_SESSION['email'])) 
 {
-    header("location:AdminLogin.php");
+    header("location: AdminLogin.php");
+    exit(); // Terminate script after redirection
 }
 
 $id = isset($_GET['id'])?$_GET['id']:NULL;
 
 ?>
 
-
 <!DOCTYPE html>
 <html>
     
     <head>
-        <title> YumYum Menu List </title>
+        <title> YumYum Admin Accounts List </title>
         
         <link rel="stylesheet" href="Admin_Style.css">  <!-- CSS for Admin Page -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> <!-- Link for Icon Style  -->
         
         <!-- JQuery CDN Link -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
         <script>
 
@@ -60,16 +59,15 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
         <script src="Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
         <script src="AddCategory.js"> </script>
-
+        <script src="EditProduct.js"> </script>
         <script>
-    function printReceipt(orderDate, orderTime) {
-        // Redirect to printReceipt.php with the orderDate and orderTime parameters
-        window.location.href = 'printReceipt.php?orderDate=' + orderDate + '&orderTime=' + orderTime;
+    function goToProductSuper() 
+    {
+        window.location.href = 'ProductSuper.php';
     }
-</script>
+    </script>
 
-
-
+    
     </head>
 
     <body>
@@ -124,7 +122,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="sub-menu">
 
                             <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
-                            <a href="HistorySuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
+                            <a href="HistorySuper.phpid=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
                         </div>
@@ -183,93 +181,66 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 <span id="period"> AM </span>
 
             </div>
+            
+            <div class="EditProduct">
 
-            <div class="menus">
+                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Edit Product </h2>
 
-                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Order History </h2>
+            </div> 
 
-            </div>
+            <?php
 
+            if(isset($_GET['editbtn']))
+            {
+                $selected_category_id = $_GET['cat_id'];
+                $productId = $_GET['pro_id'];
 
-            <div class="DeliveredstatusBox">
+                $query = "SELECT * FROM menu WHERE food_id='$productId' ";
+                $query_run = mysqli_query($connect,$query);
 
-                    <?php
+                foreach($query_run as $row)
+                {
+            ?>    
+            
+            <form method="POST" action="" enctype="multipart/form-data"> 
 
-                        $select_orders_query = "SELECT * FROM order_history ORDER BY order_date";
-                        $result_orders_query = mysqli_query($connect, $select_orders_query);
+                <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
+                <input type="hidden" name="current_image" value="<?php echo $row['food_img']?>">
 
-                        // Initialize an array to hold the data
-                        $orders_list = [];
+                <div class="form-element">
+                    PRODUCT NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
+                </div>
 
-                        // Loop through the fetched data and organize it into an array
-                        while ($row_orders_data = mysqli_fetch_assoc($result_orders_query)) {
-                            $orderDateTime = $row_orders_data['order_date'];
+                <div class="form-element">
+                    PRODUCT PRICE <input type="text" name="price" value="<?php echo $row['food_price']?>">                    
+                </div>
 
-                            $order_date_r = date('Y-m-d', strtotime($orderDateTime)); 
-                            $order_time_r = date('H:i:s', strtotime($orderDateTime));
+                <div class="form-element">
+                    PRODUCT DESCRIPTION <input type="text" name="desc" value="<?php echo $row['food_description']?>">                    
+                </div>
 
-                            // Create a unique key combining date and time
-                            $order_key = $order_date_r . '_' . $order_time_r;
+                <div class="form-element">  
+                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="../img/<?php echo $row['food_img']?>">
+                </div>
 
-                            // Add the data to the array
-                            $orders_list[$order_key][] = $row_orders_data;
-                        }
-                    ?>
-                                
-                                
-                    <?php foreach ($orders_list as $order_key => $order_details) : ?>
-                        <div class="OrderHistory">
-                            <div class="Status-container">
-                                <div class="cus-info">
+                <div class="form-element">
+                    <input type="submit" name="updateProduct" value="UPDATE PRODUCT" class="edit-submit-btn">
+                </div>
 
-                                    <h2> Customer Info </h2>
+                <div class="form-element">
+                    <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='ProductSuper.php?cat_type=<?php echo $selected_category_id ?>';">
+                </div>
+            
+            </form>
 
-                                    <?php
-                                    // Extract date and time from the key
-                                    list($order_date_r, $order_time_r) = explode('_', $order_key);
-                                    ?>
-                                    <h3>Order Date: <?php echo $order_date_r; ?></h3>
-                                    <h3>Order Time: <?php echo $order_time_r; ?></h3>
-                                    <!-- dispaly name and num -->
-                                    <?php if (!empty($order_details)) : ?>
-                                        <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
-                                        <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
-                                    <?php endif; ?>
-                                    <hr>
-                                    
-                                    <!-- Iterate over the orders for this date and time -->
+            <?php 
+            
+                }
+            }
 
-                                    <div class="food-ordered">
-                                        <h2> Food ordered </h2>
-
-                                        <?php 
-                                        $total_price = 0;
-                                        foreach ($order_details as $single_order) : 
-                                            $total_price += $single_order['total_price'];
-                                        ?>
-                                            <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
-                                            <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["price"], 2); ?> </h3>
-                                            <br>
-                                        <?php endforeach; ?>
-
-                                        <!-- Display the total price -->
-                                        <h3 class="card-text">Total Price: RM <?php echo number_format($total_price, 2); ?></h3>
-                                    </div>
-                                    
-
-                                </div>
-
-                                <input type="button" value="PRINT RECEIPT" name="delivered" class="btn" onclick="printReceipt('<?php echo urlencode($order_date_r); ?>', '<?php echo urlencode($order_time_r); ?>')">
-                                    
-                            </div>
-                        </div>
-                    <?php endforeach; ?>
+            ?>
 
             
-            </div>
-
-            
-
     </body>
 
 </html>
