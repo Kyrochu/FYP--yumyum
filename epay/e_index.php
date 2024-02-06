@@ -174,7 +174,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-6"> <!-- Adjust the column width as needed -->
                     <div class="cardtab card text-bg-light mb-3" style="box-shadow: 10px 10px 10px white;">
-                        <div class="card-header"><h5>Walletz</h5></div>
+                        <div class="card-header"><h5>Wallet</h5></div>
                         <div class="card-body">
                             <h2 class="card-title">Your Debit </h2>
                             <h3 class="card-text">RM 100.00</h3>
