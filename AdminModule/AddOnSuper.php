@@ -236,6 +236,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     {
                        $a_name = $ROW['add_name'];
                        $a_price = $ROW['add_price'];
+                       echo "<br>";
                        echo "$a_name";
                        echo "$a_price";
                     }      
