@@ -61,11 +61,12 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
         <script src="AddCategory.js"> </script>
         <script src="EditProduct.js"> </script>
         <script>
-    function goToProductSuper() 
-    {
-        window.location.href = 'ProductSuper.php';
-    }
-    </script>
+
+        function goToProductSuper() 
+        {
+            window.location.href = 'ProductSuper.php';
+        }
+        </script>
 
     
     </head>
@@ -122,7 +123,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="sub-menu">
 
                             <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
-                            <a href="HistorySuper.phpid=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
+                            <a href="HistorySuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
                         </div>
@@ -184,63 +185,15 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             
             <div class="EditProduct">
 
-                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Edit Product </h2>
+                <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Manage Add On </h2>
 
             </div> 
 
-            <?php
-
-            if(isset($_GET['editbtn']))
-            {
-                $selected_category_id = $_GET['cat_id'];
-                $productId = $_GET['pro_id'];
-
-                $query = "SELECT * FROM menu WHERE food_id='$productId' ";
-                $query_run = mysqli_query($connect,$query);
-
-                foreach($query_run as $row)
-                {
-            ?>    
+            <div>
+                
+            </div>
             
-            <form method="POST" action="" enctype="multipart/form-data"> 
 
-                <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
-                <input type="hidden" name="current_image" value="<?php echo $row['food_img']?>">
-
-                <div class="form-element">
-                    PRODUCT NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
-                </div>
-
-                <div class="form-element">
-                    PRODUCT PRICE <input type="text" name="price" value="<?php echo $row['food_price']?>">                    
-                </div>
-
-                <div class="form-element">
-                    PRODUCT DESCRIPTION <input type="text" name="desc" value="<?php echo $row['food_description']?>">                    
-                </div>
-
-                <div class="form-element">  
-                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="../img/<?php echo $row['food_img']?>">
-                </div>
-
-                <div class="form-element">
-                    <input type="submit" name="updateProduct" value="UPDATE PRODUCT" class="edit-submit-btn">
-                </div>
-
-                <div class="form-element">
-                    <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='ProductSuper.php?cat_type=<?php echo $selected_category_id ?>';">
-                </div>
-            
-            </form>
-
-            <?php 
-            
-                }
-            }
-
-            ?>
-
-            
     </body>
 
 </html>
