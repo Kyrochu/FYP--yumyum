@@ -247,7 +247,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     <form action='AddOnSuper.php' method='GET'>
                                         <input type='hidden' name='cat_id' value='$selected_category_id'>
                                         <input type='hidden' name='pro_id' value='$productId'>
-                                        <button type='submit' name='editbtn' class='edit'>ADD ON</button>
+                                        <button type='submit' name='addonbtn' class='edit'>ADD ON</button>
                                     </form>
                                 </td>
                             </tr>";
