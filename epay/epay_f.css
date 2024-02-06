@@ -100,7 +100,7 @@ body
     border: 0;
     outline: none;
     position: relative;
-
+    margin-left: 55px;
 }
 
 #btn
@@ -108,7 +108,7 @@ body
     top: 0;
     left: 0;
     position: absolute;
-    width: 110px;
+    width: 100%;
     height: 100%;
     background: linear-gradient(to right , #0074f8 , #00a2ff  );
     border-radius: 30px;
@@ -139,13 +139,7 @@ body
     outline: none;
 }
 
-#pinError
-{
-    padding: 10px 0;
-    margin-left: 3em;
-    background: transparent;
-    outline: none;
-}
+
 
 .submit_btn
 {
@@ -156,7 +150,7 @@ body
     outline: none;
     background: linear-gradient(to right , #0074f8 , #00a2ff  );
     border: 0;
-    margin-top: 2em;
+    margin-top: 8em;
     margin-left: 5em;
     border-radius: 30px;
 }

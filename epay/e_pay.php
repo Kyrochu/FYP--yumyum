@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>LogIn</title>
-        <link rel="stylesheet" href="../css/elog.css">
+        <link rel="stylesheet" href="epay_f.css">
         <style>
             #place
             {
@@ -16,11 +16,12 @@
         
     </head>
     <body>
-        <header> 
-    
-        
-            <!-- <h1 class="Welcome" style="background-color:dimgrey;"> <span class="W">W</span>elcome to <span class="F">F</span>antastos <span class="H">H</span>otel </h1> -->
-        
+
+    <?php 
+        $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
+    ?>
+
+        <header>         
                 <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
                     
                     <img src="../img/daypay logo.png" alt="No Image" >
@@ -34,7 +35,6 @@
             <div class="btn_anime">
                 <div id="btn" ></div>
                 <button type="button" class="LG_RE_btn"  onclick="login()" style="color: rgb(255, 252, 255);">Log In</button>
-                <button type="button" class="LG_RE_btn" id="place" onclick="register()" style="color: rgb(255, 252, 255);">Register</button>
             </div>
             
             <!-- log side -->
@@ -56,9 +56,7 @@
                 <input type="email" class="input_place" name="email" placeholder="Email" required >
                 <input type="password" class="input_place" name="new_password" placeholder="Create Password" required>
                 <input type="password" class="input_place" name="com_password" placeholder="Comfirm Password" required>
-                <input type="text" class="input_place" name="pin" placeholder="6-digit pin" required maxlength="6" oninput="validatePin(this)">
-                <div id="pinError" style="color: red;"></div>
-
+                
                 <button type="submit" class="submit_btn" name="regbtn" style="color: rgb(255, 252, 255);">Register</button>
                 
             </form>
@@ -66,29 +64,6 @@
 
         
         <script>
-
-            function validatePin(input) {
-                var pin = input.value;
-                var errorElement = document.getElementById('pinError');
-
-                // Remove non-numeric characters from input
-                pin = pin.replace(/\D/g, '');
-
-                if (pin.length > 6) {
-                    // Trim the pin to 6 characters
-                    pin = pin.slice(0, 6);
-                }
-
-                // Update the input value
-                input.value = pin;
-
-                if (pin.length < 6) {
-                    errorElement.textContent = 'Pin must be exactly 6 digits.';
-                } else {
-                    errorElement.textContent = '';
-                }
-            }
-
             var x = document.getElementById("log");
             var y = document.getElementById("reg");
             var z = document.getElementById("btn");
