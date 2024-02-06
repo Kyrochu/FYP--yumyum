@@ -68,11 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST")
                         $cart_query = "UPDATE cart SET cart_food_delete = '0' WHERE user_id = $user_id";
                         $cart_result = mysqli_query($connect, $cart_query);
 
-                        if ($cart_result) 
-                        {
-                            echo "done"; // Transaction successful
-                        
-                        } 
                         
                     } 
                 

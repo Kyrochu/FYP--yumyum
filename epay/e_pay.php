@@ -87,9 +87,8 @@
                     var total_price = $("#price").val(); // Include PHP variable
                     var uid = $("#user_id").val(); // Include PHP variable
 
-                    
-                    // Collect form data 
-                    var formData = {
+                    // Collect form data for check_pin.php
+                    var formDataCheckPin = {
                         user_email: userEmail,
                         user_password: userPassword,
                         pin: pin,
@@ -97,24 +96,48 @@
                         user_id: uid // Include user_id variable
                     };
 
-                    // Send AJAX request
+                    // Send AJAX request to check_pin.php
                     $.ajax({
                         type: "POST",
-                        url: "e_paydone.php",
-                        data: formData,
+                        url: "check_pin.php",
+                        data: formDataCheckPin,
                         success: function(response) {
-                            if (response.trim() === "done") {
-                                window.location = "../log_index.php?userID=<?php echo $user; ?>";
+                            // Handle response from check_pin.php
+                            if (response === "done") {
+                                // Proceed with the payment
+                                // Send AJAX request to e_paydone.php
+                                $.ajax({
+                                    type: "POST",
+                                    url: "e_paydone.php",
+                                    data: formDataCheckPin, // Use the same data as check_pin.php
+                                    success: function(response) {
+                                        // Handle success response from e_paydone.php
+                                        window.location = "../log_index.php?userID=<?php echo $user;?>";
+                                    },
+                                    error: function(xhr, status, error) {
+                                        // Handle AJAX errors if any
+                                        console.error(xhr.responseText);
+                                    }
+                                });
+                            } else if (response === "insufficient") {
+                                // Handle insufficient funds
+                                alert("Insufficient funds in your wallet.");
+                                // You can redirect or handle this case as needed
                             } else {
-                                $("#pinError").text("Invalid email, password, or PIN.");
+                                // Handle other errors from check_pin.php
+                                alert("Error processing payment.");
+                                // You can redirect or handle this case as needed
                             }
                         },
                         error: function(xhr, status, error) {
-                            console.error("AJAX Error:", status, error);
+                            // Handle AJAX errors if any
+                            console.error(xhr.responseText);
                         }
                     });
                 });
             });
+
+
 
 
 
