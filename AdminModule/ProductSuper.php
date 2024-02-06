@@ -117,7 +117,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="sub-menu">
 
                             <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
-                            <a href="HistorySuper.phpid=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
+                            <a href="HistorySuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
                         </div>
@@ -244,7 +244,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     </form>
                                 </td>
                                 <td>
-                                    <form action='' method='GET'>
+                                    <form action='AddOnSuper.php' method='GET'>
                                         <input type='hidden' name='cat_id' value='$selected_category_id'>
                                         <input type='hidden' name='pro_id' value='$productId'>
                                         <button type='submit' name='editbtn' class='edit'>ADD ON</button>

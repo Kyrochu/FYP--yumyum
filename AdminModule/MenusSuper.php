@@ -133,7 +133,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="sub-menu">
 
                             <a href="StatusSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Status </span></a>
-                            <a href="HistorySuper.php" class="sub-item"> <span class="menu-text"> History </span> </a>
+                            <a href="HistorySuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> History </span> </a>
 
 
                         </div>
