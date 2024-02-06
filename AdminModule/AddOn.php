@@ -5,7 +5,6 @@ session_start();
 if(isset($_GET['add_addon']))
 {
     $productId = $_GET['pro_id'];
-    $selected_category_id = $_GET['cat_id'];
 
     $a_name = $_GET['addon_name'];
     $a_price = $_GET['addon_price'];
@@ -18,15 +17,18 @@ if(isset($_GET['add_addon']))
     $add_query = "INSERT INTO add_on(add_name,add_price,food_id) VALUES ('$a_name','$a_price','$productId') ";
     $add_query_run = mysqli_query($connect,$add_query);
 
-    if($add_query_run)
-        {
-            echo "<script> alert('New AddOn Added'); window.location.href = 'AddOnSuper.php?pro_id=$productId&cat_id=$selected_category_id'; </script>";
-
-        }
-        else
-        {
-            echo "<script> alert('Failed to Add'); window.location.href = 'AddOnSuper.php?pro_id=$productId&cat_id=$selected_category_id'; </script>";
-        }
+    if ($add_query_run) 
+    {
+        echo "<script>
+            alert('Addon added successfully.');
+            window.location.href ='AddOnSuper.php?addonbtn=1&pro_id=$productId&cat_id={$productData['cat_id']}';
+        </script>";
+        exit();
+    } 
+    else 
+    {
+        echo "<script>alert('Failed to add addon.');</script>";
+    }
 }
 
 ?>
