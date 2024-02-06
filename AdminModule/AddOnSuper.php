@@ -68,6 +68,24 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
         }
         </script>
 
+        <script>
+            function validateDecimalInput(input) 
+            {
+                // Remove any non-digit and non-dot characters
+                input.value = input.value.replace(/[^0-9.]/g, '');
+
+                // Ensure only one dot is allowed
+                input.value = input.value.replace(/(\..*)\./g, '$1');
+
+                // Ensure up to two decimal places without leading zeros
+                var parts = input.value.split('.');
+                if (parts.length > 1) {
+                    parts[1] = parts[1].slice(0, 2); // Take only up to two decimal places
+                    input.value = parts.join('.');
+                }
+            }
+        </script>
+
     
     </head>
 
@@ -189,9 +207,63 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div> 
 
-            <div>
+            <div class="products">
+
+            <?php
+                if(isset($_GET['addonbtn'])) 
+                {
+                    $productId = $_GET['pro_id'];
+
+                    $query = "SELECT * FROM menu WHERE food_id='$productId'";
+                    $query_run = mysqli_query($connect, $query);
+                    $row = mysqli_fetch_assoc($query_run);
+
+                    $selected_addon = "SELECT * FROM add_on WHERE food_id='$productId' ";
+                    $selected_addon_run = mysqli_query($connect, $selected_addon);
+
+                    $food_name = $row['food_name'];
+                    $food_img = $row['food_img'];
+                    echo "Food Name: $food_name";
+                    echo "<img src='../img/$food_img' alt='Product Image' class='img'>";
+
+                    ?>
+                    <div class="Addon-itmes">
+
+                        <h2> AddOn Items </h2>
+                    <?php
+                    foreach($selected_addon_run as $ROW) 
+                    {
+                       $a_name = $ROW['add_name'];
+                       $a_price = $ROW['add_price'];
+                       echo "$a_name";
+                       echo "$a_price";
+                    }      
+                    
                 
+                    ?>
+                    </div>
+
+            <div class="addon-form">
+                <h2>Add New Addon Item</h2>
+
+                <form action="AddOn.php" method="GET">
+                    <!-- Include input fields for addon details -->
+                    <label for="addon-name">Addon Name:</label>
+                    <input type="text" id="addon-name" name="addon_name" required>
+
+                    <label for="addon-price">Addon Price:</label>
+                    <input type="text" id="addon-price" name="addon_price" oninput="validateDecimalInput(this)" required>
+                    
+                    <input type="hidden" name="pro_id" value="<?php echo $productId; ?>">
+                    <input type="submit" value="Add AddOn" name="add_addon" class="btn">
+                </form>
+
             </div>
+        <?php
+
+                }
+            ?>
+
             
 
     </body>
