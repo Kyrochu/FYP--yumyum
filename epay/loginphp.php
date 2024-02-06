@@ -15,9 +15,6 @@ if(isset($_POST['logbtn'])) {
     $re = mysqli_query($conn, $id);
     $row = mysqli_fetch_assoc($re);
     $uid = $row["user_id"];
-
-    $insert_query = "INSERT INTO e_wallet (user_id, w_debit) VALUES ('$uid', 0)";
-    $insert_result = mysqli_query($conn, $insert_query);
     
 
     if ($rowcount != 0) {

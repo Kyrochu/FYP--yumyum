@@ -25,11 +25,6 @@
                     
                     <img src="../img/daypay logo.png" alt="No Image" >
                     
-                    <ul style="margin-left:700px;">
-                        <li> <a href="Homepage.php"> Home </a> </li>
-
-                    </ul>
-                    
                 </div>
         
         </header>
