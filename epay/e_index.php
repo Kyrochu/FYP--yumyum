@@ -200,7 +200,7 @@
                             <h3 class="card-text">RM <?php echo number_format($e_debit,2) ?></h3>
                             
                         </div>
-                        <button type="button" class="btn btn-success">Top Up</button>
+                        <button type="button" class="btn btn-success" id="topUpButton">Top Up</button>
                     </div>
                 </div>
             </div>
@@ -217,7 +217,18 @@
         <script src="lib/owlcarousel/owl.carousel.min.js"></script>
         <script src="lib/tempusdominus/js/moment.min.js"></script>
         <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>                                                           
+        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>    
+        
+        <script>
+            var topUpButton = document.getElementById("topUpButton");
+
+            topUpButton.addEventListener("click", function() {
+                var uid = <?php echo json_encode($uid); ?>;
+
+                window.location.href = "e_topup.php?uid=" + uid;
+            });
+            
+        </script>
 
     </body>
 
