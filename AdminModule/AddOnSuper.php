@@ -212,7 +212,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <?php
                 if(isset($_GET['addonbtn'])) 
                 {
-                    $productId = $_GET['pro_id'];
+                    $productId = $_GET['pro_id'];   
+                    $selected_category_id = $_GET['cat_id'];
 
                     $query = "SELECT * FROM menu WHERE food_id='$productId'";
                     $query_run = mysqli_query($connect, $query);
@@ -253,7 +254,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <label for="addon-price">Addon Price:</label>
                     <input type="text" id="addon-price" name="addon_price" oninput="validateDecimalInput(this)" required>
-                    
+
+                    <input type='hidden' name='cat_id' value="<?php echo $selected_category_id; ?>" >
                     <input type="hidden" name="pro_id" value="<?php echo $productId; ?>">
                     <input type="submit" value="Add AddOn" name="add_addon" class="btn">
                 </form>
@@ -265,7 +267,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             ?>
 
             
-
+ 
     </body>
 
 </html>

@@ -5,6 +5,7 @@ session_start();
 if(isset($_GET['add_addon']))
 {
     $productId = $_GET['pro_id'];
+    $selected_category_id = $_GET['cat_id'];
 
     $a_name = $_GET['addon_name'];
     $a_price = $_GET['addon_price'];
@@ -19,12 +20,12 @@ if(isset($_GET['add_addon']))
 
     if($add_query_run)
         {
-            echo "<script> alert('New AddOn Added'); window.location.href = 'AddOnSuper.php?food_id=$productId'; </script>";
+            echo "<script> alert('New AddOn Added'); window.location.href = 'AddOnSuper.php?pro_id=$productId&cat_id=$selected_category_id'; </script>";
 
         }
         else
         {
-            echo "<script> alert('Failed to Add'); window.location.href = 'AddOnSuper.php'; </script>";
+            echo "<script> alert('Failed to Add'); window.location.href = 'AddOnSuper.php?pro_id=$productId&cat_id=$selected_category_id'; </script>";
         }
 }
 
