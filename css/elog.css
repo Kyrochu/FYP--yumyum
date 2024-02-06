@@ -139,7 +139,13 @@ body
     outline: none;
 }
 
-
+#pinError
+{
+    padding: 10px 0;
+    margin-left: 3em;
+    background: transparent;
+    outline: none;
+}
 
 .submit_btn
 {
@@ -150,7 +156,7 @@ body
     outline: none;
     background: linear-gradient(to right , #0074f8 , #00a2ff  );
     border: 0;
-    margin-top: 8em;
+    margin-top: 2em;
     margin-left: 5em;
     border-radius: 30px;
 }
