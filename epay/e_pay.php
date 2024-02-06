@@ -87,7 +87,8 @@
                     var total_price = $("#price").val(); // Include PHP variable
                     var uid = $("#user_id").val(); // Include PHP variable
 
-                    // Collect form data
+                    
+                    // Collect form data 
                     var formData = {
                         user_email: userEmail,
                         user_password: userPassword,
