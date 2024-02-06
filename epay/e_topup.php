@@ -59,24 +59,24 @@
             <div class="row">
                 <div class="col">
                     <h3 class="title">billing address</h3>
-                    <input style="display:none;" type="number" id="u_id" value="<?php echo $user ?>">
-                    <input style="display:none;" type="number" id="price" value="<?php echo $total_price ?>">
+                    <input style="display:none;" type="number" id="u_id" value="<?php echo $uid ?>">
+
                     <div class="inputBox">
-                        <span>full name :</span>
-                        <input type="text" placeholder="john deo" value="" id="f_name" name="f_name" required>
+                        <span>Full Name :</span>
+                        <input type="text" placeholder="John Deo" id="f_name" name="f_name" required>
                     </div>
                     <div class="inputBox">
-                        <span>email :</span>
+                        <span>Email :</span>
                         <input type="email" placeholder="example@example.com" value="<?php echo $u_email ?>" id="email" name="email" required>
                         <div id="emailError" class="danger"></div>
                     </div>
                     <div class="inputBox">
-                        <span>address :</span>
-                        <input type="text" placeholder="room - street - locality" value="" required>
+                        <span>Address :</span>
+                        <input type="text" placeholder="Room - Street - Locality" id="address" name="address" required>
                     </div>
                     <div class="inputBox">
-                        <span>city :</span>
-                        <input type="text" placeholder="mumbai" value="" required>
+                        <span>City :</span>
+                        <input type="text" placeholder="Mumbai" id="city" name="city" required>
                     </div>
                     <div class="flx">
                         <div class="inputBox">
@@ -137,7 +137,12 @@
                             <input type="text" placeholder="123" id="cvv" maxlength="3" pattern="[0-9]{3}" title="Enter a valid CVV number" required>
                         </div>
                     </div>
-                    
+                    <div class="inputBox">
+                        <span>Topup Amount :</span>
+                        <input type="text" placeholder="RM 10" id="amount_number" required>
+                        <div id="error-message" style="color: red;"></div>
+                    </div>
+
                 </div>
             </div>
                 <button type="submit" class="submit-btn">Proceed to Checkout</button>
@@ -162,13 +167,12 @@
     function save(event) {
             event.preventDefault(); 
             var user_id = document.getElementById("u_id").value;
-            var c_num = document.getElementById("card_number").value;
-            var total = document.getElementById("price").value;
+            var topup = document.getElementById("amount_number").value;
 
                 $.ajax({
                     type: "POST",
-                    url: "receipt_save.php",
-                    data: { u_id: user_id, card_num: c_num, total_price: total },
+                    url: "topup.php",
+                    data: { u_id: user_id, amount: topup },
                     success: function (response) {
                         console.log("done");
                         document.getElementById('overlay').style.display = 'block';
@@ -181,7 +185,7 @@
                         setTimeout(function () {
                             document.getElementById('popup').classList.remove('visible');
                             setTimeout(function () {
-                                window.location.href = 'log_menu.php?userID=' + user_id;
+                                window.location.href = 'e_index.php?uid=' + user_id;
                             }, 1000);
                         }, 2000);
                     },
@@ -190,6 +194,30 @@
 
             return false; 
         }
+
+        var amountNumberInput = document.getElementById('amount_number');
+        var errorMessage = document.getElementById('error-message');
+
+        // Add event listener for input
+        amountNumberInput.addEventListener('input', function() {
+            // Get the input value
+            var inputValue = amountNumberInput.value;
+            
+            // Define a regular expression pattern to match the desired format
+            var pattern = /^\d{1,4}(\.\d{0,2})?$/;
+
+            // Test if the input value matches the pattern
+            if (!pattern.test(inputValue)) {
+                // Show error message if the input is not valid
+                errorMessage.textContent = 'Your cannot Topup more than RM 9999.99.';
+                // Remove invalid characters from the input
+                amountNumberInput.value = inputValue.slice(0, -1);
+            } else {
+                // Clear error message if the input is valid
+                errorMessage.textContent = '';
+            }
+        });
+
 
         
 
@@ -361,7 +389,27 @@
             });
         });
 
+        var fNameInput = document.getElementById('f_name');
+        var addressInput = document.getElementById('address');
+        var cityInput = document.getElementById('city');
 
+
+        // Add event listener for name, address, and city inputs
+        fNameInput.addEventListener('input', name);
+        addressInput.addEventListener('input', restrictSymbols);
+        cityInput.addEventListener('input', restrictSymbols);
+
+        function restrictSymbols(event) {
+            var inputValue = event.target.value;
+            // Replace any characters that are not letters, numbers, or commas with an empty string
+            event.target.value = inputValue.replace(/[^a-zA-Z0-9,\s]/g, '');
+        }
+
+        function name(event) {
+            var inputValue = event.target.value;
+            // Replace any characters that are not letters, numbers, or commas with an empty string
+            event.target.value = inputValue.replace(/[^a-zA-Z0-9\s]/g, '');
+        }
 
 
 

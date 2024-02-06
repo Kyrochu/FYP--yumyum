@@ -28,7 +28,10 @@
                 echo "Error: " . mysqli_error($conn);
             }
 
-            // Close the database connection
+            $insert_query = "INSERT INTO e_wallet (user_id, w_debit) VALUES ('$uid', 0)";
+            $insert_result = mysqli_query($conn, $insert_query);
+
+
             mysqli_close($conn);
         }
         else
