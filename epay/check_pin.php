@@ -50,7 +50,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         mysqli_stmt_execute($food_stmt);
                         $food_result = mysqli_stmt_get_result($food_stmt);
 
-                        while ($row_food = mysqli_fetch_assoc($food_result)) {
+                        while ($row_food = mysqli_fetch_assoc($food_result)) 
+                        {
                             $food_id = $row_food['food_id'];
                             $quantity = $row_food['num_food'];
                             $addid = $row_food['add_on_id'];
@@ -61,9 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             mysqli_stmt_bind_param($order_stmt, "iiii", $user_id, $food_id, $quantity, $addid);
                             $order_result = mysqli_stmt_execute($order_stmt);
 
-                            if (!$order_result) {
-                                echo "Error inserting data into 'order' table: " . mysqli_error($connect);
-                            }
+                            
                         }
 
                         // Update the "cart" table
@@ -72,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         mysqli_stmt_bind_param($cart_stmt, "i", $user_id);
                         mysqli_stmt_execute($cart_stmt);
                         
-                        echo "done"; // Payment and order processing completed
+                        echo "Done"; // Payment and order processing completed
                     } else {
                         echo "Error updating wallet balance: " . mysqli_error($connect);
                     }
@@ -84,7 +83,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             }
         } else {
             echo "invalid_pin"; // Invalid PIN
-            echo $e_u_id;
         }
     } else {
         echo "invalid_credentials"; // Invalid email or password

@@ -90,6 +90,7 @@
                     var pin = $("#pin").val();
                     var total_price = $("#price").val(); // Include PHP variable
                     var uid = $("#user_id").val(); // Include PHP variable
+                    var url = "../log_index.php?userID=" + uid;
 
                     // Collect form data for check_pin.php
                     var formDataCheckPin = {
@@ -107,20 +108,24 @@
                         data: formDataCheckPin,
                         success: function(response) {
                             // Handle response from check_pin.php
-                            console.log(response)
-                            if (response === "done") {
-                                
-                                window.location.href  = "../log_index.php?userID=" + uid;
+                            console.log(response);
+                            if (response === "Done") {
+                                alert("You done.");
+                                window.location.href = "../log_index.php?userID=" + uid;
+                                console.log(response);
                             } else {
-                                // Handle errors from check_pin.php
                                 if (response === "invalid_credentials") {
-                                    alert("You have not opened an account yet.");
+                                    alert("Please fill in the right data.");
+                                    console.log(response);
                                 } else if (response === "insufficient") {
                                     alert("Insufficient funds in your wallet.");
+                                    console.log(response);
                                 } else if (response === "invalid_pin") {
-                                    alert("Your email, password, or 6-digit PIN are wrong.");
+                                    alert("Your 6-digit PIN are wrong.");
+                                    console.log(response);
                                 } else {
-                                    alert("Error processing payment.");
+                                    alert("Please fill in the right data.");
+                                    console.log(response);
                                 }
                             }
                         },

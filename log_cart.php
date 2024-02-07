@@ -376,7 +376,6 @@
 
 
     <script>
-        
     
           $('.increment, .decrement').on('click', function() 
             {
