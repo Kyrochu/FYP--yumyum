@@ -18,7 +18,7 @@ if(isset($_POST["submit"]))
         if($row['admin_type'] == 'Admin' )
         {
             $_SESSION['email'] = $row['name'];
-            header('location:AdminPanel.php');
+            header("location:AdminPanel.php?id=$id");
         }
         elseif($row['admin_type'] == 'SuperAdmin')
         {

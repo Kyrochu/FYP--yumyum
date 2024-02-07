@@ -70,7 +70,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 <div class="menu">
 
                     <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
-                    <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
+                    <div class="item"><a href="AdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
                     <!-- Dropdown List (Accounts)-->
@@ -79,8 +79,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                         <div class="sub-menu">
 
-                            <a href="SubUserAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> User </span> </a>
-                            <a href="SubAdminAccSuper.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Admin </span> </a>
+                            <a href="SubUserAcc.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> User </span> </a>
+                            <a href="SubAdminAcc.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Admin </span> </a>
 
 
                         </div>
