@@ -1,8 +1,11 @@
 <?php
+session_start();
+
 include("../connection_sql.php");
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // Declare variables and retrieve POST data
+// Check if the form data is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Retrieve form data
     $userEmail = $_POST["user_email"];
     $userPassword = $_POST["user_password"];
     $pin = $_POST["pin"];
@@ -38,9 +41,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $new_wallet_balance = $wallet_debit - $total_price;
                 
                     // Update the wallet balance in the database
-                    $update_query = "UPDATE `e_wallet` SET w_debit = '$new_wallet_balance' WHERE user_id = '$e_u_id'";
-                    $update_result = mysqli_query($connect, $update_query);
-                    
+                    $update_query = "UPDATE `e_wallet` SET w_debit = ? WHERE user_id = ?";
+                    $update_stmt = mysqli_prepare($connect, $update_query);
+                    mysqli_stmt_bind_param($update_stmt, "ii", $new_wallet_balance, $e_u_id);
+                    $update_result = mysqli_stmt_execute($update_stmt);
 
                     if ($update_result) {
                         // Insert order data into the "order" table
@@ -61,8 +65,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                             $order_stmt = mysqli_prepare($connect, $order_query);
                             mysqli_stmt_bind_param($order_stmt, "iiii", $user_id, $food_id, $quantity, $addid);
                             $order_result = mysqli_stmt_execute($order_stmt);
-
-                            
                         }
 
                         // Update the "cart" table
@@ -72,21 +74,46 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         mysqli_stmt_execute($cart_stmt);
                         
                         echo "Done"; // Payment and order processing completed
+                        echo "<script>
+                                alert('Payment successful.');
+                                window.location.href = '../log_index.php?userID=$user_id';
+                            </script>";
+                        exit(); 
+
                     } else {
-                        echo "Error updating wallet balance: " . mysqli_error($connect);
+                        echo "Error updating wallet balance";
+                        echo "<script>
+                                alert('Insufficient funds, please topup your wallet.');
+                                window.location.href = '../log_cart.php?userID=$user_id';
+                            </script>";
                     }
                 } else {
-                    echo "insufficient"; // Wallet debit is not enough
+                    echo "Insufficient funds"; // Wallet debit is not enough
+                    echo "<script>
+                            alert('Insufficient funds, please topup your wallet.');
+                            window.location.href = '../log_cart.php?userID=$user_id';
+                        </script>";
                 }
             } else {
-                echo "error_wallet"; // Error fetching wallet details
+                echo "Error fetching wallet details"; // Error fetching wallet details
+                echo "<script>
+                    alert('Have some error, please proceed again.');
+                    window.location.href = '../log_cart.php?userID=$user_id';
+                </script>";
             }
         } else {
-            echo "invalid_pin"; // Invalid PIN
+            echo "Invalid PIN"; // Invalid PIN
+            echo "<script>
+                    alert('Invalid PIN, please proceed again.');
+                    window.location.href = '../log_cart.php?userID=$user_id';
+                </script>";
         }
     } else {
-        echo "invalid_credentials"; // Invalid email or password
-        
+        echo "Invalid email or password"; // Invalid email or password
+        echo "<script>
+                alert('Invalid email or password, please proceed again.');
+                window.location.href = '../log_cart.php?userID=$user_id';
+            </script>";
     }
 }
 ?>

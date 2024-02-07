@@ -49,7 +49,7 @@
             </div>
             
 
-            <form id="paymentForm" class="input_group" method="POST">
+            <form id="paymentForm" class="input_group" method="POST" action="check_pin.php">
                 <br><br><br><br>
                 
                 
@@ -83,58 +83,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         
         <script>
-           $(document).ready(function() {
-                $("#paymentButton").click(function() {
-                    var userEmail = $("#user_email").val();
-                    var userPassword = $("#user_password").val();
-                    var pin = $("#pin").val();
-                    var total_price = $("#price").val(); // Include PHP variable
-                    var uid = $("#user_id").val(); // Include PHP variable
-                    var url = "../log_index.php?userID=" + uid;
-
-                    // Collect form data for check_pin.php
-                    var formDataCheckPin = {
-                        user_email: userEmail,
-                        user_password: userPassword,
-                        pin: pin,
-                        price: total_price, 
-                        user_id: uid 
-                    };
-
-                    // Send AJAX request to check_pin.php
-                    $.ajax({
-                        type: "POST",
-                        url: "check_pin.php",
-                        data: formDataCheckPin,
-                        success: function(response) {
-                            // Handle response from check_pin.php
-                            console.log(response);
-                            if (response === "Done") {
-                                alert("You done.");
-                                window.location.href = "../log_index.php?userID=" + uid;
-                                console.log(response);
-                            } else {
-                                if (response === "invalid_credentials") {
-                                    alert("Please fill in the right data.");
-                                    console.log(response);
-                                } else if (response === "insufficient") {
-                                    alert("Insufficient funds in your wallet.");
-                                    console.log(response);
-                                } else if (response === "invalid_pin") {
-                                    alert("Your 6-digit PIN are wrong.");
-                                    console.log(response);
-                                } else {
-                                    alert("Please fill in the right data.");
-                                    console.log(response);
-                                }
-                            }
-                        },
-                        error: function(xhr, status, error) {
-                            console.error(xhr.responseText);
-                        }
-                    });
-                });
-            });
+            
 
 
 
