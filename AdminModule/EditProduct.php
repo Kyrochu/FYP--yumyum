@@ -207,28 +207,28 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
                 <input type="hidden" name="current_image" value="<?php echo $row['food_img']?>">
 
-                <div class="form-element">
+                <div class="form-Element">
                     PRODUCT NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
                 </div>
 
-                <div class="form-element">
+                <div class="form-Element">
                     PRODUCT PRICE <input type="text" name="price" value="<?php echo $row['food_price']?>">                    
                 </div>
 
-                <div class="form-element">
+                <div class="form-Element">
                     PRODUCT DESCRIPTION <input type="text" name="desc" value="<?php echo $row['food_description']?>">                    
                 </div>
 
-                <div class="form-element">  
+                <div class="form-Element">  
                     IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="../img/<?php echo $row['food_img']?>">
                 </div>
 
-                <div class="form-element">
+                <div class="form-Element">
                     <input type="submit" name="updateProduct" value="UPDATE PRODUCT" class="edit-submit-btn">
                 </div>
 
-                <div class="form-element">
-                    <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='ProductSuper.php?cat_type=<?php echo $selected_category_id ?>';">
+                <div class="form-Element">
+                    <input type="button" class="Edit-cancel-btn" value="CANCEL" onclick="location.href='ProductSuper.php?cat_type=<?php echo $selected_category_id ?>';">
                 </div>
             
             </form>

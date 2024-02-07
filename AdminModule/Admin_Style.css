@@ -685,6 +685,156 @@ header h1
     background-color:crimson;
 }
 
+/*------------------------------------------ Edit Product ------------------------------------------- */
+
+.form-Element
+{
+    margin:15px 0px;
+}
+
+.form-Element input,
+.form-Element select
+{
+    margin-top:5px;
+    display:block;
+    width:60%;
+    padding:10px 15px;
+    outline:none;
+    border-radius:10px;
+    font-family: 'Poppins', sans-serif;
+    font-size:15px;
+}
+
+.form-Element input[type="file"] 
+{
+    margin-left: 5px;
+}
+
+.form-Element .Edit-cancel-btn
+{
+    margin-top:10px;
+    cursor: pointer; 
+    font-size:16px; 
+    width:60%; 
+    height:40px;
+    background-color:burlywood;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.Edit-cancel-btn:hover
+{
+    background-color:sandybrown;
+
+}
+
+/*------------------------------------------ Manage Add On ------------------------------------------- */
+
+.products-container {
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border:3px solid black;
+}
+
+.products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food-name {
+    color: #333;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.addonimg {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.Addon-itmes 
+{
+    margin-top: 20px;
+    text-align: center;
+}
+
+.Addon-itmes h2
+{
+    text-decoration: underline;
+}
+
+.addon-item {
+    margin-bottom: 10px;
+}
+
+.addon-name {
+    display: inline-block;
+    color: #333;
+    margin-right: 10px;
+}
+
+.addon-price {
+    display: inline-block;
+    color: #777;
+}
+
+.addon-form {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.addon-form h2
+{
+    text-decoration: underline;
+
+}
+
+.addonbtn 
+{
+    background-color: burlywood;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+.btn:hover 
+{
+    background-color:sandybrown;
+}
+
+.button-link 
+{
+    display: inline-block;
+    padding: 5px 20px;
+    border:2px solid black;
+    background-color: burlywood;
+    color:black;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    background:burlywood; 
+    margin-top:20px; 
+    margin-left:5px; 
+    width:250px; 
+    height:30px; 
+    cursor:pointer; 
+    font-weight:bold; 
+    border-radius:5px;
+    font-size:13px;
+}
+
+
 /*------------------------------------------ Display Status ------------------------------------------- */
 
 .PendingstatusBox 
