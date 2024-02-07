@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 06, 2024 at 09:17 AM
+-- Generation Time: Feb 07, 2024 at 02:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -32,16 +32,17 @@ CREATE TABLE `e_user` (
   `user_name` varchar(255) NOT NULL,
   `user_email` varchar(255) NOT NULL,
   `user_contact` varchar(255) NOT NULL,
-  `user_pass` varchar(255) NOT NULL
+  `user_pass` varchar(255) NOT NULL,
+  `pin` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `e_user`
 --
 
-INSERT INTO `e_user` (`user_id`, `user_name`, `user_email`, `user_contact`, `user_pass`) VALUES
-(1, 'nicc', 'kroyk32@gmail.com', '011', '111'),
-(2, 'chu', 'chu@gmail.com', '011222333', '111');
+INSERT INTO `e_user` (`user_id`, `user_name`, `user_email`, `user_contact`, `user_pass`, `pin`) VALUES
+(1, 'nicc', 'kroyk32@gmail.com', '011', '111', 123456),
+(2, 'chu', 'chu@gmail.com', '011222333', '111', 0);
 
 --
 -- Indexes for dumped tables

@@ -1,5 +1,5 @@
 <?php
-    include("data_connection.php");
+           include("data_connection.php");
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +16,7 @@
         .right-panel-active .overlay-right {
             transform: translateX(0); 
         }
+   
         
     </style>
 </head>
@@ -23,11 +24,12 @@
 <div class="container" id="container">
         <div class="form-container sign-up-container">
         <form action="register.php" method="post">
-                <h1>Sign Up</h1>       
+                <h1>Sign Up</h1>  
+                <span id="nameError" ></span>     
                 <input type="text" name="name" required placeholder="Name" />
-                <input type="text" name="contact_number" required placeholder="Contact Number" />
                 <span id="contactNumberFormat"></span>
-                <span id="contactNumberError" class="error-message"></span>
+                <span id="contactNumberError"></span>
+                <input type="text" name="contact_number" required placeholder="Contact Number" />
                 <input type="email" name="email" required placeholder="Email" />
                 <div class="password-container1">
                     <input type="password" name="password" required placeholder="Create Password" id="signupPassword" />
@@ -65,7 +67,7 @@
                     <button class="ghost" id="sign">Sign In</button>
                 </div>
                 <div class="overlay-panel overlay-right">
-                    <h1>Hello, Friend!</h1>
+                    <h1>Hi Customer </h1>
                     <p>Enter your personal details and start journey with us</p>
                     <button class="ghost" id="signUp">Sign Up</button>
                 </div>
@@ -106,11 +108,8 @@
         if (contactNumber === '' || contactNumber === '-') {
             contactNumberError.textContent = 'Please enter a valid contact number.';
             contactNumberError.style.color = 'red';
-            contactNumberFormat.textContent = '';
-        } else if (!contactNumberRegex.test(contactNumber)) {
-            contactNumberError.textContent = 'Contact number should contain numbers and at most one hyphen.';
-            contactNumberError.style.color = 'red';
-            contactNumberFormat.textContent = '';
+            contactNumberError.style.fontSize = '14px'; 
+            contactNumberError.style.marginLeft = '-70px'; // Adjust the value as needed
         } else {
             const formattedContactNumber = contactNumber.replace(/(\d{3})-?(\d+)/, '$1-$2');
 
@@ -118,11 +117,13 @@
                 // 如果格式不匹配，显示提示信息
                 contactNumberError.textContent = 'Contact number should be in the format: xxx-xxxxxxx';
                 contactNumberError.style.color = 'red';
-                contactNumberFormat.textContent = '';
+                contactNumberError.style.fontSize = '12px'; 
             } else {
                 // 格式匹配时清空错误信息
                 contactNumberError.textContent = '';
                 contactNumberError.style.color = '';
+                contactNumberFormat.textContent = '';
+
             }
         }
 
@@ -131,7 +132,42 @@
         });
 
 });
+        const nameInput = document.querySelector('input[name="name"]');
+        const nameError = document.getElementById('nameError');
 
+        nameInput.addEventListener('input', function () {
+            let name = this.value.trim(); // Trim leading and trailing whitespaces
+
+            // Check if the input contains only letters
+            if (/^[a-zA-Z]+$/.test(name)) {
+                if (name === '') {
+                    nameError.textContent = 'Please enter a valid name.';
+                    nameError.style.color = 'red';
+                    nameError.style.fontSize = '14px'; 
+
+                } else {
+                    // Check if the first letter is uppercase
+                    const firstLetter = name.charAt(0);
+                    if (firstLetter !== firstLetter.toUpperCase()) {
+                        nameError.textContent = 'First letter must be uppercase.';
+                        nameError.style.fontSize = '14px'; 
+                        nameError.style.color = 'red';
+                        nameError.style.marginLeft = '-105px'; // Adjust the value as needed
+
+                    } else {
+                        // Clear the error message if the input is valid
+                        nameError.textContent = '';
+                        nameError.style.color = '';
+                        nameError.style.marginLeft = ''; // Reset margin-left if needed
+                    }
+                }
+            } else {
+                nameError.textContent = 'Only character are allowed.';
+                nameError.style.color = 'red';
+                nameError.style.marginLeft = '-135px'; // Adjust the value as needed
+
+            }
+        });
     
 
     const passwordInput = document.querySelector('input[name="password"]');
@@ -156,6 +192,9 @@
         passwordError.textContent = '';
     } else {
         passwordError.textContent = 'Password should include at most 8 characters and contain at least 1 symbol and 1 number.';
+        passwordError.style.marginLeft = '-15px';
+        passwordError.style.color = 'red';
+
     }
     });
 
@@ -175,14 +214,14 @@
         container.classList.remove("right-panel-active");
     });
 
-        togglePasswordButton.addEventListener('click', () => {
-            const type = signinpassword.getAttribute("type") === "password" ? "text" : "password";
-            signinpassword.setAttribute("type", type);
+    togglePasswordButton.addEventListener('click', () => {
+        const type = signinpassword.getAttribute("type") === "password" ? "text" : "password";
+        signinpassword.setAttribute("type", type);
 
 
-            togglePasswordButton.classList.toggle("fa-eye");
-            togglePasswordButton.classList.toggle("fa-eye-slash");
-        });
+        togglePasswordButton.classList.toggle("fa-eye");
+        togglePasswordButton.classList.toggle("fa-eye-slash");
+    });
 
         const togglePasswordButtonSignUp = document.getElementById('togglePasswordSignUp');
         const signUpPassword = document.querySelector('input[name="password"]');
