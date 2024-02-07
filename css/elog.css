@@ -86,7 +86,7 @@ body
 .btn_anime
 {
     width: 220px;
-    margin: 5em auto;
+    margin: 2em auto;
     box-shadow: 0 0 20px 9px rgba(0, 82, 233, 0.411);
     position: relative;
     border-radius: 300px;
@@ -118,7 +118,7 @@ body
 
 .input_group
 {
-    top: 130px;
+    top: 80px;
     position: absolute;
     width: 280px;
     transition: .5s;
@@ -134,18 +134,23 @@ body
     border-left: 0;
     border-right: 0;
     margin-left: 3em;
-    margin-top: 3em;
+    margin-top: 2em;
     background: transparent;
     outline: none;
 }
 
-#pinError
+
+#pinError , #nameError , #contactError , #emailError , #passwordError , #passwordMatchError 
 {
     padding: 10px 0;
-    margin-left: 3em;
+    margin-left: 38px;
     background: transparent;
     outline: none;
+    margin-top: 20px;
+    padding-top: 10px;
 }
+
+ 
 
 .submit_btn
 {
@@ -169,7 +174,7 @@ body
 
 #reg
 {
-    left: 450px;
+    left: 600px;
 }
 
 ::placeholder

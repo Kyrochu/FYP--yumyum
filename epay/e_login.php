@@ -41,28 +41,52 @@
             <!-- log side -->
             <form id="log" class="input_group" action="loginphp.php" method="POST" >
                 <br><br><br><br><br>    
-                <input type="text" class="input_place" name="user_email" placeholder="User Email" required>
-                
-                <input type="password" class="input_place" name="user_password" placeholder="Password" required>
-
+                <input type="text" class="input_place" name="user_email" placeholder="Example@gmail.com" required oninput="lvalidateEmail(this)">
+                <div id="container" style="margin-top: 5px;">
+                    <span id="lemailError" style="color: red; margin-left:38px;"></span>
+                </div>
+                <br><br>
+                <input type="password" class="input_place" name="user_password" placeholder="Password" required oninput="lvalidatePassword(this)">
+                <div id="container" style="margin-top: 5px;">
+                    <span id="lpasswordError" style="color: red; margin-left:38px;"></span>
+                </div>
+                <br><br>
                 <button type="submit" class="submit_btn" name="logbtn" style="color: rgb(255, 252, 255);">Log in</button>
             </form>
 
             
 
             <!-- register side -->
-            <form id="reg" class="input_group" action="e_register.php" method="POST">
-            
-                <span id="nameError"  ></span>     
-                <input type="text" class="input_place" name="name" placeholder="Name" required >
-                <span id="contactNumberFormat"></span>
-                <span id="contactNumberError"></span>
-                <input type="text" class="input_place" name="contact" placeholder="Contact Number " required >
-                <input type="email" class="input_place" name="email" placeholder="Email" required >
-                <input type="password" class="input_place" name="new_password" placeholder="Create Password" required>
-                <input type="password" class="input_place" name="com_password" placeholder="Comfirm Password" required>
+            <form id="reg" class="input_group" action="e_register.php" method="POST"> 
+                <input type="text" class="input_place" name="name" placeholder="Name" required oninput="validateName(this)" >
+                <div id="container" style="margin-top: 5px;">
+                    <span id="nameError" style="color: red;"></span>
+                </div>
+
+                <input type="text" class="input_place" name="contact" placeholder="Contact Number " required oninput="validateContact(this)">
+                <div id="container" style="margin-top: 5px;">
+                    <span id="contactError" style="color: red;"></span>
+                </div>
+
+                <input type="email" class="input_place" name="email" placeholder="Example@gmail.com" required oninput="validateEmail(this)">
+                <div id="container" style="margin-top: 5px;">
+                    <span id="emailError" style="color: red;"></span>
+                </div>
+
+                <input type="password" class="input_place" name="new_password" placeholder="Create Password" required oninput="validatePassword(this)">
+                <div id="container" style="margin-top: 5px;">
+                    <span id="passwordError" style="color: red;"></span>
+                </div>
+
+                <input type="password" class="input_place" name="com_password" placeholder="Confirm Password" required oninput="validatePasswordMatch(this)">
+                <div id="container" style="margin-top: 5px;">
+                    <span id="passwordMatchError" style="color: red;"></span>
+                </div>
+
                 <input type="text" class="input_place" name="pin" placeholder="6-digit pin" required maxlength="6" oninput="validatePin(this)">
-                <div id="pinError" style="color: red;"></div>
+                <div id="container" style="margin-top: 5px;">
+                    <span id="pinError" style="color: red;"></span>
+                </div>
 
                 <button type="submit" class="submit_btn" name="regbtn" style="color: rgb(255, 252, 255);">Register</button>
                 
@@ -71,6 +95,110 @@
 
         
         <script>
+
+            function validateName(input) {
+                var regex = /^[a-zA-Z ]*$/;
+                var errorElement = document.getElementById('nameError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Only alphabets and spaces.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
+
+            function validateContact(input) {
+                // Regular expression to match the desired format
+                var regex = /^(01\d)\s?\d{4}\s?\d{3,4}$/;
+
+                // Format the input value to match the desired format
+                var formattedValue = input.value.replace(/\D/g, ''); // Remove non-digit characters
+                if (formattedValue.length > 3) {
+                    formattedValue = formattedValue.substring(0, 3) + ' ' + formattedValue.substring(3);
+                }
+                if (formattedValue.length > 8) {
+                    formattedValue = formattedValue.substring(0, 8) + ' ' + formattedValue.substring(8);
+                }
+                if (formattedValue.length > 13) {
+                    formattedValue = formattedValue.substring(0, 13); // Limit to 11 digits
+                }
+                
+                // Update the input value to the formatted version
+                input.value = formattedValue.trim();
+                
+                // Get the error element
+                var errorElement = document.getElementById('contactError');
+
+                // Check if the input is empty or matches the regular expression
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Please enter a valid contact.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }   
+
+            function validateEmail(input) {
+                var regex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$/;
+                var errorElement = document.getElementById('emailError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = ' Only Gmail or Hotmail valid.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
+
+            function lvalidateEmail(input) {
+                var regex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$/;
+                var errorElement = document.getElementById('lemailError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Invalid email.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
+
+            function validatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('passwordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
+
+            function validatePasswordMatch(input) {
+                var password = document.querySelector('input[name="new_password"]').value;
+                var errorElement = document.getElementById('passwordMatchError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (input.value !== password) {
+                    errorElement.textContent = 'Passwords do not match.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
+
+            function lvalidatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('lpasswordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
             function validatePin(input) {
                 var pin = input.value;
@@ -102,7 +230,7 @@
             function login()
             {
                 x.style.left = "50px";
-                y.style.left = "450px";
+                y.style.left = "650px";
                 z.style.left = "0px";
             }
 
@@ -111,75 +239,7 @@
                 x.style.left = "-400px";
                 y.style.left = "50px";
                 z.style.left = "110px";
-            }
-            const nameInput = document.querySelector('input[name="name"]');
-            const nameError = document.getElementById('nameError');
-
-            nameInput.addEventListener('input', function () {
-                let name = this.value.trim(); // Trim leading and trailing whitespaces
-
-                // Check if the input contains only letters
-                if (/^[a-zA-Z]+$/.test(name)) {
-                    if (name === '') {
-                        nameError.textContent = 'Please enter a valid name.';
-                        nameError.style.color = 'red';
-                    } else {
-                        // Check if the first letter is uppercase
-                        const firstLetter = name.charAt(0);
-                        if (firstLetter !== firstLetter.toUpperCase()) {
-                            nameError.textContent = 'First letter must be uppercase.';
-                            nameError.style.color = 'red';
-                        } else {
-                            // Clear the error message if the input is valid
-                            nameError.textContent = '';
-                            nameError.style.color = '';
-                        }
-                    }
-                } else {
-                    nameError.textContent = 'Only character are allowed.';
-                    nameError.style.color = 'red';
-                }
-            });
-
-        const contactNumberInput = document.querySelector('input[name="contact_number"]');
-        const contactNumberError = document.getElementById('contactNumberError');
-        const contactNumberFormat = document.getElementById('contactNumberFormat');
-        const contactNumberRegex = /^[0-9\-]+$/; 
-
-            contactNumberInput.addEventListener('input', function () {
-            let contactNumber = this.value;
-
-            
-            contactNumberInput.addEventListener('input', function () {
-            let contactNumber = this.value;
-
-            
-            contactNumber = contactNumber.replace(/[^\d\-]/g, '');
-            contactNumber = contactNumber.replace(/[^\d\-]|-(?=[^-]*-)/g, '');
-
-            if (contactNumber === '' || contactNumber === '-') {
-                contactNumberError.textContent = 'Please enter a valid contact number.';
-                contactNumberError.style.color = 'red';
-                contactNumberFormat.textContent = '';
-            } else {
-                const formattedContactNumber = contactNumber.replace(/(\d{3})-?(\d+)/, '$1-$2');
-
-                if (formattedContactNumber !== this.value) {
-                    // 如果格式不匹配，显示提示信息
-                    contactNumberError.textContent = 'Contact number should be in the format: xxx-xxxxxxx';
-                    contactNumberError.style.color = 'red';
-                    contactNumberFormat.textContent = '';
-                } else {
-                    // 格式匹配时清空错误信息
-                    contactNumberError.textContent = '';
-                    contactNumberError.style.color = '';
-                }
-            }
-
-            // 更新输入框的值
-            this.value = contactNumber;
-            });
-        });
+            } 
     
         </script>
 
