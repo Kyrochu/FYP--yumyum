@@ -61,21 +61,6 @@
             $insertStmt->bind_param("sissssdidd", $orderTime, $row['user_id'], $userRow['name'], $userRow['contact_number'], $menuRow['food_name'], $addOnName, $addOnPrice, $row['num_food'], $menuRow['food_price'], $totalPrice);
             $insertStmt->execute();
 
-            $data = array(
-                'orderDate' => $orderDate,
-                'orderTime' => $orderTime,
-                'username' => $userRow['name'],
-                'contactNumber' => $userRow['contact_number'],
-                'foodName' => $menuRow['food_name'],
-                'addOnName' => $addOnName,
-                'addOnPrice' => $addOnPrice,
-                'numFood' => $row['num_food'],
-                'foodPrice' => $menuRow['food_price'],
-                'totalPrice' => ($menuRow['food_price'] + $addOnPrice) * $row['num_food']
-            );
-            
-            echo json_encode($data);
-
             // Update the 'or_delete' column in the 'order' table
             $updateQuery = "UPDATE `order` SET or_delete = '0' WHERE or_time = ?";
             $updateStmt = $connect->prepare($updateQuery);
@@ -92,7 +77,7 @@
             $insertStmt->close();
             $updateStmt->close();
     
-        echo "Orders saved successfully";
+        
     } else {
 
         http_response_code(400);

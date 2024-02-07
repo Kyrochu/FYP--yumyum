@@ -1,3 +1,4 @@
+<?php include ("../connection_sql.php") ?>
 
 <!DOCTYPE html>
 <html>
@@ -66,7 +67,7 @@
         <!-- Javascript  -->
 
         <script src="../AdminModule/Date&Time Widget.js" defer> </script>  <!-- defer means script only going to be execute once document is opened --> 
-        <script src="AddCategory.js"> </script>
+        <script src="../AdminModule/AddCategory.js"> </script>
 
         <script>
             function validateDecimalInput(input) 
@@ -94,13 +95,17 @@
             if (isset($_GET['uid'])) {
                 $uid = $_GET['uid'];
 
+                $query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+                $result = mysqli_query($connect, $query);
+                $row_user = mysqli_fetch_assoc($result);
+                $u_name = $row_user["user_name"];
             }
         ?>
 
             <div class="side-bar">
                 <!-- Header Section -->
                 <div class="menu">
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
+                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> DayPay </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>                    
                         <!-- Dropdown List (Accounts)-->
@@ -147,7 +152,7 @@
                 <div class="main-content">
                     <div class="header-title">
                         <span> Welcome </span>
-                        <h2> User </h2>
+                        <h2> <?php echo $u_name ?> </h2>
                     </div>
                 </div>
 
@@ -170,6 +175,21 @@
         </div>    
         <br><br>
 
+        <?php
+            $wallet_query = "SELECT * FROM e_wallet WHERE user_id = '$uid'";
+            $wallet_result = mysqli_query($connect, $wallet_query);
+            $e_debit = 0;
+
+            if (mysqli_num_rows($wallet_result) > 0) {
+                // If wallet data exists for the user
+                while ($wallet_row = mysqli_fetch_assoc($wallet_result)) {
+
+                    $e_debit = $wallet_row['w_debit'];
+        
+                }
+            }
+        ?>
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6"> <!-- Adjust the column width as needed -->
@@ -177,11 +197,10 @@
                         <div class="card-header"><h5>Wallet</h5></div>
                         <div class="card-body">
                             <h2 class="card-title">Your Debit </h2>
-                            <h3 class="card-text">RM 100.00</h3>
-                            <?php echo $uid ?>
+                            <h3 class="card-text">RM <?php echo number_format($e_debit,2) ?></h3>
                             
                         </div>
-                        <button type="button" class="btn btn-danger">Top Up</button>
+                        <button type="button" class="btn btn-success" id="topUpButton">Top Up</button>
                     </div>
                 </div>
             </div>
@@ -191,14 +210,18 @@
         <!-- JavaScript Libraries -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/counterup/counterup.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/tempusdominus/js/moment.min.js"></script>
-        <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-        <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>                                                           
+        
+        
+        <script>
+            var topUpButton = document.getElementById("topUpButton");
+
+            topUpButton.addEventListener("click", function() {
+                var uid = <?php echo json_encode($uid); ?>;
+
+                window.location.href = "e_topup.php?uid=" + uid;
+            });
+
+        </script>
 
     </body>
 
