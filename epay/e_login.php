@@ -70,7 +70,7 @@
                     <span id="contactError" style="color: red;"></span>
                 </div>
 
-                <input type="email" class="input_place" name="email" placeholder="Example@gmail.com" required oninput="validateEmail(this)">
+                <input type="email" class="input_place" name="email" placeholder="example@gmail.com" required oninput="validateEmail(this)">
                 <div id="container" style="margin-top: 5px;">
                     <span id="emailError" style="color: red;"></span>
                 </div>

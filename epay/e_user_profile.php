@@ -191,7 +191,7 @@
                             <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Contact&nbsp;: <?php echo $contact ?> </h2>
                             
                         </div>
-                        <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
+
                     </div>
                 </div>  
             </div>
