@@ -349,11 +349,11 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                                 foreach ($group['foods'] as $food) 
                                                 {
 
-                                                    $food_total_price = ($food["food_price"]) * $food["food_num"];
+                                                    $food_total_price = ($food["food_price"]) + ($food["add_on_price"])* $food["food_num"];
 
                                                 ?>
                                                     <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
-                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format($food["food_price"], 2); ?> </h3>
+                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format($food_total_price, 2); ?> </h3>
                                                     <br>
                                                     <br>
                                                     
