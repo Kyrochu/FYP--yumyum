@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2024 at 05:19 PM
+-- Generation Time: Feb 07, 2024 at 02:39 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -24,46 +24,42 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- Table structure for table `e_wallet`
 --
 
-CREATE TABLE `order` (
-  `or_id` int(255) NOT NULL,
-  `user_id` int(255) NOT NULL,
-  `food_id` int(255) NOT NULL,
-  `num_food` int(255) NOT NULL,
-  `add_on_id` int(255) NOT NULL,
-  `or_delete` int(11) NOT NULL DEFAULT 1,
-  `or_time` datetime NOT NULL
+CREATE TABLE `e_wallet` (
+  `w_id` int(255) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `w_debit` double NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `order`
+-- Dumping data for table `e_wallet`
 --
 
-INSERT INTO `order` (`or_id`, `user_id`, `food_id`, `num_food`, `add_on_id`, `or_delete`, `or_time`) VALUES
-(36, 15, 1, 1, 2, 1, '2024-02-03 20:42:57'),
-(37, 15, 2, 1, 4, 1, '2024-02-03 20:42:57');
+INSERT INTO `e_wallet` (`w_id`, `user_id`, `w_debit`) VALUES
+(1, 2, 254),
+(2, 1, 69);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `order`
+-- Indexes for table `e_wallet`
 --
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`or_id`);
+ALTER TABLE `e_wallet`
+  ADD PRIMARY KEY (`w_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `order`
+-- AUTO_INCREMENT for table `e_wallet`
 --
-ALTER TABLE `order`
-  MODIFY `or_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+ALTER TABLE `e_wallet`
+  MODIFY `w_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
