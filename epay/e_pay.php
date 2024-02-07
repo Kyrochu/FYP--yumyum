@@ -56,10 +56,21 @@
                 <input type="text" style="display: none;" class="input_place" name="user_id" id="user_id" value="<?php echo $user ?>" required>
                 <input type="text" style="display: none;" class="input_place" name="price" id="price" value="<?php echo $total_price ?>" required>
 
-                <input type="text" class="input_place" name="user_email" id="user_email" placeholder="User Email" required>
-                <input type="password" class="input_place" name="user_password" id="user_password" placeholder="Password" required>
-                <input type="text" class="input_place" name="pin" id="pin" placeholder="6-digit pin" required maxlength="6">
-                <div id="pinError" style="color: red;"></div>
+                <input type="text" class="input_place" name="user_email" id="user_email" placeholder="Example@gmail.com" required oninput="validateEmail(this)">
+                <div id="emailContainer" style="margin-top: 5px; margin-left: 38px;">
+                    <span id="emailError" style="color: red;"></span>
+                </div>
+
+                <input type="password" class="input_place" name="user_password" id="user_password" placeholder="Password" required oninput="validatePassword(this)">
+                <div id="passwordContainer" style="margin-top: 5px; margin-left: 38px;">
+                    <span id="passwordError" style="color: red;"></span>
+                </div>
+
+                <input type="text" class="input_place" name="pin" id="pin" placeholder="6-digit pin" required maxlength="6" oninput="validatePin(this)">
+                <div id="pinContainer" style="margin-top: 5px; margin-left: 38px;">
+                    <span id="pinError" style="color: red;"></span>
+                </div>
+
                 <button type="submit" class="submit_btn" id="paymentButton">Payment</button>
             </form>
                     
@@ -84,14 +95,51 @@
         
         <script>
             
+            function validateEmail(input) {
+                var regex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$/;
+                var errorElement = document.getElementById('emailError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = ' Only Gmail or Hotmail valid.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
+            function validatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('passwordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
+            function validatePin(input) {
+                var pin = input.value;
+                var errorElement = document.getElementById('pinError');
 
+                // Remove non-numeric characters from input
+                pin = pin.replace(/\D/g, '');
 
+                if (pin.length > 6) {
+                    // Trim the pin to 6 characters
+                    pin = pin.slice(0, 6);
+                }
 
+                // Update the input value
+                input.value = pin;
 
-
-
+                if (pin.length < 6) {
+                    errorElement.textContent = 'Pin must be exactly 6 digits.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
 
             var x = document.getElementById("log");
