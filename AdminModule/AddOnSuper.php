@@ -9,6 +9,7 @@ if (!isset($_SESSION['email']))
 }
 
 $id = isset($_GET['id'])?$_GET['id']:NULL;
+$CatType = isset($_GET['cat_id'])?$_GET['cat_id']:NULL;
 
 ?>
 
@@ -206,76 +207,88 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> Manage Add On </h2>
 
             </div> 
+            
+            <a href="ProductSuper.php?cat_type=<?php echo $CatType ?>" class="button-link"> BACK </a>
 
-            <form action="ProductSuper.php" method="GET">
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <input type="hidden" name="cat_type" value="<?php echo isset($selected_category_id) ? $selected_category_id : ''; ?>">
-                
-                <button type="submit" style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
-                    BACK
-                </button>
-            </form>
+            <div class="products-container">
 
+                <div class="products">
 
-            <div class="products">
-
-            <?php
-                if(isset($_GET['addonbtn'])) 
-                {
-                    $productId = $_GET['pro_id'];   
-                    $selected_category_id = $_GET['cat_id'];
-
-                    $query = "SELECT * FROM menu WHERE food_id='$productId'";
-                    $query_run = mysqli_query($connect, $query);
-                    $row = mysqli_fetch_assoc($query_run);
-
-                    $selected_addon = "SELECT * FROM add_on WHERE food_id='$productId' ";
-                    $selected_addon_run = mysqli_query($connect, $selected_addon);
-
-                    $food_name = $row['food_name'];
-                    $food_img = $row['food_img'];
-                    echo "Food Name: $food_name";
-                    echo "<img src='../img/$food_img' alt='Product Image' class='img'>";
-
-                    ?>
-                    <div class="Addon-itmes">
-
-                        <h2> AddOn Items </h2>
-                    <?php
-                    foreach($selected_addon_run as $ROW) 
+                <?php
+                    if(isset($_GET['addonbtn'])) 
                     {
-                       $a_name = $ROW['add_name'];
-                       $a_price = $ROW['add_price'];
-                       echo "<br>";
-                       echo "$a_name";
-                       echo "$a_price";
-                    }      
-                    
-                
-                    ?>
-                    </div>
+                        $productId = $_GET['pro_id'];   
+                        $selected_category_id = $_GET['cat_id'];
 
-            <div class="addon-form">
-                <h2>Add New Addon Item</h2>
+                        $query = "SELECT * FROM menu WHERE food_id='$productId'";
+                        $query_run = mysqli_query($connect, $query);
+                        $row = mysqli_fetch_assoc($query_run);
 
-                <form action="AddOn.php" method="GET">
-                    <!-- Include input fields for addon details -->
-                    <label for="addon-name">Addon Name:</label>
-                    <input type="text" id="addon-name" name="addon_name" required>
+                        $selected_addon = "SELECT * FROM add_on WHERE food_id='$productId' ";
+                        $selected_addon_run = mysqli_query($connect, $selected_addon);
 
-                    <label for="addon-price">Addon Price:</label>
-                    <input type="text" id="addon-price" name="addon_price" oninput="validateDecimalInput(this)" required>
+                        $food_name = $row['food_name'];
+                        $food_img = $row['food_img'];
+                        echo "<h2 class='food-name'> Food Name: $food_name</h2>";
+                        echo "<img src='../img/$food_img' alt='Product Image' class='addonimg'>";
 
-                    <input type='hidden' name='cat_id' value="<?php echo $selected_category_id; ?>" >
-                    <input type="hidden" name="pro_id" value="<?php echo $productId; ?>">
-                    <input type="submit" value="Add AddOn" name="add_addon" class="btn">
-                </form>
+                        ?>
+                       <div class="Addon-itmes">
+                            <h2>AddOn Items</h2>
 
+                            <form action="AddOn.php" method="POST">
+                                <input type="hidden" name="cat_id" value="<?php echo $selected_category_id; ?>">
+                                <input type="hidden" name="pro_id" value="<?php echo $productId; ?>">
+
+                                <?php
+                                foreach ($selected_addon_run as $ROW) {
+                                    $a_id = $ROW['add_id'];
+                                    $a_name = $ROW['add_name'];
+                                    $a_price = $ROW['add_price'];
+
+                                    echo "<div class='addon-item'>";
+                                    echo "<span class='addon-name'> - $a_name</span>";
+                                    echo "<span class='addon-price'> RM " . number_format($a_price, 2) . "</span>";
+                                    echo "<input type='checkbox' name='selected_addons[]' value='$a_id'>";
+                                    echo "</div>";
+                                }
+                                ?>
+                                
+                                <input type='hidden' name='delete_id' value='$productId'>
+                                <input type="submit" value="Delete Selected Addons" name="delete_selected_addons" class="delete-addon-btn">
+                            </form>
+                        </div>
+
+                        <?php
+
+                      
+                        ?>
+
+
+                <div class="addon-form">
+                    <h2>Add New Addon Item</h2>
+
+                    <form action="AddOn.php" method="GET">
+                        <!-- Include input fields for addon details -->
+                        <label for="addon-name">Addon Name:</label>
+                        <input type="text" class="addname" name="addon_name" required>
+
+                        <label for="addon-price">Addon Price:</label>
+                        <input type="text" class="addprice" name="addon_price" oninput="validateDecimalInput(this)" required>
+
+                        <input type='hidden' name='cat_id' value="<?php echo $selected_category_id; ?>" >
+                        <input type="hidden" name="pro_id" value="<?php echo $productId; ?>">
+                        <input type="submit" value="Add AddOn" name="add_addon" class="addonbtn">
+                    </form>
+
+                </div>
             </div>
-        <?php
+            <?php
 
-                }
-            ?>
+                    }
+                ?>
+
+            
 
             
  

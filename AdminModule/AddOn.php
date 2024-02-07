@@ -21,7 +21,7 @@ if(isset($_GET['add_addon']))
     {
         echo "<script>
             alert('Addon added successfully.');
-            window.location.href ='AddOnSuper.php?addonbtn=1&pro_id=$productId&cat_id={$productData['cat_id']}';
+            window.location.href ='AddOnSuper.php?addonbtn=1&pro_id=$productId&cat_id={$productData['food_type']}';
         </script>";
         exit();
     } 
