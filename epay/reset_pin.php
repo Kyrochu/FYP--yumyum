@@ -185,19 +185,28 @@
                 <div class="col-md-8" > <!-- Adjust the column width as needed -->
                     <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white; width: 100%;">
                         <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Wallet</h5></div>
-                        <div class="card-body">
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Old Password </h2>
-                            <input type="text" name="o_pass" id="">
-                            
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">New Password : <?php echo $email ?> </h2>
-                            <input type="text" name="o_pass" id="">
+                        <form action="" method="POST">
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Old Password </h2>
+                                <input type="text" name="o_pass" id="" placeholder="Create Password" required oninput="ovalidatePassword(this)">
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="opasswordError" style="color: red;"></span>
+                                </div>
 
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Confirm Password: <?php echo $contact ?> </h2>
-                            <input type="text" name="o_pass" id="">
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">New Password : <?php echo $email ?> </h2>
+                                <input type="text" name="n_pass" id="" placeholder="Create Password" required oninput="validatePassword(this)">
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="passwordError" style="color: red;"></span>
+                                </div>
 
-                            
-                        </div>
-                        <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Confirm Password: <?php echo $contact ?> </h2>
+                                <input type="text" name="c_pass" id="" placeholder="Confirm Password" required oninput="validatePasswordMatch(this)">
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="passwordMatchError" style="color: red;"></span>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
+                        </form>
                     </div>
                 </div>  
             </div>
@@ -210,13 +219,41 @@
         
         
         <script>
-            var topUpButton = document.getElementById("topUpButton");
+            function ovalidatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('opasswordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
-            topUpButton.addEventListener("click", function() {
-                var uid = <?php echo json_encode($uid); ?>;
+            function validatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('passwordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
-                window.location.href = "e_topup.php?uid=" + uid;
-            });
+            function validatePasswordMatch(input) {
+                var password = document.querySelector('input[name="new_password"]').value;
+                var errorElement = document.getElementById('passwordMatchError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (input.value !== password) {
+                    errorElement.textContent = 'Passwords do not match.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
         </script>
 

@@ -87,6 +87,22 @@
             }
         </script>
 
+        <style>
+            .btn-pass
+            {
+                color: white;
+                background-color: #00a2ff;
+                margin-top: 30px;
+                margin-left: 300px;
+                width: 20%;
+            }
+            .input
+            {
+                background-color: transparent;
+                color: white;
+            }
+        </style>
+
 
     </head>
 
@@ -180,22 +196,78 @@
             }
         ?>
 
-        <div class="container" style="opacity: 0.8;">
+        <div class="container" style="opacity: 0.8; height:10em;">
             <div class="row justify-content-center">
                 <div class="col-md-8" > <!-- Adjust the column width as needed -->
-                    <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white; width: 100%;">
-                        <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Wallet</h5></div>
-                        <div class="card-body">
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Name : <?php echo $name ?> </h2>
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Email : <?php echo $email ?> </h2>
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Contact&nbsp;: <?php echo $contact ?> </h2>
-                            
-                        </div>
-                        <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
+                    <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white; width: 100%; height:100%;">
+                        <form action="" method="POST">
+                        <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Reset Password</h5></div>
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Old Password : <input type="password" name="o_pass" class="input" id="" placeholder="Create Password" maxlength="8" required oninput="ovalidatePassword(this)"></h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="opasswordError" style="color: white;"></span>
+                                </div>
+                                <br>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">New Password : <input type="password" name="n_pass" class="input" id="" placeholder="Create Password" maxlength="8" required oninput="validatePassword(this)"> </h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="passwordError" style="color: white;"></span>
+                                </div>
+                                <br>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm Password : <input type="password" name="c_pass" class="input" id="" placeholder="Confirm Password" maxlength="8" required oninput="validatePasswordMatch(this)"> </h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="passwordMatchError" style="color: white; "></span>
+                                </div>
+                                <br>
+
+                            </div>
+                            <button type="submit" name="submit" class="btn-pass btn" style="text-shadow: 2px 2px 10px white;" id="topUpButton">Submit</button>
+                            <br><br>
+                        </form>
                     </div>
                 </div>  
             </div>
         </div>
+
+
+        <?php
+            $oPassError = $nPassError = $cPassError = '';
+
+            if (isset($_POST['submit'])) {
+                // Form submitted, process the data
+                $o_pass = $_POST['o_pass'];
+                $n_pass = $_POST['n_pass'];
+                $c_pass = $_POST['c_pass'];
+
+                // Retrieve old password from the database
+                $query = "SELECT user_pass FROM e_user WHERE user_id = '$uid'";
+                $result = mysqli_query($connect, $query);
+                $row = mysqli_fetch_assoc($result);
+                $stored_password = $row['user_pass'];
+
+                // Verify if the old password matches the stored password
+                if ($o_pass != $stored_password) {
+                    echo "<script>alert('Old password is incorrect.');</script>";
+                } else {
+                    if ($n_pass != $c_pass) {
+                    } else {
+                        // Update the password in the database
+                        $update_query = "UPDATE e_user SET user_pass = '$n_pass' WHERE user_id = '$uid'";
+                        $update_result = mysqli_query($connect, $update_query);
+
+                        if ($update_result) {
+                            echo "<script>alert('Password updated successfully.');</script>";
+                        } else {
+                            echo "<script>alert('Error updating password.');</script>";
+                        }
+                    }
+                }
+            }
+        ?>
+
+
 
 
         <!-- JavaScript Libraries -->
@@ -204,13 +276,41 @@
         
         
         <script>
-            var topUpButton = document.getElementById("topUpButton");
+            function ovalidatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('opasswordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
-            topUpButton.addEventListener("click", function() {
-                var uid = <?php echo json_encode($uid); ?>;
+            function validatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('passwordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
-                window.location.href = "e_topup.php?uid=" + uid;
-            });
+            function validatePasswordMatch(input) {
+                var password = document.querySelector('input[name="n_pass"]').value;
+                var errorElement = document.getElementById('passwordMatchError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (input.value !== password) {
+                    errorElement.textContent = 'Passwords do not match.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
         </script>
 
