@@ -181,3 +181,15 @@ body
 {
     color: white;
 }
+
+.forget{
+    text-decoration: none;
+    font-size: 14px;
+    margin-left: 125px;
+}
+
+:hover.forget 
+{
+    text-decoration:underline;
+    color: #00a2ff;
+}

@@ -112,14 +112,10 @@
                         <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                         </a>
                             <div class="sub-menu">
-                                <a href="e_user_profile.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Profile </span> </a>
-                            </div>
-                            <div class="sub-menu">
-                                <a href="reset_pass.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Reset Password </span> </a>
-                            </div> 
-                            <div class="sub-menu">
-                                <a href="reset_pin.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Reset Pin </span> </a>
-                            </div>                 
+                                <a href="e_user_profile.php?uid=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Profile </span> </a>
+                                <a href="reset_pass.php?uid=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Reset Password </span> </a>
+                                <a href="reset_pin.php?uid=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Reset Pin </span> </a>
+                            </div>      
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
@@ -160,6 +156,16 @@
         <br><br>
 
         <?php
+            $user_query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+            $user_result = mysqli_query($connect, $user_query);
+            $user_row = mysqli_fetch_assoc($user_result);
+
+            $name = $user_row["user_name"];
+            $email = $user_row["user_email"];
+            $contact = $user_row["user_contact"];
+            $pass = $user_row["user_pass"];
+            $pin = $user_row["pin"];
+
             $wallet_query = "SELECT * FROM e_wallet WHERE user_id = '$uid'";
             $wallet_result = mysqli_query($connect, $wallet_query);
             $e_debit = 0;
@@ -176,17 +182,24 @@
 
         <div class="container" style="opacity: 0.8;">
             <div class="row justify-content-center">
-                <div class="col-md-6"> <!-- Adjust the column width as needed -->
-                    <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white;">
+                <div class="col-md-8" > <!-- Adjust the column width as needed -->
+                    <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white; width: 100%;">
                         <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Wallet</h5></div>
                         <div class="card-body">
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Debit </h2>
-                            <h3 class="card-text" style="color: white; text-shadow: 2px 2px 10px white;">RM <?php echo number_format($e_debit,2) ?></h3>
+                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Old Password </h2>
+                            <input type="text" name="o_pass" id="">
+                            
+                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">New Password : <?php echo $email ?> </h2>
+                            <input type="text" name="o_pass" id="">
+
+                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Confirm Password: <?php echo $contact ?> </h2>
+                            <input type="text" name="o_pass" id="">
+
                             
                         </div>
                         <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
 
