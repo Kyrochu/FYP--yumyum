@@ -2,7 +2,9 @@
     // Your database connection code
     include('DataConnect.php');
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') 
+    {
+        $Add_ID = $_POST['add_id'];
         $orderTime = $_POST['order_time'];
         $orderDate = date('Y-m-d', strtotime($orderTime)); // Extracts date in 'YYYY-MM-DD' format
         $orderTime_r = date('H:i:s', strtotime($orderTime)); 
@@ -67,7 +69,6 @@
             $updateStmt->bind_param("s", $orderTime);
             $updateStmt->execute();
 
-
         }
     
             $selectStmt->close();
@@ -76,6 +77,13 @@
             $addOnStmt->close();
             $insertStmt->close();
             $updateStmt->close();
+
+      
+        echo "<script>
+            alert('Order Delivered Sucessfully');
+            window.location.href ='StatusSuper.php?id=$Add_ID';
+        </script>";
+        exit();
     
         
     } else {

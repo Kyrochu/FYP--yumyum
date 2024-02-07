@@ -349,7 +349,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                                 foreach ($group['foods'] as $food) 
                                                 {
 
-                                                    $food_total_price = ($food["food_price"]) + ($food["add_on_price"])* $food["food_num"];
+                                                    $food_total_price = ($food["food_price"]) * $food["food_num"];
 
                                                 ?>
                                                     <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
@@ -367,6 +367,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         
                                     </div>
                                     <form action="History.php" method="POST">
+                                        <input type="hidden" name="add_id" value="<?php echo $id; ?>">
                                         <input type="hidden" name="order_time" value="<?php echo date('Y-m-d H:i:s', strtotime($group['time'])); ?> ?>">
                                         <input type="submit" value="DELIVERED" name="delivered" class="btn">
                                     </form>
@@ -441,7 +442,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                             $total_price += $single_order['total_price'];
                                         ?>
                                             <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
-                                            <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["price"], 2); ?> </h3>
+                                            <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["total_price"], 2); ?> </h3>
                                             <br>
                                         <?php endforeach; ?>
 
