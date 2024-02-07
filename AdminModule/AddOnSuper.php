@@ -207,6 +207,16 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div> 
 
+            <form action="ProductSuper.php" method="GET">
+                <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input type="hidden" name="cat_type" value="<?php echo isset($selected_category_id) ? $selected_category_id : ''; ?>">
+                
+                <button type="submit" style="background:burlywood;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
+                    BACK
+                </button>
+            </form>
+
+
             <div class="products">
 
             <?php
