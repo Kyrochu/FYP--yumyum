@@ -35,18 +35,22 @@
         <header>         
             <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
                 <img src="../img/daypay logo.png" alt="No Image" >
+                <ul style="margin-left:700px;">
+                    <li> <a href="e_login.php" target="_blank">Sign Up</a></li>
+                </ul>
             </div>
+            
         </header>
         
         <div class="form_page">
             <div class="btn_anime">
                 <div id="btn" ></div>
-                <button type="button" class="LG_RE_btn"   style="color: rgb(255, 252, 255);">Log In</button>
+                <button type="button" class="LG_RE_btn"   style="color: rgb(255, 252, 255);">PayDay Payment</button>
             </div>
             
 
-            <form id="paymentForm" class="input_group" action="e_paydone.php" method="POST">
-                <br><br><br><br><br>
+            <form id="paymentForm" class="input_group" method="POST">
+                <br><br><br><br>
                 
                 
                 <input type="text" style="display: none;" class="input_place" name="user_id" id="user_id" value="<?php echo $user ?>" required>
@@ -92,8 +96,8 @@
                         user_email: userEmail,
                         user_password: userPassword,
                         pin: pin,
-                        price: total_price, // Include total_price variable
-                        user_id: uid // Include user_id variable
+                        price: total_price, 
+                        user_id: uid 
                     };
 
                     // Send AJAX request to check_pin.php
@@ -103,39 +107,33 @@
                         data: formDataCheckPin,
                         success: function(response) {
                             // Handle response from check_pin.php
+                            console.log(response)
                             if (response === "done") {
-                                // Proceed with the payment
-                                // Send AJAX request to e_paydone.php
-                                $.ajax({
-                                    type: "POST",
-                                    url: "e_paydone.php",
-                                    data: formDataCheckPin, // Use the same data as check_pin.php
-                                    success: function(response) {
-                                        // Handle success response from e_paydone.php
-                                        window.location = "../log_index.php?userID=<?php echo $user;?>";
-                                    },
-                                    error: function(xhr, status, error) {
-                                        // Handle AJAX errors if any
-                                        console.error(xhr.responseText);
-                                    }
-                                });
-                            } else if (response === "insufficient") {
-                                // Handle insufficient funds
-                                alert("Insufficient funds in your wallet.");
-                                // You can redirect or handle this case as needed
+                                
+                                window.location.href  = "../log_index.php?userID=" + uid;
                             } else {
-                                // Handle other errors from check_pin.php
-                                alert("Error processing payment.");
-                                // You can redirect or handle this case as needed
+                                // Handle errors from check_pin.php
+                                if (response === "invalid_credentials") {
+                                    alert("You have not opened an account yet.");
+                                } else if (response === "insufficient") {
+                                    alert("Insufficient funds in your wallet.");
+                                } else if (response === "invalid_pin") {
+                                    alert("Your email, password, or 6-digit PIN are wrong.");
+                                } else {
+                                    alert("Error processing payment.");
+                                }
                             }
                         },
                         error: function(xhr, status, error) {
-                            // Handle AJAX errors if any
                             console.error(xhr.responseText);
                         }
                     });
                 });
             });
+
+
+
+
 
 
 
