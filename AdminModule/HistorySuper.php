@@ -247,7 +247,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         foreach ($order_details as $single_order) : 
                                             $total_price += $single_order['total_price'];
                                         ?>
-                                            <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
+                                            <h3 class="card-text"> <?php echo $single_order['food_name']; ?> - <?php echo ($single_order['add_on_name'] != null) ? $single_order['add_on_name'] : 'No AddOn'; ?> </h3>
                                             <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["total_price"], 2); ?> </h3>
                                             <br>
                                         <?php endforeach; ?>

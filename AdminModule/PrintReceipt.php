@@ -52,15 +52,26 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                             $state = $row_username_data['state'];
                             $postcode = $row_username_data['postcode'];
 
+
                             $foodName = $row_order_data['food_name'];
                             $addOnName = $row_order_data['add_on_name'];
                             $price = $row_order_data['price'];
+                            $addon_price = $row_order_data['add_on_price'];
+
+                            
+                            if ($addOnName == null) 
+                            {
+                                // No add-on found
+                                $addOnName = "No AddOn";
+                                $addon_price = 0;
+                            }
+
                             $quantity = $row_order_data['quantity'];
 
                             $order_sec = date('s', strtotime($orderTime));
                         
                             // Calculate total for each item
-                            $itemTotal = $price * $quantity;
+                            $itemTotal = $price * $quantity + $addon_price;
                         
                             // Accumulate total price
                             $totalPrice += $itemTotal;
@@ -70,6 +81,7 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                 'foodName' => $foodName,
                                 'addOnName' => $addOnName,
                                 'price' => $price,
+                                'add_on_price' => $addon_price,
                                 'quantity' => $quantity,
                                 'itemTotal' => $itemTotal,
                             ];
@@ -105,8 +117,12 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                     <p>#OPR<?php echo $UID ; echo $order_sec ?> </p>
                                 </div>
                                 <div class="mt-4">
-                                    <h5 class="font-size-15 mb-1">Invoice Date:</h5>
+                                    <h5 class="font-size-15 mb-1">Receipt Date:</h5>
                                     <p> <?php echo $orderDate ?> </p>
+                                </div>
+                                <div class="mt-4">
+                                    <h5 class="font-size-15 mb-1">Receipt Time:</h5>
+                                    <p> <?php echo $orderTime ?> </p>
                                 </div>
                             </div>
                         </div>
@@ -125,6 +141,7 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                         <th style="width: 70px;">No.</th>
                                         <th>Item</th>
                                         <th>Price(RM)</th>
+                                        <th>Add On Price(RM)</th>
                                         <th>Quantity</th>
                                         <th class="text-end" style="width: 120px;">Total(RM)</th>
                                     </tr>
@@ -135,22 +152,22 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                             <td><?= $index + 1 ?></td>
                                             <td><?= $item['foodName'] ?> - <?= $item['addOnName'] ?></td>
                                             <td><?= number_format($item['price'],2) ?></td>
+                                            <td><?= number_format($item['add_on_price'],2) ?></td>
                                             <td><?= $item['quantity'] ?></td>
                                             <td class="text-end"><?= number_format($item['itemTotal'],2) ?></td>
                                         </tr>
                                     <?php endforeach; ?>
                                         <tr>
-                                            <th scope="row" colspan="4" class="border-0 text-end">Total</th>
+                                            <th scope="row" colspan="5" class="border-0 text-end">Grand Total</th>
                                             <td class="text-end"><?= number_format($totalPrice,2) ?></td>
                                         </tr>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="d-print-none mt-4">
+                        <div class="d-print-none mt-3">
                             <div class="float-end">
                                 <a href="javascript:window.print()" class="btn btn-success me-1"><i class="fa fa-print"></i></a>
-                                <a href="HistorySuper.php?id=<?php echo $id; ?>" class="btn btn-secondary mb-4"><i class="fas fa-arrow-left"></i> Back to History</a>
-
+                                <a href="HistorySuper.php?id=<?php echo $id; ?>" class="btn btn-secondary mb-10"><i class="fas fa-arrow-left"></i> Back to History</a>
                             </div>
                         </div>
                     </div>

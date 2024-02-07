@@ -250,7 +250,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 $add_on_price = $row_addon['add_price'];
                             } else {
                                 // No add-on found
-                                $add_on_name = "No Add-on";
+                                $add_on_name = "No AddOn";
                                 $add_on_price = 0;
                             }
                 
@@ -355,7 +355,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                                     <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
                                                     <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format($food_total_price, 2); ?> </h3>
                                                     <br>
-                                                    <br>
                                                     
                                                     <?php
                                                     $total += $food_total_price; 
@@ -441,7 +440,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         foreach ($order_details as $single_order) : 
                                             $total_price += $single_order['total_price'];
                                         ?>
-                                            <h3 class="card-text"><?php echo $single_order['food_name']; ?> - <?php echo $single_order['add_on_name']; ?></h3>
+                                            <h3 class="card-text"> <?php echo $single_order['food_name']; ?> - <?php echo ($single_order['add_on_name'] != null) ? $single_order['add_on_name'] : 'No AddOn'; ?> </h3>
                                             <h3 class="card-text">Quantity: <?php echo $single_order['quantity']; ?> - Price: RM <?php echo number_format($single_order["total_price"], 2); ?> </h3>
                                             <br>
                                         <?php endforeach; ?>
