@@ -43,12 +43,12 @@
                 <br><br><br><br><br>    
                 <input type="text" class="input_place" name="user_email" placeholder="Example@gmail.com" required oninput="lvalidateEmail(this)">
                 <div id="container" style="margin-top: 5px;">
-                    <span id="emailError" style="color: red;"></span>
+                    <span id="lemailError" style="color: red; margin-left:38px;"></span>
                 </div>
                 <br><br>
-                <input type="password" class="input_place" name="user_password" placeholder="Password" required oninput="validatePassword(this)">
+                <input type="password" class="input_place" name="user_password" placeholder="Password" required oninput="lvalidatePassword(this)">
                 <div id="container" style="margin-top: 5px;">
-                    <span id="passwordError" style="color: red;"></span>
+                    <span id="lpasswordError" style="color: red; margin-left:38px;"></span>
                 </div>
                 <br><br>
                 <button type="submit" class="submit_btn" name="logbtn" style="color: rgb(255, 252, 255);">Log in</button>
@@ -154,7 +154,7 @@
 
             function lvalidateEmail(input) {
                 var regex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$/;
-                var errorElement = document.getElementById('emailError');
+                var errorElement = document.getElementById('lemailError');
                 if (input.value.trim() === '') {
                     errorElement.textContent = '';
                 } else if (!regex.test(input.value)) {
@@ -183,6 +183,18 @@
                     errorElement.textContent = '';
                 } else if (input.value !== password) {
                     errorElement.textContent = 'Passwords do not match.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
+
+            function lvalidatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('lpasswordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
                 } else {
                     errorElement.textContent = '';
                 }
@@ -218,7 +230,7 @@
             function login()
             {
                 x.style.left = "50px";
-                y.style.left = "450px";
+                y.style.left = "650px";
                 z.style.left = "0px";
             }
 
