@@ -125,7 +125,7 @@
             <div class="row justify-content-start">
                 <!-- card start -->
                 <?php
-                $order = "SELECT * FROM `order` WHERE user_id = ? && or_delete = '1' ";
+                $order = "SELECT * FROM `order` WHERE user_id = ? && or_delete = '1'";
                 $order_stmt = $connect->prepare($order);
                 $order_stmt->bind_param("s", $uid);
                 $order_stmt->execute();
@@ -139,6 +139,7 @@
                         $time = $row_order["or_time"];
                         $fid = $row_order["food_id"];
                         $n_food = $row_order["num_food"];
+                        $add_id = $row_order["add_on_id"];
 
                         $menu = "SELECT * FROM menu WHERE food_id = ?";
                         $menu_stmt = $connect->prepare($menu);
@@ -152,7 +153,7 @@
                             // Fetch add-on details based on food_id (assuming add_id is from the menu table)
                             $add_on_query = "SELECT * FROM add_on WHERE add_id = ?";
                             $add_on_stmt = $connect->prepare($add_on_query);
-                            $add_on_stmt->bind_param("i", $fid);
+                            $add_on_stmt->bind_param("i", $add_id);
                             $add_on_stmt->execute();
                             $add_on_result = $add_on_stmt->get_result();
                 
@@ -220,7 +221,7 @@
                                             <?php
                                             foreach ($group['foods'] as $food) {
                                     
-                                                $food_total_price = ($food["food_price"] + $food["add_on_price"]) * $food["food_num"];
+                                                $food_total_price = $food["food_price"]  * $food["food_num"];
                                                 ?>
                                                 <p class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?></p>
                                                 <p class="card-text"> Quantity: <?php echo $food["food_num"]; ?> -  Price: <?php echo number_format($food_total_price, 2); ?></p>
