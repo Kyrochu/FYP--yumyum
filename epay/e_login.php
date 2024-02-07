@@ -12,6 +12,7 @@
             {
                 margin-left: 8px;
             }
+          
         </style>
         
     </head>
@@ -56,7 +57,11 @@
 
             <!-- register side -->
             <form id="reg" class="input_group" action="e_register.php" method="POST">
+            
+                <span id="nameError"  ></span>     
                 <input type="text" class="input_place" name="name" placeholder="Name" required >
+                <span id="contactNumberFormat"></span>
+                <span id="contactNumberError"></span>
                 <input type="text" class="input_place" name="contact" placeholder="Contact Number " required >
                 <input type="email" class="input_place" name="email" placeholder="Email" required >
                 <input type="password" class="input_place" name="new_password" placeholder="Create Password" required>
@@ -87,6 +92,75 @@
                 y.style.left = "50px";
                 z.style.left = "110px";
             }
+            const nameInput = document.querySelector('input[name="name"]');
+            const nameError = document.getElementById('nameError');
+
+            nameInput.addEventListener('input', function () {
+                let name = this.value.trim(); // Trim leading and trailing whitespaces
+
+                // Check if the input contains only letters
+                if (/^[a-zA-Z]+$/.test(name)) {
+                    if (name === '') {
+                        nameError.textContent = 'Please enter a valid name.';
+                        nameError.style.color = 'red';
+                    } else {
+                        // Check if the first letter is uppercase
+                        const firstLetter = name.charAt(0);
+                        if (firstLetter !== firstLetter.toUpperCase()) {
+                            nameError.textContent = 'First letter must be uppercase.';
+                            nameError.style.color = 'red';
+                        } else {
+                            // Clear the error message if the input is valid
+                            nameError.textContent = '';
+                            nameError.style.color = '';
+                        }
+                    }
+                } else {
+                    nameError.textContent = 'Only character are allowed.';
+                    nameError.style.color = 'red';
+                }
+            });
+
+        const contactNumberInput = document.querySelector('input[name="contact_number"]');
+        const contactNumberError = document.getElementById('contactNumberError');
+        const contactNumberFormat = document.getElementById('contactNumberFormat');
+        const contactNumberRegex = /^[0-9\-]+$/; 
+
+            contactNumberInput.addEventListener('input', function () {
+            let contactNumber = this.value;
+
+            
+            contactNumberInput.addEventListener('input', function () {
+            let contactNumber = this.value;
+
+            
+            contactNumber = contactNumber.replace(/[^\d\-]/g, '');
+            contactNumber = contactNumber.replace(/[^\d\-]|-(?=[^-]*-)/g, '');
+
+            if (contactNumber === '' || contactNumber === '-') {
+                contactNumberError.textContent = 'Please enter a valid contact number.';
+                contactNumberError.style.color = 'red';
+                contactNumberFormat.textContent = '';
+            } else {
+                const formattedContactNumber = contactNumber.replace(/(\d{3})-?(\d+)/, '$1-$2');
+
+                if (formattedContactNumber !== this.value) {
+                    // 如果格式不匹配，显示提示信息
+                    contactNumberError.textContent = 'Contact number should be in the format: xxx-xxxxxxx';
+                    contactNumberError.style.color = 'red';
+                    contactNumberFormat.textContent = '';
+                } else {
+                    // 格式匹配时清空错误信息
+                    contactNumberError.textContent = '';
+                    contactNumberError.style.color = '';
+                }
+            }
+
+            // 更新输入框的值
+            this.value = contactNumber;
+            });
+        });
+    
         </script>
 
     </body>
