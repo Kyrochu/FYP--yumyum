@@ -87,6 +87,22 @@
             }
         </script>
 
+        <style>
+            .btn-pass
+            {
+                color: white;
+                background-color: #00a2ff;
+                margin-top: 30px;
+                margin-left: 300px;
+                width: 20%;
+            }
+            .input
+            {
+                background-color: transparent;
+                color: white;
+            }
+        </style>
+
 
     </head>
 
@@ -112,14 +128,10 @@
                         <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                         </a>
                             <div class="sub-menu">
-                                <a href="e_user_profile.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Profile </span> </a>
-                            </div>
-                            <div class="sub-menu">
-                                <a href="reset_pass.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Reset Password </span> </a>
-                            </div> 
-                            <div class="sub-menu">
-                                <a href="reset_pin.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Reset Pin </span> </a>
-                            </div>                 
+                                <a href="e_user_profile.php?uid=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Profile </span> </a>
+                                <a href="reset_pass.php?uid=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Reset Password </span> </a>
+                                <a href="reset_pin.php?uid=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Reset Pin </span> </a>
+                            </div>      
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
@@ -160,6 +172,16 @@
         <br><br>
 
         <?php
+            $user_query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+            $user_result = mysqli_query($connect, $user_query);
+            $user_row = mysqli_fetch_assoc($user_result);
+
+            $name = $user_row["user_name"];
+            $email = $user_row["user_email"];
+            $contact = $user_row["user_contact"];
+            $pass = $user_row["user_pass"];
+            $pin = $user_row["pin"];
+
             $wallet_query = "SELECT * FROM e_wallet WHERE user_id = '$uid'";
             $wallet_result = mysqli_query($connect, $wallet_query);
             $e_debit = 0;
@@ -174,21 +196,79 @@
             }
         ?>
 
-        <div class="container" style="opacity: 0.8;">
+        <div class="container" style="opacity: 0.8; height:10em;">
             <div class="row justify-content-center">
-                <div class="col-md-6"> <!-- Adjust the column width as needed -->
-                    <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white;">
-                        <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Wallet</h5></div>
-                        <div class="card-body">
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Debit </h2>
-                            <h3 class="card-text" style="color: white; text-shadow: 2px 2px 10px white;">RM <?php echo number_format($e_debit,2) ?></h3>
-                            
-                        </div>
-                        <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
+                <div class="col-md-8" > <!-- Adjust the column width as needed -->
+                    <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white; width: 100%; height:100%;">
+                        <form action="" method="POST">
+                        <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Reset 6 Digit Pin</h5></div>
+                            <div class="card-body">
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Email : <input type="email" name="email" class="input" id="" placeholder="example@gmail.com" required oninput="validateEmail(this)"></h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="emailError" style="color: white;"></span>
+                                </div>
+                                <br>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Password : <input type="password" name="pass" class="input" id="" placeholder="Password" maxlength="8" required oninput="validatePassword(this)"> </h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="passwordError" style="color: white;"></span>
+                                </div>
+                                <br>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm Password : <input type="text" name="pin" class="input" id="" placeholder="Enter 6 degit"required maxlength="6" oninput="validatePin(this)" > </h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="pinError" style="color: white; "></span>
+                                </div>
+                                <br>
+
+                            </div>
+                            <button type="submit" name="submit" class="btn-pass btn" style="text-shadow: 2px 2px 10px white;" id="topUpButton">Submit</button>
+                            <br><br>
+                        </form>
                     </div>
-                </div>
+                </div>  
             </div>
         </div>
+
+
+        <?php
+            if (isset($_POST['submit'])) {
+                // Form submitted, process the data
+                $email = $_POST['email'];
+                $pass = $_POST['pass'];
+                $pin = $_POST['pin'];
+
+                // Retrieve user from the database using email
+                $query = "SELECT * FROM e_user WHERE user_email = '$email'";
+                $result = mysqli_query($connect, $query);
+
+                if (mysqli_num_rows($result) > 0) {
+                    // User found, check password
+                    $row = mysqli_fetch_assoc($result);
+                    $stored_password = $row['user_pass'];
+                    $uid = $row['user_id'];
+
+                    if ($pass == $stored_password) {
+                        // Passwords match, update the pin
+                        $update_query = "UPDATE e_user SET pin = '$pin' WHERE user_id = '$uid'";
+                        $update_result = mysqli_query($connect, $update_query);
+
+                        if ($update_result) {
+                            echo "<script>alert('PIN updated successfully.');</script>";
+                        } else {
+                            echo "<script>alert('Error updating PIN.');</script>";
+                        }
+                    } else {
+                        echo "<script>alert('Incorrect email or password.');</script>";
+                    }
+                } else {
+                    echo "<script>alert('Account not found.');</script>";
+                }
+            }
+        ?>                                                                                      
+
+
 
 
         <!-- JavaScript Libraries -->
@@ -197,13 +277,51 @@
         
         
         <script>
-            var topUpButton = document.getElementById("topUpButton");
+            function validateEmail(input) {
+                var regex = /^[a-zA-Z0-9._%+-]+@(gmail|hotmail)\.com$/;
+                var errorElement = document.getElementById('emailError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = ' Only Gmail or Hotmail valid.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
-            topUpButton.addEventListener("click", function() {
-                var uid = <?php echo json_encode($uid); ?>;
+            function validatePassword(input) {
+                var regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+                var errorElement = document.getElementById('passwordError');
+                if (input.value.trim() === '') {
+                    errorElement.textContent = '';
+                } else if (!regex.test(input.value)) {
+                    errorElement.textContent = 'Password must contain at least 8 characters, one number, one uppercase letter, and one symbol.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
-                window.location.href = "e_topup.php?uid=" + uid;
-            });
+            function validatePin(input) {
+                var pin = input.value;
+                var errorElement = document.getElementById('pinError');
+
+                // Remove non-numeric characters from input
+                pin = pin.replace(/\D/g, '');
+
+                if (pin.length > 6) {
+                    // Trim the pin to 6 characters
+                    pin = pin.slice(0, 6);
+                }
+
+                // Update the input value
+                input.value = pin;
+
+                if (pin.length < 6) {
+                    errorElement.textContent = 'Pin must be exactly 6 digits.';
+                } else {
+                    errorElement.textContent = '';
+                }
+            }
 
         </script>
 

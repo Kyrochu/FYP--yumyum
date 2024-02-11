@@ -50,6 +50,8 @@
                 <div id="container" style="margin-top: 5px;">
                     <span id="lpasswordError" style="color: red; margin-left:38px;"></span>
                 </div>
+                <br>
+                <a href="" class="forget">Forget Password</a>
                 <br><br>
                 <button type="submit" class="submit_btn" name="logbtn" style="color: rgb(255, 252, 255);">Log in</button>
             </form>
@@ -68,7 +70,7 @@
                     <span id="contactError" style="color: red;"></span>
                 </div>
 
-                <input type="email" class="input_place" name="email" placeholder="Example@gmail.com" required oninput="validateEmail(this)">
+                <input type="email" class="input_place" name="email" placeholder="example@gmail.com" required oninput="validateEmail(this)">
                 <div id="container" style="margin-top: 5px;">
                     <span id="emailError" style="color: red;"></span>
                 </div>

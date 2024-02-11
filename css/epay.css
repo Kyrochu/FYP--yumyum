@@ -9,12 +9,18 @@
 body
 {
     min-height:100vh;
-    background-color:#0074f8;
+    background-image:url(../img/daypaybg.jpg);
+    background-repeat: no-repeat;
+    background-size:cover;
     color:white;
     background-size:cover;
     background-position:center;
     overflow-x: hidden;
+    position: relative;
+
 }
+
+
 
 /*------------------------------------------------------------------------- Side Bar------------------------------------------------------ */
 
@@ -950,22 +956,21 @@ header h1
 .datetime
 {
     color:black;
-    background-color:#00a2ff;
+    background-color:#000000;
     font-family:"Segoe UI",sans-serif;
-    width:100%;
     padding:1rem;
     margin-left:100px;
     border:3px solid #ebe9e9;
     border-radius:8px;
     transition:0.5s;
     position:relative;
-
+    opacity: 0.8;
 }
 
 .cardtab
 {
     color:black;
-    background-color:#00a2ff;
+    background-color:#020202;
     font-family:"Segoe UI",sans-serif;
     width:600px;
     height: 350px;
