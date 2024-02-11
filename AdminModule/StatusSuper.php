@@ -227,6 +227,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         $time = $row_order["or_time"];
                         $fid = $row_order["food_id"];
                         $n_food = $row_order["num_food"];
+                        $add_id = $row_order["add_on_id"];
 
                         $menu = "SELECT * FROM menu WHERE food_id = ?";
                         $menu_stmt = $connect->prepare($menu);
@@ -240,7 +241,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                             // Fetch add-on details based on food_id (assuming add_id is from the menu table)
                             $add_on_query = "SELECT * FROM add_on WHERE add_id = ?";
                             $add_on_stmt = $connect->prepare($add_on_query);
-                            $add_on_stmt->bind_param("i", $fid);
+                            $add_on_stmt->bind_param("i", $add_id);
                             $add_on_stmt->execute();
                             $add_on_result = $add_on_stmt->get_result();
                 
@@ -248,6 +249,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 $row_addon = mysqli_fetch_assoc($add_on_result);
                                 $add_on_name = $row_addon['add_name'];
                                 $add_on_price = $row_addon['add_price'];
+                                $add_ID = $row_addon['add_id'];
                             } else {
                                 // No add-on found
                                 $add_on_name = "No AddOn";
@@ -271,7 +273,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 'food_price' => $row_menu["food_price"] + $add_on_price,
                                 'food_num' => $row_order["num_food"],
                                 'add_on_name' => $add_on_name,
-                                'add_on_price' => $add_on_price
+                                'add_on_price' => $add_on_price,
+                                'add_on_id' => $add_ID,
                             ];
                         } else {
                             echo "No menu items found for food_id: $fid";
@@ -353,7 +356,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                                 ?>
                                                     <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
-                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format($food_total_price, 2); ?> </h3>
+                                                    <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format(($food_total_price), 2); ?> </h3>
+                                                    <?php echo $food['add_on_id']; ?>
                                                     <br>
                                                     
                                                     <?php

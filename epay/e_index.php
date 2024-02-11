@@ -112,13 +112,13 @@
                         <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                         </a>
                             <div class="sub-menu">
-                                <a href="e_user_profile.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Profile </span> </a>
+                                <a href="e_user_profile.php?id=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Profile </span> </a>
                             </div>
                             <div class="sub-menu">
-                                <a href="reset_pass.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Reset Password </span> </a>
+                                <a href="reset_pass.php?id=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Reset Password </span> </a>
                             </div> 
                             <div class="sub-menu">
-                                <a href="reset_pin.php?id=<?php echo $id; ?>" class="sub-item"> <span class="menu-text"> Reset Pin </span> </a>
+                                <a href="reset_pin.php?id=<?php echo $uid; ?>" class="sub-item"> <span class="menu-text"> Reset Pin </span> </a>
                             </div>                 
                     </div>
                     <div class="item">
