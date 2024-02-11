@@ -214,7 +214,7 @@ $CatType = isset($_GET['cat_id'])?$_GET['cat_id']:NULL;
 
                 <div class="products">
 
-                <?php
+                <?php 
                     if(isset($_GET['addonbtn'])) 
                     {
                         $productId = $_GET['pro_id'];   
