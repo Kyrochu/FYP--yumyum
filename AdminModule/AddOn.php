@@ -29,6 +29,40 @@ if(isset($_GET['add_addon']))
     {
         echo "<script>alert('Failed to add addon.');</script>";
     }
+
+   
+}
+
+
+if (isset($_POST['delete_selected_addons'])) 
+{
+    $connect = mysqli_connect("localhost", "root", "", "yumyum");
+
+    $productId = $_POST['delete_id'];
+
+    // Ensure the selected addons array is set
+    if (isset($_POST['selected_addons']) && is_array($_POST['selected_addons'])) {
+        $selectedAddons = $_POST['selected_addons'];
+
+        // Loop through selected addons and delete them
+        foreach ($selectedAddons as $addonId) {
+            $deleteQuery = "DELETE FROM add_on WHERE add_id = '$addonId' AND food_id = '$productId'";
+            $deleteResult = mysqli_query($connect, $deleteQuery);
+
+            // Check for deletion success
+            if (!$deleteResult) {
+                echo "<script>alert('Failed to delete addon with ID $addonId: " . mysqli_error($connect) . "');</script>";
+            }
+        }
+
+        echo "<script>
+            alert('Addon(s) deleted successfully.');
+            window.location.href ='AddOnSuper.php?addonbtn=1&pro_id=$productId&cat_id={$productData['food_type']}';
+        </script>";
+        exit();
+    } else {
+        echo "<script>alert('No addons selected for deletion');</script>";
+    }
 }
 
 ?>

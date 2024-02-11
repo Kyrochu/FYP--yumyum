@@ -7,7 +7,7 @@ if(isset($_POST['add_product']))
     $productName = $_POST['name'];
     $productPrice = $_POST['price'];
     $productDesc = $_POST['desc'];
-    $category = $_POST['category'];
+    $category = $_POST['category']; 
     $productImage = $_FILES['image']['name'];
     $currentImage = $_POST['current_image'];
     
@@ -31,7 +31,7 @@ if(isset($_POST['add_product']))
         if($query_run)
         {
             move_uploaded_file($_FILES['image']['tmp_name'],"../img/".$_FILES['image']['name']);
-            echo "<script> alert('New Product Added!'); window.location.href = 'MenusSuper.php'; </script>";
+            echo "<script> alert('New Product Added!'); window.location.href = 'ProductSuper.php?cat_type=$category'; </script>";
         }
         else
         {

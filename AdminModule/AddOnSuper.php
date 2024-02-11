@@ -249,20 +249,17 @@ $CatType = isset($_GET['cat_id'])?$_GET['cat_id']:NULL;
                                     echo "<div class='addon-item'>";
                                     echo "<span class='addon-name'> - $a_name</span>";
                                     echo "<span class='addon-price'> RM " . number_format($a_price, 2) . "</span>";
-                                    echo "<input type='checkbox' name='selected_addons[]' value='$a_id'>";
+                                    echo "<input type='checkbox' class ='checkBOX' name='selected_addons[]' value='$a_id'>";
                                     echo "</div>";
                                 }
                                 ?>
-                                
-                                <input type='hidden' name='delete_id' value='$productId'>
+
+                                <input type='hidden' name='delete_id' value='<?php echo $productId; ?>'>
                                 <input type="submit" value="Delete Selected Addons" name="delete_selected_addons" class="delete-addon-btn">
+                                
                             </form>
+
                         </div>
-
-                        <?php
-
-                      
-                        ?>
 
 
                 <div class="addon-form">

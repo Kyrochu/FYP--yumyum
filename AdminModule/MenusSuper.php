@@ -326,7 +326,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         {
                                             while ($categoryData = mysqli_fetch_assoc($fetchCategoriesQuery)) 
                                             {
-                                                echo '<option value="' . $categoryData['cat_name'] . '">' . $categoryData['cat_name'] . '</option>';
+                                                echo '<option value="' . $categoryData['cat_type'] . '">' . $categoryData['cat_type'] . '</option>';
                                             }
                                         }
                     ?>

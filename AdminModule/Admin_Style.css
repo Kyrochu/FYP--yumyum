@@ -769,22 +769,32 @@ header h1
     text-decoration: underline;
 }
 
-.addon-item {
-    margin-bottom: 10px;
+.addon-item 
+{
+    margin-top: 10px;
+    margin-bottom:10px;
 }
 
-.addon-name {
+.addon-name 
+{
     display: inline-block;
     color: #333;
     margin-right: 10px;
 }
 
-.addon-price {
+.addon-price 
+{
     display: inline-block;
     color: #777;
 }
 
-.addon-form {
+.checkBOX
+{
+    margin-left:10px;
+}
+
+.addon-form 
+{
     margin-top: 20px;
     text-align: center;
 }
@@ -797,16 +807,18 @@ header h1
 
 .addonbtn 
 {
-    background-color: burlywood;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    padding: 10px;
-    border: none;
-    border-radius: 4px;
+    margin-top:10px;
+    margin-left:20px;
+    cursor: pointer; 
+    font-size:14px;
+    width:150px; 
+    height:30px;
+    background-color:burlywood;
+    border-radius:10px;
+    font-weight:bold;
 }
 
-.btn:hover 
+.addonbtn:hover 
 {
     background-color:sandybrown;
 }
@@ -832,6 +844,35 @@ header h1
     font-weight:bold; 
     border-radius:5px;
     font-size:13px;
+}
+
+.addname,
+.addprice
+{
+    width:180px;
+    border-radius: 3px;
+    margin-top:30px;
+    height:30px;
+    font-size:14px;
+    padding-left: 6px;
+}
+
+.delete-addon-btn
+{
+    margin-top:10px;
+    margin-left:20px;
+    cursor: pointer; 
+    font-size:14px;
+    width:200px; 
+    height:30px;
+    background-color:burlywood;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.delete-addon-btn:hover
+{
+    background-color:sandybrown;
 }
 
 
