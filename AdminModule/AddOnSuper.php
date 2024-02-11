@@ -253,16 +253,13 @@ $CatType = isset($_GET['cat_id'])?$_GET['cat_id']:NULL;
                                     echo "</div>";
                                 }
                                 ?>
-                                
-                                <input type='hidden' name='delete_id' value='$productId'>
+
+                                <input type='hidden' name='delete_id' value='<?php echo $productId; ?>'>
                                 <input type="submit" value="Delete Selected Addons" name="delete_selected_addons" class="delete-addon-btn">
+                                
                             </form>
+
                         </div>
-
-                        <?php
-
-                      
-                        ?>
 
 
                 <div class="addon-form">
