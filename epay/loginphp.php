@@ -6,15 +6,15 @@ if(isset($_POST['logbtn'])) {
     $email = $_POST['user_email'];
     $password = $_POST['user_password'];
 
-    $query = "SELECT * FROM e_user WHERE user_email = '$email' AND user_pass = '$password'";
+    $query = "SELECT * FROM users WHERE `email` = '$email' AND `password` = '$password'";
     $result = mysqli_query($conn, $query);
     $row_user = mysqli_fetch_assoc($result);
     $rowcount = mysqli_num_rows($result);
 
-    $id = "SELECT * from e_user where user_email = '$email'";
+    $id = "SELECT * from users where email = '$email'";
     $re = mysqli_query($conn, $id);
     $row = mysqli_fetch_assoc($re);
-    $uid = $row["user_id"];
+    $uid = $row["id"];
     
 
     if ($rowcount != 0) {

@@ -95,10 +95,10 @@
             if (isset($_GET['uid'])) {
                 $uid = $_GET['uid'];
 
-                $query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+                $query = "SELECT * FROM users WHERE id = '$uid'";
                 $result = mysqli_query($connect, $query);
                 $row_user = mysqli_fetch_assoc($result);
-                $u_name = $row_user["user_name"];
+                $u_name = $row_user["name"];
             }
         ?>
 
@@ -156,14 +156,14 @@
         <br><br>
 
         <?php
-            $user_query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+            $user_query = "SELECT * FROM users WHERE id = '$uid'";
             $user_result = mysqli_query($connect, $user_query);
             $user_row = mysqli_fetch_assoc($user_result);
 
-            $name = $user_row["user_name"];
-            $email = $user_row["user_email"];
-            $contact = $user_row["user_contact"];
-            $pass = $user_row["user_pass"];
+            $name = $user_row["name"];
+            $email = $user_row["email"];
+            $contact = $user_row["contact_number"];
+            $pass = $user_row["password"];
             $pin = $user_row["pin"];
 
             $wallet_query = "SELECT * FROM e_wallet WHERE user_id = '$uid'";

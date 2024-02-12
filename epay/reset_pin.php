@@ -111,10 +111,10 @@
             if (isset($_GET['uid'])) {
                 $uid = $_GET['uid'];
 
-                $query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+                $query = "SELECT * FROM users WHERE id = '$uid'";
                 $result = mysqli_query($connect, $query);
                 $row_user = mysqli_fetch_assoc($result);
-                $u_name = $row_user["user_name"];
+                $u_name = $row_user["name"];
             }
         ?>
 
@@ -172,14 +172,14 @@
         <br><br>
 
         <?php
-            $user_query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+            $user_query = "SELECT * FROM users WHERE id = '$uid'";
             $user_result = mysqli_query($connect, $user_query);
             $user_row = mysqli_fetch_assoc($user_result);
 
-            $name = $user_row["user_name"];
-            $email = $user_row["user_email"];
-            $contact = $user_row["user_contact"];
-            $pass = $user_row["user_pass"];
+            $name = $user_row["name"];
+            $email = $user_row["email"];
+            $contact = $user_row["contact_number"];
+            $pass = $user_row["password"];
             $pin = $user_row["pin"];
 
             $wallet_query = "SELECT * FROM e_wallet WHERE user_id = '$uid'";
@@ -215,15 +215,22 @@
                                     <span id="passwordError" style="color: white;"></span>
                                 </div>
                                 <br>
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">6 degit pin : <input type="text" name="pin" class="input" id="" placeholder="Enter 6 degit"required maxlength="6" oninput="validatePin(this)" > </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">6 degit pin : <input type="text" name="pin" class="input" id="pin" placeholder="Enter 6 degit"required maxlength="6" oninput="validatePin(this)" > </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="pinError" style="color: white; "></span>
                                 </div>
                                 <br>
 
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm pin : <input type="text" name="pin" class="input" id="cpin" placeholder="Enter 6 degit"required maxlength="6" oninput="confirmPin(this)" > </h2>
+                                
+                                <div id="container" style="margin-top: 5px;">
+                                    <span id="confirmPinError" style="color: white; "></span>
+                                </div>
+                                <br>
+
                             </div>
-                            <button type="submit" name="submit" class="btn-pass btn" style="text-shadow: 2px 2px 10px white;" id="topUpButton">Submit</button>
+                            <button type="submit" name="submit" class="btn-pass btn" style="text-shadow: 2px 2px 10px white; background-color:orange;" id="topUpButton">Submit</button>
                             <br><br>
                         </form>
                     </div>
@@ -240,18 +247,18 @@
                 $pin = $_POST['pin'];
 
                 // Retrieve user from the database using email
-                $query = "SELECT * FROM e_user WHERE user_email = '$email'";
+                $query = "SELECT * FROM users WHERE email = '$email'";
                 $result = mysqli_query($connect, $query);
 
                 if (mysqli_num_rows($result) > 0) {
                     // User found, check password
                     $row = mysqli_fetch_assoc($result);
-                    $stored_password = $row['user_pass'];
-                    $uid = $row['user_id'];
+                    $stored_password = $row['password'];
+                    $uid = $row['id'];
 
                     if ($pass == $stored_password) {
                         // Passwords match, update the pin
-                        $update_query = "UPDATE e_user SET pin = '$pin' WHERE user_id = '$uid'";
+                        $update_query = "UPDATE users SET pin = '$pin' WHERE id = '$uid'";
                         $update_result = mysqli_query($connect, $update_query);
 
                         if ($update_result) {
@@ -320,6 +327,29 @@
                     errorElement.textContent = 'Pin must be exactly 6 digits.';
                 } else {
                     errorElement.textContent = '';
+                }
+            }
+
+            function confirmPin(input) {
+                var pin = document.getElementById('pin').value;
+                var cpin = input.value;
+                var confirmErrorElement = document.getElementById('confirmPinError');
+
+                // Remove non-numeric characters from input
+                cpin = cpin.replace(/\D/g, '');
+
+                if (cpin.length > 6) {
+                    // Trim the pin to 6 characters
+                    cpin = cpin.slice(0, 6);
+                }
+
+                // Update the input value
+                input.value = cpin;
+
+                if (pin !== cpin) {
+                    confirmErrorElement.textContent = 'Pins do not match.';
+                } else {
+                    confirmErrorElement.textContent = '';
                 }
             }
 

@@ -52,7 +52,6 @@
             $email = $row["email"];
             $address = $row["address"];
             $city = $row["city"];
-            $address = $row["address"];
             $state = $row["state"];
             $postcode = $row["postcode"];
         }

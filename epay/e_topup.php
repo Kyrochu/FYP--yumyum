@@ -43,11 +43,15 @@
     if (isset($_GET['uid'])) {
         $uid = $_GET['uid'];
 
-        $query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+        $query = "SELECT * FROM users WHERE id = '$uid'";
         $result = mysqli_query($connect, $query);
         $row_user = mysqli_fetch_assoc($result);
-        $u_name = $row_user["user_name"];
-        $u_email = $row_user["user_email"];
+        $u_name = $row_user["name"];
+        $u_email = $row_user["email"];
+        $address = $row_user["address"];
+        $city = $row_user["city"];
+        $state = $row_user["state"];
+        $postcode = $row_user["postcode"];
     }
   
     
@@ -63,7 +67,7 @@
 
                     <div class="inputBox">
                         <span>Full Name :</span>
-                        <input type="text" placeholder="John Deo" id="f_name" name="f_name" required>
+                        <input type="text" placeholder="John Deo" id="f_name" name="f_name" value="<?php echo $u_name ?>" required>
                     </div>
                     <div class="inputBox">
                         <span>Email :</span>
@@ -72,11 +76,11 @@
                     </div>
                     <div class="inputBox">
                         <span>Address :</span>
-                        <input type="text" placeholder="Room - Street - Locality" id="address" name="address" required>
+                        <input type="text" placeholder="Room - Street - Locality" id="address" name="address" value="<?php echo $address ?>" required>
                     </div>
                     <div class="inputBox">
                         <span>City :</span>
-                        <input type="text" placeholder="Mumbai" id="city" name="city" required>
+                        <input type="text" placeholder="Mumbai" id="city" name="city" value="<?php echo $city ?>" required>
                     </div>
                     <div class="flx">
                         <div class="inputBox">
@@ -104,7 +108,7 @@
                         </div>
                         <div class="inputBox">
                             <span>Post code :</span>
-                            <input type="text" placeholder="12345" value="" maxlength="5" pattern=".{5,6}" title="Enter a valid post code" required>
+                            <input type="text" placeholder="12345" maxlength="5" pattern=".{5,6}" title="Enter a valid post code" value="<?php echo $postcode ?>" required>
                         </div>
                     </div>
                 </div>
@@ -146,7 +150,7 @@
                 </div>
             </div>
                 <button type="submit" class="submit-btn">Proceed to Checkout</button>
-                <button type="button" href="log_menu.php?userID=<?php echo $uid; ?>" class="submit-btn">Back to Menu</button>
+                <button type="button"  class="submit-btn" onclick="back()">Back to Menu</button>
                 <div id="paymentError" class="error"></div>
         </form>
         
@@ -163,7 +167,12 @@
 
 <script>
 
-    
+    function back()
+    {
+        var uid = <?php echo json_encode($uid); ?>;
+        window.location.href = "e_index.php?uid=" + uid;
+    }    
+
     function save(event) {
             event.preventDefault(); 
             var user_id = document.getElementById("u_id").value;
