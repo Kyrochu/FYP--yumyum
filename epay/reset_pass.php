@@ -203,19 +203,19 @@
                         <form action="" method="POST">
                         <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Reset Password</h5></div>
                             <div class="card-body">
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Old Password : <input type="password" name="o_pass" class="input" id="" placeholder="Create Password" maxlength="8" required oninput="ovalidatePassword(this)"></h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Old Password : <input type="password" name="o_pass" class="input" id="" placeholder="Create Password"  required oninput="ovalidatePassword(this)"></h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="opasswordError" style="color: white;"></span>
                                 </div>
                                 <br>
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">New Password : <input type="password" name="n_pass" class="input" id="" placeholder="Create Password" maxlength="8" required oninput="validatePassword(this)"> </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">New Password : <input type="password" name="n_pass" class="input" id="" placeholder="Create Password"  required oninput="validatePassword(this)"> </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="passwordError" style="color: white;"></span>
                                 </div>
                                 <br>
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm Password : <input type="password" name="c_pass" class="input" id="" placeholder="Confirm Password" maxlength="8" required oninput="validatePasswordMatch(this)"> </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm Password : <input type="password" name="c_pass" class="input" id="" placeholder="Confirm Password"  required oninput="validatePasswordMatch(this)"> </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="passwordMatchError" style="color: white; "></span>
