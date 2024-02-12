@@ -236,7 +236,7 @@
                                   <div class="mt-3">
                                     <?php if ($total > 0): ?>
                                         <a href="log_payment.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase By Card</a>
-                                        <a href="epay/e_pay.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase PayNow</a>
+                                        <a href="epay/e_pay.php?userID=<?php echo $uid; ?>" class="btn btn-success w-100 shadow-0 mb-2"> Make Purchase PayDay</a>
                                     <?php else: ?>
                                         <button class="btn btn-secondary w-100 shadow-0 mb-2" disabled> No Items to Purchase </button>
                                     <?php endif; ?>
