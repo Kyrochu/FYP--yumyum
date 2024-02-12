@@ -209,13 +209,13 @@
                                     <span id="emailError" style="color: white;"></span>
                                 </div>
                                 <br>
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Password : <input type="password" name="pass" class="input" id="" placeholder="Password" maxlength="8" required oninput="validatePassword(this)"> </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Password : <input type="password" name="pass" class="input" id="" placeholder="Password"  required oninput="validatePassword(this)"> </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="passwordError" style="color: white;"></span>
                                 </div>
                                 <br>
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm Password : <input type="text" name="pin" class="input" id="" placeholder="Enter 6 degit"required maxlength="6" oninput="validatePin(this)" > </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">6 degit pin : <input type="text" name="pin" class="input" id="" placeholder="Enter 6 degit"required maxlength="6" oninput="validatePin(this)" > </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="pinError" style="color: white; "></span>
