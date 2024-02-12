@@ -365,7 +365,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 echo '</a>';
                                 echo '<h3>' . $categoryData['cat_name'] . '</h3>';
 
-                                echo '<form method="post">';
+                                echo '<form action="EditCategory.php" method="get">';
                                 echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
                                 echo '<button type="submit" name="edit-btn" class="cat-edit">Edit</button>';
                                 echo '</form>';
