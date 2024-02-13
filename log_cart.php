@@ -200,19 +200,7 @@
 
             <!-- summary -->
             <div class="col-lg-3">
-                <div class="card mb-3 border shadow-0">
-                    <div class="card-body">
-                        <form>
-                            <div class="form-group">
-                                <label class="form-label">Have coupon?</label>
-                                <div class="input-group">
-                                <input type="text" class="form-control border" name="" placeholder="Coupon code" />
-                                <button class="btn btn-light border">Apply</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+                
                 
                 
 
@@ -252,40 +240,7 @@
 </section>
 
 <!-- cart + summary -->
-  <section>
-      <div class="container my-5">
-        <header class="mb-4">
-          <h3>Recommended items</h3>
-        </header>
-
-        <div class="row">
-          <div class="col-lg-3 col-md-6 col-sm-6">
-            <div class="card px-4 border shadow-0 mb-4 mb-lg-0">
-              <div class="mask px-2" style="height: 50px;">
-                <div class="d-flex justify-content-between">
-                  <h6><span class="badge bg-danger pt-1 mt-3 ms-2">New</span></h6>
-                  <a href="#"><i class="fas fa-heart text-primary fa-lg float-end pt-3 m-2"></i></a>
-                </div>
-              </div>
-              <a href="#" class="">
-                <img src="" class="card-img-top rounded-2" />
-              </a>
-              <div class="card-body d-flex flex-column pt-3 border-top">
-                <a href="#" class="nav-link">Gaming Headset with Mic</a>
-                <div class="price-wrap mb-2">
-                  <strong class="">$18.95</strong>
-                  <del class="">$24.99</del>
-                </div>
-                <div class="card-footer d-flex align-items-end pt-3 px-0 pb-0 mt-auto">
-                  <a href="#" class="btn btn-outline-primary w-100">Add to cart</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-  </section>
+   
         
 
         <!-- Footer Start -->
@@ -320,27 +275,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                            Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             
         </div>
         <!-- Footer End -->
 
