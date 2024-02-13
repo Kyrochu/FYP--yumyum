@@ -55,12 +55,15 @@
                 $addOnName = "";
             }
 
+
+            $pay_by = $row["pay_by"];
+
             $totalPrice = ($menuRow['food_price'] + $addOnPrice) * $row['num_food'];
     
             // Insert data into order_history table
-            $insertQuery = "INSERT INTO `order_history` (order_date, user_id, username, contact_number, address, city, state, postcode, food_name, add_on_name, add_on_price, quantity, price, total_price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            $insertQuery = "INSERT INTO `order_history` (order_date, user_id, username, contact_number, address, city, state, postcode, food_name, add_on_name, add_on_price, quantity, price, total_price , pay_by) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $insertStmt = $connect->prepare($insertQuery);
-            $insertStmt->bind_param("sisssssssisddd", $orderTime, $row['user_id'], $userRow['name'], $userRow['contact_number'], $userRow['address'], $userRow['city'], $userRow['state'], $userRow['postcode'], $menuRow['food_name'], $addOnName, $addOnPrice, $row['num_food'], $menuRow['food_price'], $totalPrice);
+            $insertStmt->bind_param("sisssssssisddds", $orderTime, $row['user_id'], $userRow['name'], $userRow['contact_number'], $userRow['address'], $userRow['city'], $userRow['state'], $userRow['postcode'], $menuRow['food_name'], $addOnName, $addOnPrice, $row['num_food'], $menuRow['food_price'], $totalPrice, $pay_by );
             $insertStmt->execute();
 
             // Update the 'or_delete' column in the 'order' table
