@@ -220,7 +220,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         echo "<tr>
                                 <td>$productId</td>
                                 <td>$productName</td>
-                                <td>$productPrice</td>
+                                <td>" . number_format($productPrice, 2) . "</td>
                                 <td>$productDescription</td>
                                 <td><img src='../img/$productImage' alt='Product Image' class='img'> </td>
                                 <td>
