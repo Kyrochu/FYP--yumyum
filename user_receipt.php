@@ -159,6 +159,7 @@
                                 <p class="card-text">Date: <?php echo $date; ?></p>
                                 <p class="card-text">Time: <?php echo $time; ?></p>
                                 <p class="card-text">Contact Number: <?php echo $firstOrder['contact_number']; ?></p>
+                                <p class="card-text">Pay By: <?php echo $firstOrder['pay_by']; ?></p>
                                 <p class="card-text">Food Ordered:</p>
                                 <div class="card-body">
                                     <?php
@@ -169,7 +170,7 @@
                                         $food_add_price = ($order["price"] + $order["add_on_price"]) * $order["quantity"];
 
                                         ?>
-                                        <p class="card-text"><?php echo $order["food_name"]; ?> - <?php echo $order["add_on_name"]; ?></p>
+                                        <p class="card-text"><?php echo $order["food_name"]; ?> - <?php echo ($order["add_on_name"] != null) ? $order["add_on_name"]: 'No AddOn' ?></p>
                                         <p class="card-text">Quantity: <?php echo $order["quantity"]; ?> - Price: RM<?php echo number_format($food_add_price, 2);  ?></p>
                                         <?php
                                         $totalPrice += $order["total_price"];
@@ -179,6 +180,7 @@
                                 <p class="card-text">Total Price: RM<?php echo number_format($totalPrice, 2); ?></p>
                                 <!-- You can add more information here -->
                             </div>
+                            <button class="btn btn-warning" onclick="printReceipt('<?php echo urlencode($date); ?>', '<?php echo urlencode($time); ?>', '<?php echo $uid; ?>')" >Print Receipt</button>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -325,6 +327,10 @@
     <script src="js/popup.js"></script>
 
     <script>
+    function printReceipt(orderDate, orderTime, userid) {
+        window.location.href = 'print_user.php?orderDate='+ orderDate + '&uid=' + userid  + '&orderTime=' + orderTime ;
+    }
+
     function pop(id) {
         var fdid = id;
 
