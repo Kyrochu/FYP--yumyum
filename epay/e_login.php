@@ -32,10 +32,11 @@
 
         
         <div class="form_page">
+            <br>
             <div class="btn_anime">
                 <div id="btn" ></div>
-                <button type="button" class="LG_RE_btn"  onclick="login()" style="color: rgb(255, 252, 255);">Log In</button>
-                <button type="button" class="LG_RE_btn" id="place" onclick="register()" style="color: rgb(255, 252, 255);">Register</button>
+                <button type="button" class="LG_RE_btn"  onclick="login()" style="color: rgb(255, 252, 255); margin-left:60px;">Log In</button>
+                
             </div>
             
             <!-- log side -->
@@ -58,41 +59,7 @@
 
             
 
-            <!-- register side -->
-            <form id="reg" class="input_group" action="e_register.php" method="POST"> 
-                <input type="text" class="input_place" name="name" placeholder="Name" required oninput="validateName(this)" >
-                <div id="container" style="margin-top: 5px;">
-                    <span id="nameError" style="color: red;"></span>
-                </div>
-
-                <input type="text" class="input_place" name="contact" placeholder="Contact Number " required oninput="validateContact(this)">
-                <div id="container" style="margin-top: 5px;">
-                    <span id="contactError" style="color: red;"></span>
-                </div>
-
-                <input type="email" class="input_place" name="email" placeholder="example@gmail.com" required oninput="validateEmail(this)">
-                <div id="container" style="margin-top: 5px;">
-                    <span id="emailError" style="color: red;"></span>
-                </div>
-
-                <input type="password" class="input_place" name="new_password" placeholder="Create Password" required oninput="validatePassword(this)">
-                <div id="container" style="margin-top: 5px;">
-                    <span id="passwordError" style="color: red;"></span>
-                </div>
-
-                <input type="password" class="input_place" name="com_password" placeholder="Confirm Password" required oninput="validatePasswordMatch(this)">
-                <div id="container" style="margin-top: 5px;">
-                    <span id="passwordMatchError" style="color: red;"></span>
-                </div>
-
-                <input type="text" class="input_place" name="pin" placeholder="6-digit pin" required maxlength="6" oninput="validatePin(this)">
-                <div id="container" style="margin-top: 5px;">
-                    <span id="pinError" style="color: red;"></span>
-                </div>
-
-                <button type="submit" class="submit_btn" name="regbtn" style="color: rgb(255, 252, 255);">Register</button>
-                
-            </form>
+            
         </div>
 
         

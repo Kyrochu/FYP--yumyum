@@ -95,10 +95,10 @@
             if (isset($_GET['uid'])) {
                 $uid = $_GET['uid'];
 
-                $query = "SELECT * FROM e_user WHERE user_id = '$uid'";
+                $query = "SELECT * FROM users WHERE id = '$uid'";
                 $result = mysqli_query($connect, $query);
                 $row_user = mysqli_fetch_assoc($result);
-                $u_name = $row_user["user_name"];
+                $u_name = $row_user["name"];
             }
         ?>
 
@@ -158,15 +158,17 @@
         <?php
             $wallet_query = "SELECT * FROM e_wallet WHERE user_id = '$uid'";
             $wallet_result = mysqli_query($connect, $wallet_query);
-            $e_debit = 0;
+            
 
             if (mysqli_num_rows($wallet_result) > 0) {
                 // If wallet data exists for the user
+                $e_debit = 0; // Initialize e_debit to 0
                 while ($wallet_row = mysqli_fetch_assoc($wallet_result)) {
-
                     $e_debit = $wallet_row['w_debit'];
-        
                 }
+            } else {
+                // If wallet data doesn't exist for the user
+                $e_debit = null;
             }
         ?>
 
@@ -176,11 +178,22 @@
                     <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white;">
                         <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Wallet</h5></div>
                         <div class="card-body">
-                            <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Debit </h2>
-                            <h3 class="card-text" style="color: white; text-shadow: 2px 2px 10px white;">RM <?php echo number_format($e_debit,2) ?></h3>
-                            
+                            <?php if ($e_debit !== null) { ?>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Your Debit </h2>
+                                <h3 class="card-text" style="color: white; text-shadow: 2px 2px 10px white;">RM <?php echo number_format($e_debit,2) ?></h3>
                         </div>
-                        <button type="button" class="btn btn-success " style="text-shadow: 2px 2px 10px white;" id="topUpButton">Top Up</button>
+                                <button type="button" class="btn btn-primary text-light" style="text-shadow: 2px 2px 10px white;" id="topUpButton" onclick="handleTopUp()">Top Up</button>
+                            <?php } else { ?>
+                                
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white;">Please activate your wallet</h2><br>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">6 digit pin : <input type="text" name="pin" class="input" id="pin" placeholder="Enter 6 digit" required maxlength="6" oninput="validatePin(this)" require > </h2>
+                                <div id="pinError" style="color: red;"></div>
+
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm pin : <input type="text" name="cpin" class="input" id="cpin" placeholder="Enter again the digit" required maxlength="6" oninput="confirmPin(this)" require> </h2>
+                                <div id="confirmPinError" style="color: red;"></div>
+                        </div>
+                                <button type="button" class="btn btn-primary text-light" style="text-shadow: 2px 2px 10px white;" id="active" disabled>Active</button>
+                            <?php } ?>
                     </div>
                 </div>
             </div>
@@ -193,13 +206,94 @@
         
         
         <script>
-            var topUpButton = document.getElementById("topUpButton");
-
-            topUpButton.addEventListener("click", function() {
+            function handleTopUp() {
                 var uid = <?php echo json_encode($uid); ?>;
-
                 window.location.href = "e_topup.php?uid=" + uid;
+            }
+
+            // Event listener for the "Active" button
+            document.getElementById('active').addEventListener('click', function() {
+                var uid = <?php echo json_encode($uid); ?>;
+                var pin = document.getElementById('pin').value;
+                var cpin = document.getElementById('cpin').value;
+
+                // Send an AJAX request to activate the wallet
+                $.ajax({
+                    url: "active_wallet.php", // Path to the PHP file that handles wallet activation
+                    method: "POST",
+                    data: { uid: uid , pin: pin , cpin: cpin},
+                    success: function(response) {
+                        // Redirect the user to the appropriate page after successful activation
+                        window.location.href = "e_index.php?uid=" + uid;
+                        alert("Wallet activated successfully!");
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                        alert("Error activating wallet. Please try again later.");
+                    }
+                });
             });
+
+            function validatePin(input) {
+                var pin = input.value;
+                var errorElement = document.getElementById('pinError');
+
+                // Remove non-numeric characters from input
+                pin = pin.replace(/\D/g, '');
+
+                if (pin.length > 6) {
+                    // Trim the pin to 6 characters
+                    pin = pin.slice(0, 6);
+                }
+
+                // Update the input value
+                input.value = pin;
+
+                if (pin.length < 6) {
+                    errorElement.textContent = 'Pin must be exactly 6 digits.';
+                } else {
+                    errorElement.textContent = '';
+                    checkButtonState(); // Check the button state after PIN validation
+                }
+            }
+
+            function confirmPin(input) {
+                var pin = document.getElementById('pin').value;
+                var cpin = input.value;
+                var confirmErrorElement = document.getElementById('confirmPinError');
+
+                // Remove non-numeric characters from input
+                cpin = cpin.replace(/\D/g, '');
+
+                if (cpin.length > 6) {
+                    // Trim the pin to 6 characters
+                    cpin = cpin.slice(0, 6);
+                }
+
+                // Update the input value
+                input.value = cpin;
+
+                if (pin !== cpin) {
+                    confirmErrorElement.textContent = 'Pins do not match.';
+                } else {
+                    confirmErrorElement.textContent = '';
+                    checkButtonState(); // Check the button state after confirm PIN validation
+                }
+            }
+
+            function checkButtonState() {
+                var pin = document.getElementById('pin').value;
+                var cpin = document.getElementById('cpin').value;
+                var activeButton = document.getElementById('active');
+
+                if (pin.length === 6 && cpin.length === 6 && pin === cpin) {
+                    activeButton.disabled = false;
+                } else {
+                    activeButton.disabled = true;
+                }
+            }
+
+            
 
         </script>
 
