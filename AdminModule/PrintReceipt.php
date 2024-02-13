@@ -92,9 +92,18 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
 
 <div class="container">
 <div class="row">
+    
         <div class="col-lg-12">
             <div class="card">
                 <div class="card-body">
+
+                <div class="col-sm-6">
+                        <div class="text-muted">
+                            <h5 class="font-size-15 mb-2"><i class="fa fa-utensils me-3"></i>Yum Yum Restaurant</h5>
+                            <!-- Rest of the address information -->
+                        </div>
+                </div>
+
                     <hr class="my-4">
 
                     <div class="row">
