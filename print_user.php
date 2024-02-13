@@ -37,6 +37,7 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
 
                             // Gather order details
                             $UID = $row_order_data['user_id'];
+                            $pay_by = $row_order_data["pay_by"];
 
                             $select_username_query = "SELECT * FROM users WHERE id = '$UID'";
                             $result_username_query = mysqli_query($connect, $select_username_query);
@@ -130,6 +131,10 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                 <div class="mt-4">
                                     <h5 class="font-size-15 mb-1">Receipt Time:</h5>
                                     <p> <?php echo $orderTime ?> </p>
+                                </div>
+                                <div class="mt-4">
+                                    <h5 class="font-size-15 mb-1">Payment Method:</h5>
+                                    <p> <?php echo $pay_by ?> </p>
                                 </div>
                             </div>
                         </div>

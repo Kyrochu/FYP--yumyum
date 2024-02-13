@@ -216,7 +216,7 @@
                                         <p class="card-text">Name: <?php echo $group['name']; ?></p>
                                         <p class="card-text">Date: <?php echo $date; ?></p>
                                         <p class="card-text">Time: <?php echo $time; ?></p>
-                                        <p class="card-text">Pay By: <?php echo $group['pay'];; ?></p>
+                                        <p class="card-text">Payment Method: <?php echo $group['pay'];; ?></p>
                                         <div class="card-text">Food Ordered:
                                             <div class="card-body ">
                                             <?php
