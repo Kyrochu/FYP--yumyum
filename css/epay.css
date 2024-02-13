@@ -9,7 +9,7 @@
 body
 {
     min-height:100vh;
-    background-image:url(../img/daypaybg.jpg);
+    /* background-image:url(../img/daypaybg.jpg); */
     background-repeat: no-repeat;
     background-size:cover;
     color:white;
@@ -17,6 +17,7 @@ body
     background-position:center;
     overflow-x: hidden;
     position: relative;
+    background-color: orange;
 
 }
 
@@ -964,7 +965,7 @@ header h1
     border-radius:8px;
     transition:0.5s;
     position:relative;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .cardtab

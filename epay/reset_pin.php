@@ -135,7 +135,7 @@
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
-                            <a href="e_login.php"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Logout </span> </a>
+                        <a href="../log_index.php?userID=<?php echo $uid; ?>"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Back to restaurant </span> </a>
                         </div>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                         <form action="" method="POST">
                         <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Reset 6 Digit Pin</h5></div>
                             <div class="card-body">
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Email : <input type="email" name="email" class="input" id="" placeholder="example@gmail.com" required oninput="validateEmail(this)"></h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Email : <input type="email" name="email" class="input" id="" placeholder="Example@gmail.com" required oninput="validateEmail(this)"></h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="emailError" style="color: white;"></span>
@@ -215,14 +215,14 @@
                                     <span id="passwordError" style="color: white;"></span>
                                 </div>
                                 <br>
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">6 degit pin : <input type="text" name="pin" class="input" id="pin" placeholder="Enter 6 degit"required maxlength="6" oninput="validatePin(this)" > </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">6 digit pin : <input type="text" name="pin" class="input" id="pin" placeholder="Enter 6 digit"required maxlength="6" oninput="validatePin(this)" > </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="pinError" style="color: white; "></span>
                                 </div>
                                 <br>
 
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm pin : <input type="text" name="pin" class="input" id="cpin" placeholder="Enter 6 degit"required maxlength="6" oninput="confirmPin(this)" > </h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Confirm pin : <input type="text" name="pin" class="input" id="cpin" placeholder="Enter Confirm pin"required maxlength="6" oninput="confirmPin(this)" > </h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="confirmPinError" style="color: white; "></span>

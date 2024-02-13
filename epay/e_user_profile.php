@@ -119,7 +119,7 @@
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
-                            <a href="e_login.php"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Logout </span> </a>
+                        <a href="../log_index.php?userID=<?php echo $uid; ?>"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Back to restaurant </span> </a>
                         </div>
                     </div>
                 </div>

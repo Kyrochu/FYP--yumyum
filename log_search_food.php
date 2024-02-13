@@ -257,7 +257,7 @@
 
 
         <!-- Back to Top -->
-        <a href="log_menu.php" class="btn btn-lg btn-primary  back-to-top">Back To Menu</a>
+        <a href="log_menu.php?userID=<?php echo $uid ?>" class="btn btn-lg btn-primary  back-to-top">Back To Menu</a>
     </div>
 
     <!-- cart start -->
@@ -366,18 +366,22 @@
                     document.getElementById('popup').innerHTML += '<div class="checkbox-group">';
 
                     data.options.forEach(option => {
+                        let addPrice = parseFloat(option.add_price).toFixed(2); // Calculate addPrice for each option
                         document.getElementById('popup').innerHTML += `
-                                <input type="checkbox" name="checkboxGroup[]" value="${option.add_price}">
-                                ${option.add_name} (+RM ${option.add_price})<br>
-                            `;
+                            <input type="checkbox" name="checkboxGroup[]" 
+                                value="${option.add_price}" data-option-name="${option.add_name}"
+                                data-option-id="${option.add_id}">
+                            ${option.add_name} (+RM ${addPrice})<br>
+                        `;
                     });
 
                     document.getElementById('popup').innerHTML += '</div>';
                 }
 
                 // Add buttons and other HTML as needed
-                document.getElementById('popup').innerHTML += `
-                        <button type="button" onclick="submitForm(${fdid})">Submit</button>
+                document.getElementById('popup').innerHTML += 
+                    `
+                        <button type="button" onclick="submitForm(<?php echo $uid; ?>, ${fdid})">Submit</button>
                         <button type="button" onclick="closePopup()">close</button>
                     `;
 
@@ -392,43 +396,63 @@
         });
     }
 
-    function submitForm(id) {
+
+    function submitForm(userid, id) {
         var fdid = id;
 
         document.getElementById('overlay').style.display = 'none';
         document.getElementById('popup').classList.remove('visible');
 
-        setTimeout(function() {
+        setTimeout(function () {
             document.getElementById('popup').style.display = 'none';
         }, 500);
 
         var checkboxes = document.querySelectorAll('input[name="checkboxGroup[]"]:checked');
 
-        // Calculate the total price
-        var addPrice = 0;
-        checkboxes.forEach(function(checkbox) {
-            addPrice += parseFloat(checkbox.value);
+        checkboxes.forEach(function (checkbox) {
+            var addPrice = parseFloat(checkbox.value);
+            var addName = checkbox.getAttribute('data-option-name');
+            var addid = checkbox.getAttribute('data-option-id');
+
+
+            $.ajax({
+                type: "GET",
+                data: {
+                    food_id: fdid,
+                    add_on_price: addPrice,
+                    add_on_name: addName,
+                    add_on_id: addid,
+                    uid: userid
+                },
+                url: "add_to_cart.php",
+                success: function (response) {
+                    console.log("Data added to cart successfully");
+                }
+            });
         });
 
-        $.ajax({
-            type: "GET",
-            data: {
-                food_id: fdid,
-                add_on: addPrice
-            },
-            url: "add_to_cart.php",
-            success: function(response) {
-                console.log("Data added to cart successfully");
-            }
-        });
+         // If no checkboxes are selected, send default or null values
+        if (checkboxes.length === 0) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    food_id: fdid,
+                    add_on_price: null, // or any default value you prefer
+                    add_on_name: null,  // or any default value you prefer
+                    uid: userid
+                },
+                url: "add_to_cart.php",
+                success: function (response) {
+                    console.log("Data added to cart successfully (no checkboxes selected)");
+                }
+            });
+        }
 
-        // window.location.reload();
-        
-        setTimeout(function() {
+        setTimeout(function () {
             window.location.reload();
         }, 300);
-        
     }
+
     </script>
 
     <!-- for add and delete cart tab -->

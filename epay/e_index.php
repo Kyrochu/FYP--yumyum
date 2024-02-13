@@ -119,7 +119,7 @@
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
-                            <a href="e_login.php"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Logout </span> </a>
+                            <a href="../log_index.php?userID=<?php echo $uid; ?>"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Back to restaurant </span> </a>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
             }
         ?>
 
-        <div class="container" style="opacity: 0.8;">
+        <div class="container" style="opacity: 0.9;">
             <div class="row justify-content-center">
                 <div class="col-md-6"> <!-- Adjust the column width as needed -->
                     <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white;">
@@ -219,11 +219,11 @@
 
                 // Send an AJAX request to activate the wallet
                 $.ajax({
-                    url: "active_wallet.php", // Path to the PHP file that handles wallet activation
+                    url: "active_wallet.php", 
                     method: "POST",
                     data: { uid: uid , pin: pin , cpin: cpin},
                     success: function(response) {
-                        // Redirect the user to the appropriate page after successful activation
+
                         window.location.href = "e_index.php?uid=" + uid;
                         alert("Wallet activated successfully!");
                     },
