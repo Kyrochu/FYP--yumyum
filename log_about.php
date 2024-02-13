@@ -173,7 +173,7 @@
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/team-1.jpg" alt="">
                             </div>
-                            <h5 class="mb-0">Full Name</h5>
+                            <h5 class="mb-0">Chu Wei Wang</h5>
                             <small>Designation</small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -187,7 +187,7 @@
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/team-2.jpg" alt="">
                             </div>
-                            <h5 class="mb-0">Full Name</h5>
+                            <h5 class="mb-0">Brian Lee Chong Ming</h5>
                             <small>Designation</small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -201,7 +201,7 @@
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/team-3.jpg" alt="">
                             </div>
-                            <h5 class="mb-0">Full Name</h5>
+                            <h5 class="mb-0">James Lew Ming Ren</h5>
                             <small>Designation</small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -215,7 +215,7 @@
                             <div class="rounded-circle overflow-hidden m-4">
                                 <img class="img-fluid" src="img/team-4.jpg" alt="">
                             </div>
-                            <h5 class="mb-0">Full Name</h5>
+                            <h5 class="mb-0">Faris Kahmis</h5>
                             <small>Designation</small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
@@ -247,12 +247,7 @@
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+6012 345 67890</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>yumyumdeliveryfood@gmail.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+                         
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
@@ -263,8 +258,7 @@
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Newsletter</h4>
-                        <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
-                        
+                        <p>Welcome to our Restaurant. </p>                        
                     </div>
                 </div>
             </div>
