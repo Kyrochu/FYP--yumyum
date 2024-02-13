@@ -117,7 +117,7 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                 <p> <?php echo $contact ?> </p>
                             </div>
                         </div>
-                        <!-- end col -->c
+                        <!-- end col -->
                         <div class="col-sm-6">
                             <div class="text-muted text-sm-end">
                                 <div>
