@@ -66,7 +66,7 @@
                     <span id="passwordError" style="color: red;"></span>
                 </div>
 
-                <input type="text" class="input_place" name="pin" id="pin" placeholder="6-digit pin" required maxlength="6" oninput="validatePin(this)">
+                <input type="text" class="input_place" name="pin" id="pin" placeholder="6-digits pin" required maxlength="6" oninput="validatePin(this)">
                 <div id="pinContainer" style="margin-top: 5px; margin-left: 38px;">
                     <span id="pinError" style="color: red;"></span>
                 </div>

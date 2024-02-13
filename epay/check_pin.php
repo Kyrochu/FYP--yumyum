@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $total_price = $_POST["price"];
 
     // Query the e_user table to retrieve the user's record
-    $query = "SELECT * FROM e_user WHERE user_email = ? AND user_pass = ?";
+    $query = "SELECT * FROM users WHERE email = ? AND password = ?";
     $stmt = mysqli_prepare($connect, $query);
     mysqli_stmt_bind_param($stmt, "ss", $userEmail, $userPassword);
     mysqli_stmt_execute($stmt);
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result && mysqli_num_rows($result) > 0) {
         $row_user = mysqli_fetch_assoc($result);
-        $e_u_id = $row_user["user_id"]; // Retrieve the user ID
+        $e_u_id = $row_user["id"]; // Retrieve the user ID
         $pin_user = $row_user["pin"];
 
         if (trim($pin_user) === trim($pin)) {
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $addid = $row_food['add_on_id'];
 
                             // Prepare and execute the order insertion query
-                            $order_query = "INSERT INTO `order` (user_id, food_id, num_food, add_on_id , or_time) VALUES (?, ?, ?, ?, NOW())";
+                            $order_query = "INSERT INTO `order` (user_id, food_id, num_food, add_on_id , or_time , pay_by) VALUES (?, ?, ?, ?, NOW(), 'wallet')";
                             $order_stmt = mysqli_prepare($connect, $order_query);
                             mysqli_stmt_bind_param($order_stmt, "iiii", $user_id, $food_id, $quantity, $addid);
                             $order_result = mysqli_stmt_execute($order_stmt);
