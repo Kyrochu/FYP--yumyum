@@ -228,7 +228,7 @@
                                     <?php else: ?>
                                         <button class="btn btn-secondary w-100 shadow-0 mb-2" disabled> No Items to Purchase </button>
                                     <?php endif; ?>
-                                    <a href="log_menu.php?userID=<?php echo $uid; ?>" class="btn btn-light w-100 border mt-2"> Back to shop </a>
+                                    <a href="log_menu.php?userID=<?php echo $uid; ?>" class="btn btn-light w-100 border mt-2"> Back to menu </a>
                                 </div>
                               </div>
                           </div>
