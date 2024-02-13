@@ -173,7 +173,8 @@
                                 <img class="img-fluid" src="img/team-1.jpg" alt="">
                             </div>
                             <h5 class="mb-0">Chu Wei Wang</h5>
-                            <small>Designation</small>
+                            <small>Executive Chef
+                            </small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -187,7 +188,8 @@
                                 <img class="img-fluid" src="img/team-2.jpg" alt="">
                             </div>
                             <h5 class="mb-0">Brian Lee Chong Ming</h5>
-                            <small>Designation</small>
+                            <small>Sous Chef
+                            </small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -201,7 +203,8 @@
                                 <img class="img-fluid" src="img/team-3.jpg" alt="">
                             </div>
                             <h5 class="mb-0">James Lew Ming Ren</h5>
-                            <small>Designation</small>
+                            <small>Pastry Chef
+                            </small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -215,7 +218,8 @@
                                 <img class="img-fluid" src="img/team-4.jpg" alt="">
                             </div>
                             <h5 class="mb-0">Faris Kahmis</h5>
-                            <small>Designation</small>
+                            <small>Chef de Cuisine
+                            </small>
                             <div class="d-flex justify-content-center mt-3">
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
                                 <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
