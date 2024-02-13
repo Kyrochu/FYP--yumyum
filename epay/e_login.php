@@ -62,7 +62,6 @@
                     <span id="lpasswordError" style="color: red; margin-left:38px;"></span>
                 </div>
                 <br>
-                <a href="" class="forget">Forget Password</a>
                 <br><br>
                 <button type="submit" class="submit_btn" name="logbtn" style="color: rgb(255, 252, 255);">Log in</button>
             </form>
