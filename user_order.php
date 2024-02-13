@@ -136,6 +136,7 @@
                         $fid = $row_order["food_id"];
                         $n_food = $row_order["num_food"];
                         $add_id = $row_order["add_on_id"];
+                        $pay_by = $row_order["pay_by"];
 
                         $menu = "SELECT * FROM menu WHERE food_id = ?";
                         $menu_stmt = $connect->prepare($menu);
@@ -169,6 +170,7 @@
                                 $grouped_orders[$order_group_key] = [
                                     'name' => $row_user["name"],
                                     'time' => $row_order["or_time"],
+                                    'pay' => $pay_by,
                                     'foods' => []
                                 ];
                             }
@@ -179,7 +181,8 @@
                                 'food_price' => $row_menu["food_price"] + $add_on_price,
                                 'food_num' => $row_order["num_food"],
                                 'add_on_name' => $add_on_name,
-                                'add_on_price' => $add_on_price
+                                'add_on_price' => $add_on_price,
+                                'pay_by' => $pay_by,
                             ];
                         } else {
                             echo "No menu items found for food_id: $fid";
@@ -196,6 +199,7 @@
                             $total = 0;
                             if (isset($group['time'])) {
                                 $datetime = $group['time'];
+                                $pay = 
 
                                 // Extract date and time parts
                                 $date = date('Y-m-d', strtotime($datetime));
@@ -212,6 +216,7 @@
                                         <p class="card-text">Name: <?php echo $group['name']; ?></p>
                                         <p class="card-text">Date: <?php echo $date; ?></p>
                                         <p class="card-text">Time: <?php echo $time; ?></p>
+                                        <p class="card-text">Pay By: <?php echo $group['pay'];; ?></p>
                                         <div class="card-text">Food Ordered:
                                             <div class="card-body ">
                                             <?php
