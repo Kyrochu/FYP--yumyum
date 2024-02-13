@@ -119,7 +119,7 @@
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
-                            <a href="e_login.php"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Logout </span> </a>
+                            <a href="../log_index.php?userID=<?php echo $uid; ?>"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Back to restaurant </span> </a>
                         </div>
                     </div>
                 </div>
@@ -172,7 +172,7 @@
             }
         ?>
 
-        <div class="container" style="opacity: 0.8;">
+        <div class="container" style="opacity: 0.9;">
             <div class="row justify-content-center">
                 <div class="col-md-6"> <!-- Adjust the column width as needed -->
                     <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white;">

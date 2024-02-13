@@ -17,6 +17,11 @@
         
     </head>
     <body>
+
+        <?php
+            $uid = isset($_GET['userID']) ? $_GET['userID'] : null;
+        ?>
+
         <header> 
     
         
@@ -24,7 +29,12 @@
         
                 <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
                     
-                    <img src="../img/daypay logo.png" alt="No Image" >
+                    <h1>YumYum E-Wallet</h1>
+                    <ul>
+                        <li>
+                            <a href="../log_index.php?userID=<?php echo $uid; ?>">Back to restaurant</a>
+                        </li>
+                    </ul>
                     
                 </div>
         

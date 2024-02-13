@@ -220,6 +220,9 @@ $postcode = $row["postcode"];
             </div>
 
             <div class="EP">
+                <a href="../epay/e_login.php?userID=<?php echo $uid?>">E-Wallet</a>
+            </div>
+            <div class="EP">
                 <a href="../user_order.php?userID=<?php echo $uid?>">Order Detail</a>
             </div>
 

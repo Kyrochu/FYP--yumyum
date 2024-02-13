@@ -16,12 +16,12 @@
     justify-content: space-between;
 }
 
-.navbar img
+.navbar h1
 {
     height:5rem ; 
-    width:5rem ;
-    padding-left:50px;  
-    margin-top: 10px;
+    width:100% ;
+    padding-left:25.5em;  
+    margin-top: 50px;
 }
 
 .navbar ul
@@ -64,9 +64,10 @@
 
 body
 {
-    background-image:url(../img/daypaybg.jpg);
+    /* background-image:url(../img/daypaybg.jpg); */
     background-repeat: no-repeat;
     background-size:cover;
+    background-color: orange;
 }
 
 .form_page
@@ -77,7 +78,7 @@ body
     margin: 6% auto;
     margin-top: 12em;
     box-shadow: 0 0 20px 9px rgba(0, 0, 0, 0.411);
-    background-color: rgba(0, 0, 0, 0.781);
+    background-color: rgba(0, 0, 0, 0.9);
     padding: 5px;
     overflow: hidden;
     border-radius: 3em;

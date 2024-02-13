@@ -135,7 +135,7 @@
                     </div>
                     <div class="item">
                         <div class="logout" style="margin-top: 600px;">
-                            <a href="e_login.php"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Logout </span> </a>
+                        <a href="../log_index.php?userID=<?php echo $uid; ?>"><i class="fas fa-sign-out-alt" > </i> <span class="menu-text"> Back to restaurant </span> </a>
                         </div>
                     </div>
                 </div>
@@ -203,7 +203,7 @@
                         <form action="" method="POST">
                         <div class="card-header"><h5 style="color: white; text-shadow: 2px 2px 10px white;">Reset Password</h5></div>
                             <div class="card-body">
-                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Old Password : <input type="password" name="o_pass" class="input" id="" placeholder="Create Password"  required oninput="ovalidatePassword(this)"></h2>
+                                <h2 class="card-title" style="color: white; text-shadow: 2px 2px 10px white; font-size:x-large;">Old Password : <input type="password" name="o_pass" class="input" id="" placeholder="Old Password"  required oninput="ovalidatePassword(this)"></h2>
                                 
                                 <div id="container" style="margin-top: 5px;">
                                     <span id="opasswordError" style="color: white;"></span>
