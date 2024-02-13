@@ -335,7 +335,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         ?>
                                         
                                         <h3> Contact Number : <?php echo $row_user['contact_number']; ?> </h3>
-                                        <h3> Pay By : <?php echo $group['pay']; ?> </h3>
+                                        <h3> Payment Method : <?php echo $group['pay']; ?> </h3>
                                         <h3> Address : </h3>
                                         <h3> <?php echo $row_user['address']; ?>, <?php echo $row_user['city']; ?>, <?php echo $row_user['state']; ?>, <?php echo $row_user['postcode']; ?> </h3>
 
@@ -428,7 +428,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     <?php if (!empty($order_details)) : ?>
                                         <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
                                         <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
-                                        <h3>Pay By: <?php echo $order_details[0]['pay_by']; ?></h3>
+                                        <h3>Payment Method: <?php echo $order_details[0]['pay_by']; ?></h3>
                                         <h3>Address: </h3>
                                         <h3> <?php echo $order_details[0]['address'];?>, <?php echo $order_details[0]['city']; ?>, <?php echo $order_details[0]['state']; ?>, <?php echo $order_details[0]['postcode']; ?>, </h3>
                                     <?php endif; ?>

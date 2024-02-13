@@ -57,6 +57,7 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                             $addOnName = $row_order_data['add_on_name'];
                             $price = $row_order_data['price'];
                             $addon_price = $row_order_data['add_on_price'];
+                            $pay_by = $row_order_data['pay_by'];
 
                             
                             if ($addOnName == null) 
@@ -132,6 +133,10 @@ $orderTime = isset($_GET['orderTime']) ? urldecode($_GET['orderTime']) : null;
                                 <div class="mt-4">
                                     <h5 class="font-size-15 mb-1">Receipt Time:</h5>
                                     <p> <?php echo $orderTime ?> </p>
+                                </div>
+                                <div class="mt-4">
+                                    <h5 class="font-size-15 mb-1">Payment Method:</h5>
+                                    <p> <?php echo $pay_by ?> </p>
                                 </div>
                             </div>
                         </div>
