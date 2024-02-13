@@ -149,13 +149,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div>
 
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
-
             <div class="date">
 
                 <span id="day"> Day </span>
@@ -177,55 +170,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <div class="userTable">
 
             <h2 style="margin-left:5px;text-transform:uppercase;text-decoration:underline;margin-top:35px;"> User Accounts </h2>
-
-            <div class="addUserbtn">
-
-                <button style="background:burlywood; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
-                    ADD NEW USER 
-                </button>
-
-            </div>
-
-            <div class="popup">
-                
-                <div class="form">
-
-                    <h2 class="AddAdminTitle"> ADD NEW USER </h2>
-                    
-                    <form method="post"> 
-                        
-                        <div class="form-element">
-                            Username <input type="text" name="name" required placeholder="Enter New Username">                    
-                        </div>
-
-                        <div class="form-element">  
-                            Email <input type="email" name="email" required placeholder="Enter New Email">    
-                        </div>
-
-                        <div class="form-element">  
-                            Contact Number <input type="tel" name="contact" required placeholder="Enter Contact Number (e.g.,016 - 777 8888 or 011- 6666 9999)">    
-                        </div>
-
-                        <div class="form-element">
-                        Password <input type="password" name="password" required placeholder="Enter New Password">
-                        </div>   
-
-                        <div class="form-element">
-                        Confirm Password <input type="password" name="cpassword" required placeholder="Confirm password">
-                        </div>      
-
-                        <div class="form-element">
-                            <input type="submit" name="adduser" value="ADD NEW USER" class="form-btn">
-                        </div>
-
-                        <div class="form-element">
-                            <button class="cancel-btn"> CANCEL </button>
-                        </div>
-
-                    </form>
-
-                </div>
-            </div>
 
             <?php
 
@@ -287,7 +231,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> Email </th>
                         <th> Contact Number </th>
                         <th> Address </th>
-                        <th> Disable</th>
+                        <th> Action</th>
 
                     </tr>
 
@@ -308,7 +252,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
-                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to disable this account?')"> DISABLE </button>
+                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to disable this account?')"> REMOVE </button>
                             </form>
                         </th>
                       

@@ -882,7 +882,7 @@ header h1
 {
     width: calc(33.33% - 170px); 
     box-sizing: border-box;
-    margin-top:10px;
+    margin-top:15px;
     margin-right:20px;
     display: inline-block;
     vertical-align: top;
@@ -895,16 +895,17 @@ header h1
 .DeliveredstatusBox 
 {
     display: flex;
+    width:1370px;
     flex-wrap: wrap;
     justify-content: space-between;
     margin-right:200px;
-    margin-top:10px;
+    margin-top:20px;
     vertical-align: top;
-    background-color: #fff; /* Background color for the boxes */
-    border: 1px solid #ddd; /* Border color */
+    background-color: #fff; 
+    border: 1px solid #ddd;
     padding: 15px;
     border-radius: 5px;
-
+    flex-direction: auto;
 }
 
 .Status-container
@@ -927,7 +928,7 @@ header h1
 {
     flex-basis: 100%;
     border: 1px solid black;
-    padding: 10px;
+    padding: 100px;
     margin-top: 10px; /* Adjust margin as needed */
 }
 

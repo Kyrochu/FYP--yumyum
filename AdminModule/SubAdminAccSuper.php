@@ -151,13 +151,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             </div>
 
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
-
             <div class="date">
 
                 <span id="day"> Day </span>
@@ -214,7 +207,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                         <div class="form-element">
                             ROLE <select name="admin_type">
-                                <option value="SuperAdmin">Super Admin</option>
                                 <option value="Admin">Admin</option>
                             </select>
                         </div>
