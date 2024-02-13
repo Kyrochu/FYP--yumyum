@@ -218,6 +218,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         $fid = $row_order["food_id"];
                         $n_food = $row_order["num_food"];
                         $add_id = $row_order["add_on_id"];
+                        $pay_by = $row_order["pay_by"];
 
                         $menu = "SELECT * FROM menu WHERE food_id = ?";
                         $menu_stmt = $connect->prepare($menu);
@@ -257,6 +258,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     'Postcode' => $row_user["postcode"],
                                     'uid' => $row_order["user_id"],
                                     'time' => $row_order["or_time"],
+                                    'pay' => $pay_by,
                                     'foods' => []
                                 ];
                             }
@@ -333,6 +335,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         ?>
                                         
                                         <h3> Contact Number : <?php echo $row_user['contact_number']; ?> </h3>
+                                        <h3> Pay By : <?php echo $group['pay']; ?> </h3>
                                         <h3> Address : </h3>
                                         <h3> <?php echo $row_user['address']; ?>, <?php echo $row_user['city']; ?>, <?php echo $row_user['state']; ?>, <?php echo $row_user['postcode']; ?> </h3>
 

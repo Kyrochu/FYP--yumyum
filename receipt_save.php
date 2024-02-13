@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $addid = $row['add_on_id'];
 
             // Insert the data into the "order" table
-            $order_query = "INSERT INTO `order` (user_id, food_id, num_food, add_on_id , or_time, pay_by) VALUES (?, ?, ?, ?, NOW(), 'card')";
+            $order_query = "INSERT INTO `order` (user_id, food_id, num_food, add_on_id , or_time, pay_by) VALUES (?, ?, ?, ?, NOW(), 'Card')";
             $order_stmt = mysqli_prepare($connect, $order_query);
             mysqli_stmt_bind_param($order_stmt, "iiii", $user_id, $food_id, $quantity, $addid);
 
