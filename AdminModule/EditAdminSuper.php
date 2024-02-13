@@ -175,13 +175,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="edit-form">
                             USERNAME <input type="text" name="name" required placeholder="Username">                    
                         </div> 
-
-                        <div class="edit-form">
-                            ROLE <select name="admin_type">
-                                <option value="SuperAdmin">Super Admin</option>
-                                <option value="Admin">Admin</option>
-                            </select>
-                        </div>
                         
                         <div class="edit-form">
                             <button class="edit-submit-btn"> Update Admin </button>
@@ -191,7 +184,9 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                             <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='SubAdminAccSuper.php';">
                         </div>
 
-                    </form>
+            </form>
+
+            
 
 
 

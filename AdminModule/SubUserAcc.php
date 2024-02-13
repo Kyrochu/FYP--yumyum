@@ -229,7 +229,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> Email </th>
                         <th> Contact Number </th>
                         <th> Address </th>
-                        <th> Disable</th>
+                        <th> Action </th>
 
                     </tr>
 
@@ -250,7 +250,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
-                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to disable this account?')"> DISABLE </button>
+                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to delete this account?')"> DELETE </button>
                             </form>
                         </th>
                       

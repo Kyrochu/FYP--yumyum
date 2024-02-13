@@ -287,17 +287,29 @@ header h1
     width: 10%; /* Set the width for the first (ID) column */
 }
 
-.edit
+.adminAcc .edit,
+.adminAcc .dlt
+{
+    display: block;
+    margin: 0 auto;
+    padding: 3px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.adminAcc .edit
 {
     background-color:lightgreen;
     padding:3px;
+    width:60px;
+    margin-bottom:10px;
     font-weight:bold;
     cursor:pointer;
 }
 
 .edit:hover
 {
-    background-color:greenyellow;
+    background-color: greenyellow;
 }
 
 .dlt

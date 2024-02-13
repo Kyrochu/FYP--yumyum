@@ -280,8 +280,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> Username </th>
                         <th> Email </th>
                         <th> Role </th>
-                        <th> Edit </th>
-                        <th> DELETE</th>
+                        <th> Action </th>
+                        
 
                     </tr>
 
@@ -298,12 +298,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> <?php echo $row["name"]; ?> </th>
                         <th> <?php echo $row["email"]; ?> </th>
                         <th> <?php echo $row["admin_type"]; ?> </th>
-                        <th>
-                            <form method="post" action="EditAdminSuper.php"> 
-                                <input type="hidden" name="edit_id" value="<?php echo $row["id"]; ?>" >
-                                <button type="submit" name="edit-btn" class="edit"> EDIT </button>
-                            </form>
-                        </th>
                         <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
