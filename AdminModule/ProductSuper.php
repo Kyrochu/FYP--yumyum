@@ -123,8 +123,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
                     
                     <div class="item">
 
@@ -151,13 +149,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
-
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
 
             <div class="date">
 

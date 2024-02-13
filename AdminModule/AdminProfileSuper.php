@@ -71,12 +71,11 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
                     <!-- Dropdown List (Accounts)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -94,7 +93,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fa fa-cutlery"></i> <span class="menu-text"> Manage </span>
                     
                     <!-- Dropdown List (Manage)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -109,7 +108,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                     <div class="item"><a class="sub-btn"><i class="fas fa-book-reader"></i> <span class="menu-text"> Orders </span>
                     
                     <!-- Dropdown List (Orders)-->
-                    <i class="fas fa-angle-right dropdown"> </i>
+                    <i class="fas fa-angle-right dropdown" id="menu-icon"> </i>
                     </a>
 
                         <div class="sub-menu">
@@ -121,8 +120,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
                     
                     <div class="item">
 

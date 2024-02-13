@@ -98,7 +98,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
@@ -148,9 +147,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
-                    
+                                        
                     <div class="item">
 
                         <div class="logout">
@@ -176,13 +173,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
-
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
 
             <div class="date">
 
@@ -261,6 +251,10 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                             if (!isset($grouped_orders[$order_group_key])) {
                                 $grouped_orders[$order_group_key] = [
                                     'name' => $row_user["name"],
+                                    'Address' => $row_user["address"],
+                                    'City' => $row_user["city"],
+                                    'State' => $row_user["state"],
+                                    'Postcode' => $row_user["postcode"],
                                     'uid' => $row_order["user_id"],
                                     'time' => $row_order["or_time"],
                                     'foods' => []
@@ -274,7 +268,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                 'food_num' => $row_order["num_food"],
                                 'add_on_name' => $add_on_name,
                                 'add_on_price' => $add_on_price,
-                                'add_on_id' => $add_ID,
                             ];
                         } else {
                             echo "No menu items found for food_id: $fid";
@@ -313,7 +306,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                         <h2> Customer Info </h2>
                                         
-                                        <h3> Order Number : </h3>
                                         <?php
 
                                         // Fetch user details based on 'uid' from 'user' table
@@ -341,6 +333,9 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                         ?>
                                         
                                         <h3> Contact Number : <?php echo $row_user['contact_number']; ?> </h3>
+                                        <h3> Address : </h3>
+                                        <h3> <?php echo $row_user['address']; ?>, <?php echo $row_user['city']; ?>, <?php echo $row_user['state']; ?>, <?php echo $row_user['postcode']; ?> </h3>
+
                                         <hr>
 
                                         <div class="food-ordered"> 
@@ -357,7 +352,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                                 ?>
                                                     <h3 class="card-text"><?php echo $food["food_name"]; ?> - <?php echo $food["add_on_name"]; ?> </h3>
                                                     <h3 class="card-text"> Quantity: <?php echo $food["food_num"]; ?> - Price: RM <?php echo number_format(($food_total_price), 2); ?> </h3>
-                                                    <?php echo $food['add_on_id']; ?>
                                                     <br>
                                                     
                                                     <?php
@@ -431,6 +425,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     <?php if (!empty($order_details)) : ?>
                                         <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
                                         <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
+                                        <h3>Address: </h3>
+                                        <h3> <?php echo $order_details[0]['address'];?>, <?php echo $order_details[0]['city']; ?>, <?php echo $order_details[0]['state']; ?>, <?php echo $order_details[0]['postcode']; ?>, </h3>
                                     <?php endif; ?>
                                     <hr>
                                     

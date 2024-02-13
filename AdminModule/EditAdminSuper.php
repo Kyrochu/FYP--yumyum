@@ -72,7 +72,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
@@ -122,8 +121,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
                     
                     <div class="item">
 
@@ -150,13 +147,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
-
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
 
             <div class="date">
 
@@ -185,13 +175,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <div class="edit-form">
                             USERNAME <input type="text" name="name" required placeholder="Username">                    
                         </div> 
-
-                        <div class="edit-form">
-                            ROLE <select name="admin_type">
-                                <option value="SuperAdmin">Super Admin</option>
-                                <option value="Admin">Admin</option>
-                            </select>
-                        </div>
                         
                         <div class="edit-form">
                             <button class="edit-submit-btn"> Update Admin </button>
@@ -201,7 +184,9 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                             <input type="button" class="edit-cancel-btn" value="CANCEL" onclick="location.href='SubAdminAccSuper.php';">
                         </div>
 
-                    </form>
+            </form>
+
+            
 
 
 

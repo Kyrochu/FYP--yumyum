@@ -71,7 +71,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
@@ -121,8 +120,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
                     
                     <div class="item">
 
@@ -149,13 +146,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
-
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
 
             <div class="date">
 
@@ -209,8 +199,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> Username </th>
                         <th> Email </th>
                         <th> Role </th>
-                        <th> Edit </th>
-                        <th> DELETE</th>
+                        <th> Action </th>
 
                     </tr>
 
@@ -227,12 +216,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th> <?php echo $row["name"]; ?> </th>
                         <th> <?php echo $row["email"]; ?> </th>
                         <th> <?php echo $row["admin_type"]; ?> </th>
-                        <th>
-                            <form method="post" action="EditAdmin.php"> 
-                                <input type="hidden" name="edit_id" value="<?php echo $row["id"]; ?>" >
-                                <button type="submit" name="edit-btn" class="edit"> EDIT </button>
-                            </form>
-                        </th>
                         <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">

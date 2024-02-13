@@ -80,7 +80,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
@@ -130,8 +129,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
                     
                     <div class="item">
 
@@ -158,13 +155,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
-
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
 
             <div class="date">
 
@@ -234,6 +224,8 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                                     <?php if (!empty($order_details)) : ?>
                                         <h3>Username: <?php echo $order_details[0]['username']; ?></h3>
                                         <h3>Contact Number: <?php echo $order_details[0]['contact_number']; ?></h3>
+                                        <h3>Address: </h3>
+                                        <h3> <?php echo $order_details[0]['address'];?>, <?php echo $order_details[0]['city']; ?>, <?php echo $order_details[0]['state']; ?>, <?php echo $order_details[0]['postcode']; ?>, </h3>
                                     <?php endif; ?>
                                     <hr>
                                     
