@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Restoran - Bootstrap Restaurant Template</title>
+    <title>Yum Yum Restaurant</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -78,7 +78,7 @@
         <div class="container-xxl position-relative p-0">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="text-primary m-0"><i class="fa fa-utensils me-3"></i>Yum Yum Restaurant</h1>
+                    <h1 class="text-primary m-0" style="font-size:xx-large;"><i class="fa fa-utensils me-3"></i>Yum Yum Restaurant</h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -151,7 +151,7 @@
                         <div class="service-item rounded pt-3">
                             <div class="p-4">
                                 <i class="fa fa-3x fa-headset text-primary mb-4"></i>
-                                <h5>24/7 Service</h5>
+                                <h5>Online Service</h5>
                                 <p>On the shop opening time we will make sure give u a service</p>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
                     </div>
                     <div class="col-lg-6">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
-                        <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1>
+                        <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Yum Yum Restaurant</h1>
                         <p class="mb-4">The time was noble, the matter at hand was chosen. Painful, but pain itself. Some loved, some hated, and they were chosen, spoke and sat, but lorem remained standing.</p>
                         <p class="mb-4">The time was noble, the matter chosen. Pain was itself, pain itself. Some loved, some hated, and them. Chosen was the place, and lorem and sit, but lorem remained sitting, chosen, just, great pain was.</p>
                         <div class="row g-4 mb-4">
@@ -291,12 +291,7 @@
                         <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka</p>
                         <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+6012 345 67890</p>
                         <p class="mb-2"><i class="fa fa-envelope me-3"></i>yumyumdeliveryfood@gmail.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
+                         
                     </div>
                     <div class="col-lg-3 col-md-6">
                         <h4 class="section-title ff-secondary text-start text-primary fw-normal mb-4">Opening</h4>
