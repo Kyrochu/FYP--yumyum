@@ -86,16 +86,13 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0 pe-4">
-                        <a href="log_index.php?userID=<?php echo $uid; ?>" class="nav-item nav-link active">Home</a>
-                        <a href="log_service.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Service</a>
-                        <a href="log_menu.php?userID=<?php echo $uid; ?>" class="nav-item nav-link ">Menu</a>
-                        <a href="log_contact.php?userID=<?php echo $uid; ?>" class="nav-item nav-link">Contact</a>
-                        <a href="log_about.php?userID=<?php echo $uid; ?>" class="nav-item nav-link  ">About</a>
-                        <a href="login/p_profile.php?userID=<?php echo $uid?>" class="nav-item nav-link ">WELCOME, <?php echo $row_user["name"]; ?></a>
-                        <img class="carticon btn py-2 px-4" src="img/cart-icon h.png" alt=""><span
-                            style="position: fixed; display: flex; width: 20px;  height: 20px; background-color: red; justify-content: center; align-items: center; color: white;border-radius: 50%; position: absolute; top: 60%; right: 240px; "><?php echo $totalRows ?></span>
+                        <a href="index.php" class="nav-item nav-link active">Home</a>
+                        <a href="service.html" class="nav-item nav-link">Service</a>
+                        <a href="" class="nav-item nav-link " onclick="login()">Menu</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <a href="about.html" class="nav-item nav-link  ">About</a>
                     </div>
-                        <a href="index.html" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">LogOut</a>
+                        <a href="login/login.php" class="btn btn-primary py-2 px-4"style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" id="checkoutBtn">Login/Register</a>
                 </div>
             </nav>
 
@@ -214,10 +211,6 @@
         <!-- About End -->
 
 
-        
-
-
-        
 
 
         <!-- Testimonial Start -->
@@ -418,6 +411,11 @@
     <script src="js/popup.js"></script>
 
     <script>
+    function login()
+    {
+        alert("Please Login or Register to view more.")
+    }
+
     function pop(id) {
         var fdid = id;
 
