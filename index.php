@@ -101,7 +101,7 @@
                     <div class="row align-items-center g-5">
                         <div class="col-lg-6 text-center text-lg-start">
                             <h1 class="display-3 text-white animated slideInLeft">Enjoy Our<br>Delicious Meal</h1>
-                            <p class="text-white animated slideInLeft mb-4 pb-2">The emperor was noble, but at the same time, he was chosen by fate. Pain endured, pain spoken. Some loved him, some hated him. There was love and hate, and they existed. Chosen was the place, and lorem sat there. But, standing firm, lorem remained. The chosen duo, just and noble, endured pain.</p>
+                            <p class="text-white animated slideInLeft mb-4 pb-2">Welcome to Yum Yum Restaurant, your destination for delicious Western cuisine! Indulge in our mouthwatering menu featuring classic favorites and innovative creations. From juicy burgers to tender steaks and savory pastas, we offer a culinary journey that satisfies every craving. Join us for warm hospitality and unforgettable dining experiences. </p>
                         </div>
                         <div class="col-lg-6 text-center text-lg-end overflow-hidden">
                             <img class="img-fluid" src="img/hero.png" alt="">
@@ -182,8 +182,7 @@
                     <div class="col-lg-6">
                         <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
                         <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Yum Yum Restaurant</h1>
-                        <p class="mb-4">The time was noble, the matter at hand was chosen. Painful, but pain itself. Some loved, some hated, and they were chosen, spoke and sat, but lorem remained standing.</p>
-                        <p class="mb-4">The time was noble, the matter chosen. Pain was itself, pain itself. Some loved, some hated, and them. Chosen was the place, and lorem and sit, but lorem remained sitting, chosen, just, great pain was.</p>
+                        <p class="mb-4">Step into our inviting dining space and indulge in a feast for the senses. Whether you're craving hearty comfort food or seeking adventurous culinary delights, our diverse menu caters to every palate and preference. From mouthwatering appetizers to decadent desserts, each dish is prepared with precision and passion by our talented chefs, promising a symphony of flavors with every bite.</p>
                         <div class="row g-4 mb-4">
                             <div class="col-sm-6">
                                 <div class="d-flex align-items-center border-start border-5 border-primary px-3">
@@ -223,7 +222,7 @@
                 <div class="owl-carousel testimonial-carousel">
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Good teste</p>
+                        <p>Good taste</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-1.jpg" style="width: 50px; height: 50px;">
                             <div class="ps-3">
@@ -233,7 +232,7 @@
                     </div>
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Nice teste</p>
+                        <p>Execellent Service!</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-2.jpg" style="width: 50px; height: 50px;">
                             <div class="ps-3">
@@ -243,7 +242,7 @@
                     </div>
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Nice teste</p>
+                        <p>Food looks nice and delicious</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-3.jpg" style="width: 50px; height: 50px;">
                             <div class="ps-3">
@@ -253,7 +252,7 @@
                     </div>
                     <div class="testimonial-item bg-transparent border rounded p-4">
                         <i class="fa fa-quote-left fa-2x text-primary mb-3"></i>
-                        <p>Nice teste</p>
+                        <p>The price is very reasonable.</p>
                         <div class="d-flex align-items-center">
                             <img class="img-fluid flex-shrink-0 rounded-circle" src="img/testimonial-4.jpg" style="width: 50px; height: 50px;">
                             <div class="ps-3">
@@ -300,27 +299,7 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a><br><br>
-                            Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
-                        </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+             
         </div>
         <!-- Footer End -->
 
