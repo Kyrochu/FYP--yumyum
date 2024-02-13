@@ -159,7 +159,7 @@
                                 <p class="card-text">Date: <?php echo $date; ?></p>
                                 <p class="card-text">Time: <?php echo $time; ?></p>
                                 <p class="card-text">Contact Number: <?php echo $firstOrder['contact_number']; ?></p>
-                                <p class="card-text">Pay By: <?php echo $firstOrder['pay_by']; ?></p>
+                                <p class="card-text">Payment Method: <?php echo $firstOrder['pay_by']; ?></p>
                                 <p class="card-text">Food Ordered:</p>
                                 <div class="card-body">
                                     <?php
