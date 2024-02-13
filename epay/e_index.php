@@ -219,11 +219,11 @@
 
                 // Send an AJAX request to activate the wallet
                 $.ajax({
-                    url: "active_wallet.php", // Path to the PHP file that handles wallet activation
+                    url: "active_wallet.php", 
                     method: "POST",
                     data: { uid: uid , pin: pin , cpin: cpin},
                     success: function(response) {
-                        // Redirect the user to the appropriate page after successful activation
+
                         window.location.href = "e_index.php?uid=" + uid;
                         alert("Wallet activated successfully!");
                     },
