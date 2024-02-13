@@ -219,7 +219,7 @@ $CatType = isset($_GET['cat_id'])?$_GET['cat_id']:NULL;
 
                         $food_name = $row['food_name'];
                         $food_img = $row['food_img'];
-                        echo "<h2 class='food-name'> Food Name: $food_name</h2>";
+                        echo "<h2 class='food-name'> Item Name: $food_name</h2>";
                         echo "<img src='../img/$food_img' alt='Product Image' class='addonimg'>";
 
                         ?>

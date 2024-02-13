@@ -16,7 +16,7 @@ if(isset($_POST['add_product']))
     if(file_exists("../img/" . $_FILES['image']['name']))
     {
         $Store = $_FILES['image']['name'];
-        echo "<script> alert('Image already exists!) </script>";
+        echo "<script> alert('Image already exists!') </script>";
         header('Location:MenusSuper.php');
     }
     else
