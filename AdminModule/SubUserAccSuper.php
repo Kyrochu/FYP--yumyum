@@ -249,7 +249,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         <th>
                             <form method="post">
                                 <input type="hidden" name="delete_id" value="<?php echo $row["id"]; ?>">
-                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to disable this account?')"> REMOVE </button>
+                                <button type="submit" name="dlt-btn" class="dlt" onclick="return confirm('Are you sure you want to disable this account?')"> DELETE </button>
                             </form>
                         </th>
                       

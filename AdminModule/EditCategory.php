@@ -205,7 +205,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
                 <div class="form-Element">
-                    <input type="submit" name="updateCategory" value="UPDATE PRODUCT" class="edit-submit-btn">
+                    <input type="submit" name="updateCategory" value="UPDATE CATEGORY" class="edit-submit-btn">
                 </div>
 
                 <div class="form-Element">
