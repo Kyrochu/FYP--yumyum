@@ -59,7 +59,6 @@ if(isset($_POST["submit"]))
                <input type="email" name="email" required placeholder="Email">
                <input type="password" name="password" required placeholder="Password" id="password"> 
                <i class="fa fa-solid fa-eye" id="show-pswd" onclick="togglePassword() "> </i>
-               <a href="ResetPswd.php" class="forgot_pswd"> Forgot your password? </a>
                <input type="submit" name="submit" value="login now" class="form-btn">
               
             </form>

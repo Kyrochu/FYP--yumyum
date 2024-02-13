@@ -78,7 +78,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
@@ -128,8 +127,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                         </div>
             
                     </div>
-
-                    <div class="item"><a href=""><i class="fa fa-commenting"></i> <span class="menu-text"> Reviews </span> </a></div>
                     
                     <div class="item">
 
@@ -156,13 +153,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
             </div>
-
-            <div class="search-box">
-
-                    <i class="fa-solid fa-search"> </i>
-                    <input type="text" placeholder="Search">
-
-                </div>
 
             <div class="date">
 
@@ -192,10 +182,9 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             if(isset($_GET['edit-btn']))
             {
-                $selected_category_id = $_GET['cat_id'];
-                $productId = $_GET['pro_id'];
+                $CategoryId = $_GET['category_id'];
 
-                $query = "SELECT * FROM menu WHERE food_id='$productId' ";
+                $query = "SELECT * FROM category WHERE cat_id='$CategoryId' ";
                 $query_run = mysqli_query($connect,$query);
 
                 foreach($query_run as $row)
@@ -204,15 +193,15 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
              <form method="POST" action="" enctype="multipart/form-data"> 
 
-                <input type="hidden" name="product_id" value="<?php echo $row['food_id']?>">
-                <input type="hidden" name="current_image" value="<?php echo $row['food_img']?>">
+                <input type="hidden" name="category_id" value="<?php echo $row['cat_id']?>">
+                <input type="hidden" name="current_image" value="<?php echo $row['cat_img']?>">
 
                 <div class="form-Element">
-                    CATEGORY NAME <input type="text" name="name" value="<?php echo $row['food_name']?>">                    
+                    Category Name <input type="text" name="name" value="<?php echo $row['cat_name']?>">                    
                 </div>
 
                 <div class="form-Element">  
-                    IMAGE <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp" value="../img/<?php echo $row['food_img']?>">
+                    Category Image <input type="file" name="image" class="box" accept="image/jpg, image/jpeg, image/png, image/webp">
                 </div>
 
                 <div class="form-Element">
@@ -220,7 +209,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 </div>
 
                 <div class="form-Element">
-                    <input type="button" class="Edit-cancel-btn" value="CANCEL" onclick="location.href='ProductSuper.php?cat_type=<?php echo $selected_category_id ?>';">
+                    <input type="button" class="Edit-cancel-btn" value="CANCEL" onclick="location.href='MenusSuper.php';">
                 </div>
             
             </form>
@@ -232,50 +221,41 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
             if(isset($_POST['updateCategory']))
             {
-                $Pro_id = $_POST['product_id'];
-                $Pro_name = $_POST['name'];
-                $Pro_price = $_POST['price'];
-                $Pro_desc = $_POST['desc'];
-                $productImage = $_FILES['image']['name'];
-                $productImageTmp = $_FILES['image']['tmp_name'];
+                $CatID = $_POST['category_id'];
+                $Name = $_POST['name'];
+                $Image = $_FILES['image']['name'];
+                $ImageTmp = $_FILES['image']['tmp_name'];
+
                 $currentImage = $_POST['current_image'];
 
-                if (!empty($productImage)) 
+                if (!empty($Image)) 
                 {
-                    $uploadPath = '../img/'; 
-        
-                    // Move the uploaded image to your desired directory
-                    move_uploaded_file($productImageTmp, $uploadPath . $productImage);
+                    $uploadPath = 'category_images/';
+                    move_uploaded_file($ImageTmp, $uploadPath . $Image);
                 } 
-                    else 
+                else 
                 {
-                    // If no new image is uploaded, use the existing image filename
-                    $productImage = $currentImage;
+                    $Image = $currentImage;
                 }
-        
-                $query = "UPDATE menu SET food_name = '$Pro_name', food_price = '$Pro_price', food_description = '$Pro_desc', food_img = '$productImage' WHERE food_id = $Pro_id";
+
+                $query = "UPDATE category SET cat_name = '$Name', cat_img = '$Image' WHERE cat_id = $CatID";
                 $query_run = mysqli_query($connect, $query);
-        
+
                 if ($query_run) 
                 {
-                    if (!empty($productImage)) 
+                    if (!empty($Image)) 
                     {
                         move_uploaded_file($_FILES['image']['tmp_name'], "../img/".$_FILES['image']['name']);
                     }
 
-                    echo "<script>alert('Product Updated'); window.location.href = 'MenusSuper.php';</script>";
-                    sleep(1);
+                    echo "<script>alert('Category Updated'); window.location.href = 'MenusSuper.php';</script>";
                 } 
                 else 
                 {
-                    echo "<script>alert('Failed to update product!'); window.location.href = 'MenusSuper.php';</script>";
+                    echo "<script>alert('Failed to update category!'); window.location.href = 'MenusSuper.php';</script>";
                 }
-            
             }
             ?>
-
-
-            
 
             
         
