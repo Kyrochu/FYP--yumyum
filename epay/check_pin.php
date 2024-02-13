@@ -43,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Update the wallet balance in the database
                     $update_query = "UPDATE `e_wallet` SET w_debit = ? WHERE user_id = ?";
                     $update_stmt = mysqli_prepare($connect, $update_query);
-                    mysqli_stmt_bind_param($update_stmt, "ii", $new_wallet_balance, $e_u_id);
+                    mysqli_stmt_bind_param($update_stmt, "di", $new_wallet_balance, $e_u_id);
                     $update_result = mysqli_stmt_execute($update_stmt);
 
                     if ($update_result) {
