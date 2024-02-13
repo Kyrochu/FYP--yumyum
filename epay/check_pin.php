@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             // Prepare and execute the order insertion query
                             $order_query = "INSERT INTO `order` (user_id, food_id, num_food, add_on_id , or_time , pay_by) VALUES (?, ?, ?, ?, NOW(), 'E-Wallet')";
                             $order_stmt = mysqli_prepare($connect, $order_query);
-                            mysqli_stmt_bind_param($order_stmt, "iiii", $user_id, $food_id, $quantity, $addid);
+                            mysqli_stmt_bind_param($order_stmt, "iiis", $user_id, $food_id, $quantity, $addid);
                             $order_result = mysqli_stmt_execute($order_stmt);
                         }
 
