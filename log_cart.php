@@ -211,8 +211,7 @@
                                       <p class="mb-2">RM <?php echo $fd_price_total?></p>
                                   </div>
                                   <div class="d-flex justify-content-between">
-                                      <p class="mb-2">Discount:</p>
-                                      <p class="mb-2 text-success">- RM 0.00</p>
+                                      
                                   </div>
 
                                   <hr />
