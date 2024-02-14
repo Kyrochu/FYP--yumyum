@@ -193,7 +193,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <div class="addCatbtn">
 
-                        <button style="background:burlywood; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
+                        <button style="background:orange; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='orange'">
                             ADD NEW CATEGORY
                         </button>
 
@@ -357,12 +357,12 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                 echo '<form action="EditCategory.php" method="get">';
                                 echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
-                                echo '<button type="submit" name="edit-btn" class="cat-edit">Edit</button>';
+                                echo '<button type="submit" name="edit-btn" class="cat-edit">EDIT</button>';
                                 echo '</form>';
 
                                 echo '<form method="post" onsubmit="return confirm(\'Are you sure you want to delete this category?\');">';
                                 echo '<input type="hidden" name="category_id" value="' . $categoryData['cat_id'] . '">';
-                                echo '<button type="submit" name="dlt-btn" class="cat-dlt">Delete</button>';
+                                echo '<button type="submit" name="dlt-btn" class="cat-dlt">DELETE</button>';
                                 echo '</form>';
                                 
                                 echo '</div>';
