@@ -25,7 +25,7 @@
             <label class="label_txt">Username or Email </label>
             <input type="text" name="email" class="form-control" required="">
             <br>
-            <button type="submit" name="subforgot" class="btn btn-primary btn-group-lg form_btn" id="sendLinkBtn">Send Link</button>
+            <button type="submit" name="subforgot" class="btn btn-primary btn-group-lg form_btn" id="sendLinkBtn" style="background-color: orange; border: none;">Send Link</button>
           </div>
           <p class="text-center">Don't have an account? or Have an account?<a href="Login.php">Login/Signup</a></p>
         </form>

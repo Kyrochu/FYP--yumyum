@@ -37,8 +37,7 @@ if (isset($_POST["email"])) {
 
             $token = bin2hex(random_bytes(3)); // Generating token
             $mail->Subject = 'You have received a password reset email';
-            $mail->Body = "Your verify code is $token
-                            Your password reset link: <a href='localhost/FYP--yumyum/login/password_reset.php?email=$email'>Reset Link</a>";
+            $mail->Body = "Your password reset link: <a href='localhost/FYP--yumyum/login/password_reset.php?email=$email'>Reset Link</a>";
 
             $mail->send();
 
