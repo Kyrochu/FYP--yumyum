@@ -10,7 +10,7 @@
         $up_pin = "UPDATE users SET pin = $pin WHERE id = $uid";
         mysqli_query($connect, $up_pin);
 
-        $insert_query = "INSERT INTO e_wallet (user_id, w_debit) VALUES ('$uid', 0)";
+        $insert_query = "INSERT INTO e_wallet (user_id, w_debit) VALUES ('$uid', 20)";
         if (mysqli_query($connect, $insert_query)) {
             // If insertion is successful, return a success message
             echo "Wallet activated successfully!";

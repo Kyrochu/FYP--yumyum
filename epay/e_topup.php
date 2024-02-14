@@ -278,6 +278,10 @@
                 }
             });
 
+            function displayExpDateError(message) {
+                expDateErrorDiv.textContent = message;
+            }
+
             // CVV
             var cvvInput = document.getElementById('cvv');
             cvvInput.addEventListener('input', function() {
