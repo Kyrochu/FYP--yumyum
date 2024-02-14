@@ -357,6 +357,7 @@
                         <input type="hidden" name="name" value="${data.food_name}">
                         <input type="hidden" name="price" value="${data.food_price}">
                         <span>${data.food_name}</span>
+                        
                     `;
 
                 // Display checkboxes for additional options
@@ -366,6 +367,7 @@
                     data.options.forEach(option => {
                         let addPrice = parseFloat(option.add_price).toFixed(2); // Calculate addPrice for each option
                         document.getElementById('popup').innerHTML += `
+                            
                             <input type="checkbox" name="checkboxGroup[]" 
                                 value="${option.add_price}" data-option-name="${option.add_name}"
                                 data-option-id="${option.add_id}">
@@ -379,8 +381,9 @@
                 // Add buttons and other HTML as needed
                 document.getElementById('popup').innerHTML += 
                     `
-                        <button type="button" onclick="submitForm(<?php echo $uid; ?>, ${fdid})">Submit</button>
-                        <button type="button" onclick="closePopup()">close</button>
+                        <br>
+                        <button type="button" class="btn btn-primary" onclick="submitForm(<?php echo $uid; ?>, ${fdid})">Submit</button>
+                        <button type="button" class="btn btn-primary" onclick="closePopup()">close</button>
                     `;
 
                 // Show the popup
