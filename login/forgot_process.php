@@ -42,9 +42,6 @@ if (isset($_POST["email"])) {
 
             $mail->send();
 
-            $update_code = "UPDATE users SET code = '$token' WHERE email = '$email'";
-            mysqli_query($conn, $update_code);
-
             header("Location: forgot_password.php?success=1");
             exit();
         } catch (Exception $e) {
