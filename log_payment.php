@@ -196,10 +196,7 @@
             return false; 
         }
 
-        document.getElementById("menuButton").addEventListener("click", function() {
-            var uid = "<?php echo $user; ?>"; // Assuming $uid is already defined
-            window.location.href = "log_cart.php?userID=" + uid;
-        });
+        
 
         document.addEventListener('DOMContentLoaded', function() {
 
@@ -248,6 +245,10 @@
                     displayExpDateError('');
                 }
             });
+
+            function displayExpDateError(message) {
+                expDateErrorDiv.textContent = message;
+            }
 
             // CVV
             var cvvInput = document.getElementById('cvv');

@@ -36,7 +36,6 @@
             <div class="navbar" style="background-color:black;padding-bottom:30px;"> 
                 <img src="../img/daypay logo.png" alt="No Image" >
                 <ul style="margin-left:700px;">
-                    <li> <a href="e_login.php" target="_blank">Sign Up</a></li>
                 </ul>
             </div>
             
