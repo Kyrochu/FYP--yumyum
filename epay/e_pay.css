@@ -15,7 +15,7 @@
   align-items: center;
   padding:25px;
   min-height: 100vh;
-  background: linear-gradient(90deg, #0074f8 60%, #00a2ff 40.1%);
+  background: linear-gradient(90deg, Orange 60%, #ffbb00 40.1%);
 }
 
 .container form{
@@ -98,7 +98,7 @@
 }
 
 .container form .submit-btn:hover{
-  background: #0074f8;
+  background: orange;
 }
 
 /* btn design */

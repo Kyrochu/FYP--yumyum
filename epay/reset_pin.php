@@ -195,7 +195,7 @@
             }
         ?>
 
-        <div class="container" style="opacity: 0.8; height:10em;">
+        <div class="container" style="opacity: 0.9; height:10em;">
             <div class="row justify-content-center">
                 <div class="col-md-8" > <!-- Adjust the column width as needed -->
                     <div class="cardtab card text-bg-dark mb-3" style="box-shadow: 10px 10px 10px white; width: 100%; height:100%;">

@@ -146,7 +146,7 @@
                 </div>
             </div>
                 <button type="submit" class="submit-btn">Proceed to Checkout</button>
-                <button type="button" href="log_menu.php?userID=<?php echo $uid; ?>" class="submit-btn">Back to Menu</button>
+                <button type="button" id="menuButton" class="submit-btn">Back to Menu</button>
                 <div id="paymentError" class="error"></div>
         </form>
         
@@ -196,7 +196,10 @@
             return false; 
         }
 
-        
+        document.getElementById("menuButton").addEventListener("click", function() {
+            var uid = "<?php echo $user; ?>"; // Assuming $uid is already defined
+            window.location.href = "log_cart.php?userID=" + uid;
+        });
 
         document.addEventListener('DOMContentLoaded', function() {
 
