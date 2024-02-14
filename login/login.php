@@ -7,6 +7,10 @@
 <head>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">   
     <link rel="stylesheet" href="login.css">
+    <link href="img/favicon.ico" rel="icon">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
     <style>
 
         .right-panel-active .overlay-left {
@@ -29,15 +33,26 @@
                 <input type="text" name="name" required placeholder="Name" />
                 <span id="contactNumberFormat"></span>
                 <span id="contactNumberError"></span>
-                <input type="text" name="contact_number" required placeholder="Contact Number" />
+                <input type="text" name="contact_number" required placeholder="Contact number format (012-3456789)" />
                 <input type="email" name="email" required placeholder="Example@gmail.com" />
+
+                <!-- container 1 -->
                 <div class="password-container1">
-                    <input type="password" name="password" required placeholder="Create Password" id="signupPassword" />
-                    <i class="fas fa-eye" id="togglePasswordSignUp"></i>
+                    <div class="password-input-wrapper">
+                        <input type="password" name="password" required placeholder="Create Password" id="signupPassword" />
+                        <i class="fas fa-eye" id="togglePasswordSignUp"></i>
+                    </div>
                 </div>
+
                 <span id="passwordError" class="error-message"></span>
-                <input type="password" name="confirm_password" required placeholder="Comfirm Password " />
-        
+
+                <!-- container 2 -->
+                <div class="password-container2">
+                    <div class="password-input-wrapper">
+                        <input type="password" name="confirm_password" required placeholder="Confirm Password" id="confirmPasswordInput" />
+                        <i class="fas fa-eye" id="toggleConfirmPassword"></i>
+                    </div>
+                </div>
 
                 <button id="signUpbutton" name="signUpbutton">Sign Up</button>
             </form>
@@ -62,7 +77,7 @@
             <div class="overlay">
                 <div class="overlay" ></div>
                 <div class="overlay-panel overlay-left">
-                    <h1>Welcome Back!</h1>
+                    <h1>Welcome Back</h1>
                     <p>To keep connected with us please login with your personal info</p>
                     <button class="ghost" id="sign">Sign In</button>
                 </div>
@@ -81,7 +96,7 @@
 
 <script>
     
-    document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () { 
     const signUpButton = document.getElementById('signUp');
     const signInButton = document.getElementById('sign');
     const container = document.getElementById('container');
@@ -110,28 +125,13 @@
             contactNumberError.style.color = 'red';
             contactNumberError.style.fontSize = '14px'; 
             contactNumberError.style.marginLeft = '-70px'; // Adjust the value as needed
-        } else {
-            const formattedContactNumber = contactNumber.replace(/(\d{3})-?(\d+)/, '$1-$2');
-
-            if (formattedContactNumber !== this.value) {
-                // 如果格式不匹配，显示提示信息
-                contactNumberError.textContent = 'Contact number should be in the format: xxx-xxxxxxx';
-                contactNumberError.style.color = 'red';
-                contactNumberError.style.fontSize = '12px'; 
-            } else {
-                // 格式匹配时清空错误信息
-                contactNumberError.textContent = '';
-                contactNumberError.style.color = '';
-                contactNumberFormat.textContent = '';
-
-            }
         }
 
         // 更新输入框的值
         this.value = contactNumber;
         });
 
-});
+    });
         const nameInput = document.querySelector('input[name="name"]');
         const nameError = document.getElementById('nameError');
 
@@ -164,7 +164,7 @@
             } else {
                 nameError.textContent = 'Only character are allowed.';
                 nameError.style.color = 'red';
-                nameError.style.marginLeft = '-135px'; // Adjust the value as needed
+                nameError.style.marginLeft = '-130px'; // Adjust the value as needed
 
             }
         });
@@ -232,6 +232,18 @@
             togglePasswordButtonSignUp.classList.toggle("fa-eye");
             togglePasswordButtonSignUp.classList.toggle("fa-eye-slash");
         });
+
+        
+        const togglePasswordButtonSignUpp = document.getElementById('toggleConfirmPassword');
+        const signUpPasswordd = document.querySelector('input[name="confirm_password"]');
+
+        togglePasswordButtonSignUpp.addEventListener('click', () => {
+            const type = signUpPasswordd.getAttribute("type") === "password" ? "text" : "password";
+            signUpPasswordd.setAttribute("type", type);
+
+            togglePasswordButtonSignUpp.classList.toggle("fa-eye");
+            togglePasswordButtonSignUpp.classList.toggle("fa-eye-slash");
+        });
         
         const signUpForm = document.querySelector('.sign-up-container form');
         signUpForm.addEventListener('submit', function (event) {
@@ -257,6 +269,8 @@
         
 
     });
+       
+        
 
 
 </script>

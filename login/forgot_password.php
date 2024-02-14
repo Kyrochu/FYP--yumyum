@@ -25,7 +25,7 @@
             <label class="label_txt">Username or Email </label>
             <input type="text" name="email" class="form-control" required="">
             <br>
-            <button type="submit" name="subforgot" class="btn btn-primary btn-group-lg form_btn">Send Link</button>
+            <button type="submit" name="subforgot" class="btn btn-primary btn-group-lg form_btn" id="sendLinkBtn">Send Link</button>
           </div>
           <p class="text-center">Don't have an account? or Have an account?<a href="Login.php">Login/Signup</a></p>
         </form>
@@ -36,3 +36,10 @@
 </body>
 
 </html>
+<?php
+    if (isset($_GET['success']) && $_GET['success'] == '1') {
+        echo '<script>alert("Email sent successfully. Please check your email.");</script>';
+    } elseif (isset($_GET['error']) && $_GET['error'] == '1') {
+        echo '<script>alert("Email not found.");</script>';
+    }
+  ?>

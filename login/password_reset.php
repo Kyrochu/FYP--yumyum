@@ -9,19 +9,27 @@ if (isset($_POST['sub_set'])) {
     
     // Validate the new password and confirm password
     if ($newPassword != $confirmPassword) {
-        $error[] = "";
+        $error[] = "Passwords do not match.";
     } else {
         // Update the password in the database using prepared statement
         $updateQuery = "UPDATE users SET password=? WHERE email=?";
         $stmt = mysqli_prepare($conn, $updateQuery);
         mysqli_stmt_bind_param($stmt, "ss", $confirmPassword, $email);
-        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_execute($stmt);
+
+        if ($result) {
+            // Password updated successfully
+            echo "<script>alert('Reset password successful.'); window.location.href='login.php';</script>";
+            exit();
+        } else {
+            // Error occurred while updating password
+            $errorMessage = "Error updating password.";
+        }
+
         mysqli_stmt_close($stmt);
-        
-        // Set a success flag to be submitted with the form
-        $successFlag = true;
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -42,14 +50,38 @@ if (isset($_POST['sub_set'])) {
             width: 100%;
         }
         .error-message{
-
             color: red;
 
         }
+        .column {
+        position: relative;
+    }
+
+        .togglePassword {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #7a7474;
+        }
+
+        /* Style for the eye icon */
+        .togglePassword1 {
+            position: absolute;
+            top: 65px; /* Adjust as needed */
+            right: 10px; /* Adjust as needed */
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #7a7474; /* Adjust the color as needed */
+        }
+
+
     </style>
 </head>
 
 <body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <div class="container mt-5 ">
         <div class="row">
             <div class="col-sm-4"></div>
@@ -74,17 +106,24 @@ if (isset($_POST['sub_set'])) {
                             <?php if (!isset($hide)) { ?>
                                 <label class="label_txt">New Password</label>
                                 <div class="password-container1">
-                                    <input type="password" name="password" required placeholder="Create Password" id="signupPassword" />
-                                    <i class="fas fa-eye" id="togglePasswordSignUp" onclick="togglePasswordVisibility('signupPassword')"></i>
+                                    <div class="column">
+                                        <input maxlength="8" type="password" name="password" required placeholder="Create Password" id="signupPassword" />
+                                        <i class="fas fa-eye togglePassword" data-target="signupPassword"></i>
+                                    </div>
                                 </div>
+
 
                                 <span id="passwordError" class="error-message"></span>
 
                                 <br>
                                 <br>
 
-                                <label class="label_txt">Confirm Password</label>
-                                <input type="password" name="confirm_password" required placeholder="Confirm Password" />
+                                <div class="column">
+                                    <label class="label_txt">Confirm Password</label>
+                                    <input maxlength="8" type="password" name="confirm_password" required placeholder="Confirm Password" />
+                                    <i class="fas fa-eye togglePassword1" id="toggleConfirmPassword"></i>
+                                </div>
+
                                 <br>
                                 <button type="submit" name="sub_set" class="btn btn-primary btn-group-lg form_btn">Reset Password</button>
                             <?php } ?>
@@ -142,12 +181,54 @@ if (isset($_POST['sub_set'])) {
         }
     });
     
+
+
+
+    
 </script>
+
 
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const togglePasswordButtons = document.querySelectorAll('.togglePassword');
+
+        togglePasswordButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Get the target input ID from the data-target attribute
+                const targetId = button.getAttribute('data-target');
+                const passwordInput = document.getElementById(targetId);
+
+                // Toggle the password input type between 'password' and 'text'
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+
+                // Toggle the eye icon class to change the icon
+                button.classList.toggle('fa-eye-slash');
+            });
+        });
+    });
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toggleConfirmPasswordButton = document.getElementById('toggleConfirmPassword');
+        const confirmPasswordInput = document.querySelector('input[name="confirm_password"]');
+
+        toggleConfirmPasswordButton.addEventListener('click', () => {
+            // Toggle the password input type between 'password' and 'text'
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+
+            // Toggle the eye icon class to change the icon
+            toggleConfirmPasswordButton.classList.toggle('fa-eye-slash');
+        });
+    });
+</script>
 </body>
 
 </html>

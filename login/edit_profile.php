@@ -43,7 +43,6 @@
         $confirmPassword = isset($_POST['confirm_password']) ? $_POST['confirm_password'] : '';
 
         if (!empty($oldPassword)) {
-            
             if ($oldPassword !== $password) {
                 echo "<script>alert('Password does not match.');</script>";
             }
@@ -55,8 +54,8 @@
                 $updateQuery = "UPDATE users SET name='$name', contact_number='$contactNumber', address='$address', city='$city', state='$state', postcode='$postcode', password='$confirmPassword' WHERE id ='$uid'";
                 mysqli_query($conn, $updateQuery);
 
-                // Redirect to the profile page after updating
-                header("Location: p_profile.php?userID=$uid");
+                // Redirect to the profile page after updating with success parameter
+                header("Location: p_profile.php?userID=$uid&success=true");
                 exit();
             }
         } else {
@@ -65,21 +64,26 @@
             $updateQuery = "UPDATE users SET name='$name', contact_number='$contactNumber', address='$address', city='$city', state='$state', postcode='$postcode' WHERE id ='$uid'";
             mysqli_query($conn, $updateQuery);
 
-            // Redirect to the profile page after updating
-            header("Location: p_profile.php?userID=$uid");
+            // Redirect to the profile page after updating with success parameter
+            header("Location: p_profile.php?userID=$uid&success=true");
             exit();
         }
     }
+
+    // Check if success parameter is set in the URL
+    $success = isset($_GET['success']) ? $_GET['success'] : false;
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            background-color: burlywood; 
+            background-color: orange; 
             font-family: 'Arial', sans-serif;
             margin: 0;
             display: flex;
@@ -90,21 +94,53 @@
         p{
             color: white;
         }
+    
         
+        .column {
+            position: relative;
+            /* Add any additional styling for the column */
+        }
+
+        #togglePasswordSignUp {
+            position: absolute;
+            top: 45%; /* Adjust as needed */
+            right: 10px; /* Adjust as needed */
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #7a7474;
+        }
+
+        .column {
+            position: relative;
+            /* Add any additional styling for the column */
+        }
+
+        .togglePassword {
+            position: absolute;
+            top: 45%; /* Adjust as needed */
+            right: 10px; /* Adjust as needed */
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #7a7474;
+        }
+
+
         .container1 {
             width: 15%;
             border-radius: 5px;
             padding-right: 5px;
             margin-left: -1096px;
-            background-color: grey;
+            background-color: black;
             margin-top: -390px;
             position: fixed;
+            box-shadow: 10px 10px 10px white;
+            opacity: 0.9;
         }
 
         .form-container1 {
             border: 2px solid;
             border-radius: 5px;
-            border-color: grey;
+            border-color: black;
             padding: 20px;
             width: auto;
         }
@@ -143,17 +179,19 @@
             border-radius: 5px;
             padding: 10px;
             cursor: pointer;
-            background-color: grey;
+            background-color: orange;
         }
 
         
         .container2 {
-            background-color: #587272;
+            background-color: black;
             padding: 50px;
             border-radius: 8px;
             width: 300px;
             margin-top: 20px;
             margin-left: 35px;
+            box-shadow: 10px 10px 10px white;
+            opacity: 0.9;
         }
 
         .form-container2 {
@@ -175,8 +213,8 @@
         }
 
         button {
-            background-color: #4caf50;
-            color: white;
+            
+            color: orange;
             padding: 10px;
             border: none;
             border-radius: 4px;
@@ -184,7 +222,7 @@
         }
 
         button:hover {
-            background-color: #232D2D
+            background-color: #FF8C00	;
 ;
         }
 
@@ -255,6 +293,12 @@
             background-color: #4caf50;
             color: white;
         }
+        #postcodeError{
+            color: red;
+        }
+        #passwordError{
+            color: red;
+        }
       
     </style>
 </head>
@@ -280,7 +324,7 @@
 
 <div class="container2">
     <div class="form-container2">
-        <form action="" method="post">
+        <form action="" method="post" id="updateProfileForm" onsubmit="showAlert()">
             <h1>Edit Profile</h1>
             <p>My Email: <?php echo $email ?></p>
             <input type="hidden" name="id" value="<?php echo $uid ?>">
@@ -310,17 +354,29 @@
                 <option value="Terengganu" <?php echo ($state === 'Terengganu') ? 'selected' : ''; ?>>Terengganu</option>
             </select>
 
-            <input type="text" name="postcode" placeholder="Postcode" required value="<?php echo $postcode; ?>" />
+            <input type="text" name="postcode" placeholder="Postcode" required value="<?php echo $postcode; ?>" oninput="validatePostcode(this)" />
+            <span id="postcodeError" class="error-message"></span>            
             <label>
                     <input type="checkbox" id="passwordToggle">
                     <span class="SP">Change Passwords?</span>
                 </label>
                 <div class="password-fields">
-                    <input type="password" name="old_password"  placeholder="Current Password"  />
-                    <input type="password" name="new_password"  placeholder="New Password"  />
-                    <span id="passwordError" class="PE"></span>
-                    <input type="password" name="confirm_password"  placeholder="Confirm Password"  />
+                <div class="column">
+                    <input maxlength="8" type="password" name="old_password" placeholder="Current Password" />
+                    <i class="fas fa-eye togglePassword" data-target="old_password"></i>
+                </div>
 
+                <div class="column">
+                    <input maxlength="8" type="password" name="new_password" placeholder="New Password" />
+                    <i class="fas fa-eye togglePassword" data-target="new_password"></i>
+                </div>
+
+                    <span id="passwordError" class="PE"></span>
+
+                    <div class="column">
+                        <input maxlength="8" type="password" name="confirm_password" placeholder="Confirm Password" />
+                        <i class="fas fa-eye togglePassword" data-target="confirm_password"></i>
+                    </div>
                 </div>
 
             <button type="submit" class="UP" name="updateProfile">Update Profile</button>
@@ -338,6 +394,50 @@
             });
         });
     </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Check if success parameter is set in the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const success = urlParams.get('success');
+
+            // Display alert if success parameter is 'true'
+            if (success === 'true') {
+                alert('Updated successful.');
+                // Redirect to the profile page after displaying the alert
+                window.location.href = `p_profile.php?userID=<?php echo $uid ?>&success=true`;
+            }
+        });
+    </script>
+
+    <script>
+    function showAlert() {
+        // Display an alert when the form is submitted successfully
+        alert("Profile updated successfully!");
+    }
+</script>
+
+
+<script>
+    function validatePostcode(input) {
+        // Get the value of the input field
+        const postcode = input.value;
+
+        // Regular expression to match 5 digits
+        const postcodeRegex = /^\d{5}$/;
+
+        // Check if the postcode matches the regular expression
+        if (!postcodeRegex.test(postcode)) {
+            // Display error message if the postcode does not match the pattern
+            document.getElementById('postcodeError').textContent = 'Postcode should contain exactly 5 digits.';
+        } else {
+            // Clear the error message if the postcode is valid
+            document.getElementById('postcodeError').textContent = '';
+        }
+
+        // Remove any non-numeric characters from the input
+        input.value = postcode.replace(/\D/g, '');
+    }
+</script>
 
 <script>
     const contactNumberInput = document.querySelector('input[name="contact_number"]');
@@ -374,8 +474,9 @@
 
         this.value = contactNumber;
     });
+
     const nameInput = document.querySelector('input[name="name"]');
-        const nameError = document.getElementById('nameError');
+    const nameError = document.getElementById('nameError');
 
         nameInput.addEventListener('input', function () {
             let name = this.value.trim(); // Trim leading and trailing whitespaces
@@ -403,32 +504,61 @@
             }
         });
 
-    const passwordInput = document.querySelector('input[name="new_password"]');
-    const passwordError = document.getElementById('passwordError');
-    const passwordRege = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9]).{8,}$/;
+        const passwordInput = document.querySelector('input[name="new_password"]');
+        const passwordError = document.getElementById('passwordError');
+        const passwordRege = /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])(?=.*[A-Z]).{8,}$/;
 
-    passwordInput.addEventListener('input', function () {
-        const password = this.value;
-        
-        if (password === '') {
-            passwordError.textContent = '';
-        } else if (password.length >= 8 && passwordRege.test(password)) {
-            passwordError.textContent = '';
-        } else {
-            passwordError.textContent = 'Password should have maximum 8 characters and contain at least 1 symbol and 1 number.';
-            passwordError.style.color = 'black'; // Change color to red
-            passwordError.style.fontSize = '14px'; // Change font size to 14px
-        
-        }
+        passwordInput.addEventListener('input', function () {
+            const password = this.value;
+            
+            if (password === '') {
+                passwordError.textContent = '';
+            } else if (password.length >= 8 && passwordRege.test(password)) {
+                passwordError.textContent = '';
+            } else if (/^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])/.test(password)) {
+                passwordError.textContent = '';
+            } else {
+                passwordError.textContent = 'Password should have a maximum of 8 characters and contain at least 1 symbol, 1 number.';
+                passwordError.style.fontSize = '14px'; // Change font size to 14px
+            }
+        });
+
+        passwordInput.addEventListener('blur', function () {
+            const password = this.value;
+
+            if ((password === '') || (passwordRege.test(password) && /^(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*[0-9])/.test(password))) {
+                passwordError.textContent = '';
+            }
+        });
+
+
+
+    const togglePasswordButton = document.querySelectorAll('.togglePassword');
+
+    togglePasswordButton.forEach(button => {
+        button.addEventListener('click', () => {
+            const targetId = button.getAttribute('data-target');
+            const passwordInput = document.querySelector(`input[name="${targetId}"]`);
+
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            button.classList.toggle('fa-eye');
+            button.classList.toggle('fa-eye-slash');
+        });
     });
 
-    passwordInput.addEventListener('blur', function () {
-        const password = this.value;
 
-        if (password === '' || (password.length >= 8 && passwordRege.test(password))) {
-            passwordError.textContent = '';
-        }
-    });
+        const togglePasswordButtonSignUp = document.getElementById('togglePasswordSignUp');
+        const signUpPassword = document.querySelector('input[name="password"]');
+
+        togglePasswordButtonSignUp.addEventListener('click', () => {
+            const type = signUpPassword.getAttribute("type") === "password" ? "text" : "password";
+            signUpPassword.setAttribute("type", type);
+
+            togglePasswordButtonSignUp.classList.toggle("fa-eye");
+            togglePasswordButtonSignUp.classList.toggle("fa-eye-slash");
+        });
     </script>
 </body>
 </html>

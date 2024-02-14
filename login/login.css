@@ -241,40 +241,57 @@ input {
     
 }
 
-.password-container {
+.password-container1 {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+}
+
+.password-input-wrapper {
     position: relative;
-    display: inline-block; 
 }
 
-.password-container {
-   width: 80%;
-}
-
-
-#togglePassword {
+#togglePasswordSignUp {
     position: absolute;
-    top: 75%;
-    right: 15px;
+    right: 10px;
+    top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #7a7474;
 }
 
 
-.password-container1 {
+.password-container {
     position: relative;
-    display: inline-block; 
 }
 
-.password-container1 {
-   width: 100%;
+.password-input-container {
+    position: relative;
+    display: inline-block;
 }
 
-
-#togglePasswordSignUp {
+#togglePassword {
     position: absolute;
-    top: 55%;
-    right: 15px;
+    right: 10px;
+    top: 75%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #7a7474;
+}
+.password-container2 {
+    display: flex;
+    flex-direction: column;
+	width: 100%;
+}
+
+.password-input-wrapper {
+    position: relative;
+}
+
+#toggleConfirmPassword {
+    position: absolute;
+    right: 10px;
+    top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
     color: #7a7474;

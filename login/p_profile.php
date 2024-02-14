@@ -29,11 +29,10 @@ $postcode = $row["postcode"];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-        background-color: burlywood; 
+        background-color: orange; 
         font-family: 'Arial', sans-serif;
-
+        
         }
-
 
     a {
         text-decoration: none;
@@ -43,19 +42,20 @@ $postcode = $row["postcode"];
         text-decoration: underline; 
     }
     
+    
 
     p {
-        font-size: 18px;
+        font-size: 25px;
         color: #333;
         margin-top: 50px;
         margin-bottom: 30px;
-        margin-left: 255px;
+        margin-left: 190px;
         font-weight: bold;
         color: white;
     }
     span{
         color: white;
-        margin-left: 70px;
+        margin-left: 40px;
         font-weight: bold;
         font-size: 35px;
     }
@@ -126,7 +126,9 @@ $postcode = $row["postcode"];
     padding-right: 10px;
     border-radius: 5px;
     margin-left: 35px;
-    background-color: grey;
+    background-color: black;
+    box-shadow: 10px 10px 10px white;
+    opacity: 0.9;
     }
     
     .form-container1 {
@@ -135,26 +137,40 @@ $postcode = $row["postcode"];
         padding: 20px;
         width: auto;
         margin-top: 30px;
-        border-color: grey;
+        border-color: black;
 
     }
 
-    
+    .container2 h1{
+        margin-top: 50px;
+        margin-bottom: 20px;
+        font-size: 25px;
+        color: white;
+        margin-left: 190px;
+    }
+    .container2 h2{
+        margin-top: 20px;
+        font-size: 25px;
+        color: white;
+        margin-left: 190px;
+    }
     .container2 {
         margin-bottom: 263px;
         margin-top: -250px;
         border-radius: 10px;
         margin-left: 400px;
         width: 56%;
-        background-color: #587272; 
+        background-color: black; 
         padding: 20px;
+        box-shadow: 10px 10px 10px white;
+        opacity: 0.9;
     }
 
     .form-container2 {
         border: 1px solid #587272;
         width: 100%;
         border-radius: 10px;
-        border-color: #587272;
+        border-color: black;
 
     }
 
@@ -222,6 +238,7 @@ $postcode = $row["postcode"];
             <div class="EP">
                 <a href="../epay/e_login.php?userID=<?php echo $uid?>">E-Wallet</a>
             </div>
+
             <div class="EP">
                 <a href="../user_order.php?userID=<?php echo $uid?>">Order Detail</a>
             </div>
@@ -236,14 +253,14 @@ $postcode = $row["postcode"];
         </div>
     </div>
 
-    <!-- 容器 2 -->
+    
     <div class="container2">
         <div class="form-container2">
             <form action="" method="post"> 
                 <input type="hidden" name="id" value="<?php echo $uid ?>">
                 <span>Hello           <?php echo $uname; ?></span>
-                <p>My Email : <?php echo $email?></p>
-                <p>Contact Number : <?php echo $cnum; ?></p>
+                <h1>My Email : <?php echo $email?></h1>
+                <h2>Contact Number : <?php echo $cnum; ?></h2>
                 <?php if (!empty($address)) echo "<p>Address        : $address</p>"; ?>
                 <?php if (!empty($city)) echo "<p>City           : $city</p>"; ?>
                 <?php if (!empty($state)) echo "<p>State          : $state</p>"; ?>
