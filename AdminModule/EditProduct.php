@@ -266,7 +266,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 } 
                 else 
                 {
-                    echo "<script>alert('Failed to update product!'); window.location.href = 'ProductSuper.php?cat_type=$selected_category_id';</script>";
+                    echo "<script>alert('Failed to update product'); window.location.href = 'ProductSuper.php?cat_type=$selected_category_id';</script>";
                 }
             
             }

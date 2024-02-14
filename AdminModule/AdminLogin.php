@@ -28,7 +28,7 @@ if(isset($_POST["submit"]))
     }
     else
     {
-        echo "<script> alert('Invalid email or password!') </script>";
+        echo "<script> alert('Invalid email or password') </script>";
     }
 }
 

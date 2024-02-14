@@ -27,7 +27,7 @@ if(isset($_GET['add_addon']))
     } 
     else 
     {
-        echo "<script>alert('Failed to add addon.');</script>";
+        echo "<script>alert('Failed to add add-on');</script>";
     }
 
    
@@ -56,12 +56,12 @@ if (isset($_POST['delete_selected_addons']))
         }
 
         echo "<script>
-            alert('Addon(s) deleted successfully.');
+            alert('Add-On(s) deleted successfully');
             window.location.href ='AddOnSuper.php?addonbtn=1&pro_id=$productId&cat_id={$productData['food_type']}';
         </script>";
         exit();
     } else {
-        echo "<script>alert('No addons selected for deletion');</script>";
+        echo "<script>alert('No add-on(s) selected for deletion');</script>";
     }
 }
 

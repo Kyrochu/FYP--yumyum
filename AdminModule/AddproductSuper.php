@@ -31,11 +31,11 @@ if(isset($_POST['add_product']))
         if($query_run)
         {
             move_uploaded_file($_FILES['image']['tmp_name'],"../img/".$_FILES['image']['name']);
-            echo "<script> alert('New Product Added!'); window.location.href = 'ProductSuper.php?cat_type=$category'; </script>";
+            echo "<script> alert('New Product Added'); window.location.href = 'ProductSuper.php?cat_type=$category'; </script>";
         }
         else
         {
-            echo "<script> alert('Failed to add new product!'); window.location.href = 'MenusSuper.php'; </script>";
+            echo "<script> alert('Failed to add new product'); window.location.href = 'MenusSuper.php'; </script>";
         }
     }
 }

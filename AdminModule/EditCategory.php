@@ -252,7 +252,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
                 } 
                 else 
                 {
-                    echo "<script>alert('Failed to update category!'); window.location.href = 'MenusSuper.php';</script>";
+                    echo "<script>alert('Failed to update category'); window.location.href = 'MenusSuper.php';</script>";
                 }
             }
             ?>
