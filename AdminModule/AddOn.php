@@ -50,8 +50,9 @@ if (isset($_POST['delete_selected_addons']))
             $deleteResult = mysqli_query($connect, $deleteQuery);
 
             // Check for deletion success
-            if (!$deleteResult) {
-                echo "<script>alert('Failed to delete addon with ID $addonId: " . mysqli_error($connect) . "');</script>";
+            if (!$deleteResult) 
+            {
+                echo "<script>alert('Failed to delete addon with ID $addonId: " . mysqli_error($connect) . "');</script>";   
             }
         }
 
