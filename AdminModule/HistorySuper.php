@@ -252,7 +252,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                                 </div>
 
-                                <input type="button" value="PRINT RECEIPT" name="delivered" class="btn" onclick="printReceipt('<?php echo urlencode($order_date_r); ?>', '<?php echo urlencode($order_time_r); ?>')">
+                                <input type="button" value="VIEW RECEIPT" name="delivered" class="btn" onclick="printReceipt('<?php echo urlencode($order_date_r); ?>', '<?php echo urlencode($order_time_r); ?>')">
                                     
                             </div>
                         </div>
