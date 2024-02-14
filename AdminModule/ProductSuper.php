@@ -73,7 +73,6 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                 <div class="menu">
 
-                    <div class="item"><a href="AdminProfileSuper.php?id=<?php echo $id; ?>"><i class="fab fa-jenkins"></i> <span class="menu-text"> My Profile </span> </a></div>
                     <div class="item"><a href="SuperAdminPanel.php?id=<?php echo $id; ?>"><i class="fas fa-desktop"></i> <span class="menu-text"> Dashboard </span> </a></div>
                     <div class="item"><a class="sub-btn"><i class="fas fa-user"></i> <span class="menu-text"> Accounts </span>
                     
@@ -177,7 +176,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
             <div class="backbtn">
         
             <form action="MenusSuper.php">
-                <button type="submit" style="background:orange;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;">
+                <button type="submit" style="background:orange;margin-top:20px;margin-left:5px;width:250px;height:30px;cursor:pointer;font-weight:bold;border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='orange'">
                     BACK
                 </button>
             </form>

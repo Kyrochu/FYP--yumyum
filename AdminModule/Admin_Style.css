@@ -314,7 +314,7 @@ header h1
 
 .dlt
 {
-    background-color:red;
+    background-color:orangered;
     padding:3px;
     font-weight:bold;
     cursor: pointer;
@@ -605,7 +605,7 @@ header h1
 
 .cat-dlt
 {
-    background-color:red;
+    background-color:orangered;
     width:100px;
     padding:3px;
     font-weight:bold;
@@ -686,7 +686,7 @@ header h1
 
 .productTable .dlt
 {
-    background-color:red;
+    background-color:orangered;
     padding:3px;
     font-weight:bold;
     cursor: pointer;
@@ -860,6 +860,11 @@ header h1
     font-weight:bold; 
     border-radius:5px;
     font-size:13px;
+}
+
+.button-link:hover
+{
+    background-color:sandybrown;
 }
 
 .addname,

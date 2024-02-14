@@ -193,7 +193,7 @@ $id = isset($_GET['id'])?$_GET['id']:NULL;
 
                     <div class="addCatbtn">
 
-                        <button style="background:orange; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='burlywood'">
+                        <button style="background:orange; margin-top:20px; margin-left:5px; width:250px; height:30px; cursor:pointer; font-weight:bold; border-radius:5px;" onmouseover="this.style.background='sandybrown'" onmouseout="this.style.background='orange'">
                             ADD NEW CATEGORY
                         </button>
 
